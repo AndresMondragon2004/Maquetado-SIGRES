@@ -79,6 +79,7 @@
 <body class="h-full flex flex-col overflow-hidden text-sm select-none antialiased">
 <!-- BEGIN: TopAppBar -->
   <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+    <!-- APP BAR SUPERIOR CANÓNICA (64px) CON NOTIFICACIONES PERSONALIZADAS -->
   <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
     <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
     <div class="flex items-center gap-3 md:gap-4">
@@ -99,13 +100,97 @@
       </div>
     </div>
 
-    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <!-- Derecha: Trigger Notificaciones Personalizadas + Avatar Usuario -->
     <div class="flex items-center gap-3 sm:gap-4">
-      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
-        <span class="material-symbols-outlined text-[24px]">notifications</span>
-        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
-      </a>
+      
+      <!-- CONTENEDOR DE NOTIFICACIONES INTERACTIVO -->
+      <div class="relative" id="notifContainer">
+        <button type="button" 
+                id="notifBellBtn"
+                onclick="toggleRoleNotifications(event)"
+                class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40 flex items-center justify-center" 
+                title="Notificaciones de Control Escolar" 
+                aria-label="Abrir notificaciones de Control Escolar">
+          <span class="material-symbols-outlined text-[24px]">notifications</span>
+          <span id="notifBadge" class="absolute top-1.5 right-1.5 min-w-[18px] h-[18px] px-1 bg-umb-warning text-umb-carbon text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-umb-guinda shadow-sm">2</span>
+        </button>
+
+        <!-- DROPDOWN PERSONALIZADO DE NOTIFICACIONES (Control Escolar) -->
+        <div id="notifDropdown" class="hidden absolute right-0 top-12 w-[340px] sm:w-[380px] bg-white rounded-xl shadow-modal border border-umb-border z-50 overflow-hidden flex flex-col text-umb-carbon animate-in fade-in zoom-in-95 duration-150">
+          
+          <!-- Encabezado del Dropdown -->
+          <div class="p-3.5 bg-gradient-to-r from-umb-surface to-white border-b border-umb-border flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-umb-guinda text-[20px]">notifications_active</span>
+              <h3 class="text-xs font-bold text-umb-carbon">Notificaciones (Control Escolar)</h3>
+              <span id="notifHeaderBadge" class="bg-umb-guinda/10 text-umb-guinda text-[10px] font-bold px-2 py-0.5 rounded-full">2 nuevas</span>
+            </div>
+            <button type="button" onclick="markAllNotificationsAsRead(event)" class="text-[11px] font-medium text-umb-guinda hover:underline hover:text-umb-guinda-dark">
+              Marcar leídas
+            </button>
+          </div>
+
+          <!-- Lista de Notificaciones de Rol -->
+          <div class="max-h-[320px] overflow-y-auto custom-scrollbar" id="notifListContainer">
+            <a href="02-bandeja-expedientes.html" class="notif-item block p-3 bg-umb-guinda-light/40 transition-colors border-b border-umb-border/60 last:border-0 group">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg text-umb-guinda bg-umb-guinda-light border-umb-guinda/20 flex items-center justify-center flex-shrink-0 border mt-0.5">
+                  <span class="material-symbols-outlined text-[18px]">folder_shared</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-1">
+                    <p class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda truncate leading-tight">Expediente digital recibido</p>
+                    <span class="unread-dot w-2 h-2 rounded-full bg-umb-guinda flex-shrink-0"></span>
+                  </div>
+                  <p class="text-[11px] text-umb-muted leading-snug mt-0.5">Expediente de Jesús Andrés Mondragón (ISC) listo para validación de requisitos.</p>
+                  <span class="text-[10px] text-umb-outline mt-1 block">Hace 30 min</span>
+                </div>
+              </div>
+            </a>
+            <a href="05-generar-carta.html" class="notif-item block p-3 bg-umb-guinda-light/40 transition-colors border-b border-umb-border/60 last:border-0 group">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg text-amber-600 bg-amber-50 border-amber-200 flex items-center justify-center flex-shrink-0 border mt-0.5">
+                  <span class="material-symbols-outlined text-[18px]">print</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-1">
+                    <p class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda truncate leading-tight">Carta de presentación solicitada</p>
+                    <span class="unread-dot w-2 h-2 rounded-full bg-umb-guinda flex-shrink-0"></span>
+                  </div>
+                  <p class="text-[11px] text-umb-muted leading-snug mt-0.5">2 estudiantes solicitaron emisión oficial de carta de presentación.</p>
+                  <span class="text-[10px] text-umb-outline mt-1 block">Hace 3 horas</span>
+                </div>
+              </div>
+            </a>
+            <a href="07-validar-empresas-nuevas.html" class="notif-item block p-3 bg-white hover:bg-umb-surface transition-colors border-b border-umb-border/60 last:border-0 group">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg text-purple-600 bg-purple-50 border-purple-200 flex items-center justify-center flex-shrink-0 border mt-0.5">
+                  <span class="material-symbols-outlined text-[18px]">add_business</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-1">
+                    <p class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda truncate leading-tight">Empresa nueva registrada</p>
+                    
+                  </div>
+                  <p class="text-[11px] text-umb-muted leading-snug mt-0.5">Se agregó 'Dirección Académica UMB' para confirmación de convenio.</p>
+                  <span class="text-[10px] text-umb-outline mt-1 block">Ayer</span>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Pie del Dropdown -->
+          <div class="p-2.5 bg-umb-surface/80 border-t border-umb-border text-center">
+            <a href="../08-transversales/04-centro-notificaciones.html" class="text-xs font-semibold text-umb-guinda hover:text-umb-guinda-dark flex items-center justify-center gap-1.5 py-1">
+              <span>Abrir centro de notificaciones general</span>
+              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div class="h-6 w-px bg-white/20"></div>
+      
       <a href="09-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
         <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
           EY

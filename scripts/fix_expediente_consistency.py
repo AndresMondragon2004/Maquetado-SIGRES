@@ -1,271 +1,16 @@
-<!DOCTYPE html><html lang="es" class="h-full"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi expediente — SIGRES-UMB</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            umb: {
-              guinda: '#681B2B',
-              'guinda-dark': '#4F1420',
-              'guinda-light': '#F9F5F6',
-              dorado: '#9E773B',
-              'dorado-dark': '#7F5E2B',
-              'dorado-light': '#FEF3C7',
-              surface: '#F4F5F7',
-              card: '#FFFFFF',
-              border: '#E2E8F0',
-              carbon: '#1A1A1A',
-              muted: '#544244',
-              outline: '#877273',
-              success: '#2D8C4E',
-              warning: '#D69E2E',
-              danger: '#C53030',
-              info: '#2B6CB0'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif']
-          },
-          borderRadius: {
-            card: '8px',
-            badge: '9999px',
-            modal: '12px'
-          },
-          boxShadow: {
-            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
-            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
-            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
-          }
-        }
-      }
-    }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
-    }
-    .material-symbols-outlined.fill {
-      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    }
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #F4F5F7;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #CBD5E1;
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #94A3B8;
-    }
-  </style>
-</head>
-<body class="min-h-full flex flex-col antialiased selection:bg-umb-guinda selection:text-white">
+import os
+import re
 
-  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
-<header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
-    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb (Inicio / Apartado) -->
-    <div class="flex items-center gap-3 md:gap-4">
-      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
-        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
-          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
-        </div>
-        <div class="flex flex-col">
-          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
-          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
-        </div>
-      </a>
-      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
-      <div class="hidden sm:flex items-center text-xs text-white/80 ml-3 pl-3 border-l border-white/20 gap-1.5">
-        <a href="01-dashboard.html" class="hover:text-white hover:underline flex items-center gap-1 transition-colors text-white/90">
-          <span class="material-symbols-outlined text-[15px]">home</span>
-          <span>Inicio</span>
-        </a>
-        <span class="material-symbols-outlined text-[13px] text-white/60">chevron_right</span>
-        <span class="font-semibold text-white">Mi expediente</span>
-      </div>
-    </div>
+BASE_DIR = r"c:\Users\Pc\Downloads\Maquetado - Residencia\respaldo-pre-estandarizacion-2026-09-17\sigres-umb"
 
-    <!-- Derecha: Trigger Notificaciones Personalizadas + Avatar Usuario -->
-    <div class="flex items-center gap-3 sm:gap-4">
-      
-      <!-- CONTENEDOR DE NOTIFICACIONES INTERACTIVO -->
-      <div class="relative" id="notifContainer">
-        <button type="button" 
-                id="notifBellBtn"
-                onclick="toggleRoleNotifications(event)"
-                class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40 flex items-center justify-center" 
-                title="Notificaciones de Estudiante" 
-                aria-label="Abrir notificaciones de Estudiante">
-          <span class="material-symbols-outlined text-[24px]">notifications</span>
-          <span id="notifBadge" class="absolute top-1.5 right-1.5 min-w-[18px] h-[18px] px-1 bg-umb-warning text-umb-carbon text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-umb-guinda shadow-sm">2</span>
-        </button>
+def fix_mi_expediente_html():
+    fpath = os.path.join(BASE_DIR, "02-estudiante", "02-mi-expediente.html")
+    with open(fpath, "r", encoding="utf-8") as f:
+        c = f.read()
 
-        <!-- DROPDOWN PERSONALIZADO DE NOTIFICACIONES (Estudiante) -->
-        <div id="notifDropdown" class="hidden absolute right-0 top-12 w-[340px] sm:w-[380px] bg-white rounded-xl shadow-modal border border-umb-border z-50 overflow-hidden flex flex-col text-umb-carbon animate-in fade-in zoom-in-95 duration-150">
-          
-          <!-- Encabezado del Dropdown -->
-          <div class="p-3.5 bg-gradient-to-r from-umb-surface to-white border-b border-umb-border flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-umb-guinda text-[20px]">notifications_active</span>
-              <h3 class="text-xs font-bold text-umb-carbon">Notificaciones (Estudiante)</h3>
-              <span id="notifHeaderBadge" class="bg-umb-guinda/10 text-umb-guinda text-[10px] font-bold px-2 py-0.5 rounded-full">2 nuevas</span>
-            </div>
-            <button type="button" onclick="markAllNotificationsAsRead(event)" class="text-[11px] font-medium text-umb-guinda hover:underline hover:text-umb-guinda-dark">
-              Marcar leídas
-            </button>
-          </div>
-
-          <!-- Lista de Notificaciones de Rol -->
-          <div class="max-h-[320px] overflow-y-auto custom-scrollbar" id="notifListContainer">
-            <a href="08-mis-bitacoras.html" class="notif-item block p-3 bg-umb-guinda-light/40 transition-colors border-b border-umb-border/60 last:border-0 group">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-lg text-emerald-600 bg-emerald-50 border-emerald-200 flex items-center justify-center flex-shrink-0 border mt-0.5">
-                  <span class="material-symbols-outlined text-[18px]">task_alt</span>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-1">
-                    <p class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda truncate leading-tight">Bitácora #5 validada</p>
-                    <span class="unread-dot w-2 h-2 rounded-full bg-umb-guinda flex-shrink-0"></span>
-                  </div>
-                  <p class="text-[11px] text-umb-muted leading-snug mt-0.5">El Asesor Externo (Mtro. Armando Alcalde) ha firmado tu bitácora de la semana 5.</p>
-                  <span class="text-[10px] text-umb-outline mt-1 block">Hace 25 min</span>
-                </div>
-              </div>
-            </a>
-            <a href="13-mis-informes.html" class="notif-item block p-3 bg-umb-guinda-light/40 transition-colors border-b border-umb-border/60 last:border-0 group">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-lg text-amber-600 bg-amber-50 border-amber-200 flex items-center justify-center flex-shrink-0 border mt-0.5">
-                  <span class="material-symbols-outlined text-[18px]">event_upcoming</span>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-1">
-                    <p class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda truncate leading-tight">Entrega de informe parcial</p>
-                    <span class="unread-dot w-2 h-2 rounded-full bg-umb-guinda flex-shrink-0"></span>
-                  </div>
-                  <p class="text-[11px] text-umb-muted leading-snug mt-0.5">Tienes 3 días para subir tu Informe Parcial (320 horas meta requeridas).</p>
-                  <span class="text-[10px] text-umb-outline mt-1 block">Hace 2 horas</span>
-                </div>
-              </div>
-            </a>
-            <a href="02-mi-expediente.html" class="notif-item block p-3 bg-white hover:bg-umb-surface transition-colors border-b border-umb-border/60 last:border-0 group">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-lg text-blue-600 bg-blue-50 border-blue-200 flex items-center justify-center flex-shrink-0 border mt-0.5">
-                  <span class="material-symbols-outlined text-[18px]">verified</span>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-1">
-                    <p class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda truncate leading-tight">Empresa receptora validada</p>
-                    
-                  </div>
-                  <p class="text-[11px] text-umb-muted leading-snug mt-0.5">Control Escolar ha aprobado el registro de UMB · Dirección Académica.</p>
-                  <span class="text-[10px] text-umb-outline mt-1 block">Ayer</span>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <!-- Pie del Dropdown -->
-          <div class="p-2.5 bg-umb-surface/80 border-t border-umb-border text-center">
-            <a href="../08-transversales/04-centro-notificaciones.html" class="text-xs font-semibold text-umb-guinda hover:text-umb-guinda-dark flex items-center justify-center gap-1.5 py-1">
-              <span>Abrir centro de notificaciones general</span>
-              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="h-6 w-px bg-white/20"></div>
-      
-      <a href="14-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
-        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
-          JM
-        </div>
-        <div class="hidden md:flex flex-col text-right">
-          <span class="text-xs font-semibold text-white leading-tight">Jesús Andrés Mondragón</span>
-          <span class="text-[10px] text-white/75 leading-none">Estudiante</span>
-        </div>
-      </a>
-    </div>
-  </header>
-
-  <!-- CONTENEDOR PRINCIPAL: SIDEBAR + CONTENIDO -->
-  <div class="pt-16 flex-1 flex max-w-[1440px] w-full mx-auto">
-    
-    <!-- SIDEBAR ESCRITORIO (260px) -->
-    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
-      <div>
-        <!-- Ficha de usuario activa -->
-        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
-              JM
-            </div>
-            <div class="flex-1 min-w-0">
-              <p class="text-xs font-bold text-umb-carbon truncate">Jesús Andrés Mondragón Tenorio</p>
-              <p class="text-[11px] text-umb-outline truncate">Matrícula: 13220024 · ISC</p>
-              <div class="mt-1">
-                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                  Activo
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Navegación vertical -->
-        <nav class="space-y-1" aria-label="Navegación principal">
-          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
-            <span class="material-symbols-outlined text-[20px]">home</span>
-            <span class="text-sm">Inicio</span>
-          </a>
-          <a href="08-mis-bitacoras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
-            <span class="material-symbols-outlined text-[20px]">menu_book</span>
-            <span class="text-sm">Bitácoras</span>
-          </a>
-          <a href="02-mi-expediente.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
-            <span class="material-symbols-outlined text-[20px] fill">folder</span>
-            <span class="text-sm">Expediente</span>
-          </a>
-          <a href="13-mis-informes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
-            <span class="material-symbols-outlined text-[20px]">description</span>
-            <span class="text-sm">Informes</span>
-          </a>
-          <a href="14-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
-            <span class="material-symbols-outlined text-[20px]">person</span>
-            <span class="text-sm">Perfil</span>
-          </a>
-        </nav>
-      </div>
-
-      <!-- Pie de navegación del sidebar -->
-      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
-        <span>Ciclo 26-27/1</span>
-        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          En línea
-        </span>
-      </div>
-    </aside>
-
-    <!-- ÁREA DE CONTENIDO PRINCIPAL (ancho máximo 1280px) -->
-    <main class="lg:ml-[260px] flex-1 min-w-0 p-4 sm:p-6 lg:p-8 pb-24 lg:pb-12 max-w-[1280px] mx-auto w-full space-y-6">
-
-      <!-- SECCIÓN 1: ENCABEZADO DE LA PÁGINA -->
+    # 1. Replace header of page (Sección 1)
+    old_sec1 = re.search(r'<!-- SECCIÓN 1: ENCABEZADO DE LA PÁGINA -->.*?</div>\s*</div>', c, flags=re.DOTALL)
+    new_sec1 = """<!-- SECCIÓN 1: ENCABEZADO DE LA PÁGINA -->
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white p-5 sm:p-6 rounded-xl border border-umb-border shadow-xs">
         <div>
           <h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Mi expediente</h1>
@@ -277,9 +22,13 @@
             Expediente completo y validado
           </span>
         </div>
-      </div>
+      </div>"""
+    if old_sec1:
+        c = c[:old_sec1.start()] + new_sec1 + c[old_sec1.end():]
 
-      <!-- SECCIÓN 2: BARRA DE PROGRESO GENERAL -->
+    # 2. Replace progress section (Sección 2)
+    old_sec2 = re.search(r'<!-- SECCIÓN 2: BARRA DE PROGRESO GENERAL -->.*?</section>', c, flags=re.DOTALL)
+    new_sec2 = """<!-- SECCIÓN 2: BARRA DE PROGRESO GENERAL -->
       <section class="bg-white rounded-xl p-5 sm:p-6 border border-umb-border shadow-xs space-y-3.5">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
           <span class="text-sm font-medium text-umb-muted">Avance del expediente</span>
@@ -301,9 +50,13 @@
             Autorizado por Control Escolar (28 de agosto de 2026)
           </span>
         </div>
-      </section>
+      </section>"""
+    if old_sec2:
+        c = c[:old_sec2.start()] + new_sec2 + c[old_sec2.end():]
 
-      <!-- SECCIÓN 3: CARTA DE PRESENTACIÓN OFICIAL (TRÁMITE PREVIO FORMALIZADO) -->
+    # 3. Replace Carta de presentación section (Sección 3)
+    old_sec3 = re.search(r'<!-- SECCIÓN 3: GENERACIÓN DE LA CARTA DE PRESENTACIÓN.*?-->.*?</section>', c, flags=re.DOTALL)
+    new_sec3 = """<!-- SECCIÓN 3: CARTA DE PRESENTACIÓN OFICIAL (TRÁMITE PREVIO FORMALIZADO) -->
       <section class="bg-white rounded-xl p-5 sm:p-6 border-l-4 border-l-umb-dorado border-y border-r border-umb-border shadow-xs">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
           <div class="space-y-1.5 max-w-3xl">
@@ -329,9 +82,13 @@
             </a>
           </div>
         </div>
-      </section>
+      </section>"""
+    if old_sec3:
+        c = c[:old_sec3.start()] + new_sec3 + c[old_sec3.end():]
 
-      <!-- SECCIÓN 4: CHECKLIST DE LOS 7 DOCUMENTOS OBLIGATORIOS (TODOS VALIDADOS) -->
+    # 4. Replace the 7 documents checklist and final submission section
+    old_sec4_and_5 = re.search(r'<!-- SECCIÓN 4: CHECKLIST DE LOS 7 DOCUMENTOS -->.*?</main>', c, flags=re.DOTALL)
+    new_sec4_and_5 = """<!-- SECCIÓN 4: CHECKLIST DE LOS 7 DOCUMENTOS OBLIGATORIOS (TODOS VALIDADOS) -->
       <section class="space-y-4">
         <!-- Encabezado de la sección -->
         <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
@@ -659,148 +416,45 @@
   <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
 </footer>
 
-    </main>
-  </div>
+    </main>"""
+    if old_sec4_and_5:
+        c = c[:old_sec4_and_5.start()] + new_sec4_and_5 + c[old_sec4_and_5.end():]
 
-  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
-  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
-    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
-      <span class="material-symbols-outlined text-[22px]">home</span>
-      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
-    </a>
-    <a href="08-mis-bitacoras.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
-      <span class="material-symbols-outlined text-[22px]">menu_book</span>
-      <span class="text-[11px] font-medium mt-0.5">Bitácoras</span>
-    </a>
-    <a href="02-mi-expediente.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
-      <span class="material-symbols-outlined text-[22px] fill">folder</span>
-      <span class="text-[11px] font-semibold mt-0.5">Expediente</span>
-    </a>
-    <a href="13-mis-informes.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
-      <span class="material-symbols-outlined text-[22px]">description</span>
-      <span class="text-[11px] font-medium mt-0.5">Informes</span>
-    </a>
-    <a href="14-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
-      <span class="material-symbols-outlined text-[22px]">person</span>
-      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
-    </a>
-  </nav>
+    with open(fpath, "w", encoding="utf-8") as f:
+        f.write(c)
 
+    print("02-mi-expediente.html updated with 7/7 validated documents and August 2026 dates.")
 
+def fix_other_student_expediente_dates():
+    # 06-solicitud-residencia.html
+    f_sol = os.path.join(BASE_DIR, "02-estudiante", "06-solicitud-residencia.html")
+    if os.path.exists(f_sol):
+        with open(f_sol, "r", encoding="utf-8") as f:
+            c = f.read()
+        c = c.replace("15 de octubre de 2026", "18 de agosto de 2026")
+        with open(f_sol, "w", encoding="utf-8") as f:
+            f.write(c)
 
+    # 07-carta-presentacion-generada.html
+    f_carta = os.path.join(BASE_DIR, "02-estudiante", "07-carta-presentacion-generada.html")
+    if os.path.exists(f_carta):
+        with open(f_carta, "r", encoding="utf-8") as f:
+            c = f.read()
+        c = c.replace("15 de octubre de 2026", "18 de agosto de 2026")
+        with open(f_carta, "w", encoding="utf-8") as f:
+            f.write(c)
 
+    # 05-estatus-validacion-empresa.html
+    f_stat = os.path.join(BASE_DIR, "02-estudiante", "05-estatus-validacion-empresa.html")
+    if os.path.exists(f_stat):
+        with open(f_stat, "r", encoding="utf-8") as f:
+            c = f.read()
+        c = c.replace("18 de octubre de 2026", "17 de agosto de 2026")
+        with open(f_stat, "w", encoding="utf-8") as f:
+            f.write(c)
 
+    print("Auxiliary student expediente files updated with August 2026 dates (prior to Sept 1st).")
 
-
-
-<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
-<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
-  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
-    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
-    <span>Ir al portal</span>
-  </a>
-</aside>
-
-  <!-- MODAL DE NOTIFICACIÓN PUSH DETALLADA -->
-  <div id="pushNotificationModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-150" aria-modal="true" role="dialog">
-    <div class="bg-white rounded-xl shadow-modal max-w-lg w-full overflow-hidden border border-umb-border animate-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
-      
-      <!-- Encabezado del Modal -->
-      <div class="p-4 sm:p-5 bg-gradient-to-r from-umb-surface to-white border-b border-umb-border flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-lg text-emerald-700 bg-emerald-100 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-[22px]">verified</span>
-          </div>
-          <div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-umb-dorado">Detalle de Notificación Push</span>
-            <h3 class="text-sm font-bold text-umb-carbon leading-tight">Dictamen de Aprobación de Anteproyecto</h3>
-          </div>
-        </div>
-        <button type="button" onclick="closePushModal()" class="w-8 h-8 rounded-lg text-umb-outline hover:text-umb-carbon hover:bg-umb-surface flex items-center justify-center transition-colors">
-          <span class="material-symbols-outlined text-[20px]">close</span>
-        </button>
-      </div>
-
-      <!-- Cuerpo del Modal -->
-      <div class="p-5">
-
-          <div class="space-y-4 text-xs text-umb-carbon">
-            <div class="p-3.5 rounded-lg bg-emerald-50/70 border border-emerald-200 flex items-center gap-3">
-              <span class="material-symbols-outlined text-emerald-700 text-[24px]">task_alt</span>
-              <div>
-                <p class="font-bold text-emerald-900 text-sm">Proyecto Aprobado y Avalado (Calificación: 100/100)</p>
-                <p class="text-emerald-800 text-[11px] mt-0.5">Dictamen emitido el 24 de septiembre de 2026 · Ciclo 26-27/1</p>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3 p-3.5 rounded-lg bg-umb-surface border border-umb-border">
-              <div>
-                <p class="text-[10px] text-umb-outline uppercase font-semibold">Residente</p>
-                <p class="font-bold text-umb-carbon mt-0.5">Jesús Andrés Mondragón Tenorio</p>
-                <p class="text-[11px] text-umb-muted">Matrícula: 13220024 · ISC</p>
-              </div>
-              <div>
-                <p class="text-[10px] text-umb-outline uppercase font-semibold">Asesor Interno</p>
-                <p class="font-bold text-umb-carbon mt-0.5">I.S.C. Leonardo Becerril Sánchez</p>
-                <p class="text-[11px] text-umb-muted">Docente Asesor UMB</p>
-              </div>
-            </div>
-
-            <div class="p-3.5 rounded-lg bg-white border border-umb-border">
-              <p class="text-[10px] text-umb-outline uppercase font-semibold">Empresa / Sede Receptora</p>
-              <p class="font-bold text-umb-carbon mt-0.5">Universidad Mexiquense del Bicentenario · Dirección Académica</p>
-              <p class="text-[11px] text-umb-muted mt-1 leading-relaxed">
-                <strong>Observaciones del Asesor:</strong> <em>"El anteproyecto cumple a cabalidad con las competencias del perfil de egreso de Ingeniería en Sistemas Computacionales. Se autoriza la prosecución del registro semanal de bitácoras."</em>
-              </p>
-            </div>
-          </div>
-        
-      </div>
-
-      <!-- Pie del Modal -->
-      <div class="p-4 bg-umb-surface/60 border-t border-umb-border flex items-center justify-end gap-2.5">
-        <button type="button" onclick="closePushModal()" class="h-10 px-4 rounded-lg bg-white border border-umb-border hover:bg-umb-surface text-umb-carbon font-medium text-xs transition-all">
-          Cerrar
-        </button>
-        <a href="08-mis-bitacoras.html" class="h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm"><span>Ir a mis bitácoras</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
-      </div>
-
-    </div>
-  </div>
-  <!-- SCRIPT DE CONTROL PARA BANNER Y MODAL PUSH -->
-  <script>
-    function openPushModal() {
-      const modal = document.getElementById('pushNotificationModal');
-      if (modal) modal.classList.remove('hidden');
-    }
-
-    function closePushModal() {
-      const modal = document.getElementById('pushNotificationModal');
-      if (modal) modal.classList.add('hidden');
-    }
-
-    function dismissPushBanner() {
-      const banner = document.getElementById('pushNotificationBanner');
-      if (banner) {
-        banner.style.opacity = '0';
-        banner.style.transform = 'translateY(-10px)';
-        banner.style.transition = 'all 0.3s ease';
-        setTimeout(() => banner.remove(), 300);
-      }
-    }
-
-    // Cerrar modal al hacer clic en el backdrop
-    document.addEventListener('DOMContentLoaded', () => {
-      const modal = document.getElementById('pushNotificationModal');
-      if (modal) {
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) closePushModal();
-        });
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closePushModal();
-    });
-  </script>
-</body></html>
+if __name__ == "__main__":
+    fix_mi_expediente_html()
+    fix_other_student_expediente_dates()

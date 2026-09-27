@@ -78,16 +78,16 @@
 </head>
 <body class="bg-umb-surface min-h-full flex flex-col font-sans text-umb-carbon antialiased selection:bg-umb-guinda selection:text-white">
 
-  <!-- Cabecera institucional compacta -->
-  <header class="w-full pt-8 pb-4 flex justify-center items-center px-4">
-    <div class="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-5 py-2.5 rounded-full border border-gray-200/80 shadow-sm">
-      <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-9 w-auto object-contain">
+  <!-- CABECERA INSTITUCIONAL ESTÁNDAR (Pill Capsule) -->
+  <header class="w-full pt-8 pb-4 px-4 flex justify-center items-center">
+    <a href="../index.html" class="inline-flex items-center gap-3.5 bg-white hover:bg-umb-surface/60 px-6 py-2.5 rounded-full border border-umb-border shadow-sm transition-all group" title="Ir al portal principal">
+      <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-9 w-auto object-contain" />
       <div class="h-6 w-px bg-umb-border"></div>
-      <div class="flex items-center gap-1.5">
-        <span class="text-[16px] font-semibold text-umb-guinda tracking-tight">SIGRES-UMB</span>
-        <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-umb-guinda/10 text-umb-guinda">UES San José del Rincón</span>
+      <div class="flex items-center gap-2">
+        <span class="text-umb-guinda font-bold text-base tracking-tight leading-none group-hover:text-umb-guinda-dark transition-colors">SIGRES-UMB</span>
+        <span class="text-xs text-slate-500 font-normal leading-none hidden sm:inline">UES San José del Rincón</span>
       </div>
-    </div>
+    </a>
   </header>
 
   <!-- Contenedor principal de la tarjeta -->

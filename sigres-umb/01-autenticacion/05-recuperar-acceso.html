@@ -77,18 +77,17 @@
   </style>
 </head>
 <body class="min-h-screen bg-umb-surface text-stone-900 flex flex-col justify-between items-center py-8 px-4 antialiased selection:bg-umb-guinda selection:text-white">
-<!-- BEGIN: MainHeader -->
-<header class="w-full flex justify-center mb-6">
-<!-- Top Institution Badge / Pill Container -->
-<div class="bg-white border border-stone-200 rounded-full px-6 py-2.5 flex items-center gap-3.5 shadow-sm max-w-fit">
-<img alt="Logo UMB" class="h-9 w-auto object-contain" src="../assets/logo_umb.png"/>
-<div aria-hidden="true" class="w-px h-6 bg-stone-300"></div>
-<div class="flex items-center gap-2 text-sm leading-none">
-<span class="font-semibold text-base text-umb-guinda tracking-tight">SIGRES-UMB</span>
-<span class="text-stone-500 font-normal text-sm hidden sm:inline">UES San José del Rincón</span>
-</div>
-</div>
-</header>
+<!-- CABECERA INSTITUCIONAL ESTÁNDAR (Pill Capsule) -->
+  <header class="w-full pt-8 pb-4 px-4 flex justify-center items-center">
+    <a href="../index.html" class="inline-flex items-center gap-3.5 bg-white hover:bg-umb-surface/60 px-6 py-2.5 rounded-full border border-umb-border shadow-sm transition-all group" title="Ir al portal principal">
+      <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-9 w-auto object-contain" />
+      <div class="h-6 w-px bg-umb-border"></div>
+      <div class="flex items-center gap-2">
+        <span class="text-umb-guinda font-bold text-base tracking-tight leading-none group-hover:text-umb-guinda-dark transition-colors">SIGRES-UMB</span>
+        <span class="text-xs text-slate-500 font-normal leading-none hidden sm:inline">UES San José del Rincón</span>
+      </div>
+    </a>
+  </header>
 <!-- END: MainHeader -->
 <!-- BEGIN: MainContent -->
 <main class="w-full flex flex-col items-center justify-center flex-1 my-2">

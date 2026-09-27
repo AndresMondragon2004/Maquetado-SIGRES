@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis alumnos — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="bg-umb-surface text-umb-gray-text font-sans antialiased min-h-screen flex flex-col">
+<!-- BEGIN: TopAppBar -->
+<!-- Encabezado superior institucional institucional en tono guinda UMB -->
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Asesor interno</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Mis alumnos</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="08-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          LB
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">I.S.C. Leonardo Becerril</span>
+          <span class="text-[10px] text-white/75 leading-none">Asesor interno</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: TopAppBar -->
+<!-- Contenedor principal para Sidebar y Área de Trabajo -->
+<div class="flex flex-1">
+<!-- BEGIN: LeftSidebar -->
+<!-- Barra lateral fija de navegación -->
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              LB
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">I.S.C. Leonardo Becerril Sánchez</p>
+              <p class="text-[11px] text-umb-outline truncate">Docente Asesor · ISC</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="02-mis-alumnos.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">group</span>
+            <span class="text-sm">Mis alumnos</span>
+          </a>
+          <a href="04-registrar-asesoria.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">assignment</span>
+            <span class="text-sm">Asesorías</span>
+          </a>
+          <a href="05-revisar-bitacoras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">fact_check</span>
+            <span class="text-sm">Evaluaciones</span>
+          </a>
+          <a href="08-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContentArea -->
+<!-- Contenido principal centrado y estructurado -->
+<main class="flex-1 overflow-y-auto px-8 py-8" data-purpose="main-content-layout">
+<div class="max-w-[1280px] mx-auto space-y-6">
+<!-- BEGIN: PageHeader -->
+<!-- Encabezado con breadcrumbs y resumen general -->
+<section data-purpose="section-header">
+<div class="text-[12px] text-umb-outline mb-1">
+            Inicio / Mis alumnos
+          </div>
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Mis alumnos</h1>
+<p class="text-sm text-umb-muted mt-0.5">
+                Consulta y da seguimiento a los alumnos de Ingeniería en Sistemas Computacionales que tienes asignados.
+              </p>
+</div>
+<div>
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-umb-guinda/10 text-umb-guinda border border-umb-guinda/20">
+                5 alumnos activos
+              </span>
+</div>
+</div>
+</section>
+<!-- END: PageHeader -->
+<!-- BEGIN: FilterAndSearchSection -->
+<!-- Barra de búsqueda y controles de filtro -->
+<section class="bg-white rounded-lg border border-umb-border p-5 shadow-xs" data-purpose="filter-toolbar">
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+<!-- Campo de búsqueda reactivo -->
+<div class="relative flex-1">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<input class="w-full h-11 pl-10 pr-4 text-xs rounded-lg border-umb-border bg-white text-umb-carbon placeholder-[#877273] focus:border-umb-guinda focus:ring-1 focus:ring-umb-guinda transition-colors" placeholder="Busca por nombre, matrícula o empresa..." type="text"/>
+</div>
+<!-- Chips de filtrado por estatus de avance -->
+<div aria-label="Filtro de alumnos por estado" class="flex flex-wrap items-center gap-2" role="group">
+<button class="h-10 px-4 rounded-lg text-xs font-medium bg-umb-guinda text-white shadow-2xs" type="button">
+                Todos (5)
+              </button>
+<button class="h-10 px-4 rounded-lg text-xs font-medium bg-white border border-umb-border text-umb-muted hover:bg-gray-50 transition-colors" type="button">
+                Al día (3)
+              </button>
+<button class="h-10 px-4 rounded-lg text-xs font-medium bg-white border border-umb-border text-umb-muted hover:bg-gray-50 transition-colors" type="button">
+                En riesgo (2)
+              </button>
+</div>
+<!-- Selector de ordenamiento -->
+<div class="flex items-center min-w-[210px]">
+<div class="relative w-full">
+<select class="w-full h-11 pl-3 pr-8 text-xs font-medium text-umb-muted bg-white border border-umb-border rounded-lg focus:border-umb-guinda focus:ring-1 focus:ring-umb-guinda cursor-pointer appearance-none">
+<option>Ordenar por: Nombre (A-Z)</option>
+<option>Ordenar por: Horas acumuladas</option>
+<option>Ordenar por: Nivel de asistencia</option>
+<option>Ordenar por: Estatus académico</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: FilterAndSearchSection -->
+<!-- BEGIN: StudentCardsList -->
+<!-- Lista de tarjetas de alumnos asignados con layout a 3 columnas y pie de acciones -->
+<section class="space-y-4" data-purpose="students-assigned-list">
+<!-- ALUMNO 1: Jesús Andrés Mondragón Tenorio -->
+<article class="bg-white rounded-lg border border-umb-border border-l-4 border-l-[#2D8C4E] p-6 shadow-xs hover:shadow-sm transition-shadow" data-purpose="student-card-record">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-5 border-b border-umb-border">
+<!-- Columna Izquierda (25% -> 3 cols): Perfil e información base -->
+<div class="lg:col-span-3 flex items-start space-x-3.5">
+<div class="w-14 h-14 rounded-full bg-emerald-100 text-[#2D8C4E] font-bold text-lg flex items-center justify-center shrink-0 border border-emerald-200">
+                  VR
+                </div>
+<div class="min-w-0">
+<div class="flex items-center space-x-2">
+<h2 class="text-base font-semibold text-umb-carbon truncate leading-snug">Jesús Andrés Mondragón Tenorio</h2>
+</div>
+<div class="flex items-center space-x-2 mt-1">
+<span class="text-xs text-umb-outline">Matrícula: <strong class="font-medium text-umb-muted">13220024</strong></span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-umb-guinda/10 text-umb-guinda">ISC</span>
+</div>
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501421] mt-2.5 transition-colors group" href="#">
+                    Ver expediente completo 
+                    <span class="ml-1 group-hover:translate-x-0.5 transition-transform">→</span>
+</a>
+</div>
+</div>
+<!-- Columna Central (50% -> 6 cols): Detalles de proyecto y empresa -->
+<div class="lg:col-span-6 space-y-2 border-t lg:border-t-0 pt-4 lg:pt-0">
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-umb-outline">Empresa</span>
+<p class="text-[13px] font-medium text-umb-carbon">Universidad Mexiquense del Bicentenario · Dirección Académica</p>
+</div>
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-umb-outline">Proyecto</span>
+<p class="text-[13px] text-umb-muted leading-relaxed">Plataforma web para el control de información relativa al proceso de residencia profesional</p>
+</div>
+<div class="flex items-center space-x-1.5 pt-0.5 text-xs text-umb-muted">
+<svg class="w-3.5 h-3.5 text-umb-outline" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Última asesoría: <span class="font-medium text-umb-carbon">3 de noviembre de 2026</span> · Presencial</span>
+</div>
+</div>
+<!-- Columna Derecha (25% -> 3 cols): Avance, horas y asistencia -->
+<div class="lg:col-span-3 space-y-3.5 border-t lg:border-t-0 pt-4 lg:pt-0 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-xs text-umb-outline">Progreso de horas</span>
+<span class="text-xs font-semibold text-umb-carbon">320 / 640 hrs</span>
+</div>
+<!-- Barra de progreso -->
+<div class="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
+<div class="bg-umb-guinda h-full rounded-full" style="width: 50%;"></div>
+</div>
+<span class="text-[11px] text-umb-muted mt-1 block">50% completado</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center space-x-2">
+<span class="text-xs text-umb-outline">Asistencia:</span>
+<span class="text-sm font-semibold text-[#2D8C4E]">100%</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-emerald-100 text-[#166534]">Cumple</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#DCFCE7] text-[#166534]">
+                    Al día
+                  </span>
+</div>
+</div>
+</div>
+<!-- Botones de acción inferior -->
+<div class="pt-4 flex flex-wrap items-center justify-end gap-2.5">
+<button class="px-3 py-1.5 rounded-md text-xs font-medium text-umb-guinda hover:bg-rose-50 transition-colors" type="button">
+                Enviar mensaje
+              </button>
+<button class="px-3 py-1.5 rounded-md text-xs font-medium border border-umb-guinda text-umb-guinda hover:bg-umb-guinda/5 transition-colors" type="button">
+                Revisar bitácoras
+              </button>
+<button class="px-3.5 py-1.5 rounded-md text-xs font-medium bg-umb-guinda text-white hover:bg-[#501421] transition-colors shadow-2xs" type="button">
+                Registrar asesoría
+              </button>
+</div>
+</article>
+<!-- ALUMNO 2: Cristofer Piña Rodríguez -->
+<article class="bg-white rounded-lg border border-umb-border border-l-4 border-l-[#2D8C4E] p-6 shadow-xs hover:shadow-sm transition-shadow" data-purpose="student-card-record">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-5 border-b border-umb-border">
+<!-- Columna Izquierda -->
+<div class="lg:col-span-3 flex items-start space-x-3.5">
+<div class="w-14 h-14 rounded-full bg-blue-100 text-blue-800 font-bold text-lg flex items-center justify-center shrink-0 border border-blue-200">
+                  CM
+                </div>
+<div class="min-w-0">
+<h2 class="text-base font-semibold text-umb-carbon truncate leading-snug">Cristofer Piña Rodríguez</h2>
+<div class="flex items-center space-x-2 mt-1">
+<span class="text-xs text-umb-outline">Matrícula: <strong class="font-medium text-umb-muted">13200018</strong></span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-umb-guinda/10 text-umb-guinda">ISC</span>
+</div>
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501421] mt-2.5 transition-colors group" href="#">
+                    Ver expediente completo 
+                    <span class="ml-1 group-hover:translate-x-0.5 transition-transform">→</span>
+</a>
+</div>
+</div>
+<!-- Columna Central -->
+<div class="lg:col-span-6 space-y-2 border-t lg:border-t-0 pt-4 lg:pt-0">
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-umb-outline">Empresa</span>
+<p class="text-[13px] font-medium text-umb-carbon">Grupo Bimbo Logística</p>
+</div>
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-umb-outline">Proyecto</span>
+<p class="text-[13px] text-umb-muted leading-relaxed">Automatización de ruteo de CEDIS</p>
+</div>
+<div class="flex items-center space-x-1.5 pt-0.5 text-xs text-umb-muted">
+<svg class="w-3.5 h-3.5 text-umb-outline" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Última asesoría: <span class="font-medium text-umb-carbon">28 de octubre de 2026</span> · Virtual</span>
+</div>
+</div>
+<!-- Columna Derecha -->
+<div class="lg:col-span-3 space-y-3.5 border-t lg:border-t-0 pt-4 lg:pt-0 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-xs text-umb-outline">Progreso de horas</span>
+<span class="text-xs font-semibold text-umb-carbon">480 / 640 hrs</span>
+</div>
+<div class="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
+<div class="bg-umb-guinda h-full rounded-full" style="width: 75%;"></div>
+</div>
+<span class="text-[11px] text-umb-muted mt-1 block">75% completado</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center space-x-2">
+<span class="text-xs text-umb-outline">Asistencia:</span>
+<span class="text-sm font-semibold text-[#2D8C4E]">95%</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-emerald-100 text-[#166534]">Cumple</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#DCFCE7] text-[#166534]">
+                    Al día
+                  </span>
+</div>
+</div>
+</div>
+<!-- Botones de pie -->
+<div class="pt-4 flex flex-wrap items-center justify-end gap-2.5">
+<button class="px-3 py-1.5 rounded-md text-xs font-medium text-umb-guinda hover:bg-rose-50 transition-colors" type="button">
+                Enviar mensaje
+              </button>
+<button class="px-3 py-1.5 rounded-md text-xs font-medium border border-umb-guinda text-umb-guinda hover:bg-umb-guinda/5 transition-colors" type="button">
+                Revisar bitácoras
+              </button>
+<button class="px-3.5 py-1.5 rounded-md text-xs font-medium bg-umb-guinda text-white hover:bg-[#501421] transition-colors shadow-2xs" type="button">
+                Registrar asesoría
+              </button>
+</div>
+</article>
+<!-- ALUMNO 3: Lizet Moreno Piña -->
+<article class="bg-white rounded-lg border border-umb-border border-l-4 border-l-[#2D8C4E] p-6 shadow-xs hover:shadow-sm transition-shadow" data-purpose="student-card-record">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-5 border-b border-umb-border">
+<!-- Columna Izquierda -->
+<div class="lg:col-span-3 flex items-start space-x-3.5">
+<div class="w-14 h-14 rounded-full bg-purple-100 text-purple-700 font-bold text-lg flex items-center justify-center shrink-0 border border-purple-200">
+                  DM
+                </div>
+<div class="min-w-0">
+<h2 class="text-base font-semibold text-umb-carbon truncate leading-snug">Lizet Moreno Piña</h2>
+<div class="flex items-center space-x-2 mt-1">
+<span class="text-xs text-umb-outline">Matrícula: <strong class="font-medium text-umb-muted">13210055</strong></span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-umb-guinda/10 text-umb-guinda">ISC</span>
+</div>
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501421] mt-2.5 transition-colors group" href="#">
+                    Ver expediente completo 
+                    <span class="ml-1 group-hover:translate-x-0.5 transition-transform">→</span>
+</a>
+</div>
+</div>
+<!-- Columna Central -->
+<div class="lg:col-span-6 space-y-2 border-t lg:border-t-0 pt-4 lg:pt-0">
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-umb-outline">Empresa</span>
+<p class="text-[13px] font-medium text-umb-carbon">Softura Labs México</p>
+</div>
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-umb-outline">Proyecto</span>
+<p class="text-[13px] text-umb-muted leading-relaxed">Desarrollo de módulo de reportes analíticos en la nube</p>
+</div>
+<div class="flex items-center space-x-1.5 pt-0.5 text-xs text-umb-muted">
+<svg class="w-3.5 h-3.5 text-umb-outline" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Última asesoría: <span class="font-medium text-umb-carbon">31 de octubre de 2026</span> · Presencial</span>
+</div>
+</div>
+<!-- Columna Derecha -->
+<div class="lg:col-span-3 space-y-3.5 border-t lg:border-t-0 pt-4 lg:pt-0 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-xs text-umb-outline">Progreso de horas</span>
+<span class="text-xs font-semibold text-umb-carbon">310 / 640 hrs</span>
+</div>
+<div class="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
+<div class="bg-umb-guinda h-full rounded-full" style="width: 48%;"></div>
+</div>
+<span class="text-[11px] text-umb-muted mt-1 block">48% completado</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center space-x-2">
+<span class="text-xs text-umb-outline">Asistencia:</span>
+<span class="text-sm font-semibold text-[#2D8C4E]">90%</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-emerald-100 text-[#166534]">Cumple</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#DCFCE7] text-[#166534]">
+                    Al día
+                  </span>
+</div>
+</div>
+</div>
+<!-- Botones de pie -->
+<div class="pt-4 flex flex-wrap items-center justify-end gap-2.5">
+<button class="px-3 py-1.5 rounded-md text-xs font-medium text-umb-guinda hover:bg-rose-50 transition-colors" type="button">
+                Enviar mensaje
+              </button>
+<button class="px-3 py-1.5 rounded-md text-xs font-medium border border-umb-guinda text-umb-guinda hover:bg-umb-guinda/5 transition-colors" type="button">
+                Revisar bitácoras
+              </button>
+<button class="px-3.5 py-1.5 rounded-md text-xs font-medium bg-umb-guinda text-white hover:bg-[#501421] transition-colors shadow-2xs" type="button">
+                Registrar asesoría
+              </button>
+</div>
+</article>
+<!-- ALUMNO 4: Rodolfo Cruz Ibarra -->
+<article class="bg-white rounded-lg border border-umb-border border-l-4 border-l-[#C53030] p-6 shadow-xs hover:shadow-sm transition-shadow" data-purpose="student-card-record">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-5 border-b border-umb-border">
+<!-- Columna Izquierda -->
+<div class="lg:col-span-3 flex items-start space-x-3.5">
+<div class="w-14 h-14 rounded-full bg-red-100 text-[#C53030] font-bold text-lg flex items-center justify-center shrink-0 border border-red-200">
+                  JM
+                </div>
+<div class="min-w-0">
+<h2 class="text-base font-semibold text-umb-carbon truncate leading-snug">Rodolfo Cruz Ibarra</h2>
+<div class="flex items-center space-x-2 mt-1">
+<span class="text-xs text-umb-outline">Matrícula: <strong class="font-medium text-umb-muted">13200031</strong></span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-umb-guinda/10 text-umb-guinda">ISC</span>
+</div>
+<a class="inline-flex items-center text-xs font-medium text-[#C53030] hover:text-red-800 mt-2.5 transition-colors group" href="#">
+                    Ver expediente completo 
+                    <span class="ml-1 group-hover:translate-x-0.5 transition-transform">→</span>
+</a>
+</div>
+</div>
+<!-- Columna Central -->
+<div class="lg:col-span-6 space-y-2 border-t lg:border-t-0 pt-4 lg:pt-0">
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-umb-outline">Empresa</span>
+<p class="text-[13px] font-medium text-umb-carbon">Soluciones Cloud México</p>
+</div>
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-umb-outline">Proyecto</span>
+<p class="text-[13px] text-umb-muted leading-relaxed">Implementación de microservicios para logística interna</p>
+</div>
+<div class="flex items-center space-x-1.5 pt-0.5 text-xs text-umb-muted">
+<svg class="w-3.5 h-3.5 text-umb-outline" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Última asesoría: <span class="font-medium text-umb-carbon">15 de octubre de 2026</span> · Presencial</span>
+</div>
+</div>
+<!-- Columna Derecha -->
+<div class="lg:col-span-3 space-y-3.5 border-t lg:border-t-0 pt-4 lg:pt-0 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-xs text-umb-outline">Progreso de horas</span>
+<span class="text-xs font-semibold text-[#C53030]">190 / 640 hrs</span>
+</div>
+<div class="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
+<div class="bg-[#C53030] h-full rounded-full" style="width: 30%;"></div>
+</div>
+<span class="text-[11px] text-[#C53030] font-medium mt-1 block">30% completado · Avance crítico</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center space-x-2">
+<span class="text-xs text-umb-outline">Asistencia:</span>
+<span class="text-sm font-semibold text-[#C53030]">78%</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-red-100 text-[#991B1B]">En riesgo (&lt;80%)</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#FEE2E2] text-[#991B1B]">
+                    En riesgo
+                  </span>
+</div>
+</div>
+</div>
+<!-- Botones de pie específicos para estatus en riesgo -->
+<div class="pt-4 flex flex-wrap items-center justify-end gap-2.5">
+<button class="px-3 py-1.5 rounded-md text-xs font-medium text-[#C53030] hover:bg-red-50 transition-colors" type="button">
+                Enviar mensaje
+              </button>
+<button class="px-3 py-1.5 rounded-md text-xs font-medium border border-[#C53030] text-[#C53030] hover:bg-red-50/50 transition-colors" type="button">
+                Revisar bitácoras
+              </button>
+<button class="px-3.5 py-1.5 rounded-md text-xs font-medium bg-[#C53030] text-white hover:bg-red-800 transition-colors shadow-2xs inline-flex items-center space-x-1.5" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Atender alumno / Citatorio</span>
+</button>
+</div>
+</article>
+<!-- ALUMNO 5: Sofía Cortez García -->
+<article class="bg-white rounded-lg border border-umb-border border-l-4 border-l-[#D69E2E] p-6 shadow-xs hover:shadow-sm transition-shadow" data-purpose="student-card-record">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-5 border-b border-umb-border">
+<!-- Columna Izquierda -->
+<div class="lg:col-span-3 flex items-start space-x-3.5">
+<div class="w-14 h-14 rounded-full bg-amber-100 text-amber-800 font-bold text-lg flex items-center justify-center shrink-0 border border-amber-200">
+                  AP
+                </div>
+<div class="min-w-0">
+<h2 class="text-base font-semibold text-umb-carbon truncate leading-snug">Sofía Cortez García</h2>
+<div class="flex items-center space-x-2 mt-1">
+<span class="text-xs text-umb-outline">Matrícula: <strong class="font-medium text-umb-muted">13210112</strong></span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-umb-guinda/10 text-umb-guinda">ISC</span>
+</div>
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501421] mt-2.5 transition-colors group" href="#">
+                    Ver expediente completo 
+                    <span class="ml-1 group-hover:translate-x-0.5 transition-transform">→</span>
+</a>
+</div>
+</div>
+<!-- Columna Central -->
+<div class="lg:col-span-6 space-y-2 border-t lg:border-t-0 pt-4 lg:pt-0">
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-umb-outline">Empresa</span>
+<p class="text-[13px] font-medium text-umb-carbon">Despacho Contable García &amp; Asociados</p>
+</div>
+<div>
+<span class="text-[11px] uppercase tracking-wider font-semibold text-umb-outline">Proyecto</span>
+<p class="text-[13px] text-umb-muted leading-relaxed">Sistema de gestión documental para el área contable</p>
+</div>
+<div class="flex items-center space-x-1.5 pt-0.5 text-xs text-umb-muted">
+<svg class="w-3.5 h-3.5 text-umb-outline" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Última asesoría: <span class="font-medium text-umb-carbon">22 de octubre de 2026</span> · Virtual</span>
+</div>
+</div>
+<!-- Columna Derecha -->
+<div class="lg:col-span-3 space-y-3.5 border-t lg:border-t-0 pt-4 lg:pt-0 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-xs text-umb-outline">Progreso de horas</span>
+<span class="text-xs font-semibold text-umb-carbon">240 / 640 hrs</span>
+</div>
+<div class="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
+<div class="bg-[#D69E2E] h-full rounded-full" style="width: 37.5%;"></div>
+</div>
+<span class="text-[11px] text-umb-muted mt-1 block">37.5% completado</span>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center space-x-2">
+<span class="text-xs text-umb-outline">Asistencia:</span>
+<span class="text-sm font-semibold text-amber-700">82%</span>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-amber-100 text-[#92400E]">Cumple</span>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-umb-dorado-light text-[#92400E]">
+                    En riesgo moderado
+                  </span>
+</div>
+</div>
+</div>
+<!-- Botones de pie -->
+<div class="pt-4 flex flex-wrap items-center justify-end gap-2.5">
+<button class="px-3 py-1.5 rounded-md text-xs font-medium text-amber-700 hover:bg-amber-50 transition-colors" type="button">
+                Enviar recordatorio
+              </button>
+<button class="px-3 py-1.5 rounded-md text-xs font-medium border border-umb-guinda text-umb-guinda hover:bg-umb-guinda/5 transition-colors" type="button">
+                Revisar bitácoras
+              </button>
+<button class="px-3.5 py-1.5 rounded-md text-xs font-medium bg-umb-guinda text-white hover:bg-[#501421] transition-colors shadow-2xs" type="button">
+                Registrar asesoría
+              </button>
+</div>
+</article>
+</section>
+<!-- END: StudentCardsList -->
+<!-- BEGIN: PaginationAndSummary -->
+<!-- Resumen numérico y conteo -->
+<section class="flex flex-col sm:flex-row items-center justify-between gap-4 py-2" data-purpose="pagination-summary">
+<p class="text-xs text-umb-outline">
+            Mostrando 1-5 de 5 alumnos
+          </p>
+<nav aria-label="Paginación" class="inline-flex rounded-md shadow-2xs">
+<button class="px-3 py-1.5 text-xs font-medium text-gray-400 bg-white border border-umb-border rounded-l-md cursor-not-allowed" disabled="">
+              Anterior
+            </button>
+<button class="px-3 py-1.5 text-xs font-semibold text-white bg-umb-guinda border border-umb-guinda">
+              1
+            </button>
+<button class="px-3 py-1.5 text-xs font-medium text-gray-400 bg-white border border-umb-border rounded-r-md cursor-not-allowed" disabled="">
+              Siguiente
+            </button>
+</nav>
+</section>
+<!-- END: PaginationAndSummary -->
+<!-- BEGIN: BulkActionsSection -->
+<!-- Acciones masivas complementarias -->
+<section class="bg-white rounded-lg border border-umb-border p-4 flex flex-wrap items-center justify-between gap-3 shadow-2xs" data-purpose="bulk-actions">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<p class="text-xs font-medium text-umb-muted">Operaciones globales sobre el grupo asignado</p>
+</div>
+<div class="flex items-center space-x-3">
+<button class="inline-flex items-center space-x-1.5 px-3 py-2 text-xs font-medium text-umb-muted hover:text-umb-carbon hover:bg-gray-100 rounded-md transition-colors" type="button">
+<svg class="w-4 h-4 text-umb-outline" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Exportar lista (XLSX)</span>
+</button>
+<button class="inline-flex items-center space-x-1.5 px-3 py-2 text-xs font-medium text-umb-guinda hover:bg-rose-50 rounded-md transition-colors" type="button">
+<svg class="w-4 h-4 text-umb-guinda" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Enviar recordatorio a todos</span>
+</button>
+</div>
+</section>
+<!-- END: BulkActionsSection -->
+</div>
+</main>
+<!-- END: MainContentArea -->
+</div>
+<!-- BEGIN: InstitutionalFooter -->
+<!-- Pie de página institucional centrado -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+<!-- END: InstitutionalFooter -->
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="02-mis-alumnos.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">group</span>
+      <span class="text-[11px] font-semibold mt-0.5">Mis alumnos</span>
+    </a>
+    <a href="04-registrar-asesoria.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">assignment</span>
+      <span class="text-[11px] font-medium mt-0.5">Asesorías</span>
+    </a>
+    <a href="05-revisar-bitacoras.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">fact_check</span>
+      <span class="text-[11px] font-medium mt-0.5">Evaluaciones</span>
+    </a>
+    <a href="08-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-umb-surface" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error 404: Página no encontrada | SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col justify-between bg-umb-surface text-umb-carbon antialiased">
+<!-- BEGIN: MainHeader -->
+<header class="h-16 w-full bg-umb-guinda px-6 flex items-center justify-between shadow-sm sticky top-0 z-50">
+<!-- Logotipo y Nombre del Sistema -->
+<div class="flex items-center gap-3.5">
+<!-- Contenedor blanco para el logo oficial de la UMB -->
+<div class="bg-white px-2.5 py-1 rounded-md shadow-sm flex items-center justify-center">
+<img alt="Logotipo oficial de la Universidad Mexiquense del Bicentenario" class="h-8 object-contain" src="../assets/logo_umb.png"/>
+</div>
+<!-- Divisor vertical sutil -->
+<div class="h-6 w-px bg-white/20"></div>
+<!-- Textos institucionales -->
+<div class="flex flex-col sm:flex-row sm:items-baseline sm:gap-2">
+<span class="text-white text-base font-semibold tracking-tight leading-none">SIGRES-UMB</span>
+<span class="text-white/80 text-xs font-normal leading-tight">UES San José del Rincón</span>
+</div>
+</div>
+<!-- Controles de cabecera: Selector de estado y perfil condicional -->
+<div class="flex items-center gap-3">
+<!-- Badge de usuario autenticado (Oculto en estado público) -->
+<div class="hidden items-center gap-2.5 pl-3 border-l border-white/20 text-white" id="authenticated-user-profile">
+<div class="w-8 h-8 rounded-full bg-white/10 border border-white/20 flex items-center justify-center font-medium text-xs">
+          JR
+        </div>
+<div class="hidden md:flex flex-col text-left">
+<span class="text-xs font-medium text-white leading-tight">Juan Ramírez</span>
+<span class="text-[11px] text-white/70 leading-tight">Estudiante</span>
+</div>
+</div>
+<!-- Switcher interactivo de estado (Simulador de vistas) -->
+<div class="relative inline-block text-left" data-purpose="auth-state-switcher">
+<label class="sr-only" for="state-selector">Seleccionar estado de autenticación</label>
+<select class="text-xs bg-[#531422] text-white/90 border border-white/20 rounded-md px-2.5 py-1.5 pr-8 focus:outline-none focus:ring-1 focus:ring-white/40 cursor-pointer transition-colors" id="state-selector" onchange="toggleAuthState(this.value)">
+<option selected="" value="unauth">Vista: No autenticado</option>
+<option value="auth">Vista: Autenticado</option>
+</select>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-grow flex flex-col justify-center items-center px-4 py-8">
+<!-- Tarjeta central de contenido acotada -->
+<div class="max-w-[500px] w-full text-center flex flex-col items-center">
+<!-- 1. Ilustración central decorativa de 404 -->
+<div class="relative w-full h-[140px] flex items-center justify-center overflow-visible" data-purpose="error-illustration">
+<!-- Número 404 de fondo translúcido -->
+<span class="absolute inset-0 flex items-center justify-center font-black text-[120px] leading-none text-umb-guinda/15 tracking-tight text-stroke-subtle pointer-events-none">
+          404
+        </span>
+<!-- Círculo superpuesto con ícono de orientación -->
+<div class="relative z-10 w-24 h-24 rounded-full bg-umb-surface border-2 border-umb-border shadow-sm flex items-center justify-center">
+<!-- Ícono vectorial de brújula/exploración desorientada -->
+<svg aria-hidden="true" class="w-12 h-12 text-umb-outline" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24">
+<path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="m14.928 9.072-2.122 5.856-5.856 2.122 2.122-5.856 5.856-2.122Z" stroke-linecap="round" stroke-linejoin="round"></path>
+<circle cx="12" cy="12" fill="currentColor" r="1"></circle>
+</svg>
+</div>
+</div>
+<!-- 2. Título principal -->
+<h1 class="mt-8 text-[28px] font-bold text-umb-carbon tracking-tight leading-snug">
+        Página no encontrada
+      </h1>
+<!-- 3. Descripción explicativa amigable -->
+<p class="mt-3 text-[15px] font-normal text-umb-muted max-w-[400px] mx-auto leading-relaxed">
+        La página que buscas no existe o ya no está disponible. Verifica la URL o regresa al inicio.
+      </p>
+<!-- 4. Caja informativa de ayuda y orientación -->
+<section aria-labelledby="help-box-heading" class="mt-6 w-full bg-[#F9FAFB] border border-umb-border rounded-lg p-4 text-left">
+<div class="flex items-center gap-2 mb-2.5">
+<!-- Ícono de bombilla / orientación -->
+<svg aria-hidden="true" class="w-4 h-4 text-[#C59B27]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.516 0c.85.493 1.508 1.333 1.508 2.316V18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<h2 class="text-[13px] font-semibold text-umb-carbon" id="help-box-heading">
+            ¿Qué puedes hacer?
+          </h2>
+</div>
+<!-- Lista de sugerencias claras -->
+<ul class="space-y-1.5 text-[12px] font-normal text-umb-muted pl-5 list-disc marker:text-umb-outline">
+<li>Verifica que la URL esté escrita correctamente</li>
+<li>Regresa al inicio y navega desde el menú</li>
+<li>Contacta a Control Escolar si el problema persiste</li>
+</ul>
+</section>
+<!-- 5. Fila de botones de acción -->
+<div class="mt-6 flex flex-wrap justify-center items-center gap-3 w-full" data-purpose="navigation-actions">
+<!-- Botón secundario: Volver atrás -->
+<button class="h-11 px-5 rounded-lg border border-umb-border bg-white text-umb-muted hover:bg-gray-50 hover:border-[#CBD5E1] transition-all font-medium text-[14px] flex items-center justify-center gap-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-umb-guinda" onclick="handleGoBack()" type="button">
+<svg aria-hidden="true" class="w-4 h-4 text-umb-muted" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Volver atrás</span>
+</button>
+<!-- Botón primario: Dinámico según estado -->
+<a class="h-11 px-5 rounded-lg bg-umb-guinda hover:bg-[#531422] text-white transition-all font-medium text-[14px] flex items-center justify-center gap-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-umb-guinda" href="#" id="primary-action-button">
+<!-- Ícono de inicio -->
+<svg aria-hidden="true" class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span id="primary-action-text">Ir al inicio</span>
+</a>
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: MainFooter -->
+<footer class="mt-12 mb-6 text-center px-4">
+<p class="text-[11px] font-normal text-umb-outline tracking-wide">
+      SIGRES-UMB · Universidad Mexiquense del Bicentenario · Ciclo 26-27/1
+    </p>
+</footer>
+<!-- END: MainFooter -->
+<!-- BEGIN: InteractiveHandlers -->
+<script data-purpose="event-handlers">
+    /**
+     * Alterna la vista entre Usuario Público (No autenticado) y Usuario con Sesión (Autenticado).
+     * @param {string} state - 'unauth' | 'auth'
+     */
+    function toggleAuthState(state) {
+      const userProfile = document.getElementById('authenticated-user-profile');
+      const primaryBtn = document.getElementById('primary-action-button');
+      const primaryBtnText = document.getElementById('primary-action-text');
+
+      if (state === 'auth') {
+        // Mostrar perfil en App Bar
+        userProfile.classList.remove('hidden');
+        userProfile.classList.add('flex');
+        
+        // Cambiar acción principal al Dashboard
+        primaryBtnText.textContent = 'Ir a mi dashboard';
+        primaryBtn.setAttribute('title', 'Navegar al panel institucional del estudiante');
+      } else {
+        // Ocultar perfil en App Bar
+        userProfile.classList.add('hidden');
+        userProfile.classList.remove('flex');
+        
+        // Cambiar acción principal al Inicio institucional
+        primaryBtnText.textContent = 'Ir al inicio';
+        primaryBtn.setAttribute('title', 'Navegar a la página de bienvenida');
+      }
+    }
+
+    /**
+     * Gestiona el regreso en el historial del navegador de forma segura.
+     */
+    function handleGoBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        // En caso de haber entrado directamente vía enlace externo
+        window.location.href = '#';
+      }
+    }
+  </script>
+<!-- END: InteractiveHandlers -->
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estado Sin Conexión Reutilizable — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-brand-bg text-brand-dark font-sans antialiased selection:bg-umb-guinda-light selection:text-umb-guinda">
+
+  <!-- Banner delgado superior PWA offline opcional -->
+  <aside id="offlineBanner" class="w-full bg-umb-dorado-light border-b border-[#FDE68A] py-2 px-4 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex items-center justify-between text-xs font-medium text-[#92400E]">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#D69E2E] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 4.243a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.166a1 1 0 11-1.414 1.414M3 3l18 18"></path>
+        </svg>
+        <span>Sin conexión · PWA trabajando en modo local con almacenamiento seguro</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 bg-[#FDE68A]/60 px-2 py-0.5 rounded text-[11px] font-semibold text-[#78350F]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#D69E2E] animate-ping"></span>
+          3 bitácoras por sincronizar
+        </span>
+        <span class="text-[#B45309] hidden md:inline">UES San José del Rincón</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- App bar institucional -->
+  <header class="bg-umb-guinda text-white h-16 px-6 flex items-center justify-between shadow-sm sticky top-0 z-30">
+    <div class="flex items-center gap-3">
+      <div class="bg-white p-1 rounded flex items-center justify-center h-10 w-10">
+        <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-8 w-auto object-contain">
+      </div>
+      <div class="flex flex-col">
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-base tracking-wide">SIGRES-UMB</span>
+          <span class="bg-white/20 text-white text-[10px] uppercase font-semibold px-2 py-0.5 rounded tracking-wider">PWA Offline</span>
+        </div>
+        <span class="text-xs text-white/80 font-normal">Universidad Mexiquense del Bicentenario · UES San José del Rincón</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <div class="hidden sm:flex items-center gap-2 bg-black/20 px-3 py-1 rounded-full text-xs text-white/90">
+        <span class="w-2 h-2 rounded-full bg-[#D69E2E]"></span>
+        <span>Modo local</span>
+      </div>
+      <div class="text-right hidden sm:block">
+        <p class="text-xs font-semibold leading-tight">Jesús Andrés Mondragón Tenorio</p>
+        <p class="text-[11px] text-white/80 font-normal">Estudiante · 2026-2027/1</p>
+      </div>
+      <div class="w-9 h-9 rounded-full bg-white/20 border border-white/40 flex items-center justify-center font-bold text-xs">
+        VR
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub-barra contextual / Toolbar de pruebas -->
+  <div class="bg-white border-b border-brand-border px-6 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+      <div class="flex items-center gap-2 text-brand-muted">
+        <a href="#" class="hover:text-umb-guinda transition-colors">Componentes reutilizables</a>
+        <span>/</span>
+        <span class="font-semibold text-brand-dark">Estado sin conexión (Offline state)</span>
+        <span class="ml-2 bg-umb-dorado-light text-[#92400E] text-[10px] font-semibold px-2 py-0.5 rounded-full border border-[#FDE68A]">Resiliencia PWA</span>
+      </div>
+
+      <!-- Selector interactivo de Estado 1 vs Estado 2 -->
+      <div class="flex items-center gap-3 bg-brand-bg px-3 py-1.5 rounded-lg border border-brand-border">
+        <span class="text-brand-muted font-medium">Probar estado:</span>
+        <div class="flex items-center gap-1.5 bg-white p-0.5 rounded border border-brand-border">
+          <button id="btnState1" onclick="switchState(1)" class="px-2.5 py-1 rounded text-xs font-semibold bg-umb-guinda text-white shadow-xs transition-all">
+            1. Con operaciones pendientes
+          </button>
+          <button id="btnState2" onclick="switchState(2)" class="px-2.5 py-1 rounded text-xs font-medium text-brand-muted hover:text-brand-dark transition-all">
+            2. Sin pendientes (Limpio)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido principal centrado -->
+  <main class="flex-1 flex items-center justify-center p-6 md:p-10">
+    <div class="w-full max-w-[480px] bg-white rounded-xl border border-brand-border shadow-sm p-8 md:p-10 text-center transition-all">
+
+      <!-- 1. Ilustración / Ícono grande centrado (128px de diámetro) -->
+      <div class="mx-auto w-32 h-32 rounded-full bg-umb-dorado-light border border-[#FDE68A] flex items-center justify-center relative animate-pulse-subtle shadow-xs">
+        <div class="absolute inset-0 rounded-full bg-[#FDE68A]/30 blur-sm -z-10"></div>
+        <!-- Ícono WiFi tachado / Nube offline de 64px en #D69E2E -->
+        <svg class="w-16 h-16 text-[#D69E2E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18M10.584 10.587a2 2 0 002.828 2.83M8.535 8.536A5 5 0 0115.464 15.464M5.636 5.636a9 9 0 0112.728 0M1.393 9.879a14.948 14.948 0 014.243-4.243M19.778 14.121a14.954 14.954 0 012.829 4.243M9.88 19.778a14.948 14.948 0 01-4.243-2.829M12 20h.01"></path>
+        </svg>
+      </div>
+
+      <!-- 2. Título centrado (H2 22px SemiBold #1A1A1A) -->
+      <h2 class="mt-8 text-[22px] font-semibold text-brand-dark leading-snug tracking-tight">
+        Sin conexión a internet
+      </h2>
+
+      <!-- 3. Descripción centrada (14px Regular #544244, ancho máximo 400px) -->
+      <p class="mt-3 text-sm text-brand-muted leading-relaxed max-w-[400px] mx-auto">
+        No pudimos cargar la información porque no hay conexión disponible. Puedes seguir capturando bitácoras offline, se sincronizarán automáticamente al recuperar señal.
+      </p>
+
+      <!-- 4. Caja informativa azul institucional (fondo #EFF6FF, borde izq 3px #2B6CB0) -->
+      <div class="mt-6 text-left bg-[#EFF6FF] border-l-[3px] border-[#2B6CB0] rounded-lg p-4 transition-all">
+        <div class="flex items-center gap-2 mb-2">
+          <svg class="w-4 h-4 text-[#2B6CB0] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="text-[13px] font-semibold text-[#1E3A8A]">Modo offline activado</span>
+        </div>
+        <ul class="space-y-1.5 pl-6 list-none relative">
+          <li class="flex items-center gap-2 text-xs text-[#1E3A8A]">
+            <svg class="w-3.5 h-3.5 text-[#2B6CB0] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span>Captura de bitácoras disponible</span>
+          </li>
+          <li class="flex items-center gap-2 text-xs text-[#1E3A8A]">
+            <svg class="w-3.5 h-3.5 text-[#2B6CB0] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span>Consulta de datos previamente cargados</span>
+          </li>
+          <li class="flex items-center gap-2 text-xs text-[#1E3A8A]">
+            <svg class="w-3.5 h-3.5 text-[#2B6CB0] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <span>Sincronización automática al recuperar señal</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 5. Información de estado de sincronización (visible en Estado 1) -->
+      <div id="syncBox" class="mt-4 text-left bg-[#F9FAFB] border border-brand-border rounded-lg p-4 space-y-2 transition-all">
+        <div class="flex items-center justify-between text-xs">
+          <div class="flex items-center gap-2 text-brand-subtle">
+            <svg class="w-4 h-4 text-brand-subtle flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>Última sincronización:</span>
+          </div>
+          <span class="text-brand-muted font-medium">12 de noviembre de 2026, 14:32 hrs</span>
+        </div>
+
+        <div class="flex items-center justify-between text-xs pt-1 border-t border-brand-border/60">
+          <div class="flex items-center gap-2 text-[#D69E2E]">
+            <svg class="w-4 h-4 text-[#D69E2E] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            <span class="font-medium">Operaciones pendientes:</span>
+          </div>
+          <span class="font-semibold text-[#D69E2E] bg-umb-dorado-light px-2 py-0.5 rounded text-[11px]">3 bitácoras por sincronizar</span>
+        </div>
+      </div>
+
+      <!-- 6. Fila de botones horizontales al pie (44px de altura) -->
+      <div class="mt-6 flex flex-col sm:flex-row items-center gap-3">
+        <!-- Botón secundario -->
+        <button type="button" onclick="openOfflineBitacorasModal()" class="w-full sm:flex-1 h-11 px-4 rounded-lg bg-white border border-umb-guinda text-umb-guinda hover:bg-umb-guinda-light font-medium text-sm flex items-center justify-center gap-2 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-guinda/20">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          <span>Ver bitácoras offline</span>
+        </button>
+
+        <!-- Botón primario -->
+        <button id="retryBtn" type="button" onclick="triggerRetry()" class="w-full sm:flex-1 h-11 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-hover text-white font-medium text-sm flex items-center justify-center gap-2 transition-colors shadow-xs focus:outline-none focus:ring-2 focus:ring-brand-guinda/30">
+          <svg id="retryIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          <span id="retryLabel">Reintentar conexión</span>
+        </button>
+      </div>
+
+      <div id="retryFeedback" class="mt-3 text-xs text-brand-subtle hidden flex items-center justify-center gap-1.5">
+        <svg class="w-3.5 h-3.5 text-[#D69E2E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <span>Comprobando disponibilidad de red... por favor espera.</span>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Sección didáctica: Especificaciones de diseño PWA y anatomía del componente -->
+  <section class="max-w-7xl mx-auto w-full px-6 pb-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      
+      <div class="bg-white rounded-lg border border-brand-border p-5">
+        <div class="flex items-center gap-2 text-umb-guinda mb-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-umb-guinda"></span>
+          <h3 class="font-semibold text-sm text-brand-dark">Filosofía de resiliencia PWA</h3>
+        </div>
+        <p class="text-xs text-brand-muted leading-relaxed">
+          En lugar de un bloqueo frustrante, el componente tranquiliza al usuario comunicando claramente que sus actividades previas y nuevas capturas en IndexedDB no se perderán.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-lg border border-brand-border p-5">
+        <div class="flex items-center gap-2 text-[#2B6CB0] mb-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#2B6CB0]"></span>
+          <h3 class="font-semibold text-sm text-brand-dark">Tokens y proporciones</h3>
+        </div>
+        <p class="text-xs text-brand-muted leading-relaxed">
+          Contenedor centrado de máximo 480px, círculo de 128px con ámbar institucional (#FEF3C7/#D69E2E), caja informativa azul (#EFF6FF) y botones estándar de 44px con radio de 8px.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-lg border border-brand-border p-5">
+        <div class="flex items-center gap-2 text-[#2D8C4E] mb-2.5">
+          <span class="w-2.5 h-2.5 rounded-full bg-[#2D8C4E]"></span>
+          <h3 class="font-semibold text-sm text-brand-dark">Sincronización en segundo plano</h3>
+        </div>
+        <p class="text-xs text-brand-muted leading-relaxed">
+          Al detectar el evento <code class="bg-brand-bg px-1 py-0.5 rounded text-[11px]">window.online</code>, el Service Worker dispara el pipeline de subida por lotes automáticamente.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Pie institucional -->
+  <footer class="bg-white border-t border-brand-border py-4 px-6 text-center text-xs text-brand-subtle">
+    SIGRES-UMB · Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1
+  </footer>
+
+  <!-- Modal interactivo para "Ver bitácoras offline" -->
+  <div id="offlineBitacorasModal" class="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 z-50 hidden">
+    <div class="bg-white rounded-xl max-w-md w-full p-6 shadow-xl border border-brand-border">
+      <div class="flex items-center justify-between pb-3 border-b border-brand-border">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-[#D69E2E]"></span>
+          <h3 class="font-semibold text-sm text-brand-dark">Bitácoras guardadas en tu dispositivo</h3>
+        </div>
+        <button onclick="closeOfflineBitacorasModal()" class="text-brand-subtle hover:text-brand-dark p-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="py-4 space-y-2.5 text-xs">
+        <div class="p-3 bg-brand-bg rounded-lg border border-brand-border flex items-center justify-between">
+          <div>
+            <p class="font-semibold text-brand-dark">Bitácora Semana 11</p>
+            <p class="text-brand-subtle">Capturada el 12 nov 2026 · 35 horas</p>
+          </div>
+          <span class="px-2 py-0.5 bg-umb-dorado-light text-[#92400E] font-medium rounded text-[11px]">Pendiente</span>
+        </div>
+        <div class="p-3 bg-brand-bg rounded-lg border border-brand-border flex items-center justify-between">
+          <div>
+            <p class="font-semibold text-brand-dark">Bitácora Semana 10 (Corrección)</p>
+            <p class="text-brand-subtle">Capturada el 11 nov 2026 · 35 horas</p>
+          </div>
+          <span class="px-2 py-0.5 bg-umb-dorado-light text-[#92400E] font-medium rounded text-[11px]">Pendiente</span>
+        </div>
+        <div class="p-3 bg-brand-bg rounded-lg border border-brand-border flex items-center justify-between">
+          <div>
+            <p class="font-semibold text-brand-dark">Bitácora Semana 9 (Observaciones)</p>
+            <p class="text-brand-subtle">Capturada el 10 nov 2026 · 35 horas</p>
+          </div>
+          <span class="px-2 py-0.5 bg-umb-dorado-light text-[#92400E] font-medium rounded text-[11px]">Pendiente</span>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-brand-border flex justify-end">
+        <button onclick="closeOfflineBitacorasModal()" class="h-9 px-4 rounded-lg bg-umb-guinda text-white text-xs font-medium hover:bg-umb-guinda-hover transition-colors">
+          Cerrar vista previa
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script interactivo para alternar estados y simular reintentos -->
+  <script>
+    function switchState(stateNumber) {
+      const syncBox = document.getElementById('syncBox');
+      const btnState1 = document.getElementById('btnState1');
+      const btnState2 = document.getElementById('btnState2');
+      const offlineBanner = document.getElementById('offlineBanner');
+
+      if (stateNumber === 1) {
+        syncBox.classList.remove('hidden');
+        btnState1.className = 'px-2.5 py-1 rounded text-xs font-semibold bg-umb-guinda text-white shadow-xs transition-all';
+        btnState2.className = 'px-2.5 py-1 rounded text-xs font-medium text-brand-muted hover:text-brand-dark transition-all';
+      } else {
+        syncBox.classList.add('hidden');
+        btnState2.className = 'px-2.5 py-1 rounded text-xs font-semibold bg-umb-guinda text-white shadow-xs transition-all';
+        btnState1.className = 'px-2.5 py-1 rounded text-xs font-medium text-brand-muted hover:text-brand-dark transition-all';
+      }
+    }
+
+    function triggerRetry() {
+      const retryIcon = document.getElementById('retryIcon');
+      const retryLabel = document.getElementById('retryLabel');
+      const feedback = document.getElementById('retryFeedback');
+
+      retryIcon.classList.add('spin-active');
+      retryLabel.textContent = 'Comprobando...';
+      feedback.classList.remove('hidden');
+
+      setTimeout(() => {
+        retryIcon.classList.remove('spin-active');
+        retryLabel.textContent = 'Reintentar conexión';
+        feedback.innerHTML = '<span class="text-[#D69E2E] font-medium">Aún no se detecta conexión. Continuando en modo offline seguro.</span>';
+      }, 1200);
+    }
+
+    function openOfflineBitacorasModal() {
+      document.getElementById('offlineBitacorasModal').classList.remove('hidden');
+    }
+
+    function closeOfflineBitacorasModal() {
+      document.getElementById('offlineBitacorasModal').classList.add('hidden');
+    }
+  </script>
+
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

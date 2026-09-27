@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-[#F8FAFC]" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Componente: Estados de carga (Skeleton screens) — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col font-sans text-slate-800 bg-[#F8FAFC] antialiased">
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-50 h-16 bg-umb-guinda text-white shadow-md flex items-center px-4 md:px-8 justify-between border-b border-[#521421]">
+<!-- Identificador institucional y logotipo UMB -->
+<div class="flex items-center gap-4">
+<div class="bg-white/95 px-2.5 py-1 rounded shadow-sm flex items-center justify-center">
+<img alt="Logotipo institucional de la Universidad Mexiquense del Bicentenario" class="h-8 w-auto object-contain" src="../assets/logo_umb.png"/>
+</div>
+<div class="hidden sm:flex flex-col border-l border-white/20 pl-4">
+<div class="flex items-center gap-2">
+<span class="text-xs font-semibold uppercase tracking-wider text-rose-200">SIGRES-UMB</span>
+<span class="text-[10px] bg-black/20 text-white/90 px-1.5 py-0.5 rounded font-medium">Módulo global</span>
+</div>
+<span class="text-[11px] text-white/70">Sistema de diseño institucional</span>
+</div>
+</div>
+<!-- Navegación jerárquica y metadatos de ciclo -->
+<div class="flex items-center gap-3 md:gap-5">
+<nav aria-label="Ruta de navegación en header" class="hidden lg:flex items-center text-xs text-white/80 gap-1.5">
+<span>Componentes reutilizables</span>
+<span>/</span>
+<span class="text-white font-medium">Estados de carga (Skeleton screens)</span>
+</nav>
+<div class="h-4 w-px bg-white/20 hidden lg:block"></div>
+<!-- Badge de Ciclo y Usuario DS -->
+<div class="flex items-center gap-2.5">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[#521421] text-rose-100 border border-white/10">
+          Ciclo 26-27/1
+        </span>
+<div class="h-8 w-8 rounded-full bg-white text-umb-guinda font-bold text-xs flex items-center justify-center shadow" title="Design System System Admin">
+          DS
+        </div>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+<!-- BEGIN: HeaderSection -->
+<section class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6" data-purpose="page-title-and-controls">
+<div class="space-y-1.5 max-w-3xl">
+<div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+<span>Componentes reutilizables</span>
+<span>&gt;</span>
+<span class="text-umb-guinda">Estados de carga</span>
+</div>
+<h1 class="text-2xl font-semibold text-umb-carbon tracking-tight">
+          Componente: Estados de carga (Skeleton screens)
+        </h1>
+<p class="text-sm text-slate-600 leading-relaxed">
+          Estructuras esqueléticas estandarizadas para mitigar el salto visual durante peticiones asíncronas y simular carga acelerada en SIGRES-UMB.
+        </p>
+</div>
+<!-- Controles de simulación de estilos -->
+<div class="flex flex-wrap items-center gap-3 bg-slate-50 p-2.5 rounded-lg border border-slate-200 self-start lg:self-auto">
+<!-- Switch Pausar/Reanudar -->
+<label class="relative inline-flex items-center cursor-pointer select-none">
+<input checked="" class="sr-only peer" id="toggle-animation" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-umb-guinda"></div>
+<span class="ml-2 text-xs font-medium text-slate-700" id="label-animation">Animación activa</span>
+</label>
+<div class="h-4 w-px bg-slate-300"></div>
+<!-- Botón alternar modo -->
+<button class="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 bg-white border border-slate-300 rounded shadow-sm text-slate-700 hover:bg-slate-50 active:scale-95 transition-all" id="toggle-mode-btn">
+<svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span id="mode-label-text">Modo: Pulse institucional</span>
+</button>
+</div>
+</section>
+<!-- END: HeaderSection -->
+<!-- BEGIN: PrimaryStackedPreviews -->
+<section class="space-y-6" data-purpose="stacked-main-skeletons">
+<div class="border-b border-slate-200 pb-3">
+<h2 class="text-lg font-semibold text-umb-carbon flex items-center gap-2">
+<span>Vista previa de los 4 estados principales apilados verticalmente</span>
+<span class="text-xs bg-slate-100 text-slate-600 px-2 py-0.5 rounded border border-slate-200">Requerimiento principal</span>
+</h2>
+<p class="text-xs text-slate-500 mt-0.5">
+          Proyecciones volumétricas de los componentes estructurales centrales de la plataforma institucional.
+        </p>
+</div>
+<!-- Contenedor maestro con clase activa dinámica -->
+<div class="space-y-8" id="skeleton-root">
+<!-- a) Estado 1 — Etiqueta: "KPI" -->
+<article class="bg-white rounded-lg border border-umb-border shadow-sm overflow-hidden" data-purpose="kpi-skeleton-card">
+<header class="bg-slate-50/80 px-5 py-2.5 border-b border-umb-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-500">Estado 1</span>
+<span class="text-xs font-semibold text-umb-guinda bg-rose-50 px-2 py-0.5 rounded border border-rose-100">KPI</span>
+</div>
+<span class="text-[11px] text-slate-400">Skeleton de tarjeta de métrica individual</span>
+</header>
+<div class="p-[20px]">
+<!-- Tarjeta KPI de 8px radio, borde #E2E8F0, padding 20px, fondo blanco -->
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-white max-w-sm">
+<div class="flex flex-col gap-[12px]">
+<!-- Ícono cuadrado 48px x 48px con radio 8px -->
+<div class="skeleton-box rounded-[8px] w-[48px] h-[48px] animate-mode-pulse"></div>
+<!-- Línea corta de 80px × 14px (etiqueta) -->
+<div class="skeleton-box w-[80px] h-[14px] animate-mode-pulse"></div>
+<!-- Línea grande de 100px × 28px (valor de métrica) -->
+<div class="skeleton-box w-[100px] h-[28px] animate-mode-pulse"></div>
+<!-- Línea media de 120px × 12px (subtexto o tendencia) -->
+<div class="skeleton-box w-[120px] h-[12px] animate-mode-pulse"></div>
+</div>
+</div>
+</div>
+</article>
+<!-- b) Estado 2 — Etiqueta: "Tabla" -->
+<article class="bg-white rounded-lg border border-umb-border shadow-sm overflow-hidden" data-purpose="table-skeleton-card">
+<header class="bg-slate-50/80 px-5 py-2.5 border-b border-umb-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-500">Estado 2</span>
+<span class="text-xs font-semibold text-umb-guinda bg-rose-50 px-2 py-0.5 rounded border border-rose-100">Tabla</span>
+</div>
+<span class="text-[11px] text-slate-400">Skeleton de rejilla tabular repetitiva (4 filas)</span>
+</header>
+<div class="p-[20px] overflow-x-auto">
+<div class="border border-umb-border rounded-[8px] overflow-hidden min-w-[760px]">
+<!-- Cabecera gris tenue -->
+<div class="bg-slate-100 px-6 py-3 border-b border-umb-border flex items-center justify-between text-xs font-semibold text-slate-600">
+<span class="w-[80px]">Matrícula</span>
+<span class="w-[200px]">Alumno / Empresa</span>
+<span class="w-[100px]">Carrera</span>
+<span class="w-[120px]">Estatus / Fecha</span>
+<span class="w-[80px]">Horas</span>
+<span class="w-[60px] text-right">Acción</span>
+</div>
+<!-- 4 filas de skeleton repetidas con espaciado vertical de 16px -->
+<div class="p-6 bg-white flex flex-col gap-[16px]">
+<!-- Fila 1 -->
+<div class="flex items-center justify-between">
+<div class="skeleton-box w-[80px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[200px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[100px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[120px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[80px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[60px] h-[20px] animate-mode-pulse"></div>
+</div>
+<!-- Fila 2 -->
+<div class="flex items-center justify-between">
+<div class="skeleton-box w-[80px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[200px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[100px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[120px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[80px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[60px] h-[20px] animate-mode-pulse"></div>
+</div>
+<!-- Fila 3 -->
+<div class="flex items-center justify-between">
+<div class="skeleton-box w-[80px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[200px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[100px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[120px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[80px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[60px] h-[20px] animate-mode-pulse"></div>
+</div>
+<!-- Fila 4 -->
+<div class="flex items-center justify-between">
+<div class="skeleton-box w-[80px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[200px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[100px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[120px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[80px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[60px] h-[20px] animate-mode-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- c) Estado 3 — Etiqueta: "Bitácora" -->
+<article class="bg-white rounded-lg border border-umb-border shadow-sm overflow-hidden" data-purpose="logbook-skeleton-card">
+<header class="bg-slate-50/80 px-5 py-2.5 border-b border-umb-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-500">Estado 3</span>
+<span class="text-xs font-semibold text-umb-guinda bg-rose-50 px-2 py-0.5 rounded border border-rose-100">Bitácora</span>
+</div>
+<span class="text-[11px] text-slate-400">Skeleton de reporte semanal de servicio/residencia</span>
+</header>
+<div class="p-[20px]">
+<!-- Contenedor tarjeta con borde #E2E8F0, radio 8px, padding 20px, fondo blanco -->
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-white max-w-2xl flex flex-col gap-[16px]">
+<!-- Fila superior: círculo de 40px + columna con 2 líneas (200px×16px y 120px×12px) -->
+<div class="flex items-center gap-3">
+<div class="skeleton-box rounded-circle w-[40px] h-[40px] flex-shrink-0 animate-mode-pulse"></div>
+<div class="flex flex-col gap-1.5">
+<div class="skeleton-box w-[200px] h-[16px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[120px] h-[12px] animate-mode-pulse"></div>
+</div>
+</div>
+<!-- Fila central: 1 línea de 400px (o max-w-full) × 16px de alto (descripción) -->
+<div>
+<div class="skeleton-box w-[400px] max-w-full h-[16px] animate-mode-pulse"></div>
+</div>
+<!-- Fila inferior: 3 bloques pequeños en fila (60px×20px, 80px×20px, 60px×20px) badges -->
+<div class="flex items-center gap-2 pt-1">
+<div class="skeleton-box w-[60px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[80px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[60px] h-[20px] animate-mode-pulse"></div>
+</div>
+</div>
+</div>
+</article>
+<!-- d) Estado 4 — Etiqueta: "Dashboard" -->
+<article class="bg-white rounded-lg border border-umb-border shadow-sm overflow-hidden" data-purpose="dashboard-skeleton-card">
+<header class="bg-slate-50/80 px-5 py-2.5 border-b border-umb-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-500">Estado 4</span>
+<span class="text-xs font-semibold text-umb-guinda bg-rose-50 px-2 py-0.5 rounded border border-rose-100">Dashboard</span>
+</div>
+<span class="text-[11px] text-slate-400">Composición global: Grid 4 KPI + Panel principal gráfico + 3 tarjetas medianas</span>
+</header>
+<div class="p-[20px] space-y-6 bg-slate-50/50">
+<!-- Grid de 4 tarjetas de KPI (variante 1 repetida 4 veces en grid 4 columnas) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- KPI 1 -->
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-white flex flex-col gap-[12px]">
+<div class="skeleton-box rounded-[8px] w-[48px] h-[48px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[80px] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[100px] h-[28px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[120px] h-[12px] animate-mode-pulse"></div>
+</div>
+<!-- KPI 2 -->
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-white flex flex-col gap-[12px]">
+<div class="skeleton-box rounded-[8px] w-[48px] h-[48px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[80px] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[100px] h-[28px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[120px] h-[12px] animate-mode-pulse"></div>
+</div>
+<!-- KPI 3 -->
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-white flex flex-col gap-[12px]">
+<div class="skeleton-box rounded-[8px] w-[48px] h-[48px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[80px] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[100px] h-[28px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[120px] h-[12px] animate-mode-pulse"></div>
+</div>
+<!-- KPI 4 -->
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-white flex flex-col gap-[12px]">
+<div class="skeleton-box rounded-[8px] w-[48px] h-[48px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[80px] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[100px] h-[28px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[120px] h-[12px] animate-mode-pulse"></div>
+</div>
+</div>
+<!-- Debajo: 1 tarjeta grande con varias líneas y bloque gráfico de 100% × 140px -->
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-white space-y-4">
+<div class="skeleton-box w-[300px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[400px] max-w-full h-[16px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[200px] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[140px] rounded-[6px] animate-mode-pulse"></div>
+</div>
+<!-- Debajo: 3 tarjetas medianas en fila con bloques de contenido -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Mediana 1 -->
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-white space-y-3">
+<div class="skeleton-box w-[140px] h-[18px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-3/4 h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[60px] rounded-[4px] mt-2 animate-mode-pulse"></div>
+</div>
+<!-- Mediana 2 -->
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-white space-y-3">
+<div class="skeleton-box w-[140px] h-[18px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-3/4 h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[60px] rounded-[4px] mt-2 animate-mode-pulse"></div>
+</div>
+<!-- Mediana 3 -->
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-white space-y-3">
+<div class="skeleton-box w-[140px] h-[18px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-3/4 h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[60px] rounded-[4px] mt-2 animate-mode-pulse"></div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- END: PrimaryStackedPreviews -->
+<!-- BEGIN: ContextualCatalogSection -->
+<section class="space-y-6 pt-4" data-purpose="official-variants-catalog">
+<div class="border-b border-slate-200 pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+<div>
+<h2 class="text-lg font-semibold text-umb-carbon">
+            Catálogo completo de variantes contextuales (Las 6 variantes de SIGRES-UMB)
+          </h2>
+<p class="text-xs text-slate-500">
+            Documentación técnica e implementación de los 6 patrones autorizados para el sistema de diseño.
+          </p>
+</div>
+<span class="inline-flex items-center text-xs font-mono text-slate-500 bg-slate-100 px-2.5 py-1 rounded">
+          Regla: Sentence case · Sin acentos en skeletons
+        </span>
+</div>
+<!-- Grid de pestañas o módulos documentados de las 6 variantes -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Variante 1: Tarjeta de KPI -->
+<div class="bg-white rounded-lg border border-slate-200 p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-slate-100 pb-2">
+<span class="text-xs font-semibold text-slate-700">Variante 1: Tarjeta de KPI</span>
+<code class="text-[10px] font-mono text-umb-guinda bg-rose-50 px-2 py-0.5 rounded">.skeleton-kpi</code>
+</div>
+<p class="text-xs text-slate-500">
+            Utilizado en cabeceras de módulos métricos, horas acumuladas y estatus de residencia.
+          </p>
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-slate-50/50 flex flex-col gap-[12px]">
+<div class="skeleton-box rounded-[8px] w-[48px] h-[48px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[80px] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[100px] h-[28px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[120px] h-[12px] animate-mode-pulse"></div>
+</div>
+</div>
+<!-- Variante 2: Fila de tabla -->
+<div class="bg-white rounded-lg border border-slate-200 p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-slate-100 pb-2">
+<span class="text-xs font-semibold text-slate-700">Variante 2: Fila de tabla</span>
+<code class="text-[10px] font-mono text-umb-guinda bg-rose-50 px-2 py-0.5 rounded">.skeleton-table-row</code>
+</div>
+<p class="text-xs text-slate-500">
+            Estandarizado a 6 bloques rectangulares horizontales de 20px de altura.
+          </p>
+<div class="border border-umb-border rounded-[8px] p-4 bg-slate-50/50 overflow-x-auto">
+<div class="flex items-center gap-4 min-w-[500px]">
+<div class="skeleton-box w-[80px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[160px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[90px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[110px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[70px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[50px] h-[20px] animate-mode-pulse"></div>
+</div>
+</div>
+</div>
+<!-- Variante 3: Tarjeta de bitácora -->
+<div class="bg-white rounded-lg border border-slate-200 p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-slate-100 pb-2">
+<span class="text-xs font-semibold text-slate-700">Variante 3: Tarjeta de bitácora</span>
+<code class="text-[10px] font-mono text-umb-guinda bg-rose-50 px-2 py-0.5 rounded">.skeleton-log-card</code>
+</div>
+<p class="text-xs text-slate-500">
+            Estructura jerárquica con avatar circular (40px) y badges inferiores.
+          </p>
+<div class="border border-umb-border rounded-[8px] p-[20px] bg-slate-50/50 flex flex-col gap-[16px]">
+<div class="flex items-center gap-3">
+<div class="skeleton-box rounded-circle w-[40px] h-[40px] animate-mode-pulse"></div>
+<div class="space-y-1.5">
+<div class="skeleton-box w-[160px] h-[16px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[100px] h-[12px] animate-mode-pulse"></div>
+</div>
+</div>
+<div class="skeleton-box w-full max-w-[320px] h-[16px] animate-mode-pulse"></div>
+<div class="flex items-center gap-2">
+<div class="skeleton-box w-[60px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[80px] h-[20px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[60px] h-[20px] animate-mode-pulse"></div>
+</div>
+</div>
+</div>
+<!-- Variante 4: Dashboard modular -->
+<div class="bg-white rounded-lg border border-slate-200 p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-slate-100 pb-2">
+<span class="text-xs font-semibold text-slate-700">Variante 4: Dashboard modular</span>
+<code class="text-[10px] font-mono text-umb-guinda bg-rose-50 px-2 py-0.5 rounded">.skeleton-dashboard-grid</code>
+</div>
+<p class="text-xs text-slate-500">
+            Composición anidada para vistas de bienvenida de estudiantes y coordinadores.
+          </p>
+<div class="border border-umb-border rounded-[8px] p-4 bg-slate-50/50 space-y-3">
+<div class="grid grid-cols-2 gap-3">
+<div class="border border-umb-border p-3 rounded bg-white space-y-2">
+<div class="skeleton-box w-[32px] h-[32px] rounded animate-mode-pulse"></div>
+<div class="skeleton-box w-3/4 h-[12px] animate-mode-pulse"></div>
+</div>
+<div class="border border-umb-border p-3 rounded bg-white space-y-2">
+<div class="skeleton-box w-[32px] h-[32px] rounded animate-mode-pulse"></div>
+<div class="skeleton-box w-3/4 h-[12px] animate-mode-pulse"></div>
+</div>
+</div>
+<div class="skeleton-box w-full h-[70px] rounded animate-mode-pulse"></div>
+</div>
+</div>
+<!-- Variante 5: Formulario completo -->
+<div class="bg-white rounded-lg border border-slate-200 p-5 space-y-4 lg:col-span-2">
+<div class="flex items-center justify-between border-b border-slate-100 pb-2">
+<div>
+<span class="text-xs font-semibold text-slate-700">Variante 5: Formulario completo</span>
+<span class="text-xs text-slate-400 ml-2">(Campos de texto, textarea de resumen y botón de envío)</span>
+</div>
+<code class="text-[10px] font-mono text-umb-guinda bg-rose-50 px-2 py-0.5 rounded">.skeleton-form-layout</code>
+</div>
+<!-- Estructura exacta requerida: 4 inputs con etiqueta 120px + input 100%x44px con espaciado vertical 16px, textarea 100%x100px y botón 160pxx44px alineado a la derecha -->
+<div class="border border-umb-border rounded-[8px] p-6 bg-slate-50/50">
+<div class="max-w-3xl mx-auto space-y-[16px]">
+<!-- Input 1 -->
+<div class="space-y-2">
+<div class="skeleton-box w-[120px] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[44px] rounded-[4px] animate-mode-pulse"></div>
+</div>
+<!-- Input 2 -->
+<div class="space-y-2">
+<div class="skeleton-box w-[120px] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[44px] rounded-[4px] animate-mode-pulse"></div>
+</div>
+<!-- Input 3 -->
+<div class="space-y-2">
+<div class="skeleton-box w-[120px] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[44px] rounded-[4px] animate-mode-pulse"></div>
+</div>
+<!-- Input 4 -->
+<div class="space-y-2">
+<div class="skeleton-box w-[120px] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[44px] rounded-[4px] animate-mode-pulse"></div>
+</div>
+<!-- Textarea con etiqueta 100px + textarea 100%x100px -->
+<div class="space-y-2 pt-2">
+<div class="skeleton-box w-[100px] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-full h-[100px] rounded-[4px] animate-mode-pulse"></div>
+</div>
+<!-- Botón de 160px × 44px alineado a la derecha -->
+<div class="flex justify-end pt-2">
+<div class="skeleton-box w-[160px] h-[44px] rounded-[4px] animate-mode-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Variante 6: Expediente split screen -->
+<div class="bg-white rounded-lg border border-slate-200 p-5 space-y-4 lg:col-span-2">
+<div class="flex items-center justify-between border-b border-slate-100 pb-2">
+<div>
+<span class="text-xs font-semibold text-slate-700">Variante 6: Expediente split screen</span>
+<span class="text-xs text-slate-400 ml-2">(Columna izquierda 40% con 7 filas de ícono + texto; Columna derecha 60% visor de documento)</span>
+</div>
+<code class="text-[10px] font-mono text-umb-guinda bg-rose-50 px-2 py-0.5 rounded">.skeleton-splitscreen-dossier</code>
+</div>
+<!-- Estructura exacta requerida: 40% izquierda (7 filas de ícono circular + 2 líneas), 60% derecha (rectángulo visor 100%x400px y barra inferior 100%x60px) -->
+<div class="border border-umb-border rounded-[8px] p-6 bg-slate-50/50">
+<div class="flex flex-col md:flex-row gap-6 items-stretch">
+<!-- Columna izquierda: 40% de ancho con 7 filas -->
+<div class="w-full md:w-[40%] bg-white p-5 rounded-[8px] border border-umb-border flex flex-col justify-between gap-4">
+<!-- Fila 1 -->
+<div class="flex items-center gap-3">
+<div class="skeleton-box rounded-circle w-[36px] h-[36px] flex-shrink-0 animate-mode-pulse"></div>
+<div class="flex-1 space-y-1.5">
+<div class="skeleton-box w-[85%] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[50%] h-[11px] animate-mode-pulse"></div>
+</div>
+</div>
+<!-- Fila 2 -->
+<div class="flex items-center gap-3">
+<div class="skeleton-box rounded-circle w-[36px] h-[36px] flex-shrink-0 animate-mode-pulse"></div>
+<div class="flex-1 space-y-1.5">
+<div class="skeleton-box w-[80%] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[45%] h-[11px] animate-mode-pulse"></div>
+</div>
+</div>
+<!-- Fila 3 -->
+<div class="flex items-center gap-3">
+<div class="skeleton-box rounded-circle w-[36px] h-[36px] flex-shrink-0 animate-mode-pulse"></div>
+<div class="flex-1 space-y-1.5">
+<div class="skeleton-box w-[90%] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[60%] h-[11px] animate-mode-pulse"></div>
+</div>
+</div>
+<!-- Fila 4 -->
+<div class="flex items-center gap-3">
+<div class="skeleton-box rounded-circle w-[36px] h-[36px] flex-shrink-0 animate-mode-pulse"></div>
+<div class="flex-1 space-y-1.5">
+<div class="skeleton-box w-[75%] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[40%] h-[11px] animate-mode-pulse"></div>
+</div>
+</div>
+<!-- Fila 5 -->
+<div class="flex items-center gap-3">
+<div class="skeleton-box rounded-circle w-[36px] h-[36px] flex-shrink-0 animate-mode-pulse"></div>
+<div class="flex-1 space-y-1.5">
+<div class="skeleton-box w-[80%] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[55%] h-[11px] animate-mode-pulse"></div>
+</div>
+</div>
+<!-- Fila 6 -->
+<div class="flex items-center gap-3">
+<div class="skeleton-box rounded-circle w-[36px] h-[36px] flex-shrink-0 animate-mode-pulse"></div>
+<div class="flex-1 space-y-1.5">
+<div class="skeleton-box w-[85%] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[50%] h-[11px] animate-mode-pulse"></div>
+</div>
+</div>
+<!-- Fila 7 -->
+<div class="flex items-center gap-3">
+<div class="skeleton-box rounded-circle w-[36px] h-[36px] flex-shrink-0 animate-mode-pulse"></div>
+<div class="flex-1 space-y-1.5">
+<div class="skeleton-box w-[70%] h-[14px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[35%] h-[11px] animate-mode-pulse"></div>
+</div>
+</div>
+</div>
+<!-- Columna derecha: 60% visor de 100% x 400px y barra de 100% x 60px -->
+<div class="w-full md:w-[60%] flex flex-col gap-4">
+<!-- Visor principal de expediente -->
+<div class="skeleton-box w-full h-[400px] rounded-[8px] animate-mode-pulse flex items-center justify-center">
+<span class="text-xs text-slate-400 font-mono select-none">Visor de PDF / Documentación probatoria</span>
+</div>
+<!-- Barra inferior de herramientas / aprobación -->
+<div class="skeleton-box w-full h-[60px] rounded-[8px] animate-mode-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ContextualCatalogSection -->
+<!-- BEGIN: SandboxAndSpecs -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4" data-purpose="sandbox-and-specifications">
+<!-- Panel Sandbox interactivo de transición (7 columnas) -->
+<div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
+<div>
+<h3 class="text-base font-semibold text-umb-carbon">Sandbox interactivo y simulador de transición</h3>
+<p class="text-xs text-slate-500">Demostración de reemplazo sin saltos visuales (Layout shift = 0 CLS).</p>
+</div>
+<button class="inline-flex items-center gap-2 bg-umb-guinda hover:bg-[#521421] text-white text-xs font-semibold px-4 py-2 rounded-md shadow transition-colors active:scale-95" id="simulate-load-btn">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Simular llegada de datos (2s)</span>
+</button>
+</div>
+<!-- Contenedor del componente interactivo de prueba -->
+<div class="border border-slate-200 rounded-lg p-5 bg-slate-50/60 relative min-h-[190px] flex items-center justify-center">
+<!-- Vista A: Skeleton activo -->
+<div class="w-full transition-opacity duration-300" id="sandbox-skeleton">
+<div class="bg-white border border-umb-border rounded-[8px] p-[20px] shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="skeleton-box rounded-circle w-[48px] h-[48px] animate-mode-pulse"></div>
+<div class="space-y-2">
+<div class="skeleton-box w-[180px] h-[16px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[120px] h-[12px] animate-mode-pulse"></div>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+<div class="skeleton-box w-[90px] h-[28px] animate-mode-pulse"></div>
+<div class="skeleton-box w-[36px] h-[36px] rounded-[4px] animate-mode-pulse"></div>
+</div>
+</div>
+</div>
+<!-- Vista B: Datos reales renderizados -->
+<div class="w-full hidden transition-opacity duration-300" id="sandbox-content">
+<div class="bg-white border border-umb-guinda/20 rounded-[8px] p-[20px] shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 ring-1 ring-umb-guinda/10">
+<div class="flex items-center gap-3">
+<div class="w-[48px] h-[48px] rounded-full bg-umb-guinda text-white font-bold flex items-center justify-center text-sm shadow-inner">
+                    MR
+                  </div>
+<div>
+<h4 class="text-sm font-semibold text-slate-900 leading-none mb-1">Mendoza Romero, Alexis</h4>
+<p class="text-xs text-slate-500">Ingeniería en Tecnologías de la Información · Matrícula: 2021110034</p>
+</div>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    480 / 480 hrs (100%)
+                  </span>
+<button class="p-2 text-slate-400 hover:text-umb-guinda hover:bg-rose-50 rounded border border-slate-200 transition-colors" title="Descargar liberación">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center justify-between text-xs text-slate-500 bg-slate-50 px-3 py-2 rounded border border-slate-200">
+<span class="font-medium">Métrica CLS (Cumulative layout shift):</span>
+<span class="text-emerald-700 font-mono font-semibold">0.000 (Excelente)</span>
+</div>
+</div>
+<!-- Ficha de especificaciones técnicas del DS (5 columnas) -->
+<div class="lg:col-span-5 bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-4">
+<h3 class="text-base font-semibold text-umb-carbon border-b border-slate-200 pb-2">
+          Ficha técnica de especificaciones
+        </h3>
+<div class="space-y-3 text-xs">
+<!-- Regla de oro -->
+<div class="p-3 bg-amber-50/70 border border-amber-200 rounded-md text-amber-900 leading-relaxed">
+<span class="font-bold block text-amber-950 mb-0.5">Regla inviolable institucional:</span>
+            No usar color guinda (#681B2B) en skeletons; usar exclusivamente grises neutros certificados. Solo la primera letra en mayúscula (sentence case).
+          </div>
+<div class="divide-y divide-slate-100 border border-slate-200 rounded-lg overflow-hidden bg-white">
+<div class="px-3 py-2 flex justify-between items-center">
+<span class="text-slate-500">Color base</span>
+<span class="font-mono text-slate-800 font-medium">#E2E8F0 (Neutral 200)</span>
+</div>
+<div class="px-3 py-2 flex justify-between items-center">
+<span class="text-slate-500">Color shimmer brillo</span>
+<span class="font-mono text-slate-800 font-medium">#F4F5F7</span>
+</div>
+<div class="px-3 py-2 flex justify-between items-center">
+<span class="text-slate-500">Borde rectangular / líneas</span>
+<span class="font-mono text-slate-800 font-medium">4px (rounded-[4px])</span>
+</div>
+<div class="px-3 py-2 flex justify-between items-center">
+<span class="text-slate-500">Borde avatares / badges</span>
+<span class="font-mono text-slate-800 font-medium">9999px (rounded-full)</span>
+</div>
+<div class="px-3 py-2 flex justify-between items-center">
+<span class="text-slate-500">Borde contenedor de tarjeta</span>
+<span class="font-mono text-slate-800 font-medium">8px (rounded-[8px])</span>
+</div>
+<div class="px-3 py-2 flex justify-between items-center">
+<span class="text-slate-500">Ciclo de animación</span>
+<span class="font-mono text-slate-800 font-medium">1.5s ease-in-out (Pulse 1.0 ↔ 0.6)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: SandboxAndSpecs -->
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: MainFooter -->
+<footer class="mt-auto border-t border-slate-200 bg-white py-6">
+<div class="max-w-7xl mx-auto px-4 text-center">
+<p class="text-xs text-umb-outline font-medium tracking-wide">
+        SIGRES-UMB · Universidad Mexiquense del Bicentenario · Ciclo 26-27/1
+      </p>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- BEGIN: InteractiveScripts -->
+<script data-purpose="animation-and-sandbox-handlers">
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggleAnimInput = document.getElementById('toggle-animation');
+      const labelAnim = document.getElementById('label-animation');
+      const toggleModeBtn = document.getElementById('toggle-mode-btn');
+      const modeLabelText = document.getElementById('mode-label-text');
+      const skeletonRoot = document.getElementById('skeleton-root');
+      const simulateLoadBtn = document.getElementById('simulate-load-btn');
+      const sandboxSkeleton = document.getElementById('sandbox-skeleton');
+      const sandboxContent = document.getElementById('sandbox-content');
+
+      let currentMode = 'pulse'; // 'pulse' o 'shimmer'
+
+      // 1. Manejador de pausa y reanudación de animación
+      toggleAnimInput.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          document.body.classList.remove('animations-paused');
+          labelAnim.textContent = 'Animación activa';
+          labelAnim.classList.remove('text-slate-400');
+          labelAnim.classList.add('text-slate-700');
+        } else {
+          document.body.classList.add('animations-paused');
+          labelAnim.textContent = 'Animación pausada';
+          labelAnim.classList.add('text-slate-400');
+          labelAnim.classList.remove('text-slate-700');
+        }
+      });
+
+      // 2. Alternar entre Modo Pulse institucional y Shimmer gradient
+      toggleModeBtn.addEventListener('click', () => {
+        const allBoxes = document.querySelectorAll('.skeleton-box');
+        if (currentMode === 'pulse') {
+          currentMode = 'shimmer';
+          modeLabelText.textContent = 'Modo: Shimmer sutil';
+          allBoxes.forEach(el => {
+            el.classList.remove('animate-mode-pulse');
+            el.classList.add('animate-mode-shimmer');
+          });
+        } else {
+          currentMode = 'pulse';
+          modeLabelText.textContent = 'Modo: Pulse institucional';
+          allBoxes.forEach(el => {
+            el.classList.remove('animate-mode-shimmer');
+            el.classList.add('animate-mode-pulse');
+          });
+        }
+      });
+
+      // 3. Simulador interactivo de carga asíncrona (2 segundos)
+      let isSimulating = false;
+      simulateLoadBtn.addEventListener('click', () => {
+        if (isSimulating) return;
+        isSimulating = true;
+        simulateLoadBtn.disabled = true;
+        simulateLoadBtn.classList.add('opacity-60', 'cursor-not-allowed');
+
+        // Ocultar contenido y mostrar skeleton
+        sandboxContent.classList.add('hidden');
+        sandboxSkeleton.classList.remove('hidden');
+
+        // Simular espera asíncrona de 2000 ms
+        setTimeout(() => {
+          sandboxSkeleton.classList.add('hidden');
+          sandboxContent.classList.remove('hidden');
+
+          // Resetear botón tras visualización
+          setTimeout(() => {
+            simulateLoadBtn.disabled = false;
+            simulateLoadBtn.classList.remove('opacity-60', 'cursor-not-allowed');
+            isSimulating = false;
+          }, 800);
+        }, 2000);
+      });
+    });
+  </script>
+<!-- END: InteractiveScripts -->
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

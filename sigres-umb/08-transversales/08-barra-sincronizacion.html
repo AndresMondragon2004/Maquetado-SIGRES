@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barra de Sincronización PWA — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="bg-umb-surface text-umb-carbon antialiased min-h-full flex flex-col justify-between selection:bg-umb-guinda selection:text-white">
+
+  <!-- ================= TOP APP BAR GLOBAL DE EJEMPLO ================= -->
+  <header class="bg-umb-guinda text-white h-16 px-4 md:px-8 flex items-center justify-between shadow-md relative z-40">
+    <div class="flex items-center gap-3">
+      <!-- Logo institucional UMB -->
+      <div class="h-10 w-10 rounded bg-white p-1 flex items-center justify-center overflow-hidden shadow-sm">
+        <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-full w-auto object-contain">
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="font-bold tracking-tight text-base">SIGRES-UMB</span>
+          <span class="text-[10px] font-semibold uppercase tracking-wider bg-white/15 px-2 py-0.5 rounded text-amber-200">PWA Offline</span>
+        </div>
+        <p class="text-[11px] text-white/80 leading-none mt-0.5 hidden sm:block">Universidad Mexiquense del Bicentenario · UES San José del Rincón</p>
+      </div>
+    </div>
+
+    <!-- Indicador en App Bar (complementario) + notificaciones + perfil -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <!-- Indicador PWA interactivo en App Bar -->
+      <div class="flex items-center gap-2 bg-black/20 hover:bg-black/30 transition-colors px-3 py-1.5 rounded-lg border border-white/10 cursor-pointer" onclick="toggleSyncModal()" title="Hacer clic para ver estado de sincronización">
+        <span id="appbar-cloud-icon" class="inline-flex items-center justify-center">
+          <!-- Icono Nube Ámbar (Sin conexión activo en preview) -->
+          <svg class="w-4 h-4 text-[#FDE68A]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18"></path>
+          </svg>
+        </span>
+        <span id="appbar-sync-label" class="text-xs font-medium text-amber-100 hidden md:inline">Modo offline (3 pendientes)</span>
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+      </div>
+
+      <!-- Campana notificaciones -->
+      <div class="relative cursor-pointer p-1.5 rounded-lg hover:bg-white/10 transition-colors">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+        </svg>
+        <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-umb-guinda"></span>
+      </div>
+
+      <!-- Usuario -->
+      <div class="flex items-center gap-2 border-l border-white/15 pl-3">
+        <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center font-bold text-xs">VR</div>
+        <div class="hidden lg:block text-left">
+          <p class="text-xs font-semibold leading-tight">Jesús Andrés Mondragón Tenorio</p>
+          <p class="text-[10px] text-white/70 leading-tight">Estudiante · 2026-2027/1</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= SIMULACIÓN EN VIVO (BARRA FUNCIONAL BAJO APP BAR) ================= -->
+  <div id="live-banner-container" class="relative z-30 transition-all duration-300">
+    <!-- Barra dinámica activa -->
+    <div id="live-banner" class="w-full bg-umb-dorado-light border-b border-[#FDE68A] transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between text-xs sm:text-[13px] font-medium text-[#92400E]">
+        <div class="flex items-center gap-2.5 overflow-hidden">
+          <svg class="w-4 h-4 text-[#92400E] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.166a1 1 0 11-1.414-1.414M3 3l18 18"></path>
+          </svg>
+          <span class="truncate">Sin conexión · Trabajando en modo offline</span>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <button onclick="toggleSyncModal()" class="underline hover:text-black font-semibold flex items-center gap-1">
+            Ver 3 pendientes
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CONTENIDO PRINCIPAL: CATÁLOGO Y ESPECIFICACIÓN ================= -->
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+    <!-- Encabezado de Documentación -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-umb-border pb-6">
+      <div>
+        <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-umb-outline">
+          <span>Componentes reutilizables</span>
+          <span>/</span>
+          <span class="text-umb-guinda">Resiliencia PWA</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-umb-carbon mt-1">Barra de sincronización PWA</h1>
+        <p class="text-sm text-umb-muted mt-1 max-w-3xl">
+          Componente de ancho completo ubicado inmediatamente debajo del app bar. Informa de manera no intrusiva, clara y transitoria los cambios de conectividad y el estado de la cola de transacciones locales en SIGRES-UMB.
+        </p>
+      </div>
+
+      <!-- Selector interactivo de simulación -->
+      <div class="bg-white p-2 rounded-xl border border-umb-border shadow-sm flex flex-wrap items-center gap-1.5 self-start">
+        <span class="text-xs font-semibold text-umb-outline px-2">Probar en barra superior:</span>
+        <button onclick="setLiveState('offline')" id="btn-state-offline" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-umb-dorado-light text-[#92400E] border border-[#FDE68A] hover:opacity-90">1. Sin conexión</button>
+        <button onclick="setLiveState('syncing')" id="btn-state-syncing" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white text-umb-muted hover:bg-slate-50 border border-transparent">2. Sincronizando</button>
+        <button onclick="setLiveState('complete')" id="btn-state-complete" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white text-umb-muted hover:bg-slate-50 border border-transparent">3. Completado</button>
+        <button onclick="setLiveState('error')" id="btn-state-error" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white text-umb-muted hover:bg-slate-50 border border-transparent">4. Error</button>
+        <button onclick="setLiveState('hidden')" id="btn-state-hidden" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-white text-umb-muted hover:bg-slate-50 border border-transparent">5. Conectado (Oculto)</button>
+      </div>
+    </div>
+
+    <!-- ================= SECCIÓN 1: LOS 4 ESTADOS APILADOS VERTICALMENTE (REQUERIMIENTO PRINCIPAL) ================= -->
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-base font-bold text-umb-carbon flex items-center gap-2">
+          <span>Vista previa de los 4 estados de la barra apilados verticalmente</span>
+          <span class="text-xs font-normal bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full border border-amber-200">Requerimiento de sistema</span>
+        </h2>
+        <span class="text-xs text-umb-outline">Altura máxima estándar: 40px (1 línea) / 56px (con progreso)</span>
+      </div>
+
+      <div class="bg-white rounded-2xl border border-umb-border shadow-sm overflow-hidden p-6 space-y-8">
+        
+        <!-- Estado 1: Sin conexión -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-[#92400E] uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#D69E2E]"></span>
+              Estado 1 — Sin conexión
+            </span>
+            <span class="text-umb-outline">Fondo: #FEF3C7 · Borde: #FDE68A · Texto: #92400E · Altura: 40px</span>
+          </div>
+          <div class="w-full bg-umb-dorado-light border border-[#FDE68A] rounded-lg overflow-hidden shadow-xs hover:shadow-sm transition-all">
+            <div class="h-10 px-4 sm:px-6 flex items-center justify-between text-xs sm:text-[13px] font-medium text-[#92400E]">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#92400E] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.166a1 1 0 11-1.414-1.414M3 3l18 18"></path>
+                </svg>
+                <span>Sin conexión · Trabajando en modo offline</span>
+              </div>
+              <button onclick="toggleSyncModal()" class="text-xs font-semibold underline hover:text-black flex items-center gap-1 cursor-pointer">
+                Ver detalles
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Estado 2: Sincronizando (con barra de progreso) -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-[#1E3A8A] uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#2B6CB0]"></span>
+              Estado 2 — Sincronizando
+            </span>
+            <span class="text-umb-outline">Fondo: #EFF6FF · Borde: #BFDBFE · Barra progreso: #2B6CB0 · Altura: 44px</span>
+          </div>
+          <div class="w-full bg-[#EFF6FF] border border-[#BFDBFE] rounded-lg overflow-hidden shadow-xs relative">
+            <div class="h-10 px-4 sm:px-6 flex items-center justify-between text-xs sm:text-[13px] font-medium text-[#1E3A8A]">
+              <div class="flex items-center gap-3">
+                <!-- Ícono de nube con flechas rotando (animación 1.5s linear) -->
+                <svg class="w-4 h-4 text-[#1E3A8A] animate-spin-smooth shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                </svg>
+                <span>Sincronizando 3 operaciones pendientes...</span>
+              </div>
+              <span class="text-xs font-semibold text-[#1E3A8A] bg-white/70 px-2 py-0.5 rounded">66% completado</span>
+            </div>
+            <!-- Barra de progreso delgada debajo del texto (fondo #DBEAFE, relleno #2B6CB0) -->
+            <div class="w-full bg-[#DBEAFE] h-1">
+              <div class="bg-[#2B6CB0] h-1 rounded-r transition-all duration-500" style="width: 66%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Estado 3: Sincronización completa -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-[#166534] uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#2D8C4E]"></span>
+              Estado 3 — Sincronización completa (se oculta a los 4s)
+            </span>
+            <span class="text-umb-outline">Fondo: #DCFCE7 · Borde: #BBF7D0 · Texto: #166534 · Altura: 40px</span>
+          </div>
+          <div class="w-full bg-[#DCFCE7] border border-[#BBF7D0] rounded-lg overflow-hidden shadow-xs">
+            <div class="h-10 px-4 sm:px-6 flex items-center justify-between text-xs sm:text-[13px] font-medium text-[#166534]">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#166534] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Sincronización completa · 3 operaciones actualizadas</span>
+              </div>
+              <span class="text-[11px] text-[#166534] bg-white/60 px-2 py-0.5 rounded font-medium">Auto-descarte en 4s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Estado 4: Error de sincronización -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-[#991B1B] uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-[#C53030]"></span>
+              Estado 4 — Error de sincronización
+            </span>
+            <span class="text-umb-outline">Fondo: #FEE2E2 · Borde: #FECACA · Texto: #991B1B · Altura: 40px</span>
+          </div>
+          <div class="w-full bg-[#FEE2E2] border border-[#FECACA] rounded-lg overflow-hidden shadow-xs">
+            <div class="h-10 px-4 sm:px-6 flex items-center justify-between text-xs sm:text-[13px] font-medium text-[#991B1B]">
+              <div class="flex items-center gap-3">
+                <svg class="w-4 h-4 text-[#991B1B] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <span>Error al sincronizar 2 operaciones</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <button onclick="triggerRetry()" class="px-3 py-1 rounded bg-[#C53030] text-white hover:bg-[#991B1B] text-xs font-semibold transition-colors flex items-center gap-1 shadow-2xs">
+                  <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                  Reintentar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SECCIÓN 2: ESPECIFICACIÓN DEL PANEL DE SINCRONIZACIÓN Y TOKENS ================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Panel de Sincronización (Demostración de componente acoplado) -->
+      <div class="lg:col-span-6 bg-white rounded-2xl border border-umb-border p-6 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between border-b border-umb-border pb-4">
+            <div>
+              <span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Componente flotante / modal</span>
+              <h3 class="text-base font-bold text-umb-carbon mt-0.5">Panel de sincronización detallado</h3>
+            </div>
+            <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 border border-amber-200">
+              Modo local
+            </span>
+          </div>
+
+          <!-- Vista previa integrada del panel -->
+          <div class="mt-5 space-y-4">
+            <div class="flex items-center justify-between text-xs text-umb-muted bg-[#F9FAFB] p-3 rounded-lg border border-umb-border">
+              <span class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-umb-outline" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                Última sincronización:
+              </span>
+              <span class="font-semibold text-umb-carbon">12 de noviembre, 14:32 hrs</span>
+            </div>
+
+            <div>
+              <p class="text-xs font-semibold text-umb-carbon mb-2 flex items-center justify-between">
+                <span>Operaciones en cola local (IndexedDB):</span>
+                <span class="text-umb-outline font-normal">3 elementos</span>
+              </p>
+              
+              <ul class="space-y-2 text-xs">
+                <li class="p-3 bg-white rounded-lg border border-umb-border flex items-center justify-between hover:border-slate-300 transition-colors">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-6 h-6 rounded bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <div>
+                      <p class="font-medium text-umb-carbon">Bitácora semana 10 · Jesús Andrés Mondragón</p>
+                      <p class="text-[11px] text-umb-outline">Captura completa (35 hrs reportadas)</p>
+                    </div>
+                  </div>
+                  <span class="text-[10px] font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">Pendiente</span>
+                </li>
+
+                <li class="p-3 bg-white rounded-lg border border-umb-border flex items-center justify-between hover:border-slate-300 transition-colors">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-6 h-6 rounded bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <div>
+                      <p class="font-medium text-umb-carbon">Bitácora semana 11 · Jesús Andrés Mondragón</p>
+                      <p class="text-[11px] text-umb-outline">Borrador finalizado</p>
+                    </div>
+                  </div>
+                  <span class="text-[10px] font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded">Pendiente</span>
+                </li>
+
+                <li class="p-3 bg-white rounded-lg border border-umb-border flex items-center justify-between hover:border-slate-300 transition-colors">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-6 h-6 rounded bg-blue-100 text-blue-800 flex items-center justify-center shrink-0">
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                    </div>
+                    <div>
+                      <p class="font-medium text-umb-carbon">Evidencia adjunta · bitácora semana 11</p>
+                      <p class="text-[11px] text-umb-outline">Archivo PDF (1.4 MB)</p>
+                    </div>
+                  </div>
+                  <span class="text-[10px] font-semibold text-blue-800 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">En cola</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-umb-border mt-6 flex items-center justify-end gap-3">
+          <button onclick="simulateSyncProcess()" class="h-10 px-4 rounded-lg bg-umb-guinda hover:bg-[#531422] text-white text-xs font-semibold flex items-center gap-2 shadow-xs transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+            Forzar sincronización
+          </button>
+        </div>
+      </div>
+
+      <!-- Pautas de Implementación Técnica y Filosofía PWA -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <!-- Indicadores complementarios del App Bar -->
+        <div class="bg-white rounded-2xl border border-umb-border p-6 shadow-sm">
+          <h3 class="text-sm font-bold text-umb-carbon mb-3">Estados complementarios en el App Bar</h3>
+          <p class="text-xs text-umb-muted mb-4">
+            Ubicado a la izquierda de la campana de notificaciones. Garantiza que el usuario conozca la estabilidad del enlace sin requerir la presencia permanente de la barra de ancho completo.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div class="p-3 rounded-lg border border-[#BBF7D0] bg-[#DCFCE7]/40 flex flex-col gap-1.5">
+              <div class="flex items-center gap-1.5 text-[#166534] font-semibold">
+                <svg class="w-4 h-4 text-[#2D8C4E]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                Conectado
+              </div>
+              <p class="text-[11px] text-umb-muted">Nube verde #2D8C4E con check. Barra oculta.</p>
+            </div>
+
+            <div class="p-3 rounded-lg border border-[#FDE68A] bg-umb-dorado-light/40 flex flex-col gap-1.5">
+              <div class="flex items-center gap-1.5 text-[#92400E] font-semibold">
+                <svg class="w-4 h-4 text-[#D69E2E]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18"></path></svg>
+                Sin conexión
+              </div>
+              <p class="text-[11px] text-umb-muted">Nube ámbar #D69E2E. Barra fija visible.</p>
+            </div>
+
+            <div class="p-3 rounded-lg border border-[#BFDBFE] bg-[#EFF6FF]/40 flex flex-col gap-1.5">
+              <div class="flex items-center gap-1.5 text-[#1E3A8A] font-semibold">
+                <svg class="w-4 h-4 text-[#2B6CB0] animate-spin-smooth" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                Sincronizando
+              </div>
+              <p class="text-[11px] text-umb-muted">Nube azul #2B6CB0 rotando a 360°.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matriz de tokens y reglas inviolables -->
+        <div class="bg-white rounded-2xl border border-umb-border p-6 shadow-sm space-y-4">
+          <h3 class="text-sm font-bold text-umb-carbon">Reglas inviolables de arquitectura PWA</h3>
+          
+          <div class="space-y-2 text-xs">
+            <div class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-umb-guinda mt-1.5 shrink-0"></span>
+              <p><strong class="text-umb-carbon">No intrusividad:</strong> La barra nunca desplaza bruscamente contenido crítico ni bloquea clics en formularios; su altura está estrictamente restringida a un máximo de 56px.</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-umb-guinda mt-1.5 shrink-0"></span>
+              <p><strong class="text-umb-carbon">Transitoriedad higiénica:</strong> Al confirmarse la sincronización, el banner verde se auto-desvanece en 4000ms mediante una animación slide-up de 200ms.</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-umb-guinda mt-1.5 shrink-0"></span>
+              <p><strong class="text-umb-carbon">Vocabulario institucional:</strong> Enfoque centrado en la tranquilidad del alumno. Se prohíben términos como "500 Server Error" o "Socket closed"; se usa exclusivamente "Trabajando en modo offline".</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ================= MODAL DETALLADO DE SINCRONIZACIÓN (INTERACTIVO) ================= -->
+  <div id="sync-modal" class="fixed inset-0 bg-black/40 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl border border-umb-border shadow-2xl max-w-md w-full overflow-hidden animate-slide-down">
+      
+      <!-- Cabecera modal -->
+      <div class="p-5 border-b border-umb-border flex items-center justify-between bg-[#F9FAFB]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-umb-carbon">Estado de sincronización</h3>
+            <p class="text-xs text-umb-outline">Almacenamiento local seguro PWA</p>
+          </div>
+        </div>
+        <button onclick="toggleSyncModal()" class="w-8 h-8 rounded-lg hover:bg-slate-200 text-umb-muted flex items-center justify-center transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <!-- Cuerpo modal -->
+      <div class="p-6 space-y-4">
+        <div class="flex items-center justify-between p-3 rounded-xl bg-umb-dorado-light border border-[#FDE68A] text-xs">
+          <span class="font-medium text-[#92400E]">Estado actual de red:</span>
+          <span class="font-bold text-[#92400E] px-2 py-0.5 rounded bg-white/80">Sin conexión</span>
+        </div>
+
+        <div class="text-xs text-umb-muted flex items-center justify-between px-1">
+          <span>Última sincronización exitosa:</span>
+          <span class="font-semibold text-umb-carbon">12 de noviembre, 14:32 hrs</span>
+        </div>
+
+        <div>
+          <p class="text-xs font-semibold text-umb-carbon mb-2">Transacciones pendientes de subida:</p>
+          <div class="space-y-2 max-h-48 overflow-y-auto custom-scrollbar pr-1">
+            <div class="p-2.5 bg-[#F9FAFB] rounded-lg border border-umb-border text-xs flex items-center justify-between">
+              <div>
+                <p class="font-medium text-umb-carbon">Bitácora semana 10 · Jesús Andrés Mondragón</p>
+                <p class="text-[10px] text-umb-outline">Guardado local: Hace 45 min</p>
+              </div>
+              <span class="text-[10px] font-semibold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">En cola</span>
+            </div>
+            <div class="p-2.5 bg-[#F9FAFB] rounded-lg border border-umb-border text-xs flex items-center justify-between">
+              <div>
+                <p class="font-medium text-umb-carbon">Bitácora semana 11 · Jesús Andrés Mondragón</p>
+                <p class="text-[10px] text-umb-outline">Guardado local: Hace 10 min</p>
+              </div>
+              <span class="text-[10px] font-semibold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded">En cola</span>
+            </div>
+            <div class="p-2.5 bg-[#F9FAFB] rounded-lg border border-umb-border text-xs flex items-center justify-between">
+              <div>
+                <p class="font-medium text-umb-carbon">Evidencia adjunta · bitácora semana 11</p>
+                <p class="text-[10px] text-umb-outline">PDF 1.4 MB · Listo para emitir</p>
+              </div>
+              <span class="text-[10px] font-semibold text-blue-800 bg-blue-100 px-1.5 py-0.5 rounded">En cola</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pie modal -->
+      <div class="p-4 bg-[#F9FAFB] border-t border-umb-border flex items-center justify-end gap-2">
+        <button onclick="toggleSyncModal()" class="px-3 py-2 rounded-lg text-xs font-medium text-umb-muted hover:bg-slate-200 transition-colors">
+          Cerrar panel
+        </button>
+        <button onclick="simulateSyncProcess(); toggleSyncModal();" class="px-4 py-2 rounded-lg bg-umb-guinda hover:bg-[#531422] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          Forzar sincronización
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= PIE INSTITUCIONAL ================= -->
+  <footer class="bg-white border-t border-umb-border py-4 px-6 text-center text-xs text-umb-outline">
+    <p>SIGRES-UMB · Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+  </footer>
+
+  <!-- ================= SCRIPT DE INTERACTIVIDAD ================= -->
+  <script>
+    let currentAutoDismissTimer = null;
+
+    function setLiveState(state) {
+      const container = document.getElementById('live-banner-container');
+      const banner = document.getElementById('live-banner');
+      const cloudIcon = document.getElementById('appbar-cloud-icon');
+      const appbarLabel = document.getElementById('appbar-sync-label');
+
+      // Limpiar timer si existía
+      if (currentAutoDismissTimer) {
+        clearTimeout(currentAutoDismissTimer);
+        currentAutoDismissTimer = null;
+      }
+
+      // Resetear clases de botones
+      const buttons = ['offline', 'syncing', 'complete', 'error', 'hidden'];
+      buttons.forEach(btn => {
+        const el = document.getElementById('btn-state-' + btn);
+        if (el) {
+          el.className = 'px-3 py-1.5 text-xs font-medium rounded-lg bg-white text-umb-muted hover:bg-slate-50 border border-transparent';
+        }
+      });
+
+      const activeBtn = document.getElementById('btn-state-' + state);
+      if (activeBtn) {
+        activeBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-lg bg-umb-guinda text-white border border-umb-guinda shadow-2xs';
+      }
+
+      if (state === 'hidden') {
+        container.style.height = '0px';
+        container.style.overflow = 'hidden';
+        cloudIcon.innerHTML = `
+          <svg class="w-4 h-4 text-[#86EFAC]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+        `;
+        appbarLabel.textContent = 'En línea (Sincronizado)';
+        appbarLabel.className = 'text-xs font-medium text-emerald-100 hidden md:inline';
+        return;
+      }
+
+      container.style.height = 'auto';
+      container.style.overflow = 'visible';
+
+      if (state === 'offline') {
+        banner.className = 'w-full bg-umb-dorado-light border-b border-[#FDE68A] transition-all duration-300';
+        banner.innerHTML = `
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between text-xs sm:text-[13px] font-medium text-[#92400E]">
+            <div class="flex items-center gap-2.5 overflow-hidden">
+              <svg class="w-4 h-4 text-[#92400E] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.166a1 1 0 11-1.414-1.414M3 3l18 18"></path>
+              </svg>
+              <span class="truncate">Sin conexión · Trabajando en modo offline</span>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <button onclick="toggleSyncModal()" class="underline hover:text-black font-semibold flex items-center gap-1">
+                Ver 3 pendientes
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+        `;
+        cloudIcon.innerHTML = `
+          <svg class="w-4 h-4 text-[#FDE68A]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 00-9.78 2.096A4.001 4.001 0 003 15z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3l18 18"></path>
+          </svg>
+        `;
+        appbarLabel.textContent = 'Modo offline (3 pendientes)';
+        appbarLabel.className = 'text-xs font-medium text-amber-100 hidden md:inline';
+      } else if (state === 'syncing') {
+        banner.className = 'w-full bg-[#EFF6FF] border-b border-[#BFDBFE] transition-all duration-300';
+        banner.innerHTML = `
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between text-xs sm:text-[13px] font-medium text-[#1E3A8A]">
+            <div class="flex items-center gap-2.5 overflow-hidden">
+              <svg class="w-4 h-4 text-[#1E3A8A] animate-spin-smooth shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+              <span class="truncate">Sincronizando 3 operaciones pendientes...</span>
+            </div>
+            <span class="text-xs font-semibold text-[#1E3A8A] bg-white/70 px-2 py-0.5 rounded">66%</span>
+          </div>
+          <div class="w-full bg-[#DBEAFE] h-1">
+            <div class="bg-[#2B6CB0] h-1 rounded-r animate-pulse" style="width: 75%;"></div>
+          </div>
+        `;
+        cloudIcon.innerHTML = `
+          <svg class="w-4 h-4 text-blue-200 animate-spin-smooth" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+        `;
+        appbarLabel.textContent = 'Sincronizando datos...';
+        appbarLabel.className = 'text-xs font-medium text-blue-100 hidden md:inline';
+      } else if (state === 'complete') {
+        banner.className = 'w-full bg-[#DCFCE7] border-b border-[#BBF7D0] transition-all duration-300';
+        banner.innerHTML = `
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between text-xs sm:text-[13px] font-medium text-[#166534]">
+            <div class="flex items-center gap-2.5 overflow-hidden">
+              <svg class="w-4 h-4 text-[#166534] shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="truncate">Sincronización completa · 3 operaciones actualizadas</span>
+            </div>
+            <span class="text-[11px] text-[#166534] bg-white/60 px-2 py-0.5 rounded">Ocultando en 4s...</span>
+          </div>
+        `;
+        cloudIcon.innerHTML = `
+          <svg class="w-4 h-4 text-[#86EFAC]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+          </svg>
+        `;
+        appbarLabel.textContent = 'Actualizado';
+        appbarLabel.className = 'text-xs font-medium text-emerald-100 hidden md:inline';
+
+        // Auto ocultar después de 4 segundos
+        currentAutoDismissTimer = setTimeout(() => {
+          setLiveState('hidden');
+        }, 4000);
+      } else if (state === 'error') {
+        banner.className = 'w-full bg-[#FEE2E2] border-b border-[#FECACA] transition-all duration-300';
+        banner.innerHTML = `
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between text-xs sm:text-[13px] font-medium text-[#991B1B]">
+            <div class="flex items-center gap-2.5 overflow-hidden">
+              <svg class="w-4 h-4 text-[#991B1B] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              </svg>
+              <span class="truncate">Error al sincronizar 2 operaciones</span>
+            </div>
+            <button onclick="triggerRetry()" class="px-2.5 py-0.5 rounded bg-[#C53030] text-white hover:bg-[#991B1B] text-xs font-semibold flex items-center gap-1">
+              Reintentar
+            </button>
+          </div>
+        `;
+        cloudIcon.innerHTML = `
+          <svg class="w-4 h-4 text-red-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        `;
+        appbarLabel.textContent = 'Error de conexión';
+        appbarLabel.className = 'text-xs font-medium text-red-200 hidden md:inline';
+      }
+    }
+
+    function toggleSyncModal() {
+      const modal = document.getElementById('sync-modal');
+      modal.classList.toggle('hidden');
+    }
+
+    function simulateSyncProcess() {
+      setLiveState('syncing');
+      setTimeout(() => {
+        setLiveState('complete');
+      }, 2000);
+    }
+
+    function triggerRetry() {
+      simulateSyncProcess();
+    }
+
+    // Inicializar en modo offline
+    document.addEventListener('DOMContentLoaded', () => {
+      setLiveState('offline');
+    });
+  </script>
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

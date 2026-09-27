@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-slate-100" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notificaciones — Coordinación SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-full font-sans text-slate-800 antialiased flex flex-col bg-umb-surface">
+<!-- BEGIN: MainHeader -->
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard-monitoreo.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Coordinación</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Gestión de notificaciones</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="08-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          LV
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Luis Ramón Vega</span>
+          <span class="text-[10px] text-white/75 leading-none">Coordinación</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: MainHeader -->
+<!-- App Wrapper (Sidebar + Main Workspace) -->
+<div class="flex flex-1 w-full max-w-[1580px] mx-auto overflow-hidden">
+<!-- BEGIN: Sidebar -->
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              LV
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Luis Ramón Vega Ramírez</p>
+              <p class="text-[11px] text-umb-outline truncate">Coordinador de UES</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard-monitoreo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">monitoring</span>
+            <span class="text-sm">Monitoreo</span>
+          </a>
+          <a href="02-cohortes-carreras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">school</span>
+            <span class="text-sm">Cohortes</span>
+          </a>
+          <a href="03-supervision-riesgo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">warning</span>
+            <span class="text-sm">Riesgos</span>
+          </a>
+          <a href="04-contingencias.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">support</span>
+            <span class="text-sm">Contingencias</span>
+          </a>
+          <a href="05-firma-cartas.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">draw</span>
+            <span class="text-sm">Firmas</span>
+          </a>
+          <a href="06-reportes-ejecutivos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">summarize</span>
+            <span class="text-sm">Reportes</span>
+          </a>
+          <a href="08-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 overflow-y-auto bg-umb-surface px-4 sm:px-6 py-8"><div class="max-w-[900px] mx-auto"><!-- Breadcrumb --><nav aria-label="Breadcrumb" class="flex items-center text-xs text-slate-500 mb-2 font-medium"><span class="hover:text-slate-800 transition-colors">Coordinación</span><svg class="w-3.5 h-3.5 mx-1.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg><span class="text-slate-900 font-semibold">Notificaciones</span></nav><!-- Header --><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 pb-4 border-b border-slate-200/70"><div><h1 class="text-2xl font-bold text-slate-900 tracking-tight">Notificaciones</h1><p class="text-sm text-slate-500 mt-0.5">Avisos y alertas institucionales del ciclo 26-27/1.</p></div><button class="inline-flex items-center gap-2 px-3.5 py-2 bg-white border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-100 shadow-xs transition" onclick="showToast('Notificaciones actualizadas', 'Todas las notificaciones han sido marcadas como leídas.')" type="button"><svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path><path d="M12 19l2 2 7-7"></path></svg><span>Marcar todas como leídas</span></button></div><!-- Sección 1: Filtros (Chips) --><div class="flex items-center gap-2 overflow-x-auto pb-2 mb-6"><button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-umb-guinda text-white shadow-xs transition" type="button"><span>Todas (12)</span></button><button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-xs transition" type="button"><span>No leídas (3)</span><span class="w-2 h-2 rounded-full bg-amber-400"></span></button><button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-xs transition" type="button"><span>Alertas de riesgo</span></button><button class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-700 hover:bg-slate-50 border border-slate-200 shadow-xs transition" type="button"><span>Firmas pendientes</span></button></div><!-- Sección 2: Lista de notificaciones --><div class="space-y-3.5 mb-6"><!-- CARD 1: No leída, alerta roja --><div class="bg-white rounded-xl border border-slate-200 border-l-4 border-l-red-600 p-4 sm:p-5 shadow-xs hover:shadow-md transition-all flex items-start gap-4"><div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center shrink-0 border border-red-100"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg></div><div class="flex-1 min-w-0"><div class="flex items-center justify-between gap-2 flex-wrap mb-1"><div class="flex items-center gap-2"><h3 class="text-sm font-semibold text-slate-900">3 estudiantes en riesgo crítico</h3><span class="w-2 h-2 rounded-full bg-red-600 shrink-0" title="No leída"></span><span class="text-[11px] font-semibold bg-red-100 text-red-700 px-2 py-0.5 rounded-full">Urgente</span></div><span class="text-xs text-slate-500">Hace 2 horas</span></div><p class="text-sm text-slate-600 leading-relaxed">Se identificaron 3 estudiantes con asistencia &lt;80%. Requieren citatorio urgente.</p><div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between"><a class="inline-flex items-center gap-1 text-xs font-semibold text-umb-guinda hover:underline" href="#"><span>Ver en supervisión de riesgo</span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg></a></div></div></div><!-- CARD 2: No leída, ámbar --><div class="bg-white rounded-xl border border-slate-200 border-l-4 border-l-amber-600 p-4 sm:p-5 shadow-xs hover:shadow-md transition-all flex items-start gap-4"><div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0 border border-amber-100"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></div><div class="flex-1 min-w-0"><div class="flex items-center justify-between gap-2 flex-wrap mb-1"><div class="flex items-center gap-2"><h3 class="text-sm font-semibold text-slate-900">3 cartas pendientes de firma</h3><span class="w-2 h-2 rounded-full bg-amber-500 shrink-0" title="No leída"></span><span class="text-[11px] font-semibold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">Firma requerida</span></div><span class="text-xs text-slate-500">Hace 5 horas</span></div><p class="text-sm text-slate-600 leading-relaxed">Hay 3 cartas de presentación esperando tu firma institucional.</p><div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between"><a class="inline-flex items-center gap-1 text-xs font-semibold text-umb-guinda hover:underline" href="#"><span>Ir a firmar cartas</span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg></a></div></div></div><!-- CARD 3: No leída, azul --><div class="bg-white rounded-xl border border-slate-200 border-l-4 border-l-blue-600 p-4 sm:p-5 shadow-xs hover:shadow-md transition-all flex items-start gap-4"><div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 border border-blue-100"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></div><div class="flex-1 min-w-0"><div class="flex items-center justify-between gap-2 flex-wrap mb-1"><div class="flex items-center gap-2"><h3 class="text-sm font-semibold text-slate-900">Nueva empresa por validar</h3><span class="w-2 h-2 rounded-full bg-blue-600 shrink-0" title="No leída"></span><span class="text-[11px] font-semibold bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">Empresa</span></div><span class="text-xs text-slate-500">Hace 1 día</span></div><p class="text-sm text-slate-600 leading-relaxed">El estudiante Rodrigo Mendoza registró una nueva empresa: InnovaTech Solutions.</p><div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between"><a class="inline-flex items-center gap-1 text-xs font-semibold text-blue-700 hover:underline" href="#"><span>Revisar registro</span><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7"></path></svg></a></div></div></div><!-- CARD 4: Leída (verde) --><div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-xs hover:shadow-md transition-all flex items-start gap-4"><div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg></div><div class="flex-1 min-w-0"><div class="flex items-center justify-between gap-2 flex-wrap mb-1"><div class="flex items-center gap-2"><h3 class="text-sm font-medium text-slate-800">Marco Antonio García Cruz reanudó su residencia</h3><span class="text-[11px] font-semibold bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">Resuelta</span></div><span class="text-xs text-slate-400">Hace 2 días</span></div><p class="text-sm text-slate-500 leading-relaxed">La pausa autorizada ha concluido y el estudiante reanudó actividades.</p></div></div><!-- CARD 5: Leída (índigo) --><div class="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 shadow-xs hover:shadow-md transition-all flex items-start gap-4"><div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center shrink-0 border border-indigo-100"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div><div class="flex-1 min-w-0"><div class="flex items-center justify-between gap-2 flex-wrap mb-1"><div class="flex items-center gap-2"><h3 class="text-sm font-medium text-slate-800">Reporte mensual disponible</h3><span class="text-[11px] font-semibold bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">Reporte</span></div><span class="text-xs text-slate-400">Hace 5 días</span></div><p class="text-sm text-slate-500 leading-relaxed">El reporte de acreditación del mes de septiembre está disponible.</p></div></div></div><!-- Sección 3: Paginación --><div class="bg-white border border-slate-200 rounded-xl p-3.5 sm:px-5 flex items-center justify-between shadow-xs"><p class="text-xs text-slate-500 font-medium">Mostrando <span class="font-semibold text-slate-800">1-5</span> de <span class="font-semibold text-slate-800">12</span> notificaciones</p><div class="inline-flex items-center gap-1.5"><button class="px-3 py-1.5 rounded-lg border border-slate-200 text-slate-400 text-xs font-semibold bg-slate-50 cursor-not-allowed" disabled="" type="button">Anterior</button><button class="px-3 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-semibold bg-white transition" type="button">Siguiente</button></div></div></div></main>
+<!-- END: MainContent -->
+</div>
+<!-- BEGIN: InstitutionalFooter -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+<!-- END: InstitutionalFooter -->
+<!-- BEGIN: ToastNotification -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 ease-out pointer-events-none flex items-center gap-3 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl border border-slate-800 text-xs" id="toast">
+<div class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7"></path>
+</svg>
+</div>
+<div>
+<p class="font-bold text-slate-100" id="toast-title">Generando reporte...</p>
+<p class="text-slate-300 text-[11px]" id="toast-desc">Reporte consolidado listo para descarga en PDF y XLSX.</p>
+</div>
+</div>
+<!-- END: ToastNotification -->
+<!-- BEGIN: EventHandlers -->
+<script data-purpose="event-handlers">
+    function showToast(customTitle, customDesc) {
+      const toast = document.getElementById('toast');
+      const titleEl = document.getElementById('toast-title');
+      const descEl = document.getElementById('toast-desc');
+
+      if (customTitle) titleEl.innerText = customTitle;
+      if (customDesc) descEl.innerText = customDesc;
+
+      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3500);
+    }
+
+    function triggerReportGeneration(reportName) {
+      showToast('Generando reporte...', `${reportName} compilado con éxito para descarga.`);
+    }
+  </script>
+<!-- END: EventHandlers -->
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard-monitoreo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">monitoring</span>
+      <span class="text-[11px] font-medium mt-0.5">Monitoreo</span>
+    </a>
+    <a href="03-supervision-riesgo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">warning</span>
+      <span class="text-[11px] font-medium mt-0.5">Riesgos</span>
+    </a>
+    <a href="04-contingencias.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">support</span>
+      <span class="text-[11px] font-medium mt-0.5">Contingencias</span>
+    </a>
+    <a href="05-firma-cartas.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">draw</span>
+      <span class="text-[11px] font-medium mt-0.5">Firmas</span>
+    </a>
+    <a href="08-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

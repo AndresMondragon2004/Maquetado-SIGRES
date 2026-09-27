@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-umb-surface" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGRES-UMB - Dirección Académica</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-full font-sans text-umb-texto antialiased flex flex-col bg-umb-surface">
+<!-- BEGIN: TopAppBar -->
+<!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard-ejecutivo.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Dirección</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Dashboard ejecutivo</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="06-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          AA
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Armando Alcalde</span>
+          <span class="text-[10px] text-white/75 leading-none">Dirección</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: TopAppBar -->
+<!-- Layout Wrapper: Sidebar + Contenido Central -->
+<div class="flex pt-16 flex-1">
+<!-- BEGIN: Sidebar -->
+<!-- Barra lateral fija izquierda de 260px para resolución de escritorio -->
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              AA
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Armando Alcalde Martínez</p>
+              <p class="text-[11px] text-umb-outline truncate">Director Académico · UMB</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard-ejecutivo.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">dashboard</span>
+            <span class="text-sm">Dashboard</span>
+          </a>
+          <a href="02-vinculacion-convenios.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">handshake</span>
+            <span class="text-sm">Vinculación</span>
+          </a>
+          <a href="03-sectores-productivos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">factory</span>
+            <span class="text-sm">Sectores</span>
+          </a>
+          <a href="04-reportes-acreditacion.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">verified_user</span>
+            <span class="text-sm">Acreditación</span>
+          </a>
+          <a href="05-configuracion-global.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">settings</span>
+            <span class="text-sm">Configuración</span>
+          </a>
+          <a href="06-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: MainContent -->
+<!-- Contenedor principal con separación adaptativa en desktop -->
+<main class="flex-1 lg:ml-[260px] p-4 sm:p-6 lg:p-8 max-w-[1280px] mx-auto w-full pb-24 lg:pb-12" data-purpose="main-dashboard">
+<!-- Encabezado de bienvenida y acción ejecutiva -->
+<section class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8" data-purpose="dashboard-header">
+<div>
+<h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Panel de Dirección Académica</h1>
+<p class="text-sm text-umb-muted mt-1">Indicadores estratégicos de las residencias profesionales en la UMB · Ciclo 26-27/1.</p>
+</div>
+<div>
+<button class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-umb-guinda hover:bg-[#521522] text-white font-medium text-sm shadow-sm transition-colors focus:outline-none" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Exportar reporte ejecutivo</span>
+</button>
+</div>
+</section>
+<!-- BEGIN: SectionKPIs -->
+<!-- Cuadrícula de 4 tarjetas de indicadores institucionales clave -->
+<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-8" data-purpose="kpi-grid">
+<!-- Tarjeta A: Total de residencias -->
+<div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Total de residencias</span>
+<div class="w-10 h-10 rounded-lg bg-umb-guinda/15 text-umb-guinda flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<div class="mt-3">
+<div class="text-[28px] font-bold text-umb-carbon leading-tight">350</div>
+<div class="flex items-center gap-1.5 mt-1 text-xs text-[#2D8C4E] font-medium">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>+14.2% vs ciclo anterior</span>
+</div>
+</div>
+</div>
+<!-- Tarjeta B: Convenios activos -->
+<div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Convenios activos</span>
+<div class="w-10 h-10 rounded-lg bg-umb-dorado/15 text-umb-dorado flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<div class="mt-3">
+<div class="text-[28px] font-bold text-umb-dorado leading-tight">45</div>
+<div class="text-xs text-umb-muted mt-1 font-normal">
+              38 vigentes · 7 en trámite
+            </div>
+</div>
+</div>
+<!-- Tarjeta C: Tasa de acreditación -->
+<div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Tasa de acreditación</span>
+<div class="w-10 h-10 rounded-lg bg-[#2D8C4E]/15 text-[#2D8C4E] flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<div class="mt-3">
+<div class="flex items-baseline justify-between">
+<div class="text-[28px] font-bold text-[#2D8C4E] leading-tight">88%</div>
+<span class="text-xs font-medium text-emerald-800">Meta institucional: 80%</span>
+</div>
+<!-- Barra de progreso institucional -->
+<div class="w-full bg-umb-border h-1.5 rounded-full mt-2.5 overflow-hidden">
+<div class="bg-[#2D8C4E] h-1.5 rounded-full" style="width: 88%;"></div>
+</div>
+</div>
+</div>
+<!-- Tarjeta D: Tiempo promedio de liberación -->
+<div class="bg-white p-5 rounded-xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Tiempo promedio</span>
+<div class="w-10 h-10 rounded-lg bg-umb-guinda/15 text-umb-guinda flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<div class="mt-3">
+<div class="text-[28px] font-bold text-umb-carbon leading-tight">5.2 meses</div>
+<div class="text-xs text-umb-muted mt-1 font-normal">
+              Rango óptimo: 4-6 meses
+            </div>
+</div>
+</div>
+</section>
+<!-- END: SectionKPIs -->
+<!-- BEGIN: SectionAnalyticsGrid -->
+<!-- Sección analítica dividida en 60% y 40% en vista desktop -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8" data-purpose="analytics-grid">
+<!-- Columna Izquierda (60%): Gráfica de evolución y Acreditación por UES -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Tarjeta A: Evolución histórica de residencias -->
+<div class="bg-white p-6 rounded-xl border border-slate-200/80 shadow-xs">
+<div class="mb-5">
+<h3 class="text-base font-semibold text-umb-carbon">Evolución de residencias por año</h3>
+<p class="text-xs text-umb-outline">Comparativa histórica de los últimos 5 ciclos.</p>
+</div>
+<!-- Gráfica SVG interactiva y responsiva -->
+<div class="w-full overflow-x-auto">
+<svg class="w-full h-auto min-w-[480px]" viewbox="0 0 540 220" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#681B2B" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#681B2B" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Líneas horizontales de guía -->
+<line stroke="#E2E8F0" stroke-dasharray="3 3" stroke-width="1" x1="45" x2="520" y1="20" y2="20"></line>
+<line stroke="#E2E8F0" stroke-dasharray="3 3" stroke-width="1" x1="45" x2="520" y1="60" y2="60"></line>
+<line stroke="#E2E8F0" stroke-dasharray="3 3" stroke-width="1" x1="45" x2="520" y1="100" y2="100"></line>
+<line stroke="#E2E8F0" stroke-dasharray="3 3" stroke-width="1" x1="45" x2="520" y1="140" y2="140"></line>
+<line stroke="#CBD5E1" stroke-width="1" x1="45" x2="520" y1="180" y2="180"></line>
+<!-- Eje Y: Textos -->
+<text fill="#877273" font-size="10" text-anchor="end" x="35" y="24">400</text>
+<text fill="#877273" font-size="10" text-anchor="end" x="35" y="64">300</text>
+<text fill="#877273" font-size="10" text-anchor="end" x="35" y="104">200</text>
+<text fill="#877273" font-size="10" text-anchor="end" x="35" y="144">100</text>
+<text fill="#877273" font-size="10" text-anchor="end" x="35" y="184">0</text>
+<!-- Área sombreada con gradiente -->
+<!-- Puntos: 2022(70, 104), 2023(175, 90), 2024(280, 72), 2025(385, 56), 2026(490, 40) -->
+<polygon fill="url(#areaGradient)" points="70,104 175,90 280,72 385,56 490,40 490,180 70,180"></polygon>
+<!-- Línea de tendencia institucional -->
+<polyline fill="none" points="70,104 175,90 280,72 385,56 490,40" stroke="#681B2B" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></polyline>
+<!-- Puntos con badges de valores -->
+<!-- 2022: 190 -->
+<circle cx="70" cy="104" fill="#FFFFFF" r="5" stroke="#681B2B" stroke-width="2.5"></circle>
+<rect fill="#681B2B" height="18" rx="4" width="36" x="52" y="80"></rect>
+<text fill="#FFFFFF" font-size="10" font-weight="600" text-anchor="middle" x="70" y="92.5">190</text>
+<text fill="#544244" font-size="11" text-anchor="middle" x="70" y="200">2022</text>
+<!-- 2023: 225 -->
+<circle cx="175" cy="90" fill="#FFFFFF" r="5" stroke="#681B2B" stroke-width="2.5"></circle>
+<rect fill="#681B2B" height="18" rx="4" width="36" x="157" y="66"></rect>
+<text fill="#FFFFFF" font-size="10" font-weight="600" text-anchor="middle" x="175" y="78.5">225</text>
+<text fill="#544244" font-size="11" text-anchor="middle" x="175" y="200">2023</text>
+<!-- 2024: 270 -->
+<circle cx="280" cy="72" fill="#FFFFFF" r="5" stroke="#681B2B" stroke-width="2.5"></circle>
+<rect fill="#681B2B" height="18" rx="4" width="36" x="262" y="48"></rect>
+<text fill="#FFFFFF" font-size="10" font-weight="600" text-anchor="middle" x="280" y="60.5">270</text>
+<text fill="#544244" font-size="11" text-anchor="middle" x="280" y="200">2024</text>
+<!-- 2025: 310 -->
+<circle cx="385" cy="56" fill="#FFFFFF" r="5" stroke="#681B2B" stroke-width="2.5"></circle>
+<rect fill="#681B2B" height="18" rx="4" width="36" x="367" y="32"></rect>
+<text fill="#FFFFFF" font-size="10" font-weight="600" text-anchor="middle" x="385" y="44.5">310</text>
+<text fill="#544244" font-size="11" text-anchor="middle" x="385" y="200">2025</text>
+<!-- 2026: 350 -->
+<circle cx="490" cy="40" fill="#FFFFFF" r="5" stroke="#681B2B" stroke-width="2.5"></circle>
+<rect fill="#681B2B" height="18" rx="4" width="36" x="472" y="16"></rect>
+<text fill="#FFFFFF" font-size="10" font-weight="600" text-anchor="middle" x="490" y="28.5">350</text>
+<text fill="#544244" font-size="11" text-anchor="middle" x="490" y="200">2026</text>
+</svg>
+</div>
+<!-- Resumen de crecimiento -->
+<div class="mt-4 p-3 bg-slate-50 border border-slate-200/60 rounded-lg flex items-center gap-2.5">
+<div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M5 10l7-7m0 0l7 7m-7-7v18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-[13px] font-semibold text-emerald-800">Crecimiento acumulado: +84.2% en 5 años de gestión.</span>
+</div>
+</div>
+<!-- Tarjeta B: Acreditación por unidad académica -->
+<div class="bg-white p-6 rounded-xl border border-slate-200/80 shadow-xs">
+<div class="mb-5">
+<h3 class="text-base font-semibold text-umb-carbon">Acreditación por unidad académica</h3>
+<p class="text-xs text-umb-outline">Tasa de acreditación por unidad en el ciclo actual.</p>
+</div>
+<div class="space-y-4">
+<!-- Item 1: UES San José del Rincón -->
+<div>
+<div class="flex items-center justify-between text-xs mb-1.5">
+<span class="font-medium text-umb-carbon">UES San José del Rincón</span>
+<div class="flex items-center gap-2">
+<span class="text-umb-outline">45/51 alumnos</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-[#2D8C4E]">88%</span>
+</div>
+</div>
+<div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-2.5 rounded-full" style="width: 88%;"></div>
+</div>
+</div>
+<!-- Item 2: UES Atlacomulco -->
+<div>
+<div class="flex items-center justify-between text-xs mb-1.5">
+<span class="font-medium text-umb-carbon">UES Atlacomulco</span>
+<div class="flex items-center gap-2">
+<span class="text-umb-outline">58/63 alumnos</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-[#2D8C4E]">92%</span>
+</div>
+</div>
+<div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-2.5 rounded-full" style="width: 92%;"></div>
+</div>
+</div>
+<!-- Item 3: UES Ixtapan de la Sal -->
+<div>
+<div class="flex items-center justify-between text-xs mb-1.5">
+<span class="font-medium text-umb-carbon">UES Ixtapan de la Sal</span>
+<div class="flex items-center gap-2">
+<span class="text-umb-outline">34/40 alumnos</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-[#D97706]">85%</span>
+</div>
+</div>
+<div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#D97706] h-2.5 rounded-full" style="width: 85%;"></div>
+</div>
+</div>
+<!-- Item 4: UES Tejupilco -->
+<div>
+<div class="flex items-center justify-between text-xs mb-1.5">
+<span class="font-medium text-umb-carbon">UES Tejupilco</span>
+<div class="flex items-center gap-2">
+<span class="text-umb-outline">29/37 alumnos</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-50 text-[#DC2626]">78%</span>
+</div>
+</div>
+<div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#DC2626] h-2.5 rounded-full" style="width: 78%;"></div>
+</div>
+</div>
+<!-- Item 5: UES Valle de Bravo -->
+<div>
+<div class="flex items-center justify-between text-xs mb-1.5">
+<span class="font-medium text-umb-carbon">UES Valle de Bravo</span>
+<div class="flex items-center gap-2">
+<span class="text-umb-outline">45/50 alumnos</span>
+<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-[#2D8C4E]">90%</span>
+</div>
+</div>
+<div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-2.5 rounded-full" style="width: 90%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Columna Derecha (40%): Sectores empresariales y Ramas estratégicas -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Tarjeta C: Distribución por sector empresarial -->
+<div class="bg-white p-6 rounded-xl border border-slate-200/80 shadow-xs">
+<div class="mb-4">
+<h3 class="text-base font-semibold text-umb-carbon">Distribución por sector empresarial</h3>
+<p class="text-xs text-umb-outline">Composición de las alianzas institucionales.</p>
+</div>
+<!-- Gráfica Donut SVG -->
+<div class="relative flex items-center justify-center my-4">
+<svg class="w-48 h-48 transform -rotate-90" viewbox="0 0 100 100">
+<!-- Circunferencia = 2 * PI * 38 = ~238.76 -->
+<!-- Fondo Base -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#F1F5F9" stroke-width="12"></circle>
+<!-- Sector Social: 16% = 38.2 | dashoffset = 0 -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#CBD5E1" stroke-dasharray="38.2 238.8" stroke-dashoffset="0" stroke-width="12"></circle>
+<!-- Sector Público: 28% = 66.85 | dashoffset = -38.2 -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#9E773B" stroke-dasharray="66.85 238.8" stroke-dashoffset="-38.2" stroke-width="12"></circle>
+<!-- Sector Privado: 56% = 133.7 | dashoffset = -105.05 -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#681B2B" stroke-dasharray="133.7 238.8" stroke-dashoffset="-105.05" stroke-width="12"></circle>
+</svg>
+<!-- Contenido central de la dona -->
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span class="text-2xl font-bold text-umb-carbon leading-none">350</span>
+<span class="text-[11px] text-umb-outline font-medium mt-1">empresas</span>
+</div>
+</div>
+<!-- Leyenda explicativa -->
+<div class="space-y-2 mt-4 pt-3 border-t border-slate-100 text-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-umb-guinda shrink-0"></span>
+<span class="text-umb-muted">Sector Privado</span>
+</div>
+<div class="font-medium text-umb-carbon">56% <span class="text-umb-outline font-normal">(196 empresas)</span></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-umb-dorado shrink-0"></span>
+<span class="text-umb-muted">Sector Público</span>
+</div>
+<div class="font-medium text-umb-carbon">28% <span class="text-umb-outline font-normal">(98 dependencias)</span></div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#CBD5E1] shrink-0"></span>
+<span class="text-umb-muted">Sector Social</span>
+</div>
+<div class="font-medium text-umb-carbon">16% <span class="text-umb-outline font-normal">(56 OSC)</span></div>
+</div>
+</div>
+</div>
+<!-- Tarjeta D: Ramas estratégicas líderes -->
+<div class="bg-white p-6 rounded-xl border border-slate-200/80 shadow-xs">
+<div class="mb-4">
+<h3 class="text-base font-semibold text-umb-carbon">Ramas estratégicas líderes</h3>
+<p class="text-xs text-umb-outline">Sectores con mayor número de residentes.</p>
+</div>
+<div class="space-y-3.5">
+<!-- Rama 1 -->
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="font-medium text-umb-carbon">TI y software</span>
+<span class="text-umb-outline">32% (112 residentes)</span>
+</div>
+<div class="w-full bg-[#F1F5F9] h-2 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2 rounded-full" style="width: 32%;"></div>
+</div>
+</div>
+<!-- Rama 2 -->
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="font-medium text-umb-carbon">Manufactura y automotriz</span>
+<span class="text-umb-outline">24% (84 residentes)</span>
+</div>
+<div class="w-full bg-[#F1F5F9] h-2 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2 rounded-full" style="width: 24%;"></div>
+</div>
+</div>
+<!-- Rama 3 -->
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="font-medium text-umb-carbon">Financiero y contable</span>
+<span class="text-umb-outline">18% (63 residentes)</span>
+</div>
+<div class="w-full bg-[#F1F5F9] h-2 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2 rounded-full" style="width: 18%;"></div>
+</div>
+</div>
+<!-- Rama 4 -->
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="font-medium text-umb-carbon">Administración municipal</span>
+<span class="text-umb-outline">14% (49 residentes)</span>
+</div>
+<div class="w-full bg-[#F1F5F9] h-2 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2 rounded-full" style="width: 14%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: SectionAnalyticsGrid -->
+<!-- BEGIN: SectionExpiringAgreements -->
+<!-- Sección de convenios con vencimiento próximo -->
+<section class="bg-white p-6 rounded-xl border border-slate-200/80 shadow-xs mb-8" data-purpose="expiring-agreements">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+<div>
+<h3 class="text-base font-semibold text-umb-carbon">Convenios próximos a vencer</h3>
+<p class="text-xs text-amber-800">4 convenios requieren renovación en los próximos 30 días.</p>
+</div>
+<span class="self-start sm:self-auto px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-[#D97706] border border-amber-200/60">
+            Atención requerida
+          </span>
+</div>
+<div class="overflow-x-auto -mx-6 px-6">
+<table class="w-full text-left text-xs border-collapse">
+<thead>
+<tr class="border-b border-slate-200 text-umb-outline font-semibold">
+<th class="py-3 px-3">Empresa</th>
+<th class="py-3 px-3">Sector</th>
+<th class="py-3 px-3">Fecha de vencimiento</th>
+<th class="py-3 px-3 text-center">Residentes activos</th>
+<th class="py-3 px-3">Estado jurídico</th>
+<th class="py-3 px-3 text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Fila 1 -->
+<tr class="hover:bg-slate-50/60 transition-colors">
+<td class="py-3.5 px-3 font-medium text-umb-carbon">Soluciones Cloud México S.A. de C.V.</td>
+<td class="py-3.5 px-3 text-umb-muted">Privado · TI</td>
+<td class="py-3.5 px-3">
+<span class="text-umb-carbon">30 de noviembre de 2026</span>
+<span class="ml-2 inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-red-50 text-[#DC2626]">12 días restantes</span>
+</td>
+<td class="py-3.5 px-3 text-center font-medium text-umb-carbon">8</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-medium bg-amber-50 text-[#D97706]">En revisión jurídica</span>
+</td>
+<td class="py-3.5 px-3 text-right">
+<button class="px-3 py-1.5 bg-umb-guinda hover:bg-[#521522] text-white rounded-md text-xs font-medium transition-colors" type="button">
+                    Renovar
+                  </button>
+</td>
+</tr>
+<!-- Fila 2 -->
+<tr class="hover:bg-slate-50/60 transition-colors">
+<td class="py-3.5 px-3 font-medium text-umb-carbon">H. Ayuntamiento de San José del Rincón</td>
+<td class="py-3.5 px-3 text-umb-muted">Público · Municipio</td>
+<td class="py-3.5 px-3">
+<span class="text-umb-carbon">05 de diciembre de 2026</span>
+<span class="ml-2 inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-[#D97706]">17 días restantes</span>
+</td>
+<td class="py-3.5 px-3 text-center font-medium text-umb-carbon">14</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-[#2D8C4E]">Oficio prórroga enviado</span>
+</td>
+<td class="py-3.5 px-3 text-right">
+<button class="px-3 py-1.5 bg-umb-guinda hover:bg-[#521522] text-white rounded-md text-xs font-medium transition-colors" type="button">
+                    Renovar
+                  </button>
+</td>
+</tr>
+<!-- Fila 3 -->
+<tr class="hover:bg-slate-50/60 transition-colors">
+<td class="py-3.5 px-3 font-medium text-umb-carbon">Ensambles Mecánicos Toluca S.A.</td>
+<td class="py-3.5 px-3 text-umb-muted">Privado · Automotriz</td>
+<td class="py-3.5 px-3">
+<span class="text-umb-carbon">12 de diciembre de 2026</span>
+<span class="ml-2 inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-[#D97706]">24 días restantes</span>
+</td>
+<td class="py-3.5 px-3 text-center font-medium text-umb-carbon">6</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-medium bg-amber-50 text-[#D97706]">Pendiente firma rectoría</span>
+</td>
+<td class="py-3.5 px-3 text-right">
+<button class="px-3 py-1.5 bg-umb-guinda hover:bg-[#521522] text-white rounded-md text-xs font-medium transition-colors" type="button">
+                    Renovar
+                  </button>
+</td>
+</tr>
+<!-- Fila 4 -->
+<tr class="hover:bg-slate-50/60 transition-colors">
+<td class="py-3.5 px-3 font-medium text-umb-carbon">Sistema Municipal DIF San José del Rincón</td>
+<td class="py-3.5 px-3 text-umb-muted">Público · Asistencial</td>
+<td class="py-3.5 px-3">
+<span class="text-umb-carbon">17 de diciembre de 2026</span>
+<span class="ml-2 inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 text-umb-outline">29 días restantes</span>
+</td>
+<td class="py-3.5 px-3 text-center font-medium text-umb-carbon">9</td>
+<td class="py-3.5 px-3">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 text-umb-muted">Documentación recibida</span>
+</td>
+<td class="py-3.5 px-3 text-right">
+<button class="px-3 py-1.5 bg-umb-guinda hover:bg-[#521522] text-white rounded-md text-xs font-medium transition-colors" type="button">
+                    Renovar
+                  </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-100 flex justify-end">
+<a class="inline-flex items-center gap-1 text-xs font-medium text-umb-guinda hover:underline" href="#">
+<span>Ver todos los convenios</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+</div>
+</section>
+<!-- END: SectionExpiringAgreements -->
+<!-- BEGIN: SectionCampusSummary -->
+<!-- Comparativa por Unidades de Estudios Superiores -->
+<section class="bg-white p-6 rounded-xl border border-slate-200/80 shadow-xs mb-6" data-purpose="campus-summary-table">
+<div class="mb-4">
+<h3 class="text-base font-semibold text-umb-carbon">Resumen por unidad académica</h3>
+<p class="text-xs text-umb-outline">Comparativa institucional del ciclo 26-27/1.</p>
+</div>
+<div class="overflow-x-auto -mx-6 px-6">
+<table class="w-full text-left text-xs border-collapse">
+<thead>
+<tr class="border-b border-slate-200 text-umb-outline font-semibold">
+<th class="py-3 px-3">Unidad académica</th>
+<th class="py-3 px-3 text-center">Residentes</th>
+<th class="py-3 px-3 text-center">Acreditación</th>
+<th class="py-3 px-3 text-center">En riesgo</th>
+<th class="py-3 px-3 text-center">Contingencias</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- UES San José del Rincón -->
+<tr class="hover:bg-slate-50/60 transition-colors">
+<td class="py-3.5 px-3 font-medium text-umb-carbon">UES San José del Rincón</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">45</td>
+<td class="py-3.5 px-3 text-center">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-[#2D8C4E]">88%</span>
+</td>
+<td class="py-3.5 px-3 text-center">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-medium bg-amber-50 text-[#D97706]">8</span>
+</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">3</td>
+</tr>
+<!-- UES Atlacomulco -->
+<tr class="hover:bg-slate-50/60 transition-colors">
+<td class="py-3.5 px-3 font-medium text-umb-carbon">UES Atlacomulco</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">63</td>
+<td class="py-3.5 px-3 text-center">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-[#2D8C4E]">92%</span>
+</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">4</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">1</td>
+</tr>
+<!-- UES Ixtapan de la Sal -->
+<tr class="hover:bg-slate-50/60 transition-colors">
+<td class="py-3.5 px-3 font-medium text-umb-carbon">UES Ixtapan de la Sal</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">40</td>
+<td class="py-3.5 px-3 text-center">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-[#2D8C4E]">85%</span>
+</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">6</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">2</td>
+</tr>
+<!-- UES Tejupilco -->
+<tr class="hover:bg-slate-50/60 transition-colors">
+<td class="py-3.5 px-3 font-medium text-umb-carbon">UES Tejupilco</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">37</td>
+<td class="py-3.5 px-3 text-center">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-50 text-[#DC2626]">78%</span>
+</td>
+<td class="py-3.5 px-3 text-center">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-medium bg-red-50 text-[#DC2626]">9</span>
+</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">2</td>
+</tr>
+<!-- UES Valle de Bravo -->
+<tr class="hover:bg-slate-50/60 transition-colors">
+<td class="py-3.5 px-3 font-medium text-umb-carbon">UES Valle de Bravo</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">50</td>
+<td class="py-3.5 px-3 text-center">
+<span class="px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-[#2D8C4E]">90%</span>
+</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">3</td>
+<td class="py-3.5 px-3 text-center text-umb-muted">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-100 flex justify-end">
+<button class="inline-flex items-center gap-1.5 text-xs font-medium text-umb-guinda hover:text-[#521522] focus:outline-none" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Exportar comparativa</span>
+</button>
+</div>
+</section>
+<!-- END: SectionCampusSummary -->
+<!-- Pie institucional de página -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+</main>
+<!-- END: MainContent -->
+</div>
+<!-- BEGIN: MobileBottomNavigation -->
+<!-- Barra de navegación inferior móvil para pantallas menores a 1024px -->
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard-ejecutivo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">dashboard</span>
+      <span class="text-[11px] font-semibold mt-0.5">Dashboard</span>
+    </a>
+    <a href="02-vinculacion-convenios.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">handshake</span>
+      <span class="text-[11px] font-medium mt-0.5">Vinculación</span>
+    </a>
+    <a href="03-sectores-productivos.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">factory</span>
+      <span class="text-[11px] font-medium mt-0.5">Sectores</span>
+    </a>
+    <a href="04-reportes-acreditacion.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">verified_user</span>
+      <span class="text-[11px] font-medium mt-0.5">Acreditación</span>
+    </a>
+    <a href="06-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+<!-- END: MobileBottomNavigation -->
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

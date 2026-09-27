@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Perfil — Coordinación SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col antialiased selection:bg-umb-guinda selection:text-white">
+
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard-monitoreo.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Coordinación</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Mi perfil</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="08-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          LV
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Luis Ramón Vega</span>
+          <span class="text-[10px] text-white/75 leading-none">Coordinación</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal: Sidebar + Contenido Central -->
+  <div class="pt-16 flex-1 flex">
+
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              LV
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Luis Ramón Vega Ramírez</p>
+              <p class="text-[11px] text-umb-outline truncate">Coordinador de UES</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard-monitoreo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">monitoring</span>
+            <span class="text-sm">Monitoreo</span>
+          </a>
+          <a href="02-cohortes-carreras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">school</span>
+            <span class="text-sm">Cohortes</span>
+          </a>
+          <a href="03-supervision-riesgo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">warning</span>
+            <span class="text-sm">Riesgos</span>
+          </a>
+          <a href="04-contingencias.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">support</span>
+            <span class="text-sm">Contingencias</span>
+          </a>
+          <a href="05-firma-cartas.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">draw</span>
+            <span class="text-sm">Firmas</span>
+          </a>
+          <a href="06-reportes-ejecutivos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">summarize</span>
+            <span class="text-sm">Reportes</span>
+          </a>
+          <a href="08-mi-perfil.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+
+    <!-- Área de Contenido Principal -->
+    <main class="ml-64 flex-1 p-8 overflow-y-auto">
+      <div class="max-w-[1100px] mx-auto space-y-6">
+
+        <!-- Miga de pan y encabezado -->
+        <div>
+          <nav class="flex text-xs text-stone-500 mb-2 space-x-1 items-center">
+            <span>Coordinación</span>
+            <svg class="w-3.5 h-3.5 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+            <span class="text-stone-700 font-medium">Mi perfil</span>
+          </nav>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 class="text-2xl font-bold text-stone-900 tracking-tight">Mi perfil</h1>
+              <p class="text-sm text-stone-500 mt-0.5">Consulta y actualiza tu información personal.</p>
+            </div>
+            <div class="flex items-center space-x-3">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-2"></span>
+                Funcionario activo
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 1 — Tarjeta de presentación -->
+        <section class="bg-white rounded-xl border border-stone-200 shadow-sm p-6 sm:p-7 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-[#681B2B]/5 to-[#977A40]/10 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none"></div>
+
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 relative z-10">
+            <!-- Avatar 96px LV en guinda -->
+            <div class="w-24 h-24 rounded-2xl bg-umb-guinda text-white flex items-center justify-center font-bold text-3xl shadow-md border-4 border-white ring-2 ring-umb-guinda/20 flex-shrink-0">
+              LV
+            </div>
+
+            <div class="text-center sm:text-left flex-1">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 mb-1.5">
+                <h2 class="text-xl sm:text-2xl font-bold text-stone-900">Mtro. en I. D. Luis Ramón Vega Ramírez</h2>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#977A40]/15 text-umb-guinda border border-[#977A40]/30">
+                  UMB San José del Rincón
+                </span>
+              </div>
+              <p class="text-sm font-medium text-stone-600 mb-3">
+                Coordinador de la Unidad de Estudios Superiores San José del Rincón
+              </p>
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs text-stone-500">
+                <span class="flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                  </svg>
+                  Dirección y Coordinación Académica
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  Horario de atención: 8:00 - 16:00 hrs
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                  </svg>
+                  e.Firma vinculada y certificada
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 4 — Resumen de actividad (Grid de 4 sub-métricas) -->
+        <section>
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold uppercase tracking-wider text-stone-600">Resumen de actividad institucional</h3>
+            <span class="text-xs text-stone-400">Ciclo lectivo 26-27/1</span>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Métrica 1 -->
+            <div class="bg-white rounded-xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold text-stone-500">Estudiantes supervisados</span>
+                <div class="w-7 h-7 rounded-lg bg-umb-guinda/10 text-umb-guinda flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-baseline space-x-2">
+                <span class="text-2xl font-bold text-stone-900">45</span>
+                <span class="text-xs text-stone-500 font-medium">residentes</span>
+              </div>
+              <p class="text-[11px] text-stone-400 mt-1">3 cohortes activas (ISC, IIAS, LCONT)</p>
+            </div>
+
+            <!-- Métrica 2 -->
+            <div class="bg-white rounded-xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold text-stone-500">Cartas firmadas este mes</span>
+                <div class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-baseline space-x-2">
+                <span class="text-2xl font-bold text-stone-900">32</span>
+                <span class="text-xs text-emerald-600 font-medium">con e.Firma</span>
+              </div>
+              <p class="text-[11px] text-stone-400 mt-1">3 pendientes por rubricar</p>
+            </div>
+
+            <!-- Métrica 3 -->
+            <div class="bg-white rounded-xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold text-stone-500">Contingencias atendidas</span>
+                <div class="w-7 h-7 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-baseline space-x-2">
+                <span class="text-2xl font-bold text-stone-900">5</span>
+                <span class="text-xs text-amber-600 font-medium">casos</span>
+              </div>
+              <p class="text-[11px] text-stone-400 mt-1">3 en seguimiento activo actual</p>
+            </div>
+
+            <!-- Métrica 4 -->
+            <div class="bg-white rounded-xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-semibold text-stone-500">Reportes generados</span>
+                <div class="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="flex items-baseline space-x-2">
+                <span class="text-2xl font-bold text-stone-900">12</span>
+                <span class="text-xs text-indigo-600 font-medium">oficios</span>
+              </div>
+              <p class="text-[11px] text-stone-400 mt-1">Dirección Académica UMB</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Dos Columnas: Datos Personales (Solo lectura) & Datos Laborales -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+          <!-- SECCIÓN 2 — Datos personales (solo lectura) -->
+          <section class="bg-white rounded-xl border border-stone-200 shadow-sm p-6">
+            <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-5">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-8 h-8 rounded-lg bg-stone-100 text-stone-700 flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-stone-900">Datos personales</h3>
+                  <p class="text-xs text-stone-500">Información verificada por Recursos Humanos</p>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-stone-100 text-stone-600 border border-stone-200">
+                Solo lectura
+              </span>
+            </div>
+
+            <dl class="space-y-4 text-xs">
+              <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
+                <dt class="text-stone-500 font-medium mb-1">Nombre completo</dt>
+                <dd class="text-sm font-semibold text-stone-900">Luis Ramón Vega Ramírez</dd>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
+                  <dt class="text-stone-500 font-medium mb-1">RFC</dt>
+                  <dd class="text-xs font-mono font-semibold text-stone-900">VERL800515HDFXXX01</dd>
+                </div>
+                <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
+                  <dt class="text-stone-500 font-medium mb-1">CURP</dt>
+                  <dd class="text-xs font-mono font-semibold text-stone-900">VERL800515HDFRRN08</dd>
+                </div>
+              </div>
+
+              <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
+                <dt class="text-stone-500 font-medium mb-1">Correo institucional</dt>
+                <dd class="text-xs font-semibold text-stone-900 flex items-center justify-between">
+                  <span>luis.vega@umb.mx</span>
+                  <span class="text-[10px] text-emerald-600 font-medium bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Verificado</span>
+                </dd>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
+                  <dt class="text-stone-500 font-medium mb-1">Teléfono institucional / directo</dt>
+                  <dd class="text-xs font-semibold text-stone-900">712 145 8900</dd>
+                </div>
+                <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
+                  <dt class="text-stone-500 font-medium mb-1">Número de empleado</dt>
+                  <dd class="text-xs font-mono font-semibold text-umb-guinda">UMB-DIR-0105</dd>
+                </div>
+              </div>
+            </dl>
+          </section>
+
+          <!-- SECCIÓN 3 — Datos laborales -->
+          <section class="bg-white rounded-xl border border-stone-200 shadow-sm p-6">
+            <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-5">
+              <div class="flex items-center space-x-2.5">
+                <div class="w-8 h-8 rounded-lg bg-[#977A40]/15 text-umb-guinda flex items-center justify-center">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-stone-900">Datos laborales</h3>
+                  <p class="text-xs text-stone-500">Nombramiento oficial institucional</p>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-umb-guinda/10 text-umb-guinda border border-umb-guinda/20">
+                Coordinación UES
+              </span>
+            </div>
+
+            <dl class="space-y-4 text-xs">
+              <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
+                <dt class="text-stone-500 font-medium mb-1">Puesto oficial</dt>
+                <dd class="text-sm font-semibold text-stone-900">Coordinador de la UES San José del Rincón</dd>
+              </div>
+
+              <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
+                <dt class="text-stone-500 font-medium mb-1">Adscripción</dt>
+                <dd class="text-xs font-semibold text-stone-900">UES San José del Rincón</dd>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
+                  <dt class="text-stone-500 font-medium mb-1">Antigüedad docente y directiva</dt>
+                  <dd class="text-xs font-semibold text-stone-900 flex items-center">
+                    <span class="w-2 h-2 rounded-full bg-[#977A40] mr-1.5"></span>
+                    12 años
+                  </dd>
+                </div>
+                <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
+                  <dt class="text-stone-500 font-medium mb-1">Estatus en plantilla</dt>
+                  <dd class="text-xs font-semibold text-emerald-700">Tiempo completo / Titular</dd>
+                </div>
+              </div>
+
+              <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-100">
+                <dt class="text-stone-500 font-medium mb-1">Horario laboral oficial</dt>
+                <dd class="text-xs font-semibold text-stone-900 flex items-center">
+                  <svg class="w-3.5 h-3.5 text-stone-400 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  Lunes a viernes · 8:00 - 16:00
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+        </div>
+
+        <!-- SECCIÓN 5 — Configuración de notificaciones -->
+        <section class="bg-white rounded-xl border border-stone-200 shadow-sm p-6">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-4 border-b border-stone-100 mb-5 gap-2">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-stone-900">Configuración de notificaciones</h3>
+                <p class="text-xs text-stone-500">Canales de alerta y avisos directos en tiempo real</p>
+              </div>
+            </div>
+            <span class="text-xs text-stone-400 font-medium">Notificaciones automáticas por correo y plataforma</span>
+          </div>
+
+          <div class="divide-y divide-stone-100">
+            <!-- Toggle 1: Alertas de riesgo crítico -->
+            <div class="py-3.5 flex items-center justify-between">
+              <div class="pr-4">
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm font-semibold text-stone-900">Alertas de riesgo crítico</span>
+                  <span class="text-[10px] bg-red-50 text-red-700 font-semibold px-2 py-0.2 rounded border border-red-200/80">Prioridad alta</span>
+                </div>
+                <p class="text-xs text-stone-500 mt-0.5">Aviso inmediato cuando un residente baja del umbral reglamentario del 80% de asistencia o tiene rezago grave de horas.</p>
+              </div>
+              <button type="button" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-umb-guinda" role="switch" aria-checked="true">
+                <span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+              </button>
+            </div>
+
+            <!-- Toggle 2: Cartas pendientes de firma -->
+            <div class="py-3.5 flex items-center justify-between">
+              <div class="pr-4">
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm font-semibold text-stone-900">Cartas pendientes de firma</span>
+                  <span class="text-[10px] bg-amber-50 text-amber-700 font-semibold px-2 py-0.2 rounded border border-amber-200/80">Firma digital</span>
+                </div>
+                <p class="text-xs text-stone-500 mt-0.5">Notificación cuando Control Escolar radica un nuevo oficio de carta de presentación esperando tu e.Firma institucional.</p>
+              </div>
+              <button type="button" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-umb-guinda" role="switch" aria-checked="true">
+                <span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+              </button>
+            </div>
+
+            <!-- Toggle 3: Contingencias nuevas -->
+            <div class="py-3.5 flex items-center justify-between">
+              <div class="pr-4">
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm font-semibold text-stone-900">Contingencias nuevas</span>
+                  <span class="text-[10px] bg-blue-50 text-blue-700 font-semibold px-2 py-0.2 rounded border border-blue-200/80">Normativa</span>
+                </div>
+                <p class="text-xs text-stone-500 mt-0.5">Solicitudes de pausas temporales justificadas, reubicaciones de empresa y excepciones de periodo reglamentario.</p>
+              </div>
+              <button type="button" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-umb-guinda" role="switch" aria-checked="true">
+                <span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+              </button>
+            </div>
+
+            <!-- Toggle 4: Empresas por validar -->
+            <div class="py-3.5 flex items-center justify-between">
+              <div class="pr-4">
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm font-semibold text-stone-900">Empresas por validar</span>
+                </div>
+                <p class="text-xs text-stone-500 mt-0.5">Aviso cuando un estudiante registra una nueva unidad receptora que requiere validación jurídica y fiscal.</p>
+              </div>
+              <button type="button" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-umb-guinda" role="switch" aria-checked="true">
+                <span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+              </button>
+            </div>
+
+            <!-- Toggle 5: Reportes institucionales -->
+            <div class="py-3.5 flex items-center justify-between">
+              <div class="pr-4">
+                <div class="flex items-center space-x-2">
+                  <span class="text-sm font-semibold text-stone-900">Reportes institucionales</span>
+                </div>
+                <p class="text-xs text-stone-500 mt-0.5">Consolidados automáticos mensuales para la Dirección Académica y avisos de cierre de cortes evaluativos.</p>
+              </div>
+              <button type="button" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-umb-guinda" role="switch" aria-checked="true">
+                <span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 6 — Seguridad -->
+        <section class="bg-white rounded-xl border border-stone-200 shadow-sm p-6">
+          <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-5">
+            <div class="flex items-center space-x-2.5">
+              <div class="w-8 h-8 rounded-lg bg-stone-100 text-stone-700 flex items-center justify-center">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-base font-bold text-stone-900">Seguridad</h3>
+                <p class="text-xs text-stone-500">Gestión de accesos y credenciales de autenticación</p>
+              </div>
+            </div>
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+              Autenticación segura activa
+            </span>
+          </div>
+
+          <!-- Sesiones activas -->
+          <div class="space-y-4">
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-wider text-stone-600 mb-3">Sesiones activas</h4>
+              <div class="space-y-2.5">
+                <!-- Sesión 1: Actual -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 bg-stone-50 border border-stone-200 rounded-lg gap-2">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <div class="flex items-center space-x-2">
+                        <p class="text-xs font-bold text-stone-900">Navegador web actual — Chrome en Windows 11</p>
+                        <span class="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-1.5 py-0.2 rounded border border-emerald-200">Esta sesión</span>
+                      </div>
+                      <p class="text-[11px] text-stone-500 mt-0.5">San José del Rincón, Estado de México · Dirección IP: 187.190.12.84</p>
+                    </div>
+                  </div>
+                  <span class="text-[11px] text-stone-400 self-start sm:self-auto">Conectado ahora</span>
+                </div>
+
+                <!-- Sesión 2: Móvil -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3.5 bg-white border border-stone-200 rounded-lg gap-2">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-stone-100 text-stone-600 flex items-center justify-center">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p class="text-xs font-bold text-stone-900">Aplicación PWA institucional — Safari en iPhone 14</p>
+                      <p class="text-[11px] text-stone-500 mt-0.5">Toluca de Lerdo, Estado de México · Dirección IP: 189.204.31.102</p>
+                    </div>
+                  </div>
+                  <span class="text-[11px] text-stone-400 self-start sm:self-auto">Activo hace 4 horas</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botón de acción de seguridad -->
+            <div class="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-stone-100">
+              <p class="text-xs text-stone-500">¿Reconoces actividad inusual? Puedes invalidar todas las credenciales de acceso abiertas.</p>
+              <button type="button" class="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold text-stone-700 bg-stone-100 hover:bg-stone-200 rounded-lg border border-stone-300 transition-colors focus:outline-none">
+                <svg class="w-3.5 h-3.5 mr-2 text-stone-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
+                </svg>
+                Cerrar sesión en todos los dispositivos
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 7 — Acciones: Cerrar sesión -->
+        <section class="bg-white rounded-xl border border-stone-200 shadow-sm p-6">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-base font-bold text-stone-900">Finalizar sesión en SIGRES-UMB</h3>
+              <p class="text-xs text-stone-500 mt-0.5">
+                Cierra de forma segura tu acceso actual a la plataforma de coordinación de residencias.
+              </p>
+            </div>
+            <button type="button" class="inline-flex items-center justify-center px-5 py-2.5 text-xs font-semibold text-white bg-umb-guinda hover:bg-[#521321] active:bg-[#3D0E19] rounded-lg shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-umb-guinda/40">
+              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+              </svg>
+              Cerrar sesión
+            </button>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Pie de página institucional reglamentario -->
+  <footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard-monitoreo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">monitoring</span>
+      <span class="text-[11px] font-medium mt-0.5">Monitoreo</span>
+    </a>
+    <a href="03-supervision-riesgo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">warning</span>
+      <span class="text-[11px] font-medium mt-0.5">Riesgos</span>
+    </a>
+    <a href="04-contingencias.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">support</span>
+      <span class="text-[11px] font-medium mt-0.5">Contingencias</span>
+    </a>
+    <a href="05-firma-cartas.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">draw</span>
+      <span class="text-[11px] font-medium mt-0.5">Firmas</span>
+    </a>
+    <a href="08-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">person</span>
+      <span class="text-[11px] font-semibold mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

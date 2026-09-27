@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sectores productivos — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="text-neutral-heading bg-neutral-surface min-h-screen flex flex-col antialiased">
+<!-- BEGIN: TopAppBar -->
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard-ejecutivo.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Dirección</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Sectores productivos</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="06-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          AA
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Armando Alcalde</span>
+          <span class="text-[10px] text-white/75 leading-none">Dirección</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: TopAppBar -->
+<!-- App Wrapper: Sidebar + Main Content -->
+<div class="flex pt-16 flex-1">
+<!-- BEGIN: Sidebar -->
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              AA
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Armando Alcalde Martínez</p>
+              <p class="text-[11px] text-umb-outline truncate">Director Académico · UMB</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard-ejecutivo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">dashboard</span>
+            <span class="text-sm">Dashboard</span>
+          </a>
+          <a href="02-vinculacion-convenios.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">handshake</span>
+            <span class="text-sm">Vinculación</span>
+          </a>
+          <a href="03-sectores-productivos.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">factory</span>
+            <span class="text-sm">Sectores</span>
+          </a>
+          <a href="04-reportes-acreditacion.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">verified_user</span>
+            <span class="text-sm">Acreditación</span>
+          </a>
+          <a href="05-configuracion-global.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">settings</span>
+            <span class="text-sm">Configuración</span>
+          </a>
+          <a href="06-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: Sidebar -->
+<!-- BEGIN: MainContentArea -->
+<main class="ml-[260px] flex-1 p-8 overflow-y-auto" data-purpose="main-dashboard-content">
+<div class="max-w-[1280px] mx-auto space-y-6">
+<!-- SECTION 1: Page Header -->
+<!-- BEGIN: PageHeader -->
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4" data-purpose="page-header">
+<div>
+<div class="text-xs font-medium text-neutral-subtext mb-1">Dirección Académica / Sectores productivos</div>
+<h1 class="text-2xl font-bold text-neutral-heading tracking-tight">Sectores productivos</h1>
+<p class="text-sm text-neutral-darktext mt-0.5">Análisis de la vinculación institucional por sector económico.</p>
+</div>
+<div>
+<button class="inline-flex items-center space-x-2 bg-white hover:bg-gray-50 text-gray-700 text-sm font-medium px-4 py-2.5 rounded-lg border border-gray-300 shadow-sm transition-colors" type="button">
+<svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Exportar análisis</span>
+</button>
+</div>
+</div>
+<!-- END: PageHeader -->
+<!-- SECTION 2: Key Metric Cards (KPIs) -->
+<!-- BEGIN: KPICards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-purpose="kpi-metrics-grid">
+<!-- Card A: Empresas vinculadas -->
+<div class="bg-white rounded-lg p-5 border border-gray-200 shadow-xs flex items-start justify-between">
+<div>
+<p class="text-[11px] font-semibold uppercase tracking-wider text-neutral-subtext">Empresas vinculadas</p>
+<h2 class="text-[28px] font-bold text-neutral-heading leading-tight mt-1">350</h2>
+<p class="text-xs text-neutral-subtext mt-1">En todo el ciclo 26-27/1</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-umb-guinda/15 flex items-center justify-center text-umb-guinda">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<!-- Card B: Sector privado -->
+<div class="bg-white rounded-lg p-5 border border-gray-200 shadow-xs flex items-start justify-between">
+<div>
+<p class="text-[11px] font-semibold uppercase tracking-wider text-neutral-subtext">Sector privado</p>
+<h2 class="text-[28px] font-bold text-umb-guinda leading-tight mt-1">56%</h2>
+<p class="text-xs text-neutral-subtext mt-1">196 empresas</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-umb-guinda/10 flex items-center justify-center text-umb-guinda">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<!-- Card C: Sector público -->
+<div class="bg-white rounded-lg p-5 border border-gray-200 shadow-xs flex items-start justify-between">
+<div>
+<p class="text-[11px] font-semibold uppercase tracking-wider text-neutral-subtext">Sector público</p>
+<h2 class="text-[28px] font-bold text-umb-dorado leading-tight mt-1">28%</h2>
+<p class="text-xs text-neutral-subtext mt-1">98 dependencias</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-umb-dorado/15 flex items-center justify-center text-umb-dorado">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<!-- Card D: Sector social -->
+<div class="bg-white rounded-lg p-5 border border-gray-200 shadow-xs flex items-start justify-between">
+<div>
+<p class="text-[11px] font-semibold uppercase tracking-wider text-neutral-subtext">Sector social</p>
+<h2 class="text-[28px] font-bold text-neutral-heading leading-tight mt-1">16%</h2>
+<p class="text-xs text-neutral-subtext mt-1">56 organizaciones</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- END: KPICards -->
+<!-- SECTION 3: Two Column Analytical Grid -->
+<!-- BEGIN: AnalyticalGrid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6" data-purpose="analytical-sections-container">
+<!-- LEFT COLUMN (60% ~ 7 cols) -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Card A: Distribución por sector (Donut Chart) -->
+<section class="bg-white rounded-lg p-6 border border-gray-200 shadow-xs" data-purpose="sector-distribution-chart">
+<div class="border-b border-gray-100 pb-4 mb-4">
+<h3 class="text-base font-semibold text-neutral-heading">Distribución por sector</h3>
+<p class="text-xs text-neutral-subtext">Composición porcentual de las empresas vinculadas.</p>
+</div>
+<div class="flex flex-col sm:flex-row items-center justify-center sm:justify-around gap-6 py-2">
+<!-- SVG Donut Chart -->
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 100 100">
+<!-- Base circle / background -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#F3F4F6" stroke-width="14"></circle>
+<!-- Segment 1: Sector Privado 56% (Circumference ~ 238.76, 56% = 133.7, offset 0) -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#681B2B" stroke-dasharray="133.7 238.76" stroke-dashoffset="0" stroke-linecap="butt" stroke-width="14"></circle>
+<!-- Segment 2: Sector Público 28% (28% = 66.85, offset -133.7) -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#9E773B" stroke-dasharray="66.85 238.76" stroke-dashoffset="-133.7" stroke-linecap="butt" stroke-width="14"></circle>
+<!-- Segment 3: Sector Social 16% (16% = 38.2, offset -200.55) -->
+<circle cx="50" cy="50" fill="none" r="38" stroke="#B8B8B8" stroke-dasharray="38.2 238.76" stroke-dashoffset="-200.55" stroke-linecap="butt" stroke-width="14"></circle>
+</svg>
+<!-- Center text -->
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+<span class="text-[32px] font-bold text-neutral-heading leading-none">350</span>
+<span class="text-[11px] text-neutral-subtext mt-0.5">empresas</span>
+</div>
+</div>
+<!-- Chart Legend Details -->
+<div class="space-y-3.5 text-xs text-neutral-darktext w-full sm:w-auto">
+<div class="flex items-center space-x-2.5">
+<span class="w-3.5 h-3.5 rounded bg-umb-guinda shrink-0"></span>
+<span><strong class="text-neutral-heading">Sector privado</strong> · 56% · 196 empresas</span>
+</div>
+<div class="flex items-center space-x-2.5">
+<span class="w-3.5 h-3.5 rounded bg-umb-dorado shrink-0"></span>
+<span><strong class="text-neutral-heading">Sector público</strong> · 28% · 98 dependencias</span>
+</div>
+<div class="flex items-center space-x-2.5">
+<span class="w-3.5 h-3.5 rounded bg-[#B8B8B8] shrink-0"></span>
+<span><strong class="text-neutral-heading">Sector social</strong> · 16% · 56 organizaciones</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Card B: Ramas estratégicas líderes (Progress bars) -->
+<section class="bg-white rounded-lg p-6 border border-gray-200 shadow-xs" data-purpose="strategic-branches">
+<div class="border-b border-gray-100 pb-4 mb-4">
+<h3 class="text-base font-semibold text-neutral-heading">Ramas estratégicas líderes</h3>
+<p class="text-xs text-neutral-subtext">Sectores con mayor número de residentes activos.</p>
+</div>
+<!-- List of branches -->
+<div class="space-y-4">
+<!-- Branch 1 -->
+<div>
+<div class="flex justify-between text-xs mb-1.5">
+<span class="font-medium text-neutral-heading">TI y software</span>
+<span class="text-neutral-darktext">112 residentes · 32%</span>
+</div>
+<div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2.5 rounded-full" style="width: 32%"></div>
+</div>
+</div>
+<!-- Branch 2 -->
+<div>
+<div class="flex justify-between text-xs mb-1.5">
+<span class="font-medium text-neutral-heading">Manufactura y automotriz</span>
+<span class="text-neutral-darktext">84 residentes · 24%</span>
+</div>
+<div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2.5 rounded-full" style="width: 24%"></div>
+</div>
+</div>
+<!-- Branch 3 -->
+<div>
+<div class="flex justify-between text-xs mb-1.5">
+<span class="font-medium text-neutral-heading">Financiero y contable</span>
+<span class="text-neutral-darktext">63 residentes · 18%</span>
+</div>
+<div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2.5 rounded-full" style="width: 18%"></div>
+</div>
+</div>
+<!-- Branch 4 -->
+<div>
+<div class="flex justify-between text-xs mb-1.5">
+<span class="font-medium text-neutral-heading">Administración municipal</span>
+<span class="text-neutral-darktext">49 residentes · 14%</span>
+</div>
+<div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2.5 rounded-full" style="width: 14%"></div>
+</div>
+</div>
+<!-- Branch 5 -->
+<div>
+<div class="flex justify-between text-xs mb-1.5">
+<span class="font-medium text-neutral-heading">Agroindustria</span>
+<span class="text-neutral-darktext">28 residentes · 8%</span>
+</div>
+<div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2.5 rounded-full" style="width: 8%"></div>
+</div>
+</div>
+</div>
+<!-- Bottom highlight info box -->
+<div class="mt-5 p-3 bg-gray-50 border border-gray-200 rounded-lg flex items-center space-x-2.5">
+<svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="text-xs text-neutral-darktext">
+                  Las ramas de TI y manufactura concentran el 56% de las residencias institucionales.
+                </span>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN (40% ~ 5 cols) -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Card C: Empresas destacadas -->
+<section class="bg-white rounded-lg p-6 border border-gray-200 shadow-xs" data-purpose="top-companies">
+<div class="border-b border-gray-100 pb-4 mb-4">
+<h3 class="text-base font-semibold text-neutral-heading">Empresas destacadas</h3>
+<p class="text-xs text-neutral-subtext">Empresas con mayor número de residentes activos.</p>
+</div>
+<!-- List of Companies -->
+<div class="divide-y divide-gray-100">
+<!-- Company 1 -->
+<div class="py-3 flex items-center justify-between first:pt-0">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-umb-guinda/10 text-umb-guinda font-bold text-xs flex items-center justify-center shrink-0">
+                      HA
+                    </div>
+<div>
+<p class="text-xs font-semibold text-neutral-heading leading-tight">H. Ayuntamiento de San José del Rincón</p>
+<p class="text-[11px] text-neutral-subtext">Público · Municipio</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-gray-700 bg-gray-100 px-2 py-1 rounded-md shrink-0">
+                    14 residentes
+                  </span>
+</div>
+<!-- Company 2 -->
+<div class="py-3 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-umb-guinda/10 text-umb-guinda font-bold text-xs flex items-center justify-center shrink-0">
+                      SC
+                    </div>
+<div>
+<p class="text-xs font-semibold text-neutral-heading leading-tight">Soluciones Cloud México S.A. de C.V.</p>
+<p class="text-[11px] text-neutral-subtext">Privado · TI</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-gray-700 bg-gray-100 px-2 py-1 rounded-md shrink-0">
+                    8 residentes
+                  </span>
+</div>
+<!-- Company 3 -->
+<div class="py-3 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-umb-guinda/10 text-umb-guinda font-bold text-xs flex items-center justify-center shrink-0">
+                      DF
+                    </div>
+<div>
+<p class="text-xs font-semibold text-neutral-heading leading-tight">DIF Municipal San José del Rincón</p>
+<p class="text-[11px] text-neutral-subtext">Público · Asistencial</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-gray-700 bg-gray-100 px-2 py-1 rounded-md shrink-0">
+                    9 residentes
+                  </span>
+</div>
+<!-- Company 4 -->
+<div class="py-3 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-umb-guinda/10 text-umb-guinda font-bold text-xs flex items-center justify-center shrink-0">
+                      EM
+                    </div>
+<div>
+<p class="text-xs font-semibold text-neutral-heading leading-tight">Ensambles Mecánicos Toluca S.A.</p>
+<p class="text-[11px] text-neutral-subtext">Privado · Automotriz</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-gray-700 bg-gray-100 px-2 py-1 rounded-md shrink-0">
+                    6 residentes
+                  </span>
+</div>
+<!-- Company 5 -->
+<div class="py-3 flex items-center justify-between last:pb-0">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-umb-guinda/10 text-umb-guinda font-bold text-xs flex items-center justify-center shrink-0">
+                      AI
+                    </div>
+<div>
+<p class="text-xs font-semibold text-neutral-heading leading-tight">AgroInnova Lerma</p>
+<p class="text-[11px] text-neutral-subtext">Privado · Agroindustria</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-gray-700 bg-gray-100 px-2 py-1 rounded-md shrink-0">
+                    4 residentes
+                  </span>
+</div>
+</div>
+</section>
+<!-- Card D: Sectores por unidad académica -->
+<section class="bg-white rounded-lg p-6 border border-gray-200 shadow-xs" data-purpose="academic-units-breakdown">
+<div class="border-b border-gray-100 pb-4 mb-3">
+<h3 class="text-base font-semibold text-neutral-heading">Sectores por unidad académica</h3>
+<p class="text-xs text-neutral-subtext">Distribución de los sectores en cada UES.</p>
+</div>
+<!-- Units breakdown list -->
+<div class="divide-y divide-gray-100 text-xs">
+<!-- Unit 1 -->
+<div class="py-2.5 flex items-center justify-between">
+<span class="font-medium text-neutral-heading">UES San José del Rincón</span>
+<span class="text-neutral-darktext space-x-1">
+<span class="text-gray-900 font-semibold">25</span> <span class="text-neutral-subtext text-[11px]">Priv.</span> · 
+                    <span class="text-gray-900 font-semibold">14</span> <span class="text-neutral-subtext text-[11px]">Púb.</span> · 
+                    <span class="text-gray-900 font-semibold">6</span> <span class="text-neutral-subtext text-[11px]">Soc.</span>
+</span>
+</div>
+<!-- Unit 2 -->
+<div class="py-2.5 flex items-center justify-between">
+<span class="font-medium text-neutral-heading">UES Atlacomulco</span>
+<span class="text-neutral-darktext space-x-1">
+<span class="text-gray-900 font-semibold">35</span> <span class="text-neutral-subtext text-[11px]">Priv.</span> · 
+                    <span class="text-gray-900 font-semibold">19</span> <span class="text-neutral-subtext text-[11px]">Púb.</span> · 
+                    <span class="text-gray-900 font-semibold">9</span> <span class="text-neutral-subtext text-[11px]">Soc.</span>
+</span>
+</div>
+<!-- Unit 3 -->
+<div class="py-2.5 flex items-center justify-between">
+<span class="font-medium text-neutral-heading">UES Ixtapan de la Sal</span>
+<span class="text-neutral-darktext space-x-1">
+<span class="text-gray-900 font-semibold">22</span> <span class="text-neutral-subtext text-[11px]">Priv.</span> · 
+                    <span class="text-gray-900 font-semibold">12</span> <span class="text-neutral-subtext text-[11px]">Púb.</span> · 
+                    <span class="text-gray-900 font-semibold">6</span> <span class="text-neutral-subtext text-[11px]">Soc.</span>
+</span>
+</div>
+<!-- Unit 4 -->
+<div class="py-2.5 flex items-center justify-between">
+<span class="font-medium text-neutral-heading">UES Tejupilco</span>
+<span class="text-neutral-darktext space-x-1">
+<span class="text-gray-900 font-semibold">19</span> <span class="text-neutral-subtext text-[11px]">Priv.</span> · 
+                    <span class="text-gray-900 font-semibold">11</span> <span class="text-neutral-subtext text-[11px]">Púb.</span> · 
+                    <span class="text-gray-900 font-semibold">7</span> <span class="text-neutral-subtext text-[11px]">Soc.</span>
+</span>
+</div>
+<!-- Unit 5 -->
+<div class="py-2.5 flex items-center justify-between">
+<span class="font-medium text-neutral-heading">UES Valle de Bravo</span>
+<span class="text-neutral-darktext space-x-1">
+<span class="text-gray-900 font-semibold">28</span> <span class="text-neutral-subtext text-[11px]">Priv.</span> · 
+                    <span class="text-gray-900 font-semibold">15</span> <span class="text-neutral-subtext text-[11px]">Púb.</span> · 
+                    <span class="text-gray-900 font-semibold">7</span> <span class="text-neutral-subtext text-[11px]">Soc.</span>
+</span>
+</div>
+</div>
+<!-- Footer action -->
+<div class="mt-4 pt-3 border-t border-gray-100 flex justify-end">
+<a class="inline-flex items-center space-x-1 text-xs font-medium text-umb-guinda hover:text-[#832437] transition-colors" href="#">
+<span>Ver reporte detallado</span>
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+</div>
+</section>
+</div>
+</div>
+<!-- END: AnalyticalGrid -->
+<!-- SECTION 4: Heatmap Matrix -->
+<!-- BEGIN: HeatmapMatrix -->
+<section class="bg-white rounded-lg p-6 border border-gray-200 shadow-xs" data-purpose="sector-branch-heatmap">
+<div class="border-b border-gray-100 pb-4 mb-5">
+<h3 class="text-base font-semibold text-neutral-heading">Mapa de vinculación por rama</h3>
+<p class="text-xs text-neutral-subtext">Intensidad de la vinculación por rama económica en cada unidad.</p>
+</div>
+<!-- Heatmap Table Representation -->
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs">
+<thead>
+<tr class="text-neutral-subtext uppercase tracking-wider text-[11px] border-b border-gray-200">
+<th class="pb-3 font-semibold w-1/4" scope="col">Unidad académica</th>
+<th class="pb-3 font-semibold text-center" scope="col">TI y software</th>
+<th class="pb-3 font-semibold text-center" scope="col">Manufactura</th>
+<th class="pb-3 font-semibold text-center" scope="col">Financiero</th>
+<th class="pb-3 font-semibold text-center" scope="col">Agroindustria</th>
+<th class="pb-3 font-semibold text-center" scope="col">Administración municipal</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100">
+<!-- Row 1: San José del Rincón -->
+<tr>
+<td class="py-3.5 font-medium text-neutral-heading">UES San José del Rincón</td>
+<!-- TI: Alta -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda text-white">
+                      Alta
+                    </span>
+</td>
+<!-- Manufactura: Alta -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda text-white">
+                      Alta
+                    </span>
+</td>
+<!-- Financiero: Media -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/60 text-white">
+                      Media
+                    </span>
+</td>
+<!-- Agroindustria: Baja -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/20 text-umb-guinda">
+                      Baja
+                    </span>
+</td>
+<!-- Municipal: Alta -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda text-white">
+                      Alta
+                    </span>
+</td>
+</tr>
+<!-- Row 2: Atlacomulco -->
+<tr>
+<td class="py-3.5 font-medium text-neutral-heading">UES Atlacomulco</td>
+<!-- TI: Media -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/60 text-white">
+                      Media
+                    </span>
+</td>
+<!-- Manufactura: Alta -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda text-white">
+                      Alta
+                    </span>
+</td>
+<!-- Financiero: Alta -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda text-white">
+                      Alta
+                    </span>
+</td>
+<!-- Agroindustria: Media -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/60 text-white">
+                      Media
+                    </span>
+</td>
+<!-- Municipal: Media -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/60 text-white">
+                      Media
+                    </span>
+</td>
+</tr>
+<!-- Row 3: Ixtapan de la Sal -->
+<tr>
+<td class="py-3.5 font-medium text-neutral-heading">UES Ixtapan de la Sal</td>
+<!-- TI: Baja -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/20 text-umb-guinda">
+                      Baja
+                    </span>
+</td>
+<!-- Manufactura: Media -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/60 text-white">
+                      Media
+                    </span>
+</td>
+<!-- Financiero: Media -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/60 text-white">
+                      Media
+                    </span>
+</td>
+<!-- Agroindustria: Alta -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda text-white">
+                      Alta
+                    </span>
+</td>
+<!-- Municipal: Media -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/60 text-white">
+                      Media
+                    </span>
+</td>
+</tr>
+<!-- Row 4: Tejupilco -->
+<tr>
+<td class="py-3.5 font-medium text-neutral-heading">UES Tejupilco</td>
+<!-- TI: Baja -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/20 text-umb-guinda">
+                      Baja
+                    </span>
+</td>
+<!-- Manufactura: Baja -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/20 text-umb-guinda">
+                      Baja
+                    </span>
+</td>
+<!-- Financiero: Baja -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/20 text-umb-guinda">
+                      Baja
+                    </span>
+</td>
+<!-- Agroindustria: Alta -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda text-white">
+                      Alta
+                    </span>
+</td>
+<!-- Municipal: Media -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/60 text-white">
+                      Media
+                    </span>
+</td>
+</tr>
+<!-- Row 5: Valle de Bravo -->
+<tr>
+<td class="py-3.5 font-medium text-neutral-heading">UES Valle de Bravo</td>
+<!-- TI: Alta -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda text-white">
+                      Alta
+                    </span>
+</td>
+<!-- Manufactura: Media -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/60 text-white">
+                      Media
+                    </span>
+</td>
+<!-- Financiero: Alta -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda text-white">
+                      Alta
+                    </span>
+</td>
+<!-- Agroindustria: Media -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/60 text-white">
+                      Media
+                    </span>
+</td>
+<!-- Municipal: Baja -->
+<td class="py-3.5 text-center px-2">
+<span class="inline-block w-full max-w-[110px] py-1 px-2.5 rounded text-[11px] font-semibold bg-umb-guinda/20 text-umb-guinda">
+                      Baja
+                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Heatmap Legend Footer -->
+<div class="mt-6 pt-4 border-t border-gray-100 flex flex-wrap items-center gap-5 text-xs text-neutral-darktext">
+<div class="flex items-center space-x-2">
+<span class="w-3.5 h-3.5 rounded bg-umb-guinda"></span>
+<span>Alta (densidad fuerte)</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="w-3.5 h-3.5 rounded bg-umb-guinda/60"></span>
+<span>Media (densidad moderada)</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="w-3.5 h-3.5 rounded bg-umb-guinda/20"></span>
+<span>Baja (en desarrollo)</span>
+</div>
+</div>
+</section>
+<!-- END: HeatmapMatrix -->
+</div>
+</main>
+<!-- END: MainContentArea -->
+</div>
+<!-- BEGIN: PageFooter -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+<!-- END: PageFooter -->
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard-ejecutivo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">dashboard</span>
+      <span class="text-[11px] font-medium mt-0.5">Dashboard</span>
+    </a>
+    <a href="02-vinculacion-convenios.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">handshake</span>
+      <span class="text-[11px] font-medium mt-0.5">Vinculación</span>
+    </a>
+    <a href="03-sectores-productivos.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">factory</span>
+      <span class="text-[11px] font-semibold mt-0.5">Sectores</span>
+    </a>
+    <a href="04-reportes-acreditacion.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">verified_user</span>
+      <span class="text-[11px] font-medium mt-0.5">Acreditación</span>
+    </a>
+    <a href="06-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

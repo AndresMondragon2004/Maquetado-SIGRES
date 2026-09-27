@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-umb-surface">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Búsqueda Global y Command Palette — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full bg-umb-surface text-umb-carbon font-sans flex flex-col justify-between p-6">
+  <header class="bg-umb-guinda text-white p-4 rounded-2xl shadow flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="font-extrabold text-sm tracking-wide">SIGRES UMB</span>
+      <span class="px-2 py-0.5 rounded text-[10px] bg-umb-dorado font-semibold">Estados transversales</span>
+    </div>
+    <a href="../index.html" class="text-xs bg-black/20 hover:bg-black/30 px-3 py-1.5 rounded-lg text-amber-200 transition">← Portal Principal</a>
+  </header>
+  <main class="max-w-xl mx-auto my-auto bg-white p-8 rounded-2xl border border-gray-200 shadow-xl text-center space-y-4">
+    <div class="w-16 h-16 rounded-2xl bg-amber-50 text-umb-dorado mx-auto flex items-center justify-center font-bold text-2xl">
+      🏛️
+    </div>
+    <h2 class="text-xl font-bold text-gray-900">Búsqueda Global y Command Palette</h2>
+    <p class="text-xs text-gray-500">Componente transversal institucional para el sistema SIGRES-UMB de la Universidad Mexiquense del Bicentenario.</p>
+    <a href="../index.html" class="inline-block px-5 py-2.5 rounded-xl bg-umb-guinda text-white text-xs font-bold shadow hover:bg-[#521422] transition">Volver al Portal</a>
+  </main>
+  <footer class="text-center text-xs text-gray-400">UES San José del Rincón • Ciclo 26-27/1</footer>
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

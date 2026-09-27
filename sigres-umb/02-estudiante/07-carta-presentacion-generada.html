@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-umb-surface">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta de Presentación Generada — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col antialiased">
+
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Estudiante</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Carta de presentación</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="14-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          JM
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Jesús Andrés Mondragón</span>
+          <span class="text-[10px] text-white/75 leading-none">Estudiante</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="flex pt-16 min-h-screen">
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              JM
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Jesús Andrés Mondragón Tenorio</p>
+              <p class="text-[11px] text-umb-outline truncate">Matrícula: 13220024 · ISC</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="08-mis-bitacoras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">menu_book</span>
+            <span class="text-sm">Bitácoras</span>
+          </a>
+          <a href="02-mi-expediente.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">folder</span>
+            <span class="text-sm">Expediente</span>
+          </a>
+          <a href="13-mis-informes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">description</span>
+            <span class="text-sm">Informes</span>
+          </a>
+          <a href="14-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL CENTRADO (ancho máximo 1100px) -->
+    <main class="flex-1 md:ml-[260px] p-6 lg:p-8 bg-umb-surface">
+      <div class="max-w-[1100px] mx-auto space-y-6">
+
+        <!-- ENCABEZADO DE LA PÁGINA -->
+        <div>
+          <nav class="flex items-center space-x-2 text-xs text-umb-outline mb-2 font-normal">
+            <a href="#" class="hover:underline text-umb-outline">Mi expediente</a>
+            <span>/</span>
+            <span class="text-umb-carbon font-medium">Carta de presentación</span>
+          </nav>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Tu carta de presentación está lista</h1>
+              <p class="text-sm text-umb-muted mt-1">Descarga el PDF, imprímelo y sigue los pasos para completar el trámite.</p>
+            </div>
+            <!-- Badge verde Generada -->
+            <div class="flex items-center space-x-2">
+              <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">
+                <svg class="w-4 h-4 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Generada
+              </span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-umb-guinda/10 text-umb-guinda">
+                Ciclo 26-27/1
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 1 — DATOS DEL OFICIO -->
+        <div class="bg-white rounded-lg p-5 border border-umb-border shadow-sm">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 divide-y sm:divide-y-0 sm:divide-x divide-[#E2E8F0]">
+            <!-- Columna 1: Folio -->
+            <div class="pt-2 sm:pt-0 sm:pr-4">
+              <span class="text-xs font-normal text-umb-outline block mb-1">Folio del oficio</span>
+              <span class="text-sm font-semibold text-umb-carbon font-mono tracking-tight">UMB/UES-SJR/CE/2026-0148</span>
+            </div>
+            <!-- Columna 2: Fecha de emisión -->
+            <div class="pt-3 sm:pt-0 sm:px-4">
+              <span class="text-xs font-normal text-umb-outline block mb-1">Fecha de emisión</span>
+              <span class="text-sm font-semibold text-umb-carbon">15 de octubre de 2026</span>
+            </div>
+            <!-- Columna 3: Estado -->
+            <div class="pt-3 sm:pt-0 sm:pl-4 flex flex-col justify-center items-start">
+              <span class="text-xs font-normal text-umb-outline block mb-1">Estado del trámite</span>
+              <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-[#EFF6FF] text-[#1E3A8A] border border-[#BFDBFE]">
+                <svg class="w-3.5 h-3.5 mr-1.5 text-[#2B6CB0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                </svg>
+                Lista para imprimir
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- LAYOUT DE 2 COLUMNAS: VISTA PREVIA (IZQ) E INSTRUCCIONES / SUBIDA (DER) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- COLUMNA IZQUIERDA: VISTA PREVIA DE LA CARTA (Lg: 7 cols) -->
+          <div class="lg:col-span-7 space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <h2 class="text-sm font-semibold text-umb-carbon">Vista previa oficial del documento</h2>
+                <span class="text-[11px] text-umb-outline">· Formato carta oficial</span>
+              </div>
+              <span class="text-[11px] font-medium text-[#166534] bg-[#DCFCE7] px-2 py-0.5 rounded flex items-center">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#22C55E] mr-1.5"></span>
+                Oficio emitido
+              </span>
+            </div>
+
+            <!-- TARJETA BLANCA SIMULANDO HOJA TAMAÑO CARTA (8.5 x 11) -->
+            <div class="bg-white border border-[#D1D5DB] rounded-md letter-shadow mx-auto p-8 sm:p-10 relative bg-white overflow-hidden text-umb-carbon select-none" style="min-height: 760px;">
+              
+              <!-- ENCABEZADO SUPERIOR INSTITUCIONAL -->
+              <div class="flex items-center justify-between pb-3 border-b border-[#1A1A1A]">
+                <!-- LADO IZQUIERDO -->
+                <div class="flex items-center space-x-2.5">
+                  <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-10 w-auto object-contain">
+                  <div class="leading-tight">
+                    <span class="text-[11px] font-semibold text-umb-carbon block">Universidad Mexiquense del Bicentenario</span>
+                    <span class="text-[9px] text-umb-muted font-normal block">Unidad de Estudios Superiores San José del Rincón</span>
+                  </div>
+                </div>
+                <!-- LADO DERECHO -->
+                <div class="text-right leading-tight">
+                  <span class="text-[9px] font-semibold text-umb-carbon block">Gobierno del Estado de México</span>
+                  <span class="text-[8px] text-umb-muted font-normal block">Secretaría de Educación, Ciencia y Tecnología</span>
+                </div>
+              </div>
+
+              <!-- LUGAR, FECHA Y FOLIO -->
+              <div class="mt-4 text-right">
+                <p class="text-[9px] text-umb-muted">San José del Rincón, México, a 15 de octubre de 2026</p>
+                <p class="text-[9px] font-mono font-semibold text-umb-carbon">Oficio No. UMB/UES-SJR/CE/2026-0148</p>
+              </div>
+
+              <!-- DESTINATARIO Y ASUNTO -->
+              <div class="mt-6 flex justify-between items-start">
+                <div class="text-left space-y-0.5">
+                  <p class="text-[11px] font-bold text-umb-carbon uppercase tracking-wide">MTRO. ARMANDO ALCALDE MARTÍNEZ</p>
+                  <p class="text-[10px] font-semibold text-umb-carbon uppercase">DIRECTOR ACADÉMICO</p>
+                  <p class="text-[10px] font-semibold text-umb-carbon uppercase">UNIVERSIDAD MEXIQUENSE DEL BICENTENARIO</p>
+                  <p class="text-[10px] font-semibold text-umb-carbon uppercase tracking-institutional pt-1">P R E S E N T E</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-[11px] font-bold text-umb-carbon">Asunto: Carta de presentación</p>
+                </div>
+              </div>
+
+              <!-- CUERPO DEL TEXTO (10px Regular, justificado, interlineado 1.5) -->
+              <div class="mt-6 space-y-4 text-[10px] leading-[1.6] text-justify text-umb-carbon">
+                <p>
+                  Reciba un cordial saludo, así mismo con fundamento en la fracción V del Artículo 3, Artículo 6 y Artículo 13 del Reglamento de Residencia Profesional, hago propicio este medio a efecto de presentar a Usted al C. <span class="font-bold">Jesús Andrés Mondragón Tenorio</span> con número de matrícula <span class="font-bold">13220024</span> inscrito en esta Casa de Estudios quien cursa la <span class="font-bold">Licenciatura en Ingeniería en Sistemas Computacionales</span> en la Unidad de Estudios Superiores que represento, mismo que considera realizar su Residencia Profesional en el organismo a su cargo con la propuesta de intervención (proyecto) denominada <span class="font-bold">Plataforma web para el control de información relativa al proceso de residencia profesional del estudiantado en la Unidad de Estudios Superiores San José del Rincón</span> dentro del área de especialidad afín a su formación profesional debiendo cubrir un total de <span class="font-bold">640 hrs.</span> durante un periodo mínimo de cuatro y máximo de seis meses.
+                </p>
+                <p>
+                  En espera de su amable respuesta agradezco su amable atención al presente.
+                </p>
+              </div>
+
+              <!-- ESPACIO PARA FIRMA AUTÓGRAFA (~60px) Y PIE DE CARTA -->
+              <div class="mt-12 text-center">
+                <p class="text-[10px] font-bold tracking-institutional text-umb-carbon uppercase">A T E N T A M E N T E</p>
+                
+                <!-- Espacio de ~60px para firma física -->
+                <div class="h-16 flex items-center justify-center">
+                  <span class="text-[8px] text-[#A08E90] italic border-b border-dashed border-[#D1D5DB] w-48 text-center pb-1">Firma autógrafa</span>
+                </div>
+
+                <p class="text-[11px] font-bold text-umb-carbon">Mtro. en I. D. Luis Ramón Vega Ramírez</p>
+                <p class="text-[10px] text-umb-muted">Coordinador de la Unidad de Estudios Superiores</p>
+                <p class="text-[10px] text-umb-muted">San José del Rincón</p>
+
+                <!-- SELLO INSTITUCIONAL CIRCULAR SIMULADO (borde punteado gris, no relleno) -->
+                <div class="mt-5 flex justify-center">
+                  <div class="w-20 h-20 rounded-full border border-dashed border-[#9CA3AF] flex flex-col items-center justify-center text-center p-1 opacity-70">
+                    <span class="text-[6px] text-[#6B7280] font-semibold uppercase leading-none">Secretaría de Educación</span>
+                    <span class="text-[7px] text-[#4B5563] font-bold uppercase leading-tight my-0.5">UMB · UES SJR</span>
+                    <span class="text-[5px] text-[#6B7280] uppercase leading-none">Coordinación</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- BOTONES DEBAJO DE LA VISTA PREVIA -->
+            <div class="bg-white rounded-lg p-3.5 border border-umb-border shadow-sm flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center space-x-2">
+                <button type="button" class="inline-flex items-center px-3.5 py-2 text-xs font-semibold text-umb-muted bg-white hover:bg-[#F9FAFB] border border-[#D1D5DB] rounded-md transition shadow-sm">
+                  <svg class="w-4 h-4 mr-1.5 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                  </svg>
+                  Ampliar vista
+                </button>
+                <button type="button" class="inline-flex items-center px-3 py-2 text-xs font-medium text-umb-outline hover:text-umb-carbon transition">
+                  <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  </svg>
+                  Editar datos
+                </button>
+              </div>
+
+              <!-- Botón primario: Descargar PDF -->
+              <button type="button" class="inline-flex items-center px-4 py-2 text-xs font-semibold text-white bg-umb-guinda hover:bg-[#521422] rounded-md transition shadow-sm">
+                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Descargar PDF oficial
+              </button>
+            </div>
+          </div>
+
+          <!-- COLUMNA DERECHA: GUÍA DE PASOS Y SUBIDA DE ACUSE (Lg: 5 cols) -->
+          <div class="lg:col-span-5 space-y-6">
+
+            <!-- SECCIÓN 3 — INSTRUCCIONES PARA COMPLETAR EL TRÁMITE -->
+            <div class="bg-white rounded-lg p-6 border border-umb-border shadow-sm">
+              <div class="mb-4">
+                <h3 class="text-base font-semibold text-umb-carbon">¿Qué hacer con tu carta?</h3>
+                <p class="text-xs text-umb-outline mt-0.5">Sigue estos pasos para completar el trámite correctamente.</p>
+              </div>
+
+              <ol class="space-y-4">
+                <!-- Paso 1 -->
+                <li class="flex items-start space-x-3">
+                  <span class="flex-shrink-0 w-6 h-6 rounded-full bg-umb-guinda text-white flex items-center justify-center text-xs font-bold mt-0.5">
+                    1
+                  </span>
+                  <div>
+                    <h4 class="text-xs font-semibold text-umb-carbon">Imprime tu carta</h4>
+                    <p class="text-xs text-umb-muted mt-0.5 leading-relaxed">Descarga el PDF y imprímelo en tamaño carta. Necesitas 2 copias.</p>
+                  </div>
+                </li>
+
+                <!-- Paso 2 -->
+                <li class="flex items-start space-x-3">
+                  <span class="flex-shrink-0 w-6 h-6 rounded-full bg-umb-guinda text-white flex items-center justify-center text-xs font-bold mt-0.5">
+                    2
+                  </span>
+                  <div>
+                    <h4 class="text-xs font-semibold text-umb-carbon">Firma con el Coordinador</h4>
+                    <p class="text-xs text-umb-muted mt-0.5 leading-relaxed">Lleva las 2 copias a la Coordinación de la UES (Mtro. Luis Ramón Vega Ramírez) para que las firme.</p>
+                  </div>
+                </li>
+
+                <!-- Paso 3 -->
+                <li class="flex items-start space-x-3">
+                  <span class="flex-shrink-0 w-6 h-6 rounded-full bg-umb-guinda text-white flex items-center justify-center text-xs font-bold mt-0.5">
+                    3
+                  </span>
+                  <div>
+                    <h4 class="text-xs font-semibold text-umb-carbon">Entrega a la empresa</h4>
+                    <p class="text-xs text-umb-muted mt-0.5 leading-relaxed">Lleva las 2 copias firmadas a la empresa. Ellos se quedarán con 1 copia y te sellarán la otra como acuse de recibido.</p>
+                  </div>
+                </li>
+
+                <!-- Paso 4 -->
+                <li class="flex items-start space-x-3">
+                  <span class="flex-shrink-0 w-6 h-6 rounded-full bg-umb-guinda text-white flex items-center justify-center text-xs font-bold mt-0.5">
+                    4
+                  </span>
+                  <div>
+                    <h4 class="text-xs font-semibold text-umb-carbon">Escanea el acuse</h4>
+                    <p class="text-xs text-umb-muted mt-0.5 leading-relaxed">Escanea o toma foto legible de tu copia sellada. Debe verse la firma del Coordinador y el sello de la empresa.</p>
+                  </div>
+                </li>
+
+                <!-- Paso 5 -->
+                <li class="flex items-start space-x-3">
+                  <span class="flex-shrink-0 w-6 h-6 rounded-full bg-umb-guinda text-white flex items-center justify-center text-xs font-bold mt-0.5">
+                    5
+                  </span>
+                  <div>
+                    <h4 class="text-xs font-semibold text-umb-carbon">Súbelo al sistema</h4>
+                    <p class="text-xs text-umb-muted mt-0.5 leading-relaxed">Sube el archivo como 'Acuse de carta de presentación' en la sección Mi expediente.</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+
+            <!-- SECCIÓN 4 — SUBIR ACUSE FIRMADO Y SELLADO -->
+            <div class="bg-white rounded-lg p-6 border-l-4 border-l-[#9E773B] border-y border-r border-umb-border shadow-sm">
+              <div class="mb-3">
+                <div class="flex items-center justify-between">
+                  <h3 class="text-base font-semibold text-umb-carbon">Sube tu acuse firmado y sellado</h3>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold bg-[#FAF5EE] text-umb-dorado border border-[#F3E8D6]">
+                    Obligatorio
+                  </span>
+                </div>
+                <p class="text-xs text-umb-muted mt-1">Este documento es obligatorio para tu expediente. Asegúrate de que las firmas y sellos sean legibles.</p>
+              </div>
+
+              <!-- ZONA DE CARGA (DROPZONE) INTERACTIVA -->
+              <div class="mt-4 border-2 border-dashed border-umb-border hover:border-umb-guinda rounded-lg p-6 text-center cursor-pointer transition bg-[#F9FAFB] hover:bg-white group">
+                <div class="w-10 h-10 mx-auto rounded-full bg-umb-guinda/10 text-umb-guinda flex items-center justify-center group-hover:scale-105 transition">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
+                </div>
+                <p class="text-xs font-medium text-umb-carbon mt-2">Arrastra tu archivo aquí o haz clic para seleccionar</p>
+                <p class="text-[11px] text-umb-outline mt-1">Formatos: PDF. Tamaño máximo: 5 MB.</p>
+              </div>
+
+              <!-- ESTADO SI YA SE SUBIÓ (EJEMPLO INTERACTIVO / VISUAL) -->
+              <div class="mt-4 pt-4 border-t border-umb-border">
+                <span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider block mb-2">Archivo precargado de prueba</span>
+                
+                <div class="bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg p-3 flex items-center justify-between">
+                  <div class="flex items-center space-x-3 min-w-0">
+                    <!-- Ícono de PDF Rojo -->
+                    <div class="w-8 h-8 rounded bg-[#FEE2E2] text-[#DC2626] flex items-center justify-center flex-shrink-0 font-bold text-[10px]">
+                      PDF
+                    </div>
+                    <div class="min-w-0">
+                      <p class="text-xs font-semibold text-umb-carbon truncate">acuse_carta_techsol.pdf</p>
+                      <div class="flex items-center space-x-2 mt-0.5">
+                        <span class="text-[11px] text-umb-outline">1.4 MB</span>
+                        <span class="text-[10px] text-umb-outline">·</span>
+                        <!-- Badge Subido · Pendiente de validación -->
+                        <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-umb-dorado-light text-[#92400E]">
+                          Subido · Pendiente de validación
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Botones Ver, Reemplazar, Eliminar -->
+                  <div class="flex items-center space-x-1 pl-2">
+                    <button type="button" class="p-1 text-xs text-umb-muted hover:text-umb-guinda rounded hover:bg-white transition" title="Ver archivo">
+                      Ver
+                    </button>
+                    <button type="button" class="p-1 text-xs text-umb-muted hover:text-umb-guinda rounded hover:bg-white transition" title="Reemplazar archivo">
+                      Reemplazar
+                    </button>
+                    <button type="button" class="p-1 text-xs text-[#DC2626] hover:text-[#991B1B] rounded hover:bg-white transition" title="Eliminar archivo">
+                      Eliminar
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- BARRA DE ACCIONES / ESTADO FINAL -->
+              <div class="mt-6 pt-4 border-t border-umb-border space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="inline-flex items-center text-xs font-semibold text-[#166534]">
+                    <svg class="w-4 h-4 mr-1 text-[#22C55E]" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Acuse cargado correctamente
+                  </span>
+                </div>
+
+                <div class="flex items-center justify-between gap-3">
+                  <a href="#" class="text-xs font-medium text-umb-outline hover:text-umb-carbon transition">
+                    Volver al expediente
+                  </a>
+                  <!-- Botón primario: Continuar con mi expediente -->
+                  <button type="button" class="inline-flex items-center px-4 py-2.5 text-xs font-semibold text-white bg-umb-guinda hover:bg-[#521422] rounded-md transition shadow-sm">
+                    <span>Continuar con mi expediente</span>
+                    <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- PIE DE PÁGINA INSTITUCIONAL -->
+        <footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+
+      </div>
+    </main>
+  </div>
+
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="08-mis-bitacoras.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">menu_book</span>
+      <span class="text-[11px] font-medium mt-0.5">Bitácoras</span>
+    </a>
+    <a href="02-mi-expediente.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">folder</span>
+      <span class="text-[11px] font-semibold mt-0.5">Expediente</span>
+    </a>
+    <a href="13-mis-informes.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">description</span>
+      <span class="text-[11px] font-medium mt-0.5">Informes</span>
+    </a>
+    <a href="14-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vinculación y Convenios — Dirección Académica SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="bg-umb-surface text-surface-text h-full flex flex-col antialiased">
+
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard-ejecutivo.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Dirección</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Vinculación y convenios</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="06-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          AA
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Armando Alcalde</span>
+          <span class="text-[10px] text-white/75 leading-none">Dirección</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL: SIDEBAR + WORKSPACE -->
+  <div class="flex flex-1 pt-16 pb-16 lg:pb-0 h-full overflow-hidden">
+    
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              AA
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Armando Alcalde Martínez</p>
+              <p class="text-[11px] text-umb-outline truncate">Director Académico · UMB</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard-ejecutivo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">dashboard</span>
+            <span class="text-sm">Dashboard</span>
+          </a>
+          <a href="02-vinculacion-convenios.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">handshake</span>
+            <span class="text-sm">Vinculación</span>
+          </a>
+          <a href="03-sectores-productivos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">factory</span>
+            <span class="text-sm">Sectores</span>
+          </a>
+          <a href="04-reportes-acreditacion.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">verified_user</span>
+            <span class="text-sm">Acreditación</span>
+          </a>
+          <a href="05-configuracion-global.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">settings</span>
+            <span class="text-sm">Configuración</span>
+          </a>
+          <a href="06-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+
+    <!-- ÁREA DE CONTENIDO PRINCIPAL -->
+    <main class="flex-1 overflow-y-auto custom-scrollbar px-4 sm:px-6 lg:px-8 py-6">
+      <div class="max-w-[1280px] mx-auto space-y-6">
+
+        <!-- SECCIÓN 1: ENCABEZADO -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Vinculación y convenios</h1>
+            <p class="text-sm text-umb-muted mt-0.5">Gestión de convenios institucionales con empresas e instituciones receptoras.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button class="inline-flex items-center justify-center space-x-2 bg-umb-guinda hover:bg-[#521422] text-white px-4 py-2.5 rounded-lg text-sm font-semibold shadow-sm transition-all focus:ring-2 focus:ring-offset-1 focus:ring-umb-guinda">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 4v16m8-8H4" />
+              </svg>
+              <span>Nuevo convenio</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 2: GRID DE KPIS (4 TARJETAS) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <!-- Tarjeta A: Convenios totales -->
+          <div class="bg-white rounded-lg p-5 border border-umb-border shadow-sm flex items-start justify-between">
+            <div class="space-y-1">
+              <span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider block">Convenios totales</span>
+              <div class="text-[28px] font-bold text-umb-carbon leading-tight">45</div>
+              <span class="text-xs text-umb-muted block">En el ciclo 26-27/1</span>
+            </div>
+            <div class="w-11 h-11 rounded-full bg-umb-guinda/15 text-umb-guinda flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Tarjeta B: Convenios vigentes -->
+          <div class="bg-white rounded-lg p-5 border border-umb-border shadow-sm flex items-start justify-between">
+            <div class="space-y-1">
+              <span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider block">Vigentes</span>
+              <div class="text-[28px] font-bold text-[#2D8C4E] leading-tight">38</div>
+              <span class="text-xs text-[#166534] font-medium block">84% del total</span>
+            </div>
+            <div class="w-11 h-11 rounded-full bg-emerald-100 text-[#2D8C4E] flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Tarjeta C: Por vencer -->
+          <div class="bg-white rounded-lg p-5 border border-umb-border shadow-sm flex items-start justify-between">
+            <div class="space-y-1">
+              <span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider block">Por vencer</span>
+              <div class="text-[28px] font-bold text-[#D69E2E] leading-tight">4</div>
+              <span class="text-xs text-[#92400E] font-medium block">Próximos 30 días</span>
+            </div>
+            <div class="w-11 h-11 rounded-full bg-amber-100 text-[#D69E2E] flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Tarjeta D: En trámite -->
+          <div class="bg-white rounded-lg p-5 border border-umb-border shadow-sm flex items-start justify-between">
+            <div class="space-y-1">
+              <span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider block">En trámite</span>
+              <div class="text-[28px] font-bold text-[#2B6CB0] leading-tight">3</div>
+              <span class="text-xs text-[#1E3A8A] font-medium block">Pendientes de firma</span>
+            </div>
+            <div class="w-11 h-11 rounded-full bg-blue-100 text-[#2B6CB0] flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 6 (Colocada de forma prominente como ALERTA ESTRATÉGICA): Convenios por vencer -->
+        <div class="bg-umb-dorado-light border-l-[3px] border-[#D69E2E] rounded-lg p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shadow-sm">
+          <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 rounded-full bg-amber-200/80 text-[#92400E] flex items-center justify-center flex-shrink-0 mt-0.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <h2 class="text-[13px] font-semibold text-[#92400E]">Convenios que requieren renovación urgente</h2>
+              <p class="text-xs text-[#92400E] mt-0.5">4 convenios vencen en los próximos 30 días. Se recomienda iniciar el proceso de renovación con al menos 15 días de anticipación.</p>
+            </div>
+          </div>
+          <button class="inline-flex items-center justify-center px-3.5 py-1.5 rounded-lg text-xs font-semibold text-[#92400E] border border-[#D69E2E] bg-white/70 hover:bg-white transition-colors flex-shrink-0 shadow-xs">
+            Ver plan de renovación
+          </button>
+        </div>
+
+        <!-- SECCIÓN 3: BARRA DE FILTROS -->
+        <div class="bg-white rounded-lg p-4 border border-umb-border shadow-sm">
+          <div class="flex flex-col lg:flex-row items-stretch lg:items-center gap-3">
+            <!-- Barra de búsqueda (flex-1) -->
+            <div class="relative flex-1">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-umb-outline">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+              <input type="text" 
+                     placeholder="Busca por razón social, RFC o número de convenio..." 
+                     class="w-full h-11 pl-10 pr-4 text-xs sm:text-sm bg-white border border-umb-border rounded-lg text-umb-carbon placeholder-[#877273] focus:outline-none focus:ring-2 focus:ring-umb-guinda/20 focus:border-umb-guinda transition-colors">
+            </div>
+
+            <!-- Dropdowns agrupados -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 flex-shrink-0">
+              <!-- Dropdown Sector -->
+              <select class="h-11 px-3 text-xs bg-white border border-umb-border rounded-lg text-umb-carbon focus:outline-none focus:ring-2 focus:ring-umb-guinda/20 focus:border-umb-guinda">
+                <option selected>Todos los sectores</option>
+                <option>Privado</option>
+                <option>Social</option>
+                <option>Público</option>
+              </select>
+
+              <!-- Dropdown Estado -->
+              <select class="h-11 px-3 text-xs bg-white border border-umb-border rounded-lg text-umb-carbon focus:outline-none focus:ring-2 focus:ring-umb-guinda/20 focus:border-umb-guinda">
+                <option selected>Todos los estados</option>
+                <option>Vigentes</option>
+                <option>Por vencer</option>
+                <option>Vencidos</option>
+                <option>En trámite</option>
+              </select>
+
+              <!-- Dropdown Unidad Académica -->
+              <select class="h-11 px-3 text-xs bg-white border border-umb-border rounded-lg text-umb-carbon focus:outline-none focus:ring-2 focus:ring-umb-guinda/20 focus:border-umb-guinda">
+                <option selected>Todas las unidades</option>
+                <option>UES San José del Rincón</option>
+                <option>UES Atlacomulco</option>
+                <option>UES Ixtapan de la Sal</option>
+                <option>UES Tejupilco</option>
+                <option>UES Valle de Bravo</option>
+              </select>
+            </div>
+
+            <!-- Botón ghost Exportar (XLSX) -->
+            <button class="h-11 px-4 inline-flex items-center justify-center space-x-2 border border-umb-border bg-white hover:bg-[#F9FAFB] text-umb-muted hover:text-umb-carbon rounded-lg text-xs font-semibold transition-colors flex-shrink-0">
+              <svg class="w-4 h-4 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span>Exportar (XLSX)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 4: TABLA DE CONVENIOS (8 FILAS) -->
+        <div class="bg-white rounded-lg border border-umb-border shadow-sm overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-[#F9FAFB] border-b border-umb-border">
+                  <th class="py-3 px-4 text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Número de convenio</th>
+                  <th class="py-3 px-4 text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Empresa / institución</th>
+                  <th class="py-3 px-4 text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Sector</th>
+                  <th class="py-3 px-4 text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Unidades vinculadas</th>
+                  <th class="py-3 px-4 text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Fecha de vigencia</th>
+                  <th class="py-3 px-4 text-[11px] font-semibold text-umb-outline uppercase tracking-wider text-center">Residentes activos</th>
+                  <th class="py-3 px-4 text-[11px] font-semibold text-umb-outline uppercase tracking-wider text-right">Acciones</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#E2E8F0]">
+                <!-- FILA 1 -->
+                <tr class="hover:bg-[#FDFBFC] transition-colors">
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs font-medium text-umb-guinda">CV-2024-042</span>
+                  </td>
+                  <td class="py-3.5 px-4">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-8 h-8 rounded-lg bg-umb-guinda/10 text-umb-guinda flex items-center justify-center text-xs font-bold flex-shrink-0">
+                        TS
+                      </div>
+                      <span class="text-[13px] font-medium text-umb-carbon">Universidad Mexiquense del Bicentenario · Dirección Académica</span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-umb-guinda/10 text-umb-guinda">
+                      Privado · TI
+                    </span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs text-umb-muted">San José del Rincón</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <div class="flex items-center space-x-2">
+                      <span class="text-xs text-umb-muted">31 de diciembre de 2027</span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-[#2D8C4E] border border-emerald-200">
+                        Vigente
+                      </span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-center">
+                    <span class="text-[13px] font-semibold text-umb-carbon">2</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-right">
+                    <div class="inline-flex items-center space-x-1">
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Ver</button>
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Editar</button>
+                      <button class="p-1 text-umb-outline hover:text-umb-carbon hover:bg-[#F9FAFB] rounded transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM18 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- FILA 2 -->
+                <tr class="hover:bg-[#FDFBFC] transition-colors">
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs font-medium text-umb-guinda">CV-2024-018</span>
+                  </td>
+                  <td class="py-3.5 px-4">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-8 h-8 rounded-lg bg-umb-dorado/10 text-umb-dorado flex items-center justify-center text-xs font-bold flex-shrink-0">
+                        GB
+                      </div>
+                      <span class="text-[13px] font-medium text-umb-carbon">Grupo Bimbo Logística</span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-umb-guinda/10 text-umb-guinda">
+                      Privado · Alimentos
+                    </span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs text-umb-muted">San José del Rincón, Atlacomulco</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <div class="flex items-center space-x-2">
+                      <span class="text-xs text-umb-muted">15 de marzo de 2027</span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-[#2D8C4E] border border-emerald-200">
+                        Vigente
+                      </span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-center">
+                    <span class="text-[13px] font-semibold text-umb-carbon">3</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-right">
+                    <div class="inline-flex items-center space-x-1">
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Ver</button>
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Editar</button>
+                      <button class="p-1 text-umb-outline hover:text-umb-carbon hover:bg-[#F9FAFB] rounded transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM18 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- FILA 3 -->
+                <tr class="hover:bg-[#FDFBFC] transition-colors">
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs font-medium text-umb-guinda">CV-2023-045</span>
+                  </td>
+                  <td class="py-3.5 px-4">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-8 h-8 rounded-lg bg-emerald-100 text-[#2D8C4E] flex items-center justify-center text-xs font-bold flex-shrink-0">
+                        AI
+                      </div>
+                      <span class="text-[13px] font-medium text-umb-carbon">AgroInnova Lerma</span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-umb-guinda/10 text-umb-guinda">
+                      Privado · Agroindustria
+                    </span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs text-umb-muted">San José del Rincón</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <div class="flex items-center space-x-2">
+                      <span class="text-xs text-umb-muted">30 de noviembre de 2026</span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-[#92400E] border border-amber-200">
+                        Por vencer (12 días)
+                      </span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-center">
+                    <span class="text-[13px] font-semibold text-umb-carbon">4</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-right">
+                    <div class="inline-flex items-center space-x-1">
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Ver</button>
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Editar</button>
+                      <button class="p-1 text-umb-outline hover:text-umb-carbon hover:bg-[#F9FAFB] rounded transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM18 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- FILA 4 -->
+                <tr class="hover:bg-[#FDFBFC] transition-colors">
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs font-medium text-umb-guinda">CV-2024-001</span>
+                  </td>
+                  <td class="py-3.5 px-4">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-8 h-8 rounded-lg bg-blue-100 text-[#2B6CB0] flex items-center justify-center text-xs font-bold flex-shrink-0">
+                        HA
+                      </div>
+                      <span class="text-[13px] font-medium text-umb-carbon">H. Ayuntamiento de San José del Rincón</span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-umb-dorado/15 text-umb-dorado">
+                      Público · Municipio
+                    </span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs text-umb-muted">San José del Rincón</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <div class="flex items-center space-x-2">
+                      <span class="text-xs text-umb-muted">05 de diciembre de 2026</span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-[#92400E] border border-amber-200">
+                        Por vencer (17 días)
+                      </span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-center">
+                    <span class="text-[13px] font-semibold text-umb-carbon">14</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-right">
+                    <div class="inline-flex items-center space-x-1">
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Ver</button>
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Editar</button>
+                      <button class="p-1 text-umb-outline hover:text-umb-carbon hover:bg-[#F9FAFB] rounded transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM18 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- FILA 5 -->
+                <tr class="hover:bg-[#FDFBFC] transition-colors">
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs font-medium text-umb-guinda">CV-2024-005</span>
+                  </td>
+                  <td class="py-3.5 px-4">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                        DF
+                      </div>
+                      <span class="text-[13px] font-medium text-umb-carbon">DIF Municipal San José del Rincón</span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-umb-dorado/15 text-umb-dorado">
+                      Público · Asistencial
+                    </span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs text-umb-muted">San José del Rincón</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <div class="flex items-center space-x-2">
+                      <span class="text-xs text-umb-muted">17 de diciembre de 2026</span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-[#92400E] border border-amber-200">
+                        Por vencer (29 días)
+                      </span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-center">
+                    <span class="text-[13px] font-semibold text-umb-carbon">9</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-right">
+                    <div class="inline-flex items-center space-x-1">
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Ver</button>
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Editar</button>
+                      <button class="p-1 text-umb-outline hover:text-umb-carbon hover:bg-[#F9FAFB] rounded transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM18 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- FILA 6 -->
+                <tr class="hover:bg-[#FDFBFC] transition-colors">
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs font-medium text-umb-guinda">CV-2024-032</span>
+                  </td>
+                  <td class="py-3.5 px-4">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                        DC
+                      </div>
+                      <span class="text-[13px] font-medium text-umb-carbon">Despacho Contable García & Asociados</span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-umb-guinda/10 text-umb-guinda">
+                      Privado · Contabilidad
+                    </span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs text-umb-muted">San José del Rincón</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <div class="flex items-center space-x-2">
+                      <span class="text-xs text-umb-muted">20 de junio de 2027</span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-[#2D8C4E] border border-emerald-200">
+                        Vigente
+                      </span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-center">
+                    <span class="text-[13px] font-semibold text-umb-carbon">2</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-right">
+                    <div class="inline-flex items-center space-x-1">
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Ver</button>
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Editar</button>
+                      <button class="p-1 text-umb-outline hover:text-umb-carbon hover:bg-[#F9FAFB] rounded transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM18 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- FILA 7 -->
+                <tr class="hover:bg-[#FDFBFC] transition-colors">
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs font-medium text-umb-guinda">CV-2024-055</span>
+                  </td>
+                  <td class="py-3.5 px-4">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-8 h-8 rounded-lg bg-red-100 text-red-700 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                        SC
+                      </div>
+                      <span class="text-[13px] font-medium text-umb-carbon">Soluciones Cloud México S.A. de C.V.</span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-umb-guinda/10 text-umb-guinda">
+                      Privado · TI
+                    </span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs text-umb-muted">San José del Rincón, Tejupilco</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <div class="flex items-center space-x-2">
+                      <span class="text-xs text-umb-muted">30 de noviembre de 2026</span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-red-50 text-red-700 border border-red-200">
+                        Urgente (12 días)
+                      </span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-center">
+                    <span class="text-[13px] font-semibold text-umb-carbon">8</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-right">
+                    <div class="inline-flex items-center space-x-1">
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Ver</button>
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Editar</button>
+                      <button class="p-1 text-umb-outline hover:text-umb-carbon hover:bg-[#F9FAFB] rounded transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM18 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+
+                <!-- FILA 8 -->
+                <tr class="hover:bg-[#FDFBFC] transition-colors">
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs font-medium text-umb-guinda">CV-2024-060</span>
+                  </td>
+                  <td class="py-3.5 px-4">
+                    <div class="flex items-center space-x-3">
+                      <div class="w-8 h-8 rounded-lg bg-orange-100 text-orange-700 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                        EM
+                      </div>
+                      <span class="text-[13px] font-medium text-umb-carbon">Ensambles Mecánicos Toluca S.A.</span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-umb-guinda/10 text-umb-guinda">
+                      Privado · Automotriz
+                    </span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <span class="text-xs text-umb-muted">San José del Rincón</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap">
+                    <div class="flex items-center space-x-2">
+                      <span class="text-xs text-umb-muted">12 de diciembre de 2026</span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-[#92400E] border border-amber-200">
+                        Por vencer (24 días)
+                      </span>
+                    </div>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-center">
+                    <span class="text-[13px] font-semibold text-umb-carbon">6</span>
+                  </td>
+                  <td class="py-3.5 px-4 whitespace-nowrap text-right">
+                    <div class="inline-flex items-center space-x-1">
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Ver</button>
+                      <button class="px-2.5 py-1 text-xs font-medium text-umb-muted hover:text-umb-guinda hover:bg-[#F9FAFB] rounded transition-colors">Editar</button>
+                      <button class="p-1 text-umb-outline hover:text-umb-carbon hover:bg-[#F9FAFB] rounded transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM18 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- SECCIÓN 5: PAGINACIÓN -->
+          <div class="bg-white px-4 py-3.5 border-t border-umb-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <span class="text-xs text-umb-outline">Mostrando 1-8 de 45 convenios</span>
+            <div class="inline-flex items-center space-x-1">
+              <button class="w-8 h-8 rounded-lg bg-umb-guinda text-white text-xs font-semibold flex items-center justify-center shadow-xs">1</button>
+              <button class="w-8 h-8 rounded-lg bg-white border border-umb-border text-umb-muted hover:bg-[#F9FAFB] text-xs font-medium flex items-center justify-center transition-colors">2</button>
+              <button class="w-8 h-8 rounded-lg bg-white border border-umb-border text-umb-muted hover:bg-[#F9FAFB] text-xs font-medium flex items-center justify-center transition-colors">3</button>
+              <button class="w-8 h-8 rounded-lg bg-white border border-umb-border text-umb-muted hover:bg-[#F9FAFB] text-xs font-medium flex items-center justify-center transition-colors">4</button>
+              <button class="w-8 h-8 rounded-lg bg-white border border-umb-border text-umb-muted hover:bg-[#F9FAFB] text-xs font-medium flex items-center justify-center transition-colors">5</button>
+              <button class="px-3 h-8 rounded-lg bg-white border border-umb-border text-umb-muted hover:bg-[#F9FAFB] text-xs font-medium flex items-center justify-center transition-colors">
+                Siguiente
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- AL PIE DE LA PÁGINA -->
+        <footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard-ejecutivo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">dashboard</span>
+      <span class="text-[11px] font-medium mt-0.5">Dashboard</span>
+    </a>
+    <a href="02-vinculacion-convenios.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">handshake</span>
+      <span class="text-[11px] font-semibold mt-0.5">Vinculación</span>
+    </a>
+    <a href="03-sectores-productivos.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">factory</span>
+      <span class="text-[11px] font-medium mt-0.5">Sectores</span>
+    </a>
+    <a href="04-reportes-acreditacion.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">verified_user</span>
+      <span class="text-[11px] font-medium mt-0.5">Acreditación</span>
+    </a>
+    <a href="06-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

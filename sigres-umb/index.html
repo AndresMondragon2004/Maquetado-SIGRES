@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-umb-surface">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGRES-UMB · Portal Central de Navegación y Auditoría de Módulos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-full bg-umb-surface text-umb-carbon antialiased flex flex-col selection:bg-umb-guinda selection:text-white">
+
+  <!-- ================= HERO HEADER INSTITUCIONAL ================= -->
+  <header class="bg-gradient-to-r from-umb-guinda via-[#521422] to-umb-guinda-dark text-white border-b-4 border-umb-dorado shadow-2xl relative overflow-hidden">
+    <!-- Decoración sutil de fondo -->
+    <div class="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-umb-dorado/20 pointer-events-none blur-3xl"></div>
+    <div class="absolute -left-20 -top-20 w-96 h-96 rounded-full bg-white/5 pointer-events-none blur-2xl"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative z-10">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Logo UMB + Títulos -->
+        <div class="flex items-center gap-5 text-center md:text-left">
+          <div class="h-20 sm:h-24 w-auto bg-white p-2 rounded-2xl flex items-center justify-center shadow-xl backdrop-blur-md flex-shrink-0">
+            <img src="assets/logo_umb.png" alt="Logo UMB" class="h-16 sm:h-20 w-auto object-contain">
+          </div>
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-amber-200 border border-white/20 text-xs font-semibold uppercase tracking-wider mb-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Prototipo Estandarizado · Ciclo 26-27/1
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+              SIGRES-UMB
+            </h1>
+            <p class="text-sm sm:text-base text-white/90 font-medium mt-1">
+              Sistema integral para la gestión de residencias profesionales
+            </p>
+            <p class="text-xs text-white/70 mt-0.5">
+              Universidad Mexiquense del Bicentenario · Unidad de Estudios Superiores San José del Rincón
+            </p>
+          </div>
+        </div>
+
+        <!-- Métricas Rápidas del Prototipo -->
+        <div class="grid grid-cols-3 gap-3 bg-black/20 p-3 rounded-xl border border-white/10 backdrop-blur-md">
+          <div class="text-center px-3 py-1">
+            <div class="text-2xl font-bold text-amber-300">71</div>
+            <div class="text-[11px] text-white/80 font-medium">Pantallas</div>
+          </div>
+          <div class="text-center px-3 py-1 border-x border-white/10">
+            <div class="text-2xl font-bold text-white">9</div>
+            <div class="text-[11px] text-white/80 font-medium">Módulos</div>
+          </div>
+          <div class="text-center px-3 py-1">
+            <div class="text-2xl font-bold text-emerald-400">100%</div>
+            <div class="text-[11px] text-white/80 font-medium">Estandarizado</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= CONTROLES Y BUSCADOR RÁPIDO ================= -->
+  <section class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
+    <div class="bg-white rounded-xl shadow-lg border border-umb-border p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      
+      <!-- Barra de búsqueda instantánea -->
+      <div class="relative w-full md:w-96">
+        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-umb-outline text-[20px]">search</span>
+        <input type="text" id="searchInput" placeholder="Buscar módulo, pantalla o rol..." class="w-full h-11 pl-10 pr-4 rounded-lg bg-umb-surface border border-umb-border text-umb-carbon text-sm placeholder:text-umb-outline focus:outline-none focus:ring-2 focus:ring-umb-guinda transition-all">
+      </div>
+
+      <!-- Filtros Rápidos de Rol -->
+      <div class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0" id="filterButtons">
+        <button type="button" class="filter-btn active h-9 px-3.5 rounded-lg bg-umb-guinda text-white text-xs font-semibold shadow-sm transition-all" data-filter="all">Todos (9)</button>
+        <button type="button" class="filter-btn h-9 px-3.5 rounded-lg bg-umb-surface hover:bg-umb-border text-umb-carbon text-xs font-medium transition-all" data-filter="02-estudiante">Estudiante</button>
+        <button type="button" class="filter-btn h-9 px-3.5 rounded-lg bg-umb-surface hover:bg-umb-border text-umb-carbon text-xs font-medium transition-all" data-filter="03-asesor-interno">Asesor Interno</button>
+        <button type="button" class="filter-btn h-9 px-3.5 rounded-lg bg-umb-surface hover:bg-umb-border text-umb-carbon text-xs font-medium transition-all" data-filter="04-asesor-externo">Asesor Externo</button>
+        <button type="button" class="filter-btn h-9 px-3.5 rounded-lg bg-umb-surface hover:bg-umb-border text-umb-carbon text-xs font-medium transition-all" data-filter="05-control-escolar">Control Escolar</button>
+        <button type="button" class="filter-btn h-9 px-3.5 rounded-lg bg-umb-surface hover:bg-umb-border text-umb-carbon text-xs font-medium transition-all" data-filter="06-coordinacion">Coordinación</button>
+        <button type="button" class="filter-btn h-9 px-3.5 rounded-lg bg-umb-surface hover:bg-umb-border text-umb-carbon text-xs font-medium transition-all" data-filter="07-direccion">Dirección</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= CONTENEDOR PRINCIPAL DE MÓDULOS ================= -->
+  <main class="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10 flex-1">
+    
+    <!-- GUÍA DE FLUJO RECOMENDADO -->
+    <div class="mb-10 bg-gradient-to-r from-white via-umb-guinda-light/40 to-white rounded-xl border border-umb-dorado/30 p-6 shadow-card">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="material-symbols-outlined text-umb-guinda text-[24px]">route</span>
+        <h2 class="text-base font-bold text-umb-carbon">Flujo Integral Recomendado para la Revisión</h2>
+      </div>
+      <p class="text-xs text-umb-muted mb-4">
+        Puedes recorrer el ciclo de vida completo de residencias profesionales en orden cronológico siguiendo estos pasos:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+        <a href="01-autenticacion/01-login.html" class="p-3 rounded-lg bg-white border border-umb-border hover:border-umb-guinda hover:shadow-md transition-all text-left group">
+          <div class="text-[10px] font-bold text-umb-dorado uppercase mb-1">Paso 1</div>
+          <div class="text-xs font-bold text-umb-carbon group-hover:text-umb-guinda truncate">Autenticación</div>
+          <div class="text-[11px] text-umb-outline mt-0.5">Login y registro</div>
+        </a>
+        <a href="02-estudiante/01-dashboard.html" class="p-3 rounded-lg bg-white border border-umb-border hover:border-umb-guinda hover:shadow-md transition-all text-left group">
+          <div class="text-[10px] font-bold text-umb-dorado uppercase mb-1">Paso 2</div>
+          <div class="text-xs font-bold text-umb-carbon group-hover:text-umb-guinda truncate">Estudiante</div>
+          <div class="text-[11px] text-umb-outline mt-0.5">Expediente y bitácoras</div>
+        </a>
+        <a href="03-asesor-interno/01-dashboard.html" class="p-3 rounded-lg bg-white border border-umb-border hover:border-umb-guinda hover:shadow-md transition-all text-left group">
+          <div class="text-[10px] font-bold text-umb-dorado uppercase mb-1">Paso 3</div>
+          <div class="text-xs font-bold text-umb-carbon group-hover:text-umb-guinda truncate">Asesor Interno</div>
+          <div class="text-[11px] text-umb-outline mt-0.5">Asesorías y rúbricas</div>
+        </a>
+        <a href="04-asesor-externo/01-dashboard.html" class="p-3 rounded-lg bg-white border border-umb-border hover:border-umb-guinda hover:shadow-md transition-all text-left group">
+          <div class="text-[10px] font-bold text-umb-dorado uppercase mb-1">Paso 4</div>
+          <div class="text-xs font-bold text-umb-carbon group-hover:text-umb-guinda truncate">Asesor Externo</div>
+          <div class="text-[11px] text-umb-outline mt-0.5">Validación en empresa</div>
+        </a>
+        <a href="05-control-escolar/01-dashboard.html" class="p-3 rounded-lg bg-white border border-umb-border hover:border-umb-guinda hover:shadow-md transition-all text-left group">
+          <div class="text-[10px] font-bold text-umb-dorado uppercase mb-1">Paso 5</div>
+          <div class="text-xs font-bold text-umb-carbon group-hover:text-umb-guinda truncate">Control Escolar</div>
+          <div class="text-[11px] text-umb-outline mt-0.5">Cartas y expedientes</div>
+        </a>
+        <a href="06-coordinacion/01-dashboard-monitoreo.html" class="p-3 rounded-lg bg-white border border-umb-border hover:border-umb-guinda hover:shadow-md transition-all text-left group">
+          <div class="text-[10px] font-bold text-umb-dorado uppercase mb-1">Paso 6</div>
+          <div class="text-xs font-bold text-umb-carbon group-hover:text-umb-guinda truncate">Coordinación/Dir.</div>
+          <div class="text-[11px] text-umb-outline mt-0.5">Monitoreo y firmas</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- GRID DE MÓDULOS -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="modulesGrid">
+        <!-- TARJETA DE MÓDULO 01: Autenticación y Acceso -->
+        <div class="module-card bg-white rounded-xl border border-umb-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between overflow-hidden group" data-module="01-autenticacion" data-title="autenticación y acceso" data-role="público / aspirante / todos los roles" data-persona="múltiples accesos">
+          
+          <!-- Encabezado de Tarjeta -->
+          <div class="p-6 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/40">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-umb-guinda text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                  <span class="material-symbols-outlined text-[24px]">lock</span>
+                </div>
+                <div>
+                  <span class="text-[11px] font-bold tracking-widest text-umb-dorado uppercase">Módulo 01</span>
+                  <h3 class="text-base font-bold text-umb-carbon tracking-tight">Autenticación y Acceso</h3>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border bg-slate-100 text-slate-700 border-slate-200">
+                6 pantallas
+              </span>
+            </div>
+
+            <p class="text-xs text-umb-muted leading-relaxed mb-3">Flujos de inicio de sesión institucional, verificación de enlace por correo, registro de estudiante, acceso denegado, recuperación y onboarding interactivo.</p>
+            
+            <div class="p-2.5 rounded-lg bg-umb-surface/80 border border-umb-border/60 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-umb-guinda">person</span>
+              <span class="text-[11px] font-medium text-umb-carbon truncate"><strong class="text-umb-muted">Persona:</strong> Múltiples accesos</span>
+            </div>
+          </div>
+
+          <!-- Listado Desplegable de Pantallas -->
+          <div class="p-4 flex-1">
+            <div class="text-[11px] font-bold text-umb-outline uppercase tracking-wider mb-2 px-1 flex items-center justify-between">
+              <span>Pantallas del módulo</span>
+              <span class="text-[10px] lowercase font-normal">6 rutas</span>
+            </div>
+            <ul class="space-y-1">
+              <li class="screen-item">
+                <a href="01-autenticacion/01-login.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">login</span>
+                    <span class="truncate">01 · Iniciar sesión</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="01-autenticacion/02-verificacion-enlace.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">mark_email_read</span>
+                    <span class="truncate">02 · Verificación de enlace</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="01-autenticacion/03-registro-estudiante.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">person_add</span>
+                    <span class="truncate">03 · Registro de estudiante</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="01-autenticacion/04-acceso-denegado.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">block</span>
+                    <span class="truncate">04 · Acceso denegado</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="01-autenticacion/05-recuperar-acceso.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">lock_reset</span>
+                    <span class="truncate">05 · Recuperar acceso</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="01-autenticacion/06-onboarding.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">explore</span>
+                    <span class="truncate">06 · Onboarding interactivo</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pie con Botón de Inicio Rápido -->
+          <div class="p-4 bg-umb-surface/50 border-t border-umb-border">
+            <a href="01-autenticacion/01-login.html" class="w-full h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all shadow-sm flex items-center justify-center gap-2 group/btn">
+              <span>Abrir flujo del módulo</span>
+              <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">login</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- TARJETA DE MÓDULO 02: Portal del Estudiante -->
+        <div class="module-card bg-white rounded-xl border border-umb-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between overflow-hidden group" data-module="02-estudiante" data-title="portal del estudiante" data-role="estudiante residente" data-persona="jesús andrés mondragón tenorio (jm · 13220024 · isc)">
+          
+          <!-- Encabezado de Tarjeta -->
+          <div class="p-6 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/40">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-umb-guinda text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                  <span class="material-symbols-outlined text-[24px]">school</span>
+                </div>
+                <div>
+                  <span class="text-[11px] font-bold tracking-widest text-umb-dorado uppercase">Módulo 02</span>
+                  <h3 class="text-base font-bold text-umb-carbon tracking-tight">Portal del Estudiante</h3>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border bg-emerald-50 text-emerald-700 border-emerald-200">
+                14 pantallas
+              </span>
+            </div>
+
+            <p class="text-xs text-umb-muted leading-relaxed mb-3">Gestión integral del residente: consulta de expediente, registro de empresa institucional, bitácoras semanales, cronograma, seguimiento de 640 horas e informes.</p>
+            
+            <div class="p-2.5 rounded-lg bg-umb-surface/80 border border-umb-border/60 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-umb-guinda">person</span>
+              <span class="text-[11px] font-medium text-umb-carbon truncate"><strong class="text-umb-muted">Persona:</strong> Jesús Andrés Mondragón Tenorio (JM · 13220024 · ISC)</span>
+            </div>
+          </div>
+
+          <!-- Listado Desplegable de Pantallas -->
+          <div class="p-4 flex-1">
+            <div class="text-[11px] font-bold text-umb-outline uppercase tracking-wider mb-2 px-1 flex items-center justify-between">
+              <span>Pantallas del módulo</span>
+              <span class="text-[10px] lowercase font-normal">14 rutas</span>
+            </div>
+            <ul class="space-y-1">
+              <li class="screen-item">
+                <a href="02-estudiante/01-dashboard.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">dashboard</span>
+                    <span class="truncate">01 · Dashboard principal</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/02-mi-expediente.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">folder</span>
+                    <span class="truncate">02 · Mi expediente</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/03-buscar-empresa.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">search</span>
+                    <span class="truncate">03 · Buscar empresa</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/04-registrar-empresa.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">domain_add</span>
+                    <span class="truncate">04 · Registrar empresa</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/05-estatus-validacion-empresa.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">verified</span>
+                    <span class="truncate">05 · Estatus validación empresa</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/06-solicitud-residencia.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">assignment</span>
+                    <span class="truncate">06 · Solicitud de residencia</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/07-carta-presentacion-generada.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">description</span>
+                    <span class="truncate">07 · Carta de presentación</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/08-mis-bitacoras.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">menu_book</span>
+                    <span class="truncate">08 · Mis bitácoras</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/09-nueva-bitacora.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">post_add</span>
+                    <span class="truncate">09 · Nueva bitácora</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/10-detalle-bitacora.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">article</span>
+                    <span class="truncate">10 · Detalle de bitácora</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/11-mi-progreso.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">hourglass_top</span>
+                    <span class="truncate">11 · Mi progreso de horas</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/12-cronograma.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">calendar_month</span>
+                    <span class="truncate">12 · Cronograma de actividades</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/13-mis-informes.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">fact_check</span>
+                    <span class="truncate">13 · Mis informes (Parcial/Final)</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="02-estudiante/14-mi-perfil.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">person</span>
+                    <span class="truncate">14 · Mi perfil de estudiante</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pie con Botón de Inicio Rápido -->
+          <div class="p-4 bg-umb-surface/50 border-t border-umb-border">
+            <a href="02-estudiante/01-dashboard.html" class="w-full h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all shadow-sm flex items-center justify-center gap-2 group/btn">
+              <span>Abrir flujo del módulo</span>
+              <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">login</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- TARJETA DE MÓDULO 03: Asesor Interno (Docente) -->
+        <div class="module-card bg-white rounded-xl border border-umb-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between overflow-hidden group" data-module="03-asesor-interno" data-title="asesor interno (docente)" data-role="docente asesor institucional" data-persona="i.s.c. leonardo becerril sánchez (lb · isc)">
+          
+          <!-- Encabezado de Tarjeta -->
+          <div class="p-6 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/40">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-umb-guinda text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                  <span class="material-symbols-outlined text-[24px]">psychology</span>
+                </div>
+                <div>
+                  <span class="text-[11px] font-bold tracking-widest text-umb-dorado uppercase">Módulo 03</span>
+                  <h3 class="text-base font-bold text-umb-carbon tracking-tight">Asesor Interno (Docente)</h3>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border bg-blue-50 text-blue-700 border-blue-200">
+                8 pantallas
+              </span>
+            </div>
+
+            <p class="text-xs text-umb-muted leading-relaxed mb-3">Supervisión académica, seguimiento individual de alumnos asignados, registro de sesiones de asesoría y rúbricas de evaluación parcial y final.</p>
+            
+            <div class="p-2.5 rounded-lg bg-umb-surface/80 border border-umb-border/60 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-umb-guinda">person</span>
+              <span class="text-[11px] font-medium text-umb-carbon truncate"><strong class="text-umb-muted">Persona:</strong> I.S.C. Leonardo Becerril Sánchez (LB · ISC)</span>
+            </div>
+          </div>
+
+          <!-- Listado Desplegable de Pantallas -->
+          <div class="p-4 flex-1">
+            <div class="text-[11px] font-bold text-umb-outline uppercase tracking-wider mb-2 px-1 flex items-center justify-between">
+              <span>Pantallas del módulo</span>
+              <span class="text-[10px] lowercase font-normal">8 rutas</span>
+            </div>
+            <ul class="space-y-1">
+              <li class="screen-item">
+                <a href="03-asesor-interno/01-dashboard.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">dashboard</span>
+                    <span class="truncate">01 · Dashboard de asesor</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="03-asesor-interno/02-mis-alumnos.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">group</span>
+                    <span class="truncate">02 · Mis alumnos asignados</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="03-asesor-interno/03-detalle-alumno.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">person_search</span>
+                    <span class="truncate">03 · Detalle y avance de alumno</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="03-asesor-interno/04-registrar-asesoria.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">assignment</span>
+                    <span class="truncate">04 · Registrar asesoría</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="03-asesor-interno/05-revisar-bitacoras.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">fact_check</span>
+                    <span class="truncate">05 · Revisar bitácoras y entregas</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="03-asesor-interno/06-evaluar-informe-parcial.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">rate_review</span>
+                    <span class="truncate">06 · Evaluar informe parcial</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="03-asesor-interno/07-evaluar-informe-final.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">grade</span>
+                    <span class="truncate">07 · Evaluar informe final</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="03-asesor-interno/08-mi-perfil.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">person</span>
+                    <span class="truncate">08 · Mi perfil docente</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pie con Botón de Inicio Rápido -->
+          <div class="p-4 bg-umb-surface/50 border-t border-umb-border">
+            <a href="03-asesor-interno/01-dashboard.html" class="w-full h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all shadow-sm flex items-center justify-center gap-2 group/btn">
+              <span>Abrir flujo del módulo</span>
+              <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">login</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- TARJETA DE MÓDULO 04: Asesor Externo (Empresa) -->
+        <div class="module-card bg-white rounded-xl border border-umb-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between overflow-hidden group" data-module="04-asesor-externo" data-title="asesor externo (empresa)" data-role="director académico / asesor empresa" data-persona="mtro. armando alcalde martínez (aa · umb)">
+          
+          <!-- Encabezado de Tarjeta -->
+          <div class="p-6 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/40">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-umb-guinda text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                  <span class="material-symbols-outlined text-[24px]">business_center</span>
+                </div>
+                <div>
+                  <span class="text-[11px] font-bold tracking-widest text-umb-dorado uppercase">Módulo 04</span>
+                  <h3 class="text-base font-bold text-umb-carbon tracking-tight">Asesor Externo (Empresa)</h3>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border bg-amber-50 text-amber-700 border-amber-200">
+                6 pantallas
+              </span>
+            </div>
+
+            <p class="text-xs text-umb-muted leading-relaxed mb-3">Validación empresarial de actividades reportadas en bitácoras, evaluación de desempeño en sede y control de historial de firmas.</p>
+            
+            <div class="p-2.5 rounded-lg bg-umb-surface/80 border border-umb-border/60 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-umb-guinda">person</span>
+              <span class="text-[11px] font-medium text-umb-carbon truncate"><strong class="text-umb-muted">Persona:</strong> Mtro. Armando Alcalde Martínez (AA · UMB)</span>
+            </div>
+          </div>
+
+          <!-- Listado Desplegable de Pantallas -->
+          <div class="p-4 flex-1">
+            <div class="text-[11px] font-bold text-umb-outline uppercase tracking-wider mb-2 px-1 flex items-center justify-between">
+              <span>Pantallas del módulo</span>
+              <span class="text-[10px] lowercase font-normal">6 rutas</span>
+            </div>
+            <ul class="space-y-1">
+              <li class="screen-item">
+                <a href="04-asesor-externo/01-dashboard.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">dashboard</span>
+                    <span class="truncate">01 · Dashboard asesor externo</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="04-asesor-externo/02-bitacoras-por-validar.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">pending_actions</span>
+                    <span class="truncate">02 · Bitácoras por validar</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="04-asesor-externo/03-detalle-bitacora.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">task_alt</span>
+                    <span class="truncate">03 · Detalle y validación de bitácora</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="04-asesor-externo/04-residentes-asignados.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">badge</span>
+                    <span class="truncate">04 · Residentes asignados</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="04-asesor-externo/05-historial-validaciones.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">history</span>
+                    <span class="truncate">05 · Historial de validaciones</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="04-asesor-externo/06-mi-perfil.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">person</span>
+                    <span class="truncate">06 · Mi perfil de asesor externo</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pie con Botón de Inicio Rápido -->
+          <div class="p-4 bg-umb-surface/50 border-t border-umb-border">
+            <a href="04-asesor-externo/01-dashboard.html" class="w-full h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all shadow-sm flex items-center justify-center gap-2 group/btn">
+              <span>Abrir flujo del módulo</span>
+              <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">login</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- TARJETA DE MÓDULO 05: Control Escolar -->
+        <div class="module-card bg-white rounded-xl border border-umb-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between overflow-hidden group" data-module="05-control-escolar" data-title="control escolar" data-role="responsable de control escolar" data-persona="lic. estefanía yttesen nava (ey)">
+          
+          <!-- Encabezado de Tarjeta -->
+          <div class="p-6 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/40">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-umb-guinda text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                  <span class="material-symbols-outlined text-[24px]">inventory_2</span>
+                </div>
+                <div>
+                  <span class="text-[11px] font-bold tracking-widest text-umb-dorado uppercase">Módulo 05</span>
+                  <h3 class="text-base font-bold text-umb-carbon tracking-tight">Control Escolar</h3>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border bg-purple-50 text-purple-700 border-purple-200">
+                9 pantallas
+              </span>
+            </div>
+
+            <p class="text-xs text-umb-muted leading-relaxed mb-3">Recepción y validación de expedientes físicos/digitales, emisión de cartas oficiales de presentación, catálogo de empresas y reportes escolares.</p>
+            
+            <div class="p-2.5 rounded-lg bg-umb-surface/80 border border-umb-border/60 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-umb-guinda">person</span>
+              <span class="text-[11px] font-medium text-umb-carbon truncate"><strong class="text-umb-muted">Persona:</strong> Lic. Estefanía Yttesen Nava (EY)</span>
+            </div>
+          </div>
+
+          <!-- Listado Desplegable de Pantallas -->
+          <div class="p-4 flex-1">
+            <div class="text-[11px] font-bold text-umb-outline uppercase tracking-wider mb-2 px-1 flex items-center justify-between">
+              <span>Pantallas del módulo</span>
+              <span class="text-[10px] lowercase font-normal">9 rutas</span>
+            </div>
+            <ul class="space-y-1">
+              <li class="screen-item">
+                <a href="05-control-escolar/01-dashboard.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">dashboard</span>
+                    <span class="truncate">01 · Dashboard de control escolar</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="05-control-escolar/02-bandeja-expedientes.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">folder_shared</span>
+                    <span class="truncate">02 · Bandeja de expedientes</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="05-control-escolar/03-detalle-expediente.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">folder_open</span>
+                    <span class="truncate">03 · Detalle de expediente</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="05-control-escolar/04-validar-documentos.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">verified</span>
+                    <span class="truncate">04 · Validar documentos</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="05-control-escolar/05-generar-carta.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">print</span>
+                    <span class="truncate">05 · Generar cartas oficiales</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="05-control-escolar/06-catalogo-empresas.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">domain</span>
+                    <span class="truncate">06 · Catálogo de empresas</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="05-control-escolar/07-validar-empresas-nuevas.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">add_business</span>
+                    <span class="truncate">07 · Validar empresas nuevas</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="05-control-escolar/08-reportes.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">analytics</span>
+                    <span class="truncate">08 · Reportes de control escolar</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="05-control-escolar/09-mi-perfil.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">person</span>
+                    <span class="truncate">09 · Mi perfil de control escolar</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pie con Botón de Inicio Rápido -->
+          <div class="p-4 bg-umb-surface/50 border-t border-umb-border">
+            <a href="05-control-escolar/01-dashboard.html" class="w-full h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all shadow-sm flex items-center justify-center gap-2 group/btn">
+              <span>Abrir flujo del módulo</span>
+              <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">login</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- TARJETA DE MÓDULO 06: Coordinación de Carrera / UES -->
+        <div class="module-card bg-white rounded-xl border border-umb-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between overflow-hidden group" data-module="06-coordinacion" data-title="coordinación de carrera / ues" data-role="coordinador de ues" data-persona="mtro. luis ramón vega ramírez (lv)">
+          
+          <!-- Encabezado de Tarjeta -->
+          <div class="p-6 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/40">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-umb-guinda text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                  <span class="material-symbols-outlined text-[24px]">hub</span>
+                </div>
+                <div>
+                  <span class="text-[11px] font-bold tracking-widest text-umb-dorado uppercase">Módulo 06</span>
+                  <h3 class="text-base font-bold text-umb-carbon tracking-tight">Coordinación de Carrera / UES</h3>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border bg-rose-50 text-rose-700 border-rose-200">
+                8 pantallas
+              </span>
+            </div>
+
+            <p class="text-xs text-umb-muted leading-relaxed mb-3">Supervisión global de cohortes por carrera, semáforo preventivo de riesgos, gestión de contingencias, firma de cartas y emisión de alertas.</p>
+            
+            <div class="p-2.5 rounded-lg bg-umb-surface/80 border border-umb-border/60 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-umb-guinda">person</span>
+              <span class="text-[11px] font-medium text-umb-carbon truncate"><strong class="text-umb-muted">Persona:</strong> Mtro. Luis Ramón Vega Ramírez (LV)</span>
+            </div>
+          </div>
+
+          <!-- Listado Desplegable de Pantallas -->
+          <div class="p-4 flex-1">
+            <div class="text-[11px] font-bold text-umb-outline uppercase tracking-wider mb-2 px-1 flex items-center justify-between">
+              <span>Pantallas del módulo</span>
+              <span class="text-[10px] lowercase font-normal">8 rutas</span>
+            </div>
+            <ul class="space-y-1">
+              <li class="screen-item">
+                <a href="06-coordinacion/01-dashboard-monitoreo.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">monitoring</span>
+                    <span class="truncate">01 · Dashboard de monitoreo general</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="06-coordinacion/02-cohortes-carreras.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">school</span>
+                    <span class="truncate">02 · Cohortes por carrera (ISC, IIAS, LCONT)</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="06-coordinacion/03-supervision-riesgo.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">warning</span>
+                    <span class="truncate">03 · Supervisión de riesgos (Semáforo)</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="06-coordinacion/04-contingencias.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">support</span>
+                    <span class="truncate">04 · Gestión de contingencias</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="06-coordinacion/05-firma-cartas.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">draw</span>
+                    <span class="truncate">05 · Firma masiva de cartas</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="06-coordinacion/06-reportes-ejecutivos.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">summarize</span>
+                    <span class="truncate">06 · Reportes ejecutivos de coordinación</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="06-coordinacion/07-notificaciones.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">campaign</span>
+                    <span class="truncate">07 · Centro de notificaciones institucional</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="06-coordinacion/08-mi-perfil.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">person</span>
+                    <span class="truncate">08 · Mi perfil de coordinador</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pie con Botón de Inicio Rápido -->
+          <div class="p-4 bg-umb-surface/50 border-t border-umb-border">
+            <a href="06-coordinacion/01-dashboard-monitoreo.html" class="w-full h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all shadow-sm flex items-center justify-center gap-2 group/btn">
+              <span>Abrir flujo del módulo</span>
+              <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">login</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- TARJETA DE MÓDULO 07: Dirección Académica UMB -->
+        <div class="module-card bg-white rounded-xl border border-umb-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between overflow-hidden group" data-module="07-direccion" data-title="dirección académica umb" data-role="director académico" data-persona="mtro. armando alcalde martínez (aa)">
+          
+          <!-- Encabezado de Tarjeta -->
+          <div class="p-6 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/40">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-umb-guinda text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                  <span class="material-symbols-outlined text-[24px]">account_balance</span>
+                </div>
+                <div>
+                  <span class="text-[11px] font-bold tracking-widest text-umb-dorado uppercase">Módulo 07</span>
+                  <h3 class="text-base font-bold text-umb-carbon tracking-tight">Dirección Académica UMB</h3>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border bg-amber-100 text-amber-900 border-amber-300">
+                6 pantallas
+              </span>
+            </div>
+
+            <p class="text-xs text-umb-muted leading-relaxed mb-3">Métricas estratégicas de residencias a nivel estatal, convenios de vinculación institucional, análisis de sectores productivos y acreditación.</p>
+            
+            <div class="p-2.5 rounded-lg bg-umb-surface/80 border border-umb-border/60 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-umb-guinda">person</span>
+              <span class="text-[11px] font-medium text-umb-carbon truncate"><strong class="text-umb-muted">Persona:</strong> Mtro. Armando Alcalde Martínez (AA)</span>
+            </div>
+          </div>
+
+          <!-- Listado Desplegable de Pantallas -->
+          <div class="p-4 flex-1">
+            <div class="text-[11px] font-bold text-umb-outline uppercase tracking-wider mb-2 px-1 flex items-center justify-between">
+              <span>Pantallas del módulo</span>
+              <span class="text-[10px] lowercase font-normal">6 rutas</span>
+            </div>
+            <ul class="space-y-1">
+              <li class="screen-item">
+                <a href="07-direccion/01-dashboard-ejecutivo.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">dashboard</span>
+                    <span class="truncate">01 · Dashboard ejecutivo directivo</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="07-direccion/02-vinculacion-convenios.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">handshake</span>
+                    <span class="truncate">02 · Vinculación y convenios</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="07-direccion/03-sectores-productivos.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">factory</span>
+                    <span class="truncate">03 · Sectores productivos</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="07-direccion/04-reportes-acreditacion.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">verified_user</span>
+                    <span class="truncate">04 · Reportes para acreditación</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="07-direccion/05-configuracion-global.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">settings</span>
+                    <span class="truncate">05 · Configuración global del ciclo</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="07-direccion/06-mi-perfil.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">person</span>
+                    <span class="truncate">06 · Mi perfil de director</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pie con Botón de Inicio Rápido -->
+          <div class="p-4 bg-umb-surface/50 border-t border-umb-border">
+            <a href="07-direccion/01-dashboard-ejecutivo.html" class="w-full h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all shadow-sm flex items-center justify-center gap-2 group/btn">
+              <span>Abrir flujo del módulo</span>
+              <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">login</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- TARJETA DE MÓDULO 08: Componentes Transversales -->
+        <div class="module-card bg-white rounded-xl border border-umb-border shadow-card hover:shadow-card-hover transition-all flex flex-col justify-between overflow-hidden group" data-module="08-transversales" data-title="componentes transversales" data-role="sistema global / ui library" data-persona="componentes compartidos">
+          
+          <!-- Encabezado de Tarjeta -->
+          <div class="p-6 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/40">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-xl bg-umb-guinda text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                  <span class="material-symbols-outlined text-[24px]">widgets</span>
+                </div>
+                <div>
+                  <span class="text-[11px] font-bold tracking-widest text-umb-dorado uppercase">Módulo 08</span>
+                  <h3 class="text-base font-bold text-umb-carbon tracking-tight">Componentes Transversales</h3>
+                </div>
+              </div>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border bg-cyan-50 text-cyan-700 border-cyan-200">
+                12 pantallas
+              </span>
+            </div>
+
+            <p class="text-xs text-umb-muted leading-relaxed mb-3">Biblioteca de estados de interfaz compartidos: centro de notificaciones, modales de confirmación/eliminación, toasts, estados vacíos, skeletons y páginas de error.</p>
+            
+            <div class="p-2.5 rounded-lg bg-umb-surface/80 border border-umb-border/60 flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-umb-guinda">person</span>
+              <span class="text-[11px] font-medium text-umb-carbon truncate"><strong class="text-umb-muted">Persona:</strong> Componentes compartidos</span>
+            </div>
+          </div>
+
+          <!-- Listado Desplegable de Pantallas -->
+          <div class="p-4 flex-1">
+            <div class="text-[11px] font-bold text-umb-outline uppercase tracking-wider mb-2 px-1 flex items-center justify-between">
+              <span>Pantallas del módulo</span>
+              <span class="text-[10px] lowercase font-normal">12 rutas</span>
+            </div>
+            <ul class="space-y-1">
+              <li class="screen-item">
+                <a href="08-transversales/01-modal-confirmacion.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">check_circle</span>
+                    <span class="truncate">01 · Modal de confirmación</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="08-transversales/02-modal-eliminacion.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">delete</span>
+                    <span class="truncate">02 · Modal de eliminación</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="08-transversales/03-toast-notificacion.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">notifications_active</span>
+                    <span class="truncate">03 · Toast y alertas flotantes</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="08-transversales/04-centro-notificaciones.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">notifications</span>
+                    <span class="truncate">04 · Centro de notificaciones desplegable</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="08-transversales/05-estado-vacio.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">inbox</span>
+                    <span class="truncate">05 · Estados vacíos (Empty States)</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="08-transversales/06-skeleton-screens.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">hourglass_empty</span>
+                    <span class="truncate">06 · Skeleton screens (Carga diferida)</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="08-transversales/07-estado-sin-conexion.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">wifi_off</span>
+                    <span class="truncate">07 · Estado sin conexión (Offline)</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="08-transversales/08-barra-sincronizacion.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">sync</span>
+                    <span class="truncate">08 · Barra de sincronización</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="08-transversales/09-pagina-404.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">search_off</span>
+                    <span class="truncate">09 · Error 404 - Página no encontrada</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="08-transversales/10-pagina-500.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">error</span>
+                    <span class="truncate">10 · Error 500 - Error del servidor</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="08-transversales/11-modal-sesion-expirada.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">timer_off</span>
+                    <span class="truncate">11 · Modal de sesión expirada</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+              <li class="screen-item">
+                <a href="08-transversales/12-busqueda-global.html" class="flex items-center justify-between p-2 rounded-lg hover:bg-umb-guinda-light hover:text-umb-guinda text-umb-carbon text-xs font-medium transition-all group/link border border-transparent hover:border-umb-guinda/20">
+                  <span class="flex items-center gap-2 truncate">
+                    <span class="material-symbols-outlined text-[16px] text-umb-outline group-hover/link:text-umb-guinda">manage_search</span>
+                    <span class="truncate">12 · Búsqueda global (Cmd+K)</span>
+                  </span>
+                  <span class="material-symbols-outlined text-[14px] text-umb-outline/60 group-hover/link:text-umb-guinda group-hover/link:translate-x-0.5 transition-transform">arrow_forward</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pie con Botón de Inicio Rápido -->
+          <div class="p-4 bg-umb-surface/50 border-t border-umb-border">
+            <a href="08-transversales/04-centro-notificaciones.html" class="w-full h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all shadow-sm flex items-center justify-center gap-2 group/btn">
+              <span>Abrir flujo del módulo</span>
+              <span class="material-symbols-outlined text-[16px] group-hover/btn:translate-x-1 transition-transform">login</span>
+            </a>
+          </div>
+        </div>
+    </div>
+
+  </main>
+
+  <!-- ================= PIE DE PÁGINA ================= -->
+  <footer class="pt-8 pb-8 text-center text-[12px] text-umb-outline border-t border-umb-border bg-white mt-12 space-y-1">
+    <p class="font-medium text-umb-carbon">SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+    <p>Universidad Mexiquense del Bicentenario · Unidad de Estudios Superiores San José del Rincón · Ciclo 26-27/1</p>
+    <p class="text-[11px] text-umb-outline/80 mt-2">Maquetado estandarizado al 100% · Tokens oficiales UMB</p>
+  </footer>
+
+  <!-- ================= SCRIPT DE BÚSQUEDA Y FILTRADO ================= -->
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const moduleCards = document.querySelectorAll('.module-card');
+
+    let currentFilter = 'all';
+
+    function filterContent() {
+      const query = searchInput.value.toLowerCase().trim();
+
+      moduleCards.forEach(card => {
+        const modId = card.getAttribute('data-module');
+        const title = card.getAttribute('data-title');
+        const role = card.getAttribute('data-role');
+        const persona = card.getAttribute('data-persona');
+        const textContent = card.innerText.toLowerCase();
+
+        const matchesFilter = (currentFilter === 'all' || modId === currentFilter);
+        const matchesQuery = (
+          query === '' || 
+          title.includes(query) || 
+          role.includes(query) || 
+          persona.includes(query) || 
+          textContent.includes(query)
+        );
+
+        if (matchesFilter && matchesQuery) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    searchInput.addEventListener('input', filterContent);
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-umb-guinda', 'text-white', 'font-semibold', 'shadow-sm');
+          b.classList.add('bg-umb-surface', 'text-umb-carbon', 'font-medium');
+        });
+        btn.classList.remove('bg-umb-surface', 'text-umb-carbon', 'font-medium');
+        btn.classList.add('bg-umb-guinda', 'text-white', 'font-semibold', 'shadow-sm');
+
+        currentFilter = btn.getAttribute('data-filter');
+        filterContent();
+      });
+    });
+  </script>
+
+</body>
+</html>

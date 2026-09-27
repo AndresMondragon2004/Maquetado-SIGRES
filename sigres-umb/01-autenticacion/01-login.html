@@ -1,0 +1,201 @@
+<!DOCTYPE html><html class="h-full bg-white" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceso al Sistema de Residencias Profesionales - UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased text-umb-carbon h-full selection:bg-umb-guinda selection:text-white">
+<!-- BEGIN: MainContainer -->
+<main class="w-full min-h-screen flex flex-col lg:flex-row" data-purpose="split-login-container">
+<!-- BEGIN: InstitutionalSide -->
+<!-- Left column: Official institutional background, logo and branding elements -->
+<section class="w-full lg:w-1/2 flex flex-col justify-between p-8 sm:p-12 lg:p-16 min-h-[400px] lg:min-h-screen relative overflow-hidden bg-gradient-to-br from-[#681B2B] via-[#5C1826] to-[#4F1420]" data-purpose="institutional-branding">
+<!-- Subtle geometric background overlay -->
+<div aria-hidden="true" class="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none"></div>
+<!-- Decorative radial ambient highlight -->
+<div aria-hidden="true" class="absolute -top-32 -left-32 w-96 h-96 bg-umb-dorado/20 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Top section spacer for balance on desktop -->
+<div class="relative z-10 hidden lg:block">
+<span class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-amber-200/80 font-medium">
+<span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          Plataforma oficial PWA
+        </span>
+</div>
+<!-- Center content: Institutional crest, titles and system badge -->
+<div class="relative z-10 flex flex-col items-center justify-center my-auto py-8"><!-- Institutional Logo Card -->
+<div class="transition-transform hover:scale-105 duration-300 ease-out" data-purpose="logo-wrapper">
+<img alt="Logo UMB" class="h-20 sm:h-24 w-auto object-contain mx-auto filter drop-shadow-sm bg-white/95 p-3 rounded-xl" src="../assets/logo_umb.png">
+</div>
+<!-- Platform Name & Descriptor -->
+<h1 class="text-[28px] font-bold text-white text-center mt-6 tracking-tight leading-tight">
+  SIGRES-UMB
+</h1>
+<p class="text-sm font-normal text-white/85 text-center mt-2 max-w-sm leading-relaxed">
+  Sistema integral para la gestión de residencias profesionales
+</p>
+<!-- Institutional Info Block -->
+<div class="mt-8 text-center">
+  <h2 class="text-base font-semibold text-white/90 tracking-tight max-w-md mx-auto">
+    Universidad Mexiquense del Bicentenario
+  </h2>
+  <p class="text-sm font-normal text-white/85 text-center mt-1 max-w-sm mx-auto">
+    Unidad de Estudios Superiores San José del Rincón
+  </p>
+</div></div>
+<!-- Institutional Footer Indicator -->
+<footer class="relative z-10 text-center mt-6">
+<p class="text-xs text-white/70 tracking-wide">
+          Ciclo 26-27/1
+        </p>
+</footer>
+</section>
+<!-- END: InstitutionalSide -->
+<!-- BEGIN: FormSide -->
+<!-- Right column: Access form, instructions, feedback notice and support contacts -->
+<section class="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 lg:p-20 bg-white min-h-[520px] lg:min-h-screen" data-purpose="login-form-section">
+<div class="max-w-md w-full mx-auto space-y-6">
+<!-- Form Header -->
+<header class="space-y-1.5">
+<h2 class="text-2xl font-bold text-umb-carbon tracking-tight">Bienvenido a SIGRES-UMB</h2>
+<p class="text-sm text-umb-muted">
+            Accede a tu plataforma de residencias
+          </p>
+</header>
+<!-- Access Form -->
+<form action="#" class="space-y-4" data-purpose="auth-form" method="POST" onsubmit="event.preventDefault();">
+<!-- Input Group: Institutional / Company Email -->
+<div>
+<label class="text-xs font-medium text-umb-carbon mb-1.5 block" for="email">
+              Correo institucional o de la empresa
+            </label>
+<div class="relative rounded-lg shadow-sm">
+<!-- Envelope Mail Icon -->
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5">
+<svg aria-hidden="true" class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<input autocomplete="email" class="h-11 w-full pl-11 pr-4 rounded-lg border border-umb-border focus:border-umb-guinda focus:ring-2 focus:ring-umb-guinda/20 text-sm text-umb-carbon placeholder-[#877273] outline-none transition-all duration-150" id="email" name="email" placeholder="nombre@umb.mx" required="" type="email">
+</div>
+</div>
+<!-- Submit Button -->
+<div>
+<button class="w-full h-11 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark active:scale-[0.99] text-white font-medium text-sm flex items-center justify-center gap-2 shadow-sm transition-all duration-150 cursor-pointer mt-4" data-purpose="submit-access-button" type="submit">
+<span class="">Enviar enlace de acceso</span>
+<!-- Right Arrow Icon -->
+<svg aria-hidden="true" class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+</form>
+<!-- Information Callout Box -->
+<div class="bg-umb-dorado-light border-l-4 border-[#D69E2E] p-4 rounded-r-lg text-xs text-[#78350F] flex items-start gap-3 mt-4" data-purpose="passwordless-notice">
+<svg aria-hidden="true" class="w-5 h-5 text-[#D69E2E] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" fill-rule="evenodd"></path>
+</svg>
+<p class="leading-relaxed">
+            Acceso sin contraseña. Si eres asesor externo, te enviaremos un enlace seguro a tu correo.
+          </p>
+</div>
+<!-- Footer Links & Secondary Information -->
+<footer class="pt-4 border-t border-slate-100 text-center space-y-3" data-purpose="form-footer-support">
+<p class="text-xs text-umb-muted">
+            ¿Problemas para acceder? 
+            <a class="text-umb-guinda hover:underline font-medium transition-colors" href="mailto:controlescolar.sjr@umb.mx">
+              Contacta a Control Escolar
+            </a>
+</p>
+<p class="text-[11px] text-umb-outline">
+            Unidad de Estudios Superiores San José del Rincón • Portal Oficial PWA
+          </p>
+</footer>
+</div>
+</section>
+<!-- END: FormSide -->
+</main>
+<!-- END: MainContainer -->
+
+
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

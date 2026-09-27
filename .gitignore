@@ -1,0 +1,6 @@
+# Environment & temporary files
+__pycache__/
+*.pyc
+.gemini/
+.system_generated/
+scratch/

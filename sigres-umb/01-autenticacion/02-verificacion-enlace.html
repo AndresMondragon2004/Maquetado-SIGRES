@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificación de Enlace — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-umb-bg flex flex-col justify-between items-center px-4 py-8 antialiased selection:bg-umb-guinda selection:text-white">
+
+  <!-- CABECERA SUPERIOR (48px top spacing) -->
+  <header class="w-full pt-4 md:pt-8 flex justify-center items-center">
+    <div class="inline-flex items-center gap-3 bg-white/70 backdrop-blur-sm px-4 py-2 rounded-full border border-umb-border shadow-sm">
+      <img 
+        src="../assets/logo_umb.png" 
+        alt="Logo UMB" 
+        class="h-10 w-auto object-contain"
+      />
+      <div class="h-5 w-[1px] bg-umb-border"></div>
+      <span class="text-umb-guinda font-semibold text-base tracking-tight">SIGRES-UMB</span>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL / TARJETA CENTRAL -->
+  <main class="w-full max-w-[480px] my-auto py-6 flex flex-col items-center">
+    
+    <!-- TARJETA ELEVADA -->
+    <div class="w-full bg-white rounded-[12px] p-8 sm:p-12 card-shadow border border-white/80 text-center relative overflow-hidden">
+      
+      <!-- 1. ÍCONO CIRCULAR GRANDE (72px) -->
+      <div class="mx-auto w-[72px] h-[72px] rounded-full bg-umb-guinda-light flex items-center justify-center">
+        <!-- Ícono de sobre / correo (36px) -->
+        <svg class="w-9 h-9 text-umb-guinda" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+        </svg>
+      </div>
+
+      <!-- 2. TÍTULO CENTRADO (20px SemiBold) -->
+      <h1 class="mt-6 text-[20px] font-semibold text-umb-text leading-tight">
+        Verificando tu enlace...
+      </h1>
+
+      <!-- 3. SUBTÍTULO CENTRADO (14px Regular) -->
+      <p class="mt-2 text-[14px] font-normal text-umb-text-muted leading-normal">
+        Esto tomará solo un momento.
+      </p>
+
+      <!-- 4. SPINNER DE CARGA CENTRADO -->
+      <div class="mt-8 flex justify-center items-center">
+        <div class="w-10 h-10 spinner-border"></div>
+      </div>
+
+      <!-- 5. TEXTO PEQUEÑO DEBAJO DEL SPINNER (11px mayúsculas tracking amplio) -->
+      <p class="mt-3 text-[11px] font-normal text-umb-text-tertiary uppercase tracking-widest">
+        Validando credenciales seguras
+      </p>
+
+      <!-- 6. SEPARADOR HORIZONTAL SUTIL -->
+      <hr class="mt-8 border-t border-umb-border">
+
+      <!-- 7. LÍNEA INFERIOR CON ÍCONO DE ESCUDO VERDE Y TEXTO -->
+      <div class="mt-6 flex items-center justify-center gap-2">
+        <svg class="w-4 h-4 text-umb-exito shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="m9 12 2 2 4-4"></path>
+        </svg>
+        <span class="text-[12px] font-normal text-umb-text-muted">
+          Conexión cifrada de extremo a extremo
+        </span>
+      </div>
+
+    </div>
+
+    <!-- ACCIONES DEBAJO DE LA TARJETA -->
+    <div class="w-full mt-6 flex flex-col items-center space-y-3">
+      <!-- Botón secundario centrado -->
+      <button 
+        type="button"
+        class="w-full sm:w-auto min-w-[220px] h-[44px] px-6 rounded-[8px] border border-umb-guinda bg-transparent text-umb-guinda font-medium text-[14px] hover:bg-umb-guinda hover:text-white transition-colors duration-150 flex items-center justify-center gap-2"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19"></path>
+        </svg>
+        Reenviar enlace
+      </button>
+
+      <!-- Enlace volver a inicio de sesión -->
+      <a 
+        href="#" 
+        class="text-[12px] font-normal text-umb-guinda hover:underline inline-flex items-center gap-1 transition-colors py-1"
+      >
+        <span>←</span> Volver a inicio de sesión
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER INSTITUCIONAL REQUERIDO -->
+  <footer class="w-full pb-4 text-center">
+    <p class="text-[11px] text-umb-text-tertiary">
+      SIGRES-UMB — Sistema integral para la gestión de residencias profesionales | Universidad Mexiquense del Bicentenario — UES San José del Rincón | Ciclo 26-27/1
+    </p>
+  </footer>
+
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

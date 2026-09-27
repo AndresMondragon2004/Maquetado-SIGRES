@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estado Vacío Reutilizable — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-umb-guinda selection:text-white">
+
+  <!-- APP BAR INSTITUCIONAL -->
+  <header class="h-16 bg-umb-guinda text-white px-6 flex items-center justify-between shadow-md sticky top-0 z-40">
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
+        <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-9 w-auto bg-white/95 rounded px-1.5 py-0.5 object-contain" />
+        <div class="border-l border-white/20 pl-3">
+          <span class="font-bold text-base tracking-tight block leading-none text-white">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 font-normal tracking-wide mt-0.5 block">Sistema de Diseño Institucional</span>
+        </div>
+      </div>
+      <div class="hidden md:flex items-center gap-2 pl-4 border-l border-white/20 text-xs text-white/90">
+        <span class="px-2 py-0.5 bg-white/10 rounded-full font-medium text-[11px]">Componente reutilizable</span>
+        <span>/</span>
+        <span class="font-medium text-white">Estado vacío (Empty state)</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:flex items-center gap-2 px-2.5 py-1 bg-white/10 rounded-full text-xs text-white/90">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span>Ciclo 26-27/1</span>
+      </div>
+      <button class="relative p-2 text-white/80 hover:text-white rounded-lg hover:bg-white/10 transition-colors" title="Centro de notificaciones">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        </svg>
+      </button>
+      <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-xs font-semibold border border-white/30 text-white">
+        DS
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-1">
+    
+    <!-- ENCABEZADO Y FICHA TÉCNICA -->
+    <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-umb-border pb-6">
+      <div>
+        <nav class="flex items-center gap-2 text-xs text-umb-outline mb-2 font-medium">
+          <span>Componentes reutilizables</span>
+          <svg class="w-3.5 h-3.5 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></nav>
+          <span class="text-umb-carbon">Estados vacíos</span>
+        </nav>
+        <h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Componente: Estado vacío (Empty state)</h1>
+        <p class="text-sm text-umb-muted mt-1 max-w-2xl">
+          Patrón estandarizado para comunicar la ausencia temporal de registros, expedientes o resultados en tablas y bandejas de SIGRES-UMB.
+        </p>
+      </div>
+
+      <!-- SELECTOR DE VARIANTES PARA TESTING -->
+      <div class="bg-white p-2 rounded-xl border border-umb-border shadow-sm flex items-center gap-2">
+        <span class="text-xs font-semibold text-umb-outline px-2">Probar variante:</span>
+        <select id="variantSelector" onchange="changeInteractiveVariant(this.value)" class="text-xs font-medium text-umb-carbon bg-umb-surface border border-umb-border rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-umb-guinda">
+          <option value="1">1. Sin bitácoras (Estudiante)</option>
+          <option value="2">2. Sin expedientes (Control escolar)</option>
+          <option value="3" selected>3. Sin resultados de búsqueda (Filtros)</option>
+          <option value="4">4. Sin notificaciones (Alertas)</option>
+          <option value="5">5. Sin residentes (Asesor externo)</option>
+          <option value="6">6. Sin convenios (Dirección académica)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- PREVIEW COMPARATIVA EN DOS CONTENEDORES REALISTAS -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+      
+      <!-- CONTENEDOR 1: EJEMPLO PRINCIPAL (SIN BITÁCORAS - VARIANTE 1) -->
+      <div class="bg-white rounded-xl border border-umb-border custom-shadow overflow-hidden flex flex-col">
+        <!-- Mock header de sección tipo tabla -->
+        <div class="px-6 py-4 border-b border-umb-border bg-white flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-umb-guinda"></span>
+            <h2 class="text-sm font-semibold text-umb-carbon">Bandeja de bitácoras del estudiante</h2>
+          </div>
+          <span class="text-xs font-medium text-umb-outline bg-umb-surface px-2.5 py-1 rounded-md">Semana 10 · 0 registros</span>
+        </div>
+
+        <!-- Componente Estado Vacío Reutilizable (Variante 1) -->
+        <div class="flex-1 flex items-center justify-center p-6 min-h-[380px] bg-white">
+          <div class="w-full max-w-[400px] text-center flex flex-col items-center py-12 px-6">
+            <!-- Ícono circular de 96px -->
+            <div class="w-24 h-24 rounded-full bg-umb-surface flex items-center justify-center mb-6 text-umb-outline transition-transform hover:scale-105 duration-200">
+              <!-- Ícono: documento en blanco (48px) -->
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+              </svg>
+            </div>
+
+            <!-- Título centrado -->
+            <h3 class="text-[18px] font-semibold text-umb-carbon leading-snug">
+              Aún no has registrado bitácoras
+            </h3>
+
+            <!-- Descripción centrada -->
+            <p class="text-[14px] text-umb-muted mt-2 max-w-[320px] leading-relaxed">
+              Cuando registres tu primera bitácora semanal aparecerá aquí.
+            </p>
+
+            <!-- Botón primario institucional -->
+            <button type="button" class="mt-6 h-11 px-6 bg-umb-guinda hover:bg-[#531422] text-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition-all duration-150 flex items-center justify-center gap-2 active:scale-95">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+              </svg>
+              <span>Registrar primera bitácora</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="px-6 py-3 bg-[#F9FAFB] border-t border-umb-border flex items-center justify-between text-xs text-umb-outline">
+          <span>Contexto: Flujo de Residente UMB</span>
+          <span class="font-mono text-[11px] bg-white px-2 py-0.5 border border-umb-border rounded">Variante 1 · Primaria con CTA</span>
+        </div>
+      </div>
+
+      <!-- CONTENEDOR 2: SEGUNDO EJEMPLO (SIN RESULTADOS DE BÚSQUEDA - VARIANTE 3) -->
+      <div class="bg-white rounded-xl border border-umb-border custom-shadow overflow-hidden flex flex-col">
+        <!-- Mock header con barra de búsqueda activa -->
+        <div class="px-6 py-4 border-b border-umb-border bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#B38E5D]"></span>
+            <h2 class="text-sm font-semibold text-umb-carbon">Catálogo de empresas receptoras</h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="relative w-48">
+              <input type="text" value="Tecnología XYZ no existe" readonly class="w-full text-xs bg-umb-surface border border-umb-border rounded-md pl-7 pr-2 py-1 text-umb-muted focus:outline-none">
+              <svg class="w-3.5 h-3.5 absolute left-2 top-2 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Componente Estado Vacío Reutilizable (Variante 3) -->
+        <div class="flex-1 flex items-center justify-center p-6 min-h-[380px] bg-white">
+          <div class="w-full max-w-[400px] text-center flex flex-col items-center py-12 px-6">
+            <!-- Ícono circular de 96px -->
+            <div class="w-24 h-24 rounded-full bg-umb-surface flex items-center justify-center mb-6 text-umb-outline transition-transform hover:scale-105 duration-200">
+              <!-- Ícono: lupa (48px) -->
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+              </svg>
+            </div>
+
+            <!-- Título centrado -->
+            <h3 class="text-[18px] font-semibold text-umb-carbon leading-snug">
+              No encontramos resultados
+            </h3>
+
+            <!-- Descripción centrada -->
+            <p class="text-[14px] text-umb-muted mt-2 max-w-[320px] leading-relaxed">
+              Intenta ajustar los filtros o busca con otros términos.
+            </p>
+
+            <!-- Botón secundario -->
+            <button type="button" class="mt-6 h-11 px-6 bg-white hover:bg-umb-surface text-umb-muted hover:text-umb-carbon border border-umb-border text-sm font-medium rounded-lg shadow-sm transition-all duration-150 flex items-center justify-center gap-2 active:scale-95">
+              <svg class="w-4 h-4 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+              </svg>
+              <span>Limpiar filtros</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="px-6 py-3 bg-[#F9FAFB] border-t border-umb-border flex items-center justify-between text-xs text-umb-outline">
+          <span>Contexto: Búsqueda con 0 coincidencias</span>
+          <span class="font-mono text-[11px] bg-white px-2 py-0.5 border border-umb-border rounded">Variante 3 · Botón secundario</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECCIÓN INTERACTIVA DE PRUEBA RÁPIDA (CARD DINÁMICO) -->
+    <div class="bg-white rounded-xl border border-umb-border p-6 mb-12 custom-shadow">
+      <div class="flex items-center justify-between pb-4 border-b border-umb-border mb-6">
+        <div>
+          <h2 class="text-base font-semibold text-umb-carbon">Sandbox interactivo del componente</h2>
+          <p class="text-xs text-umb-outline mt-0.5">Alterna en tiempo real entre las 6 especificaciones reglamentarias para validar responsividad y proporciones.</p>
+        </div>
+        <span class="text-xs font-medium text-umb-guinda bg-[#FBECEF] px-3 py-1 rounded-full border border-umb-guinda/20">
+          Max-w: 400px · Padding 48px/24px
+        </span>
+      </div>
+
+      <!-- Tarjeta donde renderiza la variante seleccionada -->
+      <div id="interactiveCanvas" class="w-full flex items-center justify-center bg-[#F9FAFB] rounded-lg border border-dashed border-[#CBD5E1] min-h-[360px]">
+        <!-- Contenido inyectado por JS -->
+      </div>
+    </div>
+
+    <!-- CATÁLOGO DE LAS 6 VARIANTES INSTITUCIONALES (GRID 3 COLUMNAS) -->
+    <div class="mb-12">
+      <div class="mb-6">
+        <h2 class="text-lg font-bold text-umb-carbon">Catálogo completo de variantes institucionales</h2>
+        <p class="text-xs text-umb-outline mt-1">Los 6 contextos autorizados en SIGRES-UMB para mantener la consistencia entre todos los roles.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card 1: Sin bitácoras -->
+        <div class="bg-white rounded-xl border border-umb-border p-6 flex flex-col items-center text-center hover:border-umb-guinda/40 transition-colors">
+          <div class="w-20 h-20 rounded-full bg-umb-surface flex items-center justify-center mb-4 text-umb-outline">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+          </div>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-umb-guinda bg-[#FBECEF] px-2 py-0.5 rounded mb-2">Variante 1 · Estudiante</span>
+          <h4 class="text-base font-semibold text-umb-carbon">Aún no has registrado bitácoras</h4>
+          <p class="text-xs text-umb-muted mt-1.5 leading-relaxed">Cuando registres tu primera bitácora semanal aparecerá aquí.</p>
+          <div class="mt-4 pt-3 border-t border-umb-border w-full flex items-center justify-center">
+            <span class="text-xs font-medium text-umb-guinda">Botón: "Registrar primera bitácora"</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Sin expedientes -->
+        <div class="bg-white rounded-xl border border-umb-border p-6 flex flex-col items-center text-center hover:border-umb-guinda/40 transition-colors">
+          <div class="w-20 h-20 rounded-full bg-umb-surface flex items-center justify-center mb-4 text-umb-outline">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+            </svg>
+          </div>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-umb-carbon bg-umb-surface px-2 py-0.5 rounded mb-2">Variante 2 · Control escolar</span>
+          <h4 class="text-base font-semibold text-umb-carbon">No hay expedientes registrados</h4>
+          <p class="text-xs text-umb-muted mt-1.5 leading-relaxed">Los expedientes aparecerán aquí cuando los estudiantes inicien su trámite de residencia.</p>
+          <div class="mt-4 pt-3 border-t border-umb-border w-full flex items-center justify-center">
+            <span class="text-xs font-medium text-umb-guinda">Botón: "Crear nuevo expediente"</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Sin resultados de búsqueda -->
+        <div class="bg-white rounded-xl border border-umb-border p-6 flex flex-col items-center text-center hover:border-umb-guinda/40 transition-colors">
+          <div class="w-20 h-20 rounded-full bg-umb-surface flex items-center justify-center mb-4 text-umb-outline">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+          </div>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-umb-carbon bg-umb-surface px-2 py-0.5 rounded mb-2">Variante 3 · Búsqueda / Tablas</span>
+          <h4 class="text-base font-semibold text-umb-carbon">No encontramos resultados</h4>
+          <p class="text-xs text-umb-muted mt-1.5 leading-relaxed">Intenta ajustar los filtros o busca con otros términos.</p>
+          <div class="mt-4 pt-3 border-t border-umb-border w-full flex items-center justify-center">
+            <span class="text-xs font-medium text-umb-muted">Botón: "Limpiar filtros" (Secundario)</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Sin notificaciones -->
+        <div class="bg-white rounded-xl border border-umb-border p-6 flex flex-col items-center text-center hover:border-umb-guinda/40 transition-colors">
+          <div class="w-20 h-20 rounded-full bg-umb-surface flex items-center justify-center mb-4 text-umb-outline">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+            </svg>
+          </div>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-umb-carbon bg-umb-surface px-2 py-0.5 rounded mb-2">Variante 4 · Global</span>
+          <h4 class="text-base font-semibold text-umb-carbon">No tienes notificaciones</h4>
+          <p class="text-xs text-umb-muted mt-1.5 leading-relaxed">Aquí aparecerán las actualizaciones de tu residencia.</p>
+          <div class="mt-4 pt-3 border-t border-umb-border w-full flex items-center justify-center">
+            <span class="text-xs font-medium text-umb-outline">Sin botón de acción</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Sin residentes -->
+        <div class="bg-white rounded-xl border border-umb-border p-6 flex flex-col items-center text-center hover:border-umb-guinda/40 transition-colors">
+          <div class="w-20 h-20 rounded-full bg-umb-surface flex items-center justify-center mb-4 text-umb-outline">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+            </svg>
+          </div>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-umb-carbon bg-umb-surface px-2 py-0.5 rounded mb-2">Variante 5 · Asesor externo</span>
+          <h4 class="text-base font-semibold text-umb-carbon">No tienes residentes asignados</h4>
+          <p class="text-xs text-umb-muted mt-1.5 leading-relaxed">Cuando la UMB te asigne residentes aparecerán en esta sección.</p>
+          <div class="mt-4 pt-3 border-t border-umb-border w-full flex items-center justify-center">
+            <span class="text-xs font-medium text-umb-outline">Sin botón de acción</span>
+          </div>
+        </div>
+
+        <!-- Card 6: Sin convenios -->
+        <div class="bg-white rounded-xl border border-umb-border p-6 flex flex-col items-center text-center hover:border-umb-guinda/40 transition-colors">
+          <div class="w-20 h-20 rounded-full bg-umb-surface flex items-center justify-center mb-4 text-umb-outline">
+            <!-- Ícono Handshake -->
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 10-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 013.15 0v1.5m-3.15 0l.075 5.925m3.075-5.925l.075 5.925m-6.3-5.925a1.575 1.575 0 00-3.15 0v4.725c0 1.253.5 2.455 1.386 3.342l4.839 4.838a2.25 2.25 0 003.182 0l4.839-4.838a4.725 4.725 0 001.386-3.342V7.575a1.575 1.575 0 00-3.15 0v3m-12.6-3a1.575 1.575 0 00-3.15 0v3c0 2.25 1.5 4.5 4.5 6.75l3 2.25" />
+            </svg>
+          </div>
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-umb-carbon bg-umb-surface px-2 py-0.5 rounded mb-2">Variante 6 · Dirección académica</span>
+          <h4 class="text-base font-semibold text-umb-carbon">No hay convenios registrados</h4>
+          <p class="text-xs text-umb-muted mt-1.5 leading-relaxed">Los convenios con empresas receptoras aparecerán aquí.</p>
+          <div class="mt-4 pt-3 border-t border-umb-border w-full flex items-center justify-center">
+            <span class="text-xs font-medium text-umb-guinda">Botón: "Registrar nuevo convenio"</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ESPECIFICACIÓN TÉCNICA Y REGLAS DEL SISTEMA DE DISEÑO -->
+    <div class="bg-white rounded-xl border border-umb-border p-6 shadow-sm mb-8">
+      <h3 class="text-base font-semibold text-umb-carbon mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5 text-umb-guinda" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Anatomía y pautas de implementación del componente
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-umb-muted">
+        <div class="p-4 bg-umb-surface rounded-lg border border-umb-border/60">
+          <h4 class="font-bold text-umb-carbon mb-1">1. Dimensionamiento y contenedor</h4>
+          <p class="leading-relaxed">Ancho máximo acotado estrictamente a <code class="text-umb-guinda font-mono">400px</code>. Relleno vertical de <code class="text-umb-guinda font-mono">48px</code> y horizontal de <code class="text-umb-guinda font-mono">24px</code> para garantizar respiración visual centrada en cualquier viewport.</p>
+        </div>
+        <div class="p-4 bg-umb-surface rounded-lg border border-umb-border/60">
+          <h4 class="font-bold text-umb-carbon mb-1">2. Jerarquía tipográfica e ícono</h4>
+          <p class="leading-relaxed">Círculo contenedor de <code class="text-umb-guinda font-mono">96px</code> en color neutro <code class="text-umb-guinda font-mono">#F4F5F7</code> con ícono de <code class="text-umb-guinda font-mono">48px</code> en gris <code class="text-umb-guinda font-mono">#877273</code>. Título de <code class="text-umb-guinda font-mono">18px SemiBold</code> con separación de 24px, y descripción de <code class="text-umb-guinda font-mono">14px</code> limitada a 320px.</p>
+        </div>
+        <div class="p-4 bg-umb-surface rounded-lg border border-umb-border/60">
+          <h4 class="font-bold text-umb-carbon mb-1">3. Botón de acción opcional</h4>
+          <p class="leading-relaxed">Altura obligatoria de <code class="text-umb-guinda font-mono">44px</code> con radio de 8px. Botón primario guinda <code class="text-umb-guinda font-mono">#681B2B</code> cuando guía una acción creadora; secundario con borde <code class="text-umb-guinda font-mono">#E2E8F0</code> para limpiar filtros o recargar.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- PIE DE PÁGINA REGLAMENTARIO -->
+  <footer class="border-t border-umb-border bg-white py-4 px-6 text-center text-xs text-umb-outline">
+    SIGRES-UMB · Universidad Mexiquense del Bicentenario · Ciclo 26-27/1
+  </footer>
+
+  <!-- SCRIPT INTERACTIVO PARA RENDERIZAR LAS VARIANTES -->
+  <script>
+    const VARIANTS_DATA = {
+      "1": {
+        name: "Sin bitácoras",
+        role: "Estudiante",
+        iconSvg: `<svg class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>`,
+        title: "Aún no has registrado bitácoras",
+        description: "Cuando registres tu primera bitácora semanal aparecerá aquí.",
+        buttonText: "Registrar primera bitácora",
+        buttonType: "primary"
+      },
+      "2": {
+        name: "Sin expedientes",
+        role: "Control escolar",
+        iconSvg: `<svg class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"/></svg>`,
+        title: "No hay expedientes registrados",
+        description: "Los expedientes aparecerán aquí cuando los estudiantes inicien su trámite de residencia.",
+        buttonText: "Crear nuevo expediente",
+        buttonType: "primary"
+      },
+      "3": {
+        name: "Sin resultados de búsqueda",
+        role: "Filtros y búsquedas",
+        iconSvg: `<svg class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>`,
+        title: "No encontramos resultados",
+        description: "Intenta ajustar los filtros o busca con otros términos.",
+        buttonText: "Limpiar filtros",
+        buttonType: "secondary"
+      },
+      "4": {
+        name: "Sin notificaciones",
+        role: "Global",
+        iconSvg: `<svg class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/></svg>`,
+        title: "No tienes notificaciones",
+        description: "Aquí aparecerán las actualizaciones de tu residencia.",
+        buttonText: null,
+        buttonType: null
+      },
+      "5": {
+        name: "Sin residentes",
+        role: "Asesor externo",
+        iconSvg: `<svg class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>`,
+        title: "No tienes residentes asignados",
+        description: "Cuando la UMB te asigne residentes aparecerán en esta sección.",
+        buttonText: null,
+        buttonType: null
+      },
+      "6": {
+        name: "Sin convenios",
+        role: "Dirección académica",
+        iconSvg: `<svg class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.05 4.575a1.575 1.575 0 10-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 013.15 0v1.5m-3.15 0l.075 5.925m3.075-5.925l.075 5.925m-6.3-5.925a1.575 1.575 0 00-3.15 0v4.725c0 1.253.5 2.455 1.386 3.342l4.839 4.838a2.25 2.25 0 003.182 0l4.839-4.838a4.725 4.725 0 001.386-3.342V7.575a1.575 1.575 0 00-3.15 0v3m-12.6-3a1.575 1.575 0 00-3.15 0v3c0 2.25 1.5 4.5 4.5 6.75l3 2.25"/></svg>`,
+        title: "No hay convenios registrados",
+        description: "Los convenios con empresas receptoras aparecerán aquí.",
+        buttonText: "Registrar nuevo convenio",
+        buttonType: "primary"
+      }
+    };
+
+    function renderComponent(key) {
+      const data = VARIANTS_DATA[key];
+      const container = document.getElementById('interactiveCanvas');
+      if (!container || !data) return;
+
+      let buttonHtml = '';
+      if (data.buttonText) {
+        if (data.buttonType === 'primary') {
+          buttonHtml = `
+            <button type="button" class="mt-6 h-11 px-6 bg-umb-guinda hover:bg-[#531422] text-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition-all duration-150 flex items-center justify-center gap-2 active:scale-95">
+              <span>${data.buttonText}</span>
+            </button>
+          `;
+        } else {
+          buttonHtml = `
+            <button type="button" class="mt-6 h-11 px-6 bg-white hover:bg-umb-surface text-umb-muted hover:text-umb-carbon border border-umb-border text-sm font-medium rounded-lg shadow-sm transition-all duration-150 flex items-center justify-center gap-2 active:scale-95">
+              <span>${data.buttonText}</span>
+            </button>
+          `;
+        }
+      }
+
+      container.innerHTML = `
+        <div class="w-full max-w-[400px] text-center flex flex-col items-center py-12 px-6">
+          <div class="w-24 h-24 rounded-full bg-umb-surface flex items-center justify-center mb-6 text-umb-outline transition-transform hover:scale-105 duration-200">
+            ${data.iconSvg}
+          </div>
+          <h3 class="text-[18px] font-semibold text-umb-carbon leading-snug">
+            ${data.title}
+          </h3>
+          <p class="text-[14px] text-umb-muted mt-2 max-w-[320px] leading-relaxed">
+            ${data.description}
+          </p>
+          ${buttonHtml}
+        </div>
+      `;
+    }
+
+    function changeInteractiveVariant(val) {
+      renderComponent(val);
+    }
+
+    // Inicializar con variante 3 (Sin resultados)
+    document.addEventListener('DOMContentLoaded', () => {
+      renderComponent('3');
+    });
+  </script>
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

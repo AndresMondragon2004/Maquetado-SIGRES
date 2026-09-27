@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-umb-surface" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuración global — Dirección Académica SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-full font-sans text-gray-800 antialiased flex flex-col bg-umb-surface">
+<!-- BEGIN: TopAppBar -->
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard-ejecutivo.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Dirección</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Configuración global</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="06-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          AA
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Armando Alcalde</span>
+          <span class="text-[10px] text-white/75 leading-none">Dirección</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: TopAppBar -->
+<!-- Container for Sidebar + Page Content -->
+<div class="flex flex-1 pt-16">
+<!-- BEGIN: LeftSidebar -->
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              AA
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Armando Alcalde Martínez</p>
+              <p class="text-[11px] text-umb-outline truncate">Director Académico · UMB</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard-ejecutivo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">dashboard</span>
+            <span class="text-sm">Dashboard</span>
+          </a>
+          <a href="02-vinculacion-convenios.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">handshake</span>
+            <span class="text-sm">Vinculación</span>
+          </a>
+          <a href="03-sectores-productivos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">factory</span>
+            <span class="text-sm">Sectores</span>
+          </a>
+          <a href="04-reportes-acreditacion.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">verified_user</span>
+            <span class="text-sm">Acreditación</span>
+          </a>
+          <a href="05-configuracion-global.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">settings</span>
+            <span class="text-sm">Configuración</span>
+          </a>
+          <a href="06-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 lg:ml-[260px] pb-28 pt-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full" data-purpose="main-layout">
+<!-- SECTION 1: Header and Warning Banner -->
+<!-- BEGIN: SectionHeader -->
+<section class="mb-6" data-purpose="header-section">
+<!-- Breadcrumbs -->
+<nav aria-label="Miga de pan" class="flex text-xs text-gray-500 mb-2">
+<span class="hover:text-gray-700 cursor-pointer">Dirección Académica</span>
+<span class="mx-2">/</span>
+<span class="text-gray-800 font-medium">Configuración global</span>
+</nav>
+<!-- Title & Subtitle + Access Badge -->
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+<div>
+<h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Configuración global</h1>
+<p class="text-sm text-umb-muted mt-0.5">Administra los parámetros institucionales de la plataforma SIGRES-UMB.</p>
+</div>
+<div class="self-start sm:self-center">
+<span class="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200 shadow-xs">
+<svg class="w-3.5 h-3.5 mr-1.5 text-amber-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              Solo Dirección Académica
+            </span>
+</div>
+</div>
+<!-- Privileges Warning Banner -->
+<div class="mt-5 bg-umb-dorado-light border-l-[3px] border-[#D69E2E] p-4 rounded-r-lg shadow-xs flex items-start space-x-3">
+<svg class="w-5 h-5 text-[#D69E2E] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div class="text-sm text-amber-900 leading-relaxed font-normal">
+            Los cambios realizados en esta sección aplican a todas las unidades académicas de la UMB. Procede con precaución.
+          </div>
+</div>
+</section>
+<!-- END: SectionHeader -->
+<!-- SECTION 2: Navigation Tabs -->
+<!-- BEGIN: NavigationTabs -->
+<section class="mb-6" data-purpose="settings-tabs">
+<div class="flex items-center space-x-2 overflow-x-auto pb-2 border-b border-gray-200 text-sm">
+<button class="bg-umb-guinda text-white px-4 py-2 font-medium rounded-lg shadow-sm whitespace-nowrap" type="button">
+            Ciclos escolares
+          </button>
+<button class="text-gray-600 hover:text-gray-900 hover:bg-white px-4 py-2 font-medium rounded-lg transition-colors whitespace-nowrap" type="button">
+            Catálogos
+          </button>
+<button class="text-gray-600 hover:text-gray-900 hover:bg-white px-4 py-2 font-medium rounded-lg transition-colors whitespace-nowrap" type="button">
+            Parámetros normativos
+          </button>
+<button class="text-gray-600 hover:text-gray-900 hover:bg-white px-4 py-2 font-medium rounded-lg transition-colors whitespace-nowrap" type="button">
+            Roles y permisos
+          </button>
+<button class="text-gray-600 hover:text-gray-900 hover:bg-white px-4 py-2 font-medium rounded-lg transition-colors whitespace-nowrap" type="button">
+            Plantillas de documentos
+          </button>
+<button class="text-gray-600 hover:text-gray-900 hover:bg-white px-4 py-2 font-medium rounded-lg transition-colors whitespace-nowrap" type="button">
+            Integraciones
+          </button>
+</div>
+</section>
+<!-- END: NavigationTabs -->
+<!-- SECTION 3: Ciclos Escolares y Calendario -->
+<!-- BEGIN: SchoolCyclesAndCalendar -->
+<section class="space-y-6 mb-8" data-purpose="school-cycles-section">
+<!-- CARD A: Ciclo activo actual -->
+<div class="bg-white rounded-lg shadow-sm border border-slate-200 border-t-4 border-t-[#2D8C4E] p-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-gray-100 gap-2">
+<div>
+<h2 class="text-lg font-semibold text-gray-900">Ciclo activo</h2>
+<p class="text-xs text-gray-500 mt-0.5">El ciclo actualmente en operación en toda la UMB.</p>
+</div>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 self-start sm:self-auto">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 mr-1.5"></span>
+              Activo
+            </span>
+</div>
+<!-- Highlight Box -->
+<div class="mt-5 bg-[#F0FDF4] border-l-[3px] border-[#2D8C4E] p-5 rounded-r-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+<div>
+<div class="flex items-baseline space-x-3">
+<span class="text-2xl font-bold text-[#166534]">26-27/1</span>
+<span class="text-sm font-medium text-emerald-900">Primer periodo septiembre 2026 - febrero 2027</span>
+</div>
+<div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-y-2 sm:gap-x-6 text-xs text-emerald-800">
+<div>
+<span class="text-gray-500 font-normal">Fecha de inicio:</span>
+<p class="font-semibold mt-0.5 text-gray-800">01 de septiembre de 2026</p>
+</div>
+<div>
+<span class="text-gray-500 font-normal">Fecha de término:</span>
+<p class="font-semibold mt-0.5 text-gray-800">20 de enero de 2027</p>
+</div>
+<div>
+<span class="text-gray-500 font-normal">Duración:</span>
+<p class="font-semibold mt-0.5 text-gray-800">18 semanas lectivas · 640 horas reglamentarias</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-5 flex flex-wrap items-center gap-3">
+<button class="inline-flex items-center px-3.5 py-2 border border-umb-guinda text-xs font-medium rounded-md text-umb-guinda bg-white hover:bg-umb-guinda/5 transition-colors" type="button">
+<svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              Editar ciclo activo
+            </button>
+<button class="inline-flex items-center px-3 py-2 text-xs font-medium text-gray-600 hover:text-gray-900 transition-colors" type="button">
+              Ver historial de ciclos
+            </button>
+</div>
+</div>
+<!-- CARD B: Historial de ciclos escolares -->
+<div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-gray-100 gap-2">
+<div>
+<h2 class="text-lg font-semibold text-gray-900">Historial de ciclos escolares</h2>
+<p class="text-xs text-gray-500 mt-0.5">Ciclos anteriores registrados en el sistema.</p>
+</div>
+</div>
+<!-- Cycles Table -->
+<div class="overflow-x-auto mt-4">
+<table class="min-w-full divide-y divide-gray-200 text-left text-xs" data-purpose="cycles-history-table">
+<thead>
+<tr class="bg-gray-50 text-gray-500 uppercase tracking-wider font-semibold">
+<th class="py-3 px-4" scope="col">Código</th>
+<th class="py-3 px-4" scope="col">Descripción</th>
+<th class="py-3 px-4" scope="col">Periodo</th>
+<th class="py-3 px-4" scope="col">Estado</th>
+<th class="py-3 px-4 text-right" scope="col">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 text-gray-700 font-normal">
+<tr class="hover:bg-gray-50/70 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-gray-900">25-26/2</td>
+<td class="py-3.5 px-4 text-gray-600">Segundo periodo febrero - julio 2026</td>
+<td class="py-3.5 px-4">01 feb 2026 — 15 jul 2026</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600">Finalizado</span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="text-gray-500 hover:text-gray-900 font-medium" type="button">Ver detalles</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50/70 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-gray-900">25-26/1</td>
+<td class="py-3.5 px-4 text-gray-600">Primer periodo septiembre 2025 - enero 2026</td>
+<td class="py-3.5 px-4">01 sep 2025 — 20 ene 2026</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600">Finalizado</span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="text-gray-500 hover:text-gray-900 font-medium" type="button">Ver detalles</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50/70 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-gray-900">24-25/2</td>
+<td class="py-3.5 px-4 text-gray-600">Segundo periodo febrero - julio 2025</td>
+<td class="py-3.5 px-4">01 feb 2025 — 15 jul 2025</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600">Finalizado</span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="text-gray-500 hover:text-gray-900 font-medium" type="button">Ver detalles</button>
+</td>
+</tr>
+<tr class="hover:bg-gray-50/70 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-gray-900">24-25/1</td>
+<td class="py-3.5 px-4 text-gray-600">Primer periodo septiembre 2024 - enero 2025</td>
+<td class="py-3.5 px-4">01 sep 2024 — 20 ene 2025</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600">Finalizado</span>
+</td>
+<td class="py-3.5 px-4 text-right">
+<button class="text-gray-500 hover:text-gray-900 font-medium" type="button">Ver detalles</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Bottom Button -->
+<div class="mt-5 pt-3 border-t border-gray-100 flex justify-start">
+<button class="inline-flex items-center px-3.5 py-2 rounded-md bg-umb-guinda text-white text-xs font-semibold hover:bg-[#541523] transition-colors shadow-xs" type="button">
+<svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              Crear nuevo ciclo escolar
+            </button>
+</div>
+</div>
+<!-- CARD C: Calendario escolar oficial -->
+<div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+<div class="pb-4 border-b border-gray-100">
+<h2 class="text-lg font-semibold text-gray-900">Calendario escolar oficial</h2>
+<p class="text-xs text-gray-500 mt-0.5">El sistema utiliza este calendario para calcular los días inhábiles y las metas semanales ajustadas.</p>
+</div>
+<!-- Overview Grid -->
+<div class="mt-5 grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-lg bg-gray-50 border border-gray-100 text-xs">
+<div>
+<span class="text-gray-500 block">Inicio:</span>
+<span class="font-semibold text-gray-900 text-sm mt-0.5 block">01 de septiembre de 2026</span>
+</div>
+<div>
+<span class="text-gray-500 block">Término:</span>
+<span class="font-semibold text-gray-900 text-sm mt-0.5 block">20 de enero de 2027</span>
+</div>
+<div>
+<span class="text-gray-500 block">Total de días inhábiles:</span>
+<span class="font-semibold text-gray-900 text-sm mt-0.5 block">16 días</span>
+</div>
+<div>
+<span class="text-gray-500 block">Periodo vacacional:</span>
+<span class="font-semibold text-gray-900 text-sm mt-0.5 block">21 al 31 de diciembre de 2026</span>
+</div>
+</div>
+<!-- Inhabile Days Chips -->
+<div class="mt-5">
+<h3 class="text-xs font-semibold text-gray-600 uppercase tracking-wider mb-3">Días inhábiles y periodos registrados</h3>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                16 sep 2026 — Día de la Independencia
+              </span>
+<span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                29 sep 2026 — Suspensión oficial
+              </span>
+<span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                2 nov 2026 — Día de Muertos
+              </span>
+<span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                12-13 nov 2026 — Evaluaciones parciales
+              </span>
+<span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                16 nov 2026 — Revolución Mexicana
+              </span>
+<span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                21-31 dic 2026 — Periodo vacacional
+              </span>
+<span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                1 ene 2027 — Año Nuevo
+              </span>
+<span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                11-15 ene 2027 — Evaluaciones parciales
+              </span>
+</div>
+</div>
+<!-- Update Button -->
+<div class="mt-5 pt-3 border-t border-gray-100">
+<button class="inline-flex items-center px-3.5 py-2 border border-umb-guinda text-xs font-medium rounded-md text-umb-guinda bg-white hover:bg-umb-guinda/5 transition-colors" type="button">
+<svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              Actualizar calendario oficial
+            </button>
+</div>
+</div>
+</section>
+<!-- END: SchoolCyclesAndCalendar -->
+<!-- SECTION 4: Grid 2 Columnas (Parámetros Normativos y Catálogos) -->
+<!-- BEGIN: NormativeParametersAndCatalogs -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8" data-purpose="parameters-and-catalogs-grid">
+<!-- COLUMNA IZQUIERDA - TARJETA D: Parámetros normativos clave -->
+<div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6 flex flex-col justify-between">
+<div>
+<div class="pb-4 border-b border-gray-100">
+<h2 class="text-lg font-semibold text-gray-900">Parámetros normativos</h2>
+<p class="text-xs text-gray-500 mt-0.5">Valores institucionales aplicables a todas las residencias.</p>
+</div>
+<!-- Parameters list -->
+<ul class="divide-y divide-gray-100 text-xs mt-3">
+<li class="py-3 flex items-center justify-between">
+<span class="text-gray-600 font-normal">Horas totales de residencia</span>
+<div class="flex items-center space-x-3">
+<span class="font-semibold text-gray-900">640 horas</span>
+<button class="text-gray-400 hover:text-gray-700 font-medium text-[11px]" type="button">Editar</button>
+</div>
+</li>
+<li class="py-3 flex items-center justify-between">
+<span class="text-gray-600 font-normal">Horas máximas por día</span>
+<div class="flex items-center space-x-3">
+<span class="font-semibold text-gray-900">7 horas</span>
+<button class="text-gray-400 hover:text-gray-700 font-medium text-[11px]" type="button">Editar</button>
+</div>
+</li>
+<li class="py-3 flex items-center justify-between">
+<span class="text-gray-600 font-normal">Horas semanales reglamentarias</span>
+<div class="flex items-center space-x-3">
+<span class="font-semibold text-gray-900">35 horas</span>
+<button class="text-gray-400 hover:text-gray-700 font-medium text-[11px]" type="button">Editar</button>
+</div>
+</li>
+<li class="py-3 flex items-center justify-between">
+<span class="text-gray-600 font-normal">Porcentaje mínimo de asistencia</span>
+<div class="flex items-center space-x-3">
+<span class="font-semibold text-gray-900">80%</span>
+<button class="text-gray-400 hover:text-gray-700 font-medium text-[11px]" type="button">Editar</button>
+</div>
+</li>
+<li class="py-3 flex items-center justify-between">
+<span class="text-gray-600 font-normal">Umbral de alerta preventiva de asistencia</span>
+<div class="flex items-center space-x-3">
+<span class="font-semibold text-gray-900">85%</span>
+<button class="text-gray-400 hover:text-gray-700 font-medium text-[11px]" type="button">Editar</button>
+</div>
+</li>
+<li class="py-3 flex items-center justify-between">
+<span class="text-gray-600 font-normal">Hito de informe parcial</span>
+<div class="flex items-center space-x-3">
+<span class="font-semibold text-gray-900">320 horas</span>
+<button class="text-gray-400 hover:text-gray-700 font-medium text-[11px]" type="button">Editar</button>
+</div>
+</li>
+<li class="py-3 flex items-center justify-between">
+<span class="text-gray-600 font-normal">Hito de informe final</span>
+<div class="flex items-center space-x-3">
+<span class="font-semibold text-gray-900">640 horas</span>
+<button class="text-gray-400 hover:text-gray-700 font-medium text-[11px]" type="button">Editar</button>
+</div>
+</li>
+<li class="py-3 flex items-center justify-between">
+<span class="text-gray-600 font-normal">Calificación mínima para acreditar</span>
+<div class="flex items-center space-x-3">
+<span class="font-semibold text-gray-900">70/100</span>
+<button class="text-gray-400 hover:text-gray-700 font-medium text-[11px]" type="button">Editar</button>
+</div>
+</li>
+<li class="py-3 flex items-center justify-between">
+<span class="text-gray-600 font-normal">Plazo de entrega del informe final</span>
+<div class="flex items-center space-x-3">
+<span class="font-semibold text-gray-900">3 días hábiles</span>
+<button class="text-gray-400 hover:text-gray-700 font-medium text-[11px]" type="button">Editar</button>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<!-- COLUMNA DERECHA - TARJETA E: Catálogos institucionales -->
+<div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6 flex flex-col justify-between">
+<div>
+<div class="pb-4 border-b border-gray-100">
+<h2 class="text-lg font-semibold text-gray-900">Catálogos institucionales</h2>
+<p class="text-xs text-gray-500 mt-0.5">Gestión de catálogos maestros del sistema.</p>
+</div>
+<!-- Catalogs list -->
+<ul class="divide-y divide-gray-100 text-xs mt-3">
+<!-- Item 1 -->
+<li class="py-3 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3 class="font-semibold text-gray-900 text-xs">Empresas receptoras</h3>
+<p class="text-gray-500 text-[11px]">45 registradas</p>
+</div>
+</div>
+<button class="text-gray-500 hover:text-gray-900 font-medium text-[11px]" type="button">Ver catálogo</button>
+</li>
+<!-- Item 2 -->
+<li class="py-3 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3 class="font-semibold text-gray-900 text-xs">Asesores internos</h3>
+<p class="text-gray-500 text-[11px]">12 docentes activos</p>
+</div>
+</div>
+<button class="text-gray-500 hover:text-gray-900 font-medium text-[11px]" type="button">Ver catálogo</button>
+</li>
+<!-- Item 3 -->
+<li class="py-3 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3 class="font-semibold text-gray-900 text-xs">Programas educativos</h3>
+<p class="text-gray-500 text-[11px]">3 carreras (ISC, IIAS, LCONT)</p>
+</div>
+</div>
+<button class="text-gray-500 hover:text-gray-900 font-medium text-[11px]" type="button">Ver catálogo</button>
+</li>
+<!-- Item 4 -->
+<li class="py-3 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3 class="font-semibold text-gray-900 text-xs">Unidades académicas</h3>
+<p class="text-gray-500 text-[11px]">5 unidades UMB</p>
+</div>
+</div>
+<button class="text-gray-500 hover:text-gray-900 font-medium text-[11px]" type="button">Ver catálogo</button>
+</li>
+<!-- Item 5 -->
+<li class="py-3 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div>
+<h3 class="font-semibold text-gray-900 text-xs">Tipos de documentos</h3>
+<p class="text-gray-500 text-[11px]">7 documentos iniciales + 2 informes</p>
+</div>
+</div>
+<button class="text-gray-500 hover:text-gray-900 font-medium text-[11px]" type="button">Ver catálogo</button>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- END: NormativeParametersAndCatalogs -->
+<!-- SECTION 5: Roles y Permisos -->
+<!-- BEGIN: RolesAndPermissions -->
+<section class="mb-8" data-purpose="roles-section">
+<div class="bg-white rounded-lg shadow-sm border border-slate-200 p-6">
+<div class="pb-4 border-b border-gray-100">
+<h2 class="text-lg font-semibold text-gray-900">Roles del sistema</h2>
+<p class="text-xs text-gray-500 mt-0.5">Gestión de roles, permisos y accesos institucionales.</p>
+</div>
+<!-- Roles Grid -->
+<div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- 1. Estudiante -->
+<div class="p-4 rounded-lg border border-slate-100 bg-gray-50/50 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<div class="w-7 h-7 rounded bg-blue-50 text-blue-700 flex items-center justify-center">
+<!-- Birrete -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 14l9-5-9-5-9 5 9 5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-xs font-semibold text-gray-900">Estudiante</h3>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600">350 activos</span>
+</div>
+<p class="text-[11px] text-gray-500 leading-relaxed">Acceso a bitácoras, expediente, informes y perfil propio.</p>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 text-right">
+<button class="text-xs font-medium text-gray-600 hover:text-gray-900" type="button">Ver permisos</button>
+</div>
+</div>
+<!-- 2. Asesor interno -->
+<div class="p-4 rounded-lg border border-slate-100 bg-gray-50/50 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<div class="w-7 h-7 rounded bg-indigo-50 text-indigo-700 flex items-center justify-center">
+<!-- Docente -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-xs font-semibold text-gray-900">Asesor interno</h3>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600">12 activos</span>
+</div>
+<p class="text-[11px] text-gray-500 leading-relaxed">Supervisión de alumnos, asesorías, evaluaciones y bitácoras de su carrera.</p>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 text-right">
+<button class="text-xs font-medium text-gray-600 hover:text-gray-900" type="button">Ver permisos</button>
+</div>
+</div>
+<!-- 3. Asesor externo -->
+<div class="p-4 rounded-lg border border-slate-100 bg-gray-50/50 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<div class="w-7 h-7 rounded bg-teal-50 text-teal-700 flex items-center justify-center">
+<!-- Empresa -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-xs font-semibold text-gray-900">Asesor externo</h3>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600">45 activos</span>
+</div>
+<p class="text-[11px] text-gray-500 leading-relaxed">Validación de bitácoras y consulta de residentes asignados.</p>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 text-right">
+<button class="text-xs font-medium text-gray-600 hover:text-gray-900" type="button">Ver permisos</button>
+</div>
+</div>
+<!-- 4. Control Escolar -->
+<div class="p-4 rounded-lg border border-slate-100 bg-gray-50/50 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<div class="w-7 h-7 rounded bg-amber-50 text-amber-700 flex items-center justify-center">
+<!-- Carpeta -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-xs font-semibold text-gray-900">Control Escolar</h3>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600">3 activos</span>
+</div>
+<p class="text-[11px] text-gray-500 leading-relaxed">Gestión documental, validación de expedientes y generación de cartas.</p>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 text-right">
+<button class="text-xs font-medium text-gray-600 hover:text-gray-900" type="button">Ver permisos</button>
+</div>
+</div>
+<!-- 5. Coordinación -->
+<div class="p-4 rounded-lg border border-slate-100 bg-gray-50/50 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<div class="w-7 h-7 rounded bg-purple-50 text-purple-700 flex items-center justify-center">
+<!-- Supervisión -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-xs font-semibold text-gray-900">Coordinación</h3>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-600">5 activos</span>
+</div>
+<p class="text-[11px] text-gray-500 leading-relaxed">Monitoreo global, contingencias, firmas y reportes de la unidad.</p>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 text-right">
+<button class="text-xs font-medium text-gray-600 hover:text-gray-900" type="button">Ver permisos</button>
+</div>
+</div>
+<!-- 6. Dirección Académica -->
+<div class="p-4 rounded-lg border border-slate-100 bg-gray-50/50 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center space-x-2">
+<div class="w-7 h-7 rounded bg-umb-guinda/10 text-umb-guinda flex items-center justify-center">
+<!-- Estrella / Institucional -->
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 class="text-xs font-semibold text-gray-900">Dirección Académica</h3>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-umb-guinda/10 text-umb-guinda">2 activos</span>
+</div>
+<p class="text-[11px] text-gray-500 leading-relaxed">Configuración global, indicadores institucionales y gestión de convenios.</p>
+</div>
+<div class="mt-3 pt-2 border-t border-gray-100 text-right">
+<button class="text-xs font-medium text-gray-600 hover:text-gray-900" type="button">Ver permisos</button>
+</div>
+</div>
+</div>
+<!-- Bottom Button -->
+<div class="mt-5 pt-3 border-t border-gray-100">
+<button class="inline-flex items-center px-3.5 py-2 border border-umb-guinda text-xs font-medium rounded-md text-umb-guinda bg-white hover:bg-umb-guinda/5 transition-colors" type="button">
+<svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 6v6m0 0v6m0-6h6m-6 0H6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              Crear nuevo rol
+            </button>
+</div>
+</div>
+</section>
+<!-- END: RolesAndPermissions -->
+<!-- SECTION 6: Acciones Críticas -->
+<!-- BEGIN: CriticalActions -->
+<section class="mb-10" data-purpose="critical-actions-section">
+<div class="bg-umb-dorado-light border-l-[3px] border-[#D69E2E] p-6 rounded-r-lg shadow-xs">
+<div class="pb-3 border-b border-amber-200">
+<h2 class="text-sm font-semibold text-[#92400E]">Acciones críticas</h2>
+<p class="text-xs text-amber-800 mt-0.5">Estas acciones afectan a toda la institución.</p>
+</div>
+<div class="mt-4 space-y-3">
+<!-- Action 1 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-white/70 rounded-md gap-2">
+<div>
+<h3 class="text-xs font-semibold text-gray-900">Cerrar ciclo escolar activo</h3>
+<p class="text-[11px] text-gray-600">Cerrar el ciclo actual deshabilitará la captura de bitácoras y evaluaciones.</p>
+</div>
+<button class="px-3 py-1.5 text-xs font-semibold text-red-700 hover:bg-red-50 rounded border border-red-200 transition-colors self-start sm:self-auto" type="button">
+                Cerrar ciclo escolar activo
+              </button>
+</div>
+<!-- Action 2 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-white/70 rounded-md gap-2">
+<div>
+<h3 class="text-xs font-semibold text-gray-900">Exportar respaldo institucional completo</h3>
+<p class="text-[11px] text-gray-600">Genera un archivo ZIP con todos los datos y documentos de la plataforma.</p>
+</div>
+<button class="px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-100 rounded border border-gray-300 transition-colors self-start sm:self-auto" type="button">
+                Exportar respaldo completo
+              </button>
+</div>
+<!-- Action 3 -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-white/70 rounded-md gap-2">
+<div>
+<h3 class="text-xs font-semibold text-gray-900">Restaurar parámetros por defecto</h3>
+<p class="text-[11px] text-gray-600">Restaura los parámetros normativos a sus valores predeterminados.</p>
+</div>
+<button class="px-3 py-1.5 text-xs font-semibold text-red-700 hover:bg-red-50 rounded border border-red-200 transition-colors self-start sm:self-auto" type="button">
+                Restaurar configuración por defecto
+              </button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: CriticalActions -->
+</main>
+<!-- END: MainContent -->
+</div>
+<!-- BEGIN: StickyBottomBar -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+<!-- END: StickyBottomBar -->
+<!-- Institutional Sub-Footer -->
+<div class="lg:ml-[260px] pb-16 pt-2 text-center text-[11px] text-umb-outline">
+    SIGRES-UMB · Universidad Mexiquense del Bicentenario · Ciclo 26-27/1
+  </div>
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard-ejecutivo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">dashboard</span>
+      <span class="text-[11px] font-medium mt-0.5">Dashboard</span>
+    </a>
+    <a href="02-vinculacion-convenios.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">handshake</span>
+      <span class="text-[11px] font-medium mt-0.5">Vinculación</span>
+    </a>
+    <a href="03-sectores-productivos.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">factory</span>
+      <span class="text-[11px] font-medium mt-0.5">Sectores</span>
+    </a>
+    <a href="04-reportes-acreditacion.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">verified_user</span>
+      <span class="text-[11px] font-medium mt-0.5">Acreditación</span>
+    </a>
+    <a href="06-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

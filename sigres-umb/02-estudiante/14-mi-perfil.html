@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Perfil — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-umb-guinda selection:text-white">
+
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Estudiante</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Mi perfil</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="14-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          JM
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Jesús Andrés Mondragón</span>
+          <span class="text-[10px] text-white/75 leading-none">Estudiante</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal con Sidebar y Área de Trabajo -->
+  <div class="flex flex-1 pt-16 min-h-screen">
+
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              JM
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Jesús Andrés Mondragón Tenorio</p>
+              <p class="text-[11px] text-umb-outline truncate">Matrícula: 13220024 · ISC</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="08-mis-bitacoras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">menu_book</span>
+            <span class="text-sm">Bitácoras</span>
+          </a>
+          <a href="02-mi-expediente.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">folder</span>
+            <span class="text-sm">Expediente</span>
+          </a>
+          <a href="13-mis-informes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">description</span>
+            <span class="text-sm">Informes</span>
+          </a>
+          <a href="14-mi-perfil.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+
+    <!-- Contenido Principal Centrado (ancho máx 1100px) -->
+    <main class="flex-1 md:ml-64 p-4 md:p-8 flex flex-col items-center">
+      <div class="w-full max-w-[1100px] space-y-6">
+
+        <!-- ENCABEZADO -->
+        <section class="space-y-1">
+          <nav class="flex items-center space-x-2 text-[12px] text-neutral-textMuted">
+            <a href="#" class="hover:text-umb-guinda transition-colors">Inicio</a>
+            <span>/</span>
+            <span class="text-neutral-textPrimary font-medium">Mi perfil</span>
+          </nav>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pt-1">
+            <div>
+              <h1 class="text-2xl font-bold text-neutral-textPrimary">Mi perfil</h1>
+              <p class="text-sm text-neutral-textSecondary">Consulta y actualiza tu información personal y académica.</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-umb-guinda/10 text-umb-guinda border border-umb-guinda/20">
+                Ciclo 26-27/1
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 1 — Tarjeta de presentación del estudiante -->
+        <section class="bg-white rounded-xl p-8 border-t-4 border-umb-guinda custom-shadow border-x border-b border-neutral-border">
+          <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+            <!-- Columna Izquierda (40%) -->
+            <div class="w-full md:w-[38%] flex flex-col items-center text-center pb-6 md:pb-0 md:border-r md:border-neutral-border md:pr-8">
+              <div class="relative group">
+                <div class="w-24 h-24 rounded-full overflow-hidden ring-3 ring-white shadow-md border border-neutral-border bg-neutral-card-subtle">
+                  <img src="../assets/logo_umb.png" alt="Jesús Andrés Mondragón Tenorio" class="w-full h-full object-cover">
+                </div>
+                <!-- Botón de cámara superpuesto en esquina inferior derecha -->
+                <button type="button" class="absolute bottom-0 right-0 w-7 h-7 bg-umb-guinda text-white rounded-full flex items-center justify-center shadow-md hover:bg-umb-guinda-hover transition-transform hover:scale-105" title="Cambiar foto de perfil">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </button>
+              </div>
+
+              <div class="mt-3.5 space-y-1">
+                <button type="button" class="text-xs font-medium text-umb-guinda hover:text-umb-guinda-hover hover:underline inline-flex items-center gap-1.5 transition-colors">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                  </svg>
+                  Cambiar foto
+                </button>
+                <p class="text-[11px] text-neutral-textMuted">JPG o PNG. Máximo 2 MB.</p>
+              </div>
+            </div>
+
+            <!-- Columna Derecha (60%) -->
+            <div class="w-full md:w-[62%] space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <h2 class="text-xl font-semibold text-neutral-textPrimary">Jesús Andrés Mondragón Tenorio</h2>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-brand-verde-badge text-brand-verde-text">
+                  <span class="w-1.5 h-1.5 rounded-full bg-brand-verde-exito animate-pulse"></span>
+                  Residencia activa
+                </span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-4 pt-1 text-sm text-neutral-textSecondary">
+                <div>
+                  <span class="text-xs text-neutral-textMuted block">Matrícula</span>
+                  <span class="font-medium text-neutral-textPrimary">13220024</span>
+                </div>
+                <div>
+                  <span class="text-xs text-neutral-textMuted block">Semestre</span>
+                  <span class="font-medium text-neutral-textPrimary">9º semestre</span>
+                </div>
+                <div class="sm:col-span-2">
+                  <span class="text-xs text-neutral-textMuted block">Programa educativo</span>
+                  <span class="font-medium text-neutral-textPrimary">Ingeniería en Sistemas Computacionales (ISC)</span>
+                </div>
+              </div>
+
+              <div class="pt-2 flex items-center gap-2 text-xs text-neutral-textMuted">
+                <svg class="w-4 h-4 text-umb-dorado shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span>Expediente reglamentario validado al 100% · UES San José del Rincón</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 2 — Datos personales (Solo lectura de Control Escolar) -->
+        <section class="bg-white rounded-xl p-6 border border-neutral-border custom-shadow">
+          <div class="border-b border-neutral-border pb-4 mb-5">
+            <h3 class="text-base font-semibold text-neutral-textPrimary">Datos personales</h3>
+            <p class="text-xs text-neutral-textMuted mt-0.5">Esta información se sincroniza desde el sistema de Control Escolar UMB. Si necesitas corregir algo, contacta a Control Escolar.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Campo 1 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Nombre completo</span>
+              <span class="text-sm font-medium text-neutral-textPrimary mt-0.5 block">Jesús Andrés Mondragón Tenorio</span>
+            </div>
+
+            <!-- Campo 2 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Matrícula</span>
+              <span class="text-sm font-medium text-neutral-textPrimary mt-0.5 block font-mono">13220024</span>
+            </div>
+
+            <!-- Campo 3 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Correo institucional</span>
+              <div class="flex items-center justify-between mt-0.5">
+                <span class="text-sm font-medium text-neutral-textPrimary">valeria.reyes@umb.mx</span>
+                <span class="text-[10px] text-neutral-textMuted bg-neutral-border/50 px-2 py-0.5 rounded">Solo lectura</span>
+              </div>
+            </div>
+
+            <!-- Campo 4 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Teléfono celular</span>
+              <div class="flex items-center justify-between mt-0.5">
+                <span class="text-sm font-medium text-neutral-textPrimary">712 145 8892</span>
+                <span class="text-[10px] text-neutral-textMuted bg-neutral-border/50 px-2 py-0.5 rounded">Solo lectura</span>
+              </div>
+            </div>
+
+            <!-- Campo 5 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">CURP</span>
+              <span class="text-sm font-medium text-neutral-textPrimary mt-0.5 block font-mono">REMV020815MDFXXX02</span>
+            </div>
+
+            <!-- Campo 6 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">NSS</span>
+              <span class="text-sm font-medium text-neutral-textPrimary mt-0.5 block font-mono">5214-99-3829-1</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 3 — Datos académicos -->
+        <section class="bg-white rounded-xl p-6 border border-neutral-border custom-shadow">
+          <div class="border-b border-neutral-border pb-4 mb-5">
+            <h3 class="text-base font-semibold text-neutral-textPrimary">Datos académicos</h3>
+            <p class="text-xs text-neutral-textMuted mt-0.5">Información sincronizada desde el sistema de Control Escolar UMB.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Campo 1 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Programa educativo</span>
+              <span class="text-sm font-medium text-neutral-textPrimary mt-0.5 block">Ingeniería en Sistemas Computacionales</span>
+            </div>
+
+            <!-- Campo 2 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Semestre</span>
+              <span class="text-sm font-medium text-neutral-textPrimary mt-0.5 block">9º semestre</span>
+            </div>
+
+            <!-- Campo 3 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Créditos cubiertos</span>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="text-sm font-medium text-neutral-textPrimary">85%</span>
+                <span class="text-xs text-brand-verde-text bg-brand-verde-badge px-2 py-0.2 rounded font-medium">Requisito cumplido (≥80%)</span>
+              </div>
+            </div>
+
+            <!-- Campo 4 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Promedio general</span>
+              <span class="text-sm font-medium text-neutral-textPrimary mt-0.5 block font-semibold">9.2</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 4 — Datos de la residencia -->
+        <section class="bg-white rounded-xl p-6 border border-neutral-border custom-shadow">
+          <div class="border-b border-neutral-border pb-4 mb-5">
+            <h3 class="text-base font-semibold text-neutral-textPrimary">Datos de la residencia</h3>
+            <p class="text-xs text-neutral-textMuted mt-0.5">Información de tu proyecto y empresa receptora.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Campo 1 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Empresa receptora</span>
+              <span class="text-sm font-medium text-neutral-textPrimary mt-0.5 block">Universidad Mexiquense del Bicentenario · Dirección Académica</span>
+            </div>
+
+            <!-- Campo 2 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Asesor externo</span>
+              <span class="text-sm font-medium text-neutral-textPrimary mt-0.5 block">Ing. I.S.C. Leonardo Becerril Sánchez</span>
+            </div>
+
+            <!-- Campo 3 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Asesor interno</span>
+              <span class="text-sm font-medium text-neutral-textPrimary mt-0.5 block">I.S.C. Leonardo Becerril Sánchez</span>
+            </div>
+
+            <!-- Campo 4 -->
+            <div class="p-3 bg-neutral-card-subtle rounded-lg border border-neutral-border/70">
+              <span class="text-[11px] font-medium text-neutral-textMuted uppercase tracking-wider block">Proyecto</span>
+              <span class="text-sm font-medium text-neutral-textPrimary mt-0.5 block leading-snug">Plataforma web para el control de información relativa al proceso de residencia profesional</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 5 — Configuración de notificaciones -->
+        <section class="bg-white rounded-xl p-6 border border-neutral-border custom-shadow">
+          <div class="border-b border-neutral-border pb-4 mb-5">
+            <h3 class="text-base font-semibold text-neutral-textPrimary">Notificaciones</h3>
+            <p class="text-xs text-neutral-textMuted mt-0.5">Elige qué notificaciones deseas recibir y por qué medio.</p>
+          </div>
+
+          <div class="divide-y divide-neutral-border">
+            <!-- Toggle 1 -->
+            <div class="py-3.5 flex items-center justify-between gap-4">
+              <div class="space-y-0.5">
+                <h4 class="text-sm font-medium text-neutral-textPrimary">Recordatorios de bitácoras</h4>
+                <p class="text-xs text-neutral-textMuted">Recibe un aviso cuando falten 2 días para el cierre semanal.</p>
+              </div>
+              <!-- Toggle Activado -->
+              <button type="button" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-umb-guinda transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-guinda focus:ring-offset-2" role="switch" aria-checked="true">
+                <span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out"></span>
+              </button>
+            </div>
+
+            <!-- Toggle 2 -->
+            <div class="py-3.5 flex items-center justify-between gap-4">
+              <div class="space-y-0.5">
+                <h4 class="text-sm font-medium text-neutral-textPrimary">Aprobación de bitácoras</h4>
+                <p class="text-xs text-neutral-textMuted">Notificación cuando tu asesor externo valide o rechace una bitácora.</p>
+              </div>
+              <!-- Toggle Activado -->
+              <button type="button" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-umb-guinda transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-guinda focus:ring-offset-2" role="switch" aria-checked="true">
+                <span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out"></span>
+              </button>
+            </div>
+
+            <!-- Toggle 3 -->
+            <div class="py-3.5 flex items-center justify-between gap-4">
+              <div class="space-y-0.5">
+                <h4 class="text-sm font-medium text-neutral-textPrimary">Hitos alcanzados</h4>
+                <p class="text-xs text-neutral-textMuted">Aviso cuando alcances las 320 o 640 horas reglamentarias.</p>
+              </div>
+              <!-- Toggle Activado -->
+              <button type="button" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-umb-guinda transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-guinda focus:ring-offset-2" role="switch" aria-checked="true">
+                <span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out"></span>
+              </button>
+            </div>
+
+            <!-- Toggle 4 -->
+            <div class="py-3.5 flex items-center justify-between gap-4">
+              <div class="space-y-0.5">
+                <h4 class="text-sm font-medium text-neutral-textPrimary">Recordatorios de asesorías</h4>
+                <p class="text-xs text-neutral-textMuted">Aviso 24 horas antes de cada sesión con tu asesor interno.</p>
+              </div>
+              <!-- Toggle Activado -->
+              <button type="button" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-umb-guinda transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-guinda focus:ring-offset-2" role="switch" aria-checked="true">
+                <span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out"></span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 6 — Seguridad -->
+        <section class="bg-white rounded-xl p-6 border border-neutral-border custom-shadow">
+          <div class="border-b border-neutral-border pb-4 mb-5">
+            <h3 class="text-base font-semibold text-neutral-textPrimary">Seguridad</h3>
+            <p class="text-xs text-neutral-textMuted mt-0.5">Gestiona el acceso a tu cuenta.</p>
+          </div>
+
+          <div class="divide-y divide-neutral-border">
+            <!-- Opción 1 -->
+            <div class="py-3.5 flex items-center justify-between gap-4">
+              <div class="flex items-center space-x-3.5">
+                <div class="w-9 h-9 rounded-lg bg-neutral-card-subtle border border-neutral-border flex items-center justify-center text-neutral-textSecondary shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-medium text-neutral-textPrimary">Sesiones activas</h4>
+                  <p class="text-xs text-neutral-textMuted">Consulta los dispositivos donde tienes sesión iniciada.</p>
+                </div>
+              </div>
+              <button type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-neutral-border text-xs font-medium text-neutral-textSecondary hover:bg-neutral-card-subtle hover:text-neutral-textPrimary transition-colors">
+                <span>Ver sesiones</span>
+                <svg class="w-3.5 h-3.5 text-neutral-textMuted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Opción 2 -->
+            <div class="py-3.5 flex items-center justify-between gap-4">
+              <div class="flex items-center space-x-3.5">
+                <div class="w-9 h-9 rounded-lg bg-neutral-card-subtle border border-neutral-border flex items-center justify-center text-neutral-textSecondary shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-medium text-neutral-textPrimary">Cerrar sesión en todos los dispositivos</h4>
+                  <p class="text-xs text-neutral-textMuted">Se cerrará tu sesión en todos los dispositivos.</p>
+                </div>
+              </div>
+              <button type="button" class="inline-flex items-center px-3 py-1.5 rounded-lg border border-brand-rojo-alerta/30 text-xs font-medium text-brand-rojo-alerta hover:bg-red-50 transition-colors">
+                Cerrar todas
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 7 — Acciones de la cuenta -->
+        <section class="bg-brand-ambar-bg/70 border-l-4 border-brand-ambar-alerta p-5 rounded-xl border-y border-r border-amber-200/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="space-y-0.5">
+            <h4 class="text-sm font-semibold text-brand-ambar-text flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-ambar-alerta shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              Cerrar sesión
+            </h4>
+            <p class="text-xs text-brand-ambar-text/90">Se cerrará tu sesión en este dispositivo. Podrás volver a acceder con un enlace mágico.</p>
+          </div>
+          <button type="button" class="px-4 py-2 bg-umb-guinda text-white text-xs font-medium rounded-lg hover:bg-umb-guinda-hover shadow-xs shrink-0 self-start sm:self-center transition-colors">
+            Cerrar sesión
+          </button>
+        </section>
+
+        <!-- PIE DE PÁGINA -->
+        <footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+
+      </div>
+    </main>
+  </div>
+
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="08-mis-bitacoras.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">menu_book</span>
+      <span class="text-[11px] font-medium mt-0.5">Bitácoras</span>
+    </a>
+    <a href="02-mi-expediente.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">folder</span>
+      <span class="text-[11px] font-medium mt-0.5">Expediente</span>
+    </a>
+    <a href="13-mis-informes.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">description</span>
+      <span class="text-[11px] font-medium mt-0.5">Informes</span>
+    </a>
+    <a href="14-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">person</span>
+      <span class="text-[11px] font-semibold mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

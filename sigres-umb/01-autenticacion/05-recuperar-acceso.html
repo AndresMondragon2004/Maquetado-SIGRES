@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enlace expirado — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-umb-surface text-stone-900 flex flex-col justify-between items-center py-8 px-4 antialiased selection:bg-umb-guinda selection:text-white">
+<!-- BEGIN: MainHeader -->
+<header class="w-full flex justify-center mb-6">
+<!-- Top Institution Badge / Pill Container -->
+<div class="bg-white border border-stone-200 rounded-full px-6 py-2.5 flex items-center gap-3.5 shadow-sm max-w-fit">
+<img alt="Logo UMB" class="h-9 w-auto object-contain" src="../assets/logo_umb.png"/>
+<div aria-hidden="true" class="w-px h-6 bg-stone-300"></div>
+<div class="flex items-center gap-2 text-sm leading-none">
+<span class="font-semibold text-base text-umb-guinda tracking-tight">SIGRES-UMB</span>
+<span class="text-stone-500 font-normal text-sm hidden sm:inline">UES San José del Rincón</span>
+</div>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="w-full flex flex-col items-center justify-center flex-1 my-2">
+<!-- Central Expiration Card -->
+<div class="w-full max-w-[480px] bg-white border border-stone-200/90 rounded-xl shadow-sm p-8 sm:p-12 flex flex-col items-center text-center">
+<!-- Icon: Clock / Expiration indicator in soft amber -->
+<div aria-hidden="true" class="w-20 h-20 rounded-full bg-umb-dorado-light flex items-center justify-center shrink-0">
+<svg class="w-10 h-10 text-[#D69E2E]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<!-- Circular reload clock arrow shape -->
+<path d="M12 6v6l4 2m6-2a9 9 0 11-2.472-6.196L21 8m0 0v-5m0 5h-5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<!-- Title -->
+<h1 class="text-[20px] font-semibold text-umb-carbon mt-6 tracking-tight">
+        El enlace ha expirado
+      </h1>
+<!-- Description text -->
+<p class="text-sm font-normal text-umb-muted mt-2 leading-relaxed max-w-sm">
+        Por motivos de seguridad, los enlaces de acceso son válidos por 15 minutos. Solicita uno nuevo para ingresar.
+      </p>
+<!-- Info Box Notice -->
+<div class="bg-[#F9FAFB] border border-[#E5E7EB] rounded-lg p-3.5 mt-6 w-full flex items-start gap-2.5 text-left">
+<svg class="w-4 h-4 text-umb-outline shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="12" x2="12" y1="16" y2="12"></line>
+<line x1="12" x2="12.01" y1="8" y2="8"></line>
+</svg>
+<p class="text-[12px] font-normal leading-tight text-umb-muted">
+          El nuevo enlace llegará al mismo correo con el que intentaste acceder.
+        </p>
+</div>
+<!-- Action Form -->
+<form action="#" class="w-full mt-6" method="POST" onsubmit="event.preventDefault();">
+<!-- Email Input Field -->
+<div class="text-left w-full">
+<label class="block text-xs font-medium text-stone-700 mb-1.5" for="email">
+            Correo institucional o de la empresa
+          </label>
+<input class="h-[44px] w-full border border-umb-border rounded-lg px-3.5 text-sm text-stone-900 bg-white placeholder-stone-400 focus:border-umb-guinda focus:ring-1 focus:ring-umb-guinda outline-none transition" id="email" name="email" placeholder="usuario@umb.mx" required="" type="email" value="nombre@umb.mx"/>
+</div>
+<!-- Primary Action Button: Resend Link -->
+<button class="w-full h-[44px] bg-umb-guinda hover:bg-[#531422] transition-colors text-white text-sm font-medium rounded-lg mt-4 flex items-center justify-center gap-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:ring-offset-1" type="submit">
+<svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Reenviar enlace de acceso</span>
+</button>
+</form>
+<!-- Divider -->
+<div aria-hidden="true" class="w-full flex items-center justify-center my-4 relative">
+<div class="w-full border-t border-[#E5E7EB]"></div>
+<span class="absolute bg-white px-3 text-[11px] font-normal text-umb-outline">o</span>
+</div>
+<!-- Secondary Action Button: Back to Login -->
+<a class="w-full h-[44px] bg-transparent hover:bg-stone-50 transition-colors border border-umb-guinda text-umb-guinda text-sm font-medium rounded-lg flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:ring-offset-1" href="#">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span>Volver a inicio de sesión</span>
+</a>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: MainFooter -->
+<footer class="w-full text-center mt-8 space-y-1.5 shrink-0">
+<p class="text-[12px] font-normal text-umb-muted">
+      ¿Sigues teniendo problemas? 
+      <a class="text-umb-guinda font-medium hover:underline focus:outline-none focus:ring-1 focus:ring-umb-guinda rounded" href="#">
+        Contacta a Control Escolar
+      </a>
+</p>
+<p class="text-[11px] font-normal text-umb-outline">
+      Universidad Mexiquense del Bicentenario · UES San José del Rincón
+    </p>
+<p class="text-[11px] font-normal text-umb-outline">
+      SIGRES-UMB · Ciclo 26-27/1
+    </p>
+</footer>
+<!-- END: MainFooter -->
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

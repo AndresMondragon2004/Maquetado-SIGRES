@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-umb-surface" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluar informe final — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col bg-umb-surface text-umb-carbon overflow-x-hidden">
+<!-- BEGIN: TopAppBar -->
+<!-- Barra superior fija de 64px de alto con identidad institucional y perfil de usuario -->
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Asesor interno</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Evaluar informe final</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="08-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          LB
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">I.S.C. Leonardo Becerril</span>
+          <span class="text-[10px] text-white/75 leading-none">Asesor interno</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: TopAppBar -->
+<!-- BEGIN: MainContainerWithSidebar -->
+<div class="flex pt-16 min-h-screen">
+<!-- BEGIN: LeftSidebar -->
+<!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              LB
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">I.S.C. Leonardo Becerril Sánchez</p>
+              <p class="text-[11px] text-umb-outline truncate">Docente Asesor · ISC</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="02-mis-alumnos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">group</span>
+            <span class="text-sm">Mis alumnos</span>
+          </a>
+          <a href="04-registrar-asesoria.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">assignment</span>
+            <span class="text-sm">Asesorías</span>
+          </a>
+          <a href="05-revisar-bitacoras.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">fact_check</span>
+            <span class="text-sm">Evaluaciones</span>
+          </a>
+          <a href="08-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContentArea -->
+<!-- Contenedor central adaptable con margen compensado de 260px para el sidebar -->
+<main class="flex-1 ml-[260px] pb-24 px-8 pt-6">
+<!-- BEGIN: PageHeader -->
+<div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+<div>
+<button class="inline-flex items-center text-xs font-semibold text-umb-guinda hover:text-[#501421] mb-2 transition-colors" type="button">
+<svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+            Volver al alumno
+          </button>
+<h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Evaluar informe final</h1>
+<p class="text-sm text-umb-muted mt-0.5">Asigna la calificación definitiva del informe final de 640 horas.</p>
+</div>
+<div>
+<!-- Badge de Hito 640 hrs -->
+<span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-umb-guinda text-white shadow-sm">
+            Hito 640 hrs
+          </span>
+</div>
+</div>
+<!-- END: PageHeader -->
+<!-- BEGIN: StudentContextCard -->
+<!-- Sección 1: Tarjeta con ficha del alumno y estado de entrega -->
+<section aria-label="Datos del estudiante" class="bg-white rounded-lg border border-gray-200 p-5 mb-6 shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+<!-- Columna izquierda: Identidad del alumno -->
+<div class="flex items-center space-x-4">
+<div class="w-14 h-14 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-lg shadow-sm">
+              VR
+            </div>
+<div>
+<h2 class="text-base font-bold text-gray-900">Jesús Andrés Mondragón Tenorio</h2>
+<p class="text-xs text-umb-muted mt-0.5">Matrícula 13220024 · ISC · 9º semestre</p>
+<div class="flex items-center space-x-2 mt-2">
+<span class="text-xs text-gray-500">Progreso reglamentario:</span>
+<span class="text-xs font-bold text-[#2D8C4E]">640 / 640 hrs</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-100 text-emerald-800">
+                  Completado
+                </span>
+</div>
+</div>
+</div>
+<!-- Columna derecha: Fechas y temporizador -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t lg:border-t-0 lg:border-l pt-4 lg:pt-0 lg:pl-6 border-gray-100">
+<div>
+<p class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Fecha de entrega</p>
+<p class="text-xs font-semibold text-gray-800 mt-1">18 de diciembre de 2026, 22:15 hrs</p>
+</div>
+<div>
+<p class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Estado del informe</p>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-umb-dorado-light text-[#92400E] mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-[#D69E2E] mr-1.5"></span>
+                Pendiente de evaluación
+              </span>
+</div>
+<div>
+<p class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Plazo reglamentario</p>
+<div class="inline-flex items-center text-xs font-bold text-[#C53030] mt-1">
+<svg class="w-4 h-4 mr-1 text-[#C53030]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                2 días hábiles restantes
+              </div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: StudentContextCard -->
+<!-- BEGIN: DocumentDetailsAndAuditSection -->
+<!-- Sección 2: Grid 60% / 40% para el visor del documento y datos de auditoría -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
+<!-- COLUMNA IZQUIERDA (60% -> col-span-7) -->
+<div class="lg:col-span-7 space-y-5">
+<!-- Tarjeta A: Visor simulado de documento -->
+<div class="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
+<div class="flex items-center justify-between border-b pb-3 mb-4">
+<div>
+<h3 class="text-base font-semibold text-umb-carbon">Informe final entregado</h3>
+<p class="text-xs text-umb-outline">Informe_Final_ValeriaReyes_v1.pdf · 12.4 MB · 68 cuartillas</p>
+</div>
+<span class="px-2 py-0.5 bg-gray-100 text-gray-700 text-[10px] font-semibold tracking-wider rounded">PDF OFICIAL</span>
+</div>
+<!-- Preview box simulado -->
+<div class="bg-[#F8FAFC] border-2 border-dashed border-gray-200 rounded-lg p-8 flex flex-col items-center justify-center text-center">
+<div class="w-16 h-16 bg-red-50 text-[#C53030] rounded-xl flex items-center justify-center mb-3 shadow-sm">
+<svg class="w-10 h-10" fill="currentColor" viewbox="0 0 24 24">
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5h-1v2h1c.55 0 1-.45 1-1s-.45-1-1-1zm6 0h-1v3.5h1c.83 0 1.5-.67 1.5-1.5v-.5c0-.83-.67-1.5-1.5-1.5zm-8-3H6v5h1.5v-1.5H8.5c.83 0 1.5-.67 1.5-1.5V10c0-.83-.67-1.5-1.5-1.5zm3.5 0H9.5v5h3c.83 0 1.5-.67 1.5-1.5v-2c0-.83-.67-1.5-1.5-1.5zm4.5 0h-3v5h1.5v-1.5h1.5v-1H15.5V10H17V8.5z"></path>
+</svg>
+</div>
+<h4 class="text-sm font-bold text-gray-800">Vista previa del documento</h4>
+<p class="text-xs text-umb-muted max-w-sm mt-1">
+                Formato institucional generado conforme a directrices UMB. Valida las 68 cuartillas netas.
+              </p>
+<div class="mt-4 flex flex-wrap gap-2 justify-center">
+<button class="px-3.5 py-1.5 text-xs font-semibold text-gray-700 bg-white border border-gray-300 rounded shadow-sm hover:bg-gray-50 flex items-center transition" type="button">
+<svg class="w-3.5 h-3.5 mr-1.5 text-gray-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  Abrir en nueva pestaña
+                </button>
+<button class="px-3.5 py-1.5 text-xs font-semibold text-white bg-umb-guinda hover:bg-[#501421] rounded shadow-sm flex items-center transition" type="button">
+<svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  Descargar PDF
+                </button>
+</div>
+</div>
+</div>
+<!-- Caja de pre-auditoría automática -->
+<div class="bg-[#EFF6FF] border border-[#2B6CB0]/30 rounded-lg p-4 shadow-sm">
+<div class="flex items-center space-x-2 mb-3">
+<svg class="w-5 h-5 text-[#2B6CB0]" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path>
+</svg>
+<h4 class="text-xs font-bold text-[#1E3A8A] uppercase tracking-wider">Pre-auditoría automática del sistema</h4>
+</div>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-[#1E40AF]">
+<li class="flex items-center space-x-1.5">
+<span class="text-blue-600 font-bold">✓</span>
+<span>Extensión: 68 cuartillas netas (mínimo 60)</span>
+</li>
+<li class="flex items-center space-x-1.5">
+<span class="text-blue-600 font-bold">✓</span>
+<span>Secciones obligatorias: 16 de 16 detectadas</span>
+</li>
+<li class="flex items-center space-x-1.5">
+<span class="text-blue-600 font-bold">✓</span>
+<span>Referencias: 28 fuentes indexadas</span>
+</li>
+<li class="flex items-center space-x-1.5">
+<span class="text-blue-600 font-bold">✓</span>
+<span>Formato APA 6ta edición: Detectado</span>
+</li>
+<li class="flex items-center space-x-1.5">
+<span class="text-blue-600 font-bold">✓</span>
+<span>Índice analítico con hipervínculos</span>
+</li>
+<li class="flex items-center space-x-1.5">
+<span class="text-blue-600 font-bold">✓</span>
+<span>Resumen ejecutivo (español e inglés)</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- COLUMNA DERECHA (40% -> col-span-5) -->
+<div class="lg:col-span-5 space-y-5">
+<!-- Tarjeta B: Datos del informe -->
+<div class="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
+<h3 class="text-base font-semibold text-umb-carbon mb-3">Datos del informe</h3>
+<dl class="divide-y divide-gray-100 text-xs">
+<div class="py-2 flex justify-between">
+<dt class="text-umb-outline">Tipo de informe</dt>
+<dd class="font-medium text-gray-900 text-right">Informe final · 640 horas</dd>
+</div>
+<div class="py-2 flex justify-between">
+<dt class="text-umb-outline">Extensión total</dt>
+<dd class="font-medium text-gray-900 text-right">68 cuartillas netas</dd>
+</div>
+<div class="py-2 flex justify-between items-center">
+<dt class="text-umb-outline">Secciones entregadas</dt>
+<dd class="text-right">
+<span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-100 text-[#2D8C4E]">
+                    16 de 16 completas
+                  </span>
+</dd>
+</div>
+<div class="py-2 flex justify-between">
+<dt class="text-umb-outline">Referencias registradas</dt>
+<dd class="font-medium text-gray-900 text-right">28 fuentes en APA 6ta edición</dd>
+</div>
+<div class="py-2 flex justify-between">
+<dt class="text-umb-outline">Índice de contenido</dt>
+<dd class="font-medium text-[#2D8C4E] text-right">Presente</dd>
+</div>
+<div class="py-2 flex justify-between">
+<dt class="text-umb-outline">Resumen ejecutivo</dt>
+<dd class="font-medium text-[#2D8C4E] text-right">Presente</dd>
+</div>
+<div class="py-2 flex justify-between">
+<dt class="text-umb-outline">Fecha de entrega</dt>
+<dd class="font-medium text-gray-900 text-right">18 de diciembre de 2026</dd>
+</div>
+</dl>
+</div>
+<!-- Tarjeta C: Aviso normativo CRÍTICO -->
+<div class="bg-[#FEE2E2] border-l-4 border-[#C53030] p-4 rounded-r-lg shadow-sm">
+<div class="flex items-start space-x-3">
+<svg class="w-5 h-5 text-[#C53030] flex-shrink-0 mt-0.5" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" fill-rule="evenodd"></path>
+</svg>
+<div>
+<h4 class="text-xs font-bold text-[#991B1B]">Aviso normativo importante</h4>
+<p class="text-xs text-[#7F1D1D] mt-1 leading-relaxed">
+                  La calificación que asignes será <strong>DEFINITIVA e INMUTABLE</strong>. No hay exámenes extraordinarios ni prórrogas. Si cometes un error de captura, dispones de una ventana de gracia reglamentaria de <strong>24 horas</strong> para corregirlo. Posterior a este lapso, cualquier modificación requerirá oficio colegiado validado por la Coordinación de Carrera.
+                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- END: DocumentDetailsAndAuditSection -->
+<!-- BEGIN: RubricEvaluationSection -->
+<!-- Sección 3: Rúbrica de 16 criterios para alcanzar los 100 puntos -->
+<section aria-label="Rúbrica de evaluación cuantitativa" class="bg-white rounded-lg border border-gray-200 p-6 mb-6 shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-gray-100 gap-2">
+<div>
+<h3 class="text-base font-semibold text-umb-carbon">Rúbrica de evaluación</h3>
+<p class="text-xs text-umb-outline">Asigna puntaje a cada una de las 16 secciones del informe. La suma debe ser 100 puntos.</p>
+</div>
+<!-- Resumen de puntaje en vivo -->
+<div class="flex items-center space-x-4 bg-gray-50 border border-gray-200 px-4 py-2 rounded-lg">
+<div>
+<span class="text-xs text-gray-500 block leading-tight">Puntaje asignado:</span>
+<span class="text-sm font-bold text-umb-carbon">88 / 100</span>
+</div>
+<div class="h-6 w-px bg-gray-300"></div>
+<div>
+<span class="text-xs text-gray-500 block leading-tight">Calificación calculada:</span>
+<span class="text-base font-bold text-[#2D8C4E]">88/100</span>
+</div>
+<span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+              Aprobado con distinción
+            </span>
+</div>
+</div>
+<!-- Lista de 16 secciones evaluables -->
+<div class="mt-6 space-y-3">
+<!-- Item 1: Portada (5 pts) -->
+<div class="p-3.5 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors bg-white">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">1. Portada</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 5 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Incluye datos requeridos conforme a normas de identidad UMB.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_1">Puntaje Portada</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-gray-300 focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_1" max="5" min="0" type="number" value="5"/>
+<span class="text-xs text-gray-500">/ 5 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-gray-200 placeholder-gray-400 focus:ring-umb-guinda focus:border-umb-guinda" placeholder="Observación del criterio..." type="text" value="Completa y con todos los datos requeridos."/>
+</div>
+</div>
+</div>
+<!-- Item 2: Introducción (5 pts) -->
+<div class="p-3.5 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors bg-white">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">2. Introducción</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 5 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Presenta el contexto, justificación inicial y propósito del proyecto.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_2">Puntaje Introducción</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-gray-300 focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_2" max="5" min="0" type="number" value="5"/>
+<span class="text-xs text-gray-500">/ 5 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-gray-200 placeholder-gray-400 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Adecuada, contextualiza bien el proyecto."/>
+</div>
+</div>
+</div>
+<!-- Item 3: Planteamiento del problema (7 pts) -->
+<div class="p-3.5 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors bg-white">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">3. Planteamiento del problema</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 7 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Describe de forma concisa y medible la necesidad o problemática abordada.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_3">Puntaje Planteamiento del problema</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-gray-300 focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_3" max="7" min="0" type="number" value="7"/>
+<span class="text-xs text-gray-500">/ 7 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-gray-200 placeholder-gray-400 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Delimitación clara y precisa de la problemática."/>
+</div>
+</div>
+</div>
+<!-- Item 4: Justificación (7 pts) -->
+<div class="p-3.5 border border-amber-200 bg-amber-50/20 rounded-lg hover:border-amber-300 transition-colors">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">4. Justificación</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 7 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Explica la relevancia académica, técnica, social y administrativa.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_4">Puntaje Justificación</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-amber-400 text-[#92400E] focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_4" max="7" min="0" type="number" value="6"/>
+<span class="text-xs text-gray-500">/ 7 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-amber-300 bg-white text-gray-700 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Falta profundizar en el impacto social de la solución."/>
+</div>
+</div>
+</div>
+<!-- Item 5: Objetivos (5 pts) -->
+<div class="p-3.5 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors bg-white">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">5. Objetivos (general y específicos)</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 5 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Definición de objetivos alcanzables, alineados con el cronograma de 640 hrs.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_5">Puntaje Objetivos</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-gray-300 focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_5" max="5" min="0" type="number" value="5"/>
+<span class="text-xs text-gray-500">/ 5 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-gray-200 placeholder-gray-400 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Bien formulados y medibles."/>
+</div>
+</div>
+</div>
+<!-- Item 6: Marco teórico (10 pts) -->
+<div class="p-3.5 border border-amber-200 bg-amber-50/20 rounded-lg hover:border-amber-300 transition-colors">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">6. Marco teórico</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 10 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Sustento científico, conceptualización y estado del arte.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_6">Puntaje Marco teórico</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-amber-400 text-[#92400E] focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_6" max="10" min="0" type="number" value="8"/>
+<span class="text-xs text-gray-500">/ 10 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-amber-300 bg-white text-gray-700 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Buen nivel de detalle, revisar algunas citas APA."/>
+</div>
+</div>
+</div>
+<!-- Item 7: Marco contextual (5 pts) -->
+<div class="p-3.5 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors bg-white">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">7. Marco contextual</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 5 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Descripción de la empresa o unidad receptora y área de aplicación.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_7">Puntaje Marco contextual</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-gray-300 focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_7" max="5" min="0" type="number" value="5"/>
+<span class="text-xs text-gray-500">/ 5 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-gray-200 placeholder-gray-400 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Describe correctamente la unidad receptora."/>
+</div>
+</div>
+</div>
+<!-- Item 8: Marco legal (5 pts) -->
+<div class="p-3.5 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors bg-white">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">8. Marco legal</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 5 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Normas y directrices regulatorias aplicables al proyecto.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_8">Puntaje Marco legal</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-gray-300 focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_8" max="5" min="0" type="number" value="5"/>
+<span class="text-xs text-gray-500">/ 5 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-gray-200 placeholder-gray-400 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Referencias al Reglamento UMB 2026 correctas."/>
+</div>
+</div>
+</div>
+<!-- Item 9: Metodología (8 pts) -->
+<div class="p-3.5 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors bg-white">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">9. Metodología</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 8 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Técnicas, instrumentos, fases de desarrollo y herramientas empleadas.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_9">Puntaje Metodología</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-gray-300 focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_9" max="8" min="0" type="number" value="8"/>
+<span class="text-xs text-gray-500">/ 8 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-gray-200 placeholder-gray-400 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Metodología bien aplicada."/>
+</div>
+</div>
+</div>
+<!-- Item 10: Descripción de actividades (8 pts) -->
+<div class="p-3.5 border border-amber-200 bg-amber-50/20 rounded-lg hover:border-amber-300 transition-colors">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">10. Descripción de actividades</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 8 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Detalle cronológico de las 640 horas de labor técnica.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_10">Puntaje Descripción de actividades</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-amber-400 text-[#92400E] focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_10" max="8" min="0" type="number" value="7"/>
+<span class="text-xs text-gray-500">/ 8 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-amber-300 bg-white text-gray-700 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Buena descripción, podría incluir más detalles técnicos."/>
+</div>
+</div>
+</div>
+<!-- Item 11: Resultados (10 pts) -->
+<div class="p-3.5 border border-amber-200 bg-amber-50/20 rounded-lg hover:border-amber-300 transition-colors">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">11. Resultados</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 10 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Productos, software, manuales o mejoras tangibles logradas.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_11">Puntaje Resultados</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-amber-400 text-[#92400E] focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_11" max="10" min="0" type="number" value="9"/>
+<span class="text-xs text-gray-500">/ 10 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-amber-300 bg-white text-gray-700 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Resultados sólidos y medibles."/>
+</div>
+</div>
+</div>
+<!-- Item 12: Análisis de resultados (8 pts) -->
+<div class="p-3.5 border border-amber-200 bg-amber-50/20 rounded-lg hover:border-amber-300 transition-colors">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">12. Análisis de resultados</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 8 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Discusión crítica y comparación con los objetivos trazados.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_12">Puntaje Análisis de resultados</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-amber-400 text-[#92400E] focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_12" max="8" min="0" type="number" value="7"/>
+<span class="text-xs text-gray-500">/ 8 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-amber-300 bg-white text-gray-700 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Buen análisis, considerar comparación con proyectos previos."/>
+</div>
+</div>
+</div>
+<!-- Item 13: Conclusiones (5 pts) -->
+<div class="p-3.5 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors bg-white">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">13. Conclusiones</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 5 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Cierre argumentativo respondiendo a los objetivos planteados.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_13">Puntaje Conclusiones</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-gray-300 focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_13" max="5" min="0" type="number" value="5"/>
+<span class="text-xs text-gray-500">/ 5 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-gray-200 placeholder-gray-400 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Conclusiones claras y bien alineadas a los objetivos."/>
+</div>
+</div>
+</div>
+<!-- Item 14: Recomendaciones (4 pts) -->
+<div class="p-3.5 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors bg-white">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">14. Recomendaciones</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 4 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Propuestas de continuidad para la institución o empresa.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_14">Puntaje Recomendaciones</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-gray-300 focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_14" max="4" min="0" type="number" value="4"/>
+<span class="text-xs text-gray-500">/ 4 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-gray-200 placeholder-gray-400 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Recomendaciones pertinentes."/>
+</div>
+</div>
+</div>
+<!-- Item 15: Bibliografía (3 pts) -->
+<div class="p-3.5 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors bg-white">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">15. Bibliografía</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 3 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Fuentes confiables y apego estricto a la norma APA 6ta edición.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_15">Puntaje Bibliografía</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-gray-300 focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_15" max="3" min="0" type="number" value="3"/>
+<span class="text-xs text-gray-500">/ 3 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-gray-200 placeholder-gray-400 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Formato APA 6ta edición correcto."/>
+</div>
+</div>
+</div>
+<!-- Item 16: Anexos (3 pts) -->
+<div class="p-3.5 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors bg-white">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
+<div class="lg:col-span-6">
+<div class="flex items-center justify-between">
+<h4 class="text-xs font-bold text-gray-900">16. Anexos</h4>
+<span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/5 px-2 py-0.5 rounded">Máx. 3 pts</span>
+</div>
+<p class="text-[11px] text-umb-muted mt-0.5">Evidencias, diagramas suplementarios o cartas de validación.</p>
+</div>
+<div class="lg:col-span-2">
+<div class="flex items-center space-x-1">
+<label class="sr-only" for="rubric_16">Puntaje Anexos</label>
+<input class="w-16 h-8 text-center text-xs font-semibold rounded border-gray-300 focus:ring-umb-guinda focus:border-umb-guinda" id="rubric_16" max="3" min="0" type="number" value="3"/>
+<span class="text-xs text-gray-500">/ 3 pts</span>
+</div>
+</div>
+<div class="lg:col-span-4">
+<input class="w-full text-xs rounded border-gray-200 placeholder-gray-400 focus:ring-umb-guinda focus:border-umb-guinda" type="text" value="Anexos completos y bien organizados."/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: RubricEvaluationSection -->
+<!-- BEGIN: GeneralObservationsSection -->
+<!-- Sección 4: Observaciones generales y retroalimentación técnica con contador de caracteres -->
+<section aria-label="Observaciones generales" class="bg-white rounded-lg border border-gray-200 p-6 mb-6 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<div>
+<h3 class="text-base font-semibold text-umb-carbon">Observaciones generales del informe</h3>
+<p class="text-xs text-umb-outline">Comentarios globales sobre la calidad del trabajo y fundamentación técnica.</p>
+</div>
+<span class="text-xs font-semibold text-[#2D8C4E] bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded">
+            274 / 300 caracteres mínimos
+          </span>
+</div>
+<textarea class="w-full rounded-md border-gray-300 shadow-sm text-xs focus:ring-umb-guinda focus:border-umb-guinda text-gray-800 p-3" placeholder="Redacta la retroalimentación técnica y formal para el estudiante..." rows="4">El informe final cumple satisfactoriamente con los requisitos de estructura, extensión y contenido. El trabajo demuestra un dominio técnico sólido del proyecto desarrollado y una correcta aplicación de la metodología. Se recomienda reforzar la justificación social en futuras investigaciones derivadas del proyecto.</textarea>
+<p class="text-[11px] text-umb-outline mt-2">Estas observaciones quedarán archivadas permanentemente en el expediente digital del egresado.</p>
+</section>
+<!-- END: GeneralObservationsSection -->
+<!-- BEGIN: ScoreInstitutionalBanner -->
+<!-- Sección 5: Banner Guinda Institucional con la Calificación Definitiva de 88/100 -->
+<section aria-label="Calificación final institucional" class="bg-umb-guinda text-white rounded-lg p-6 mb-6 shadow-md">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+<div class="md:col-span-8">
+<span class="text-xs font-medium tracking-widest text-white/80 uppercase block">Calificación final</span>
+<div class="flex items-baseline space-x-4 mt-1">
+<span class="text-5xl font-extrabold tracking-tight">88 / 100</span>
+<span class="bg-[#DCFCE7] text-[#166534] text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                Aprobado con distinción
+              </span>
+</div>
+<p class="text-xs text-white/80 mt-2 font-normal">Calificación mínima para acreditar: 70/100</p>
+</div>
+<div class="md:col-span-4 border-t md:border-t-0 md:border-l border-white/20 pt-4 md:pt-0 md:pl-6 text-xs text-white/90 space-y-1.5">
+<span class="text-[11px] font-semibold tracking-wider text-white/70 uppercase block">Escala de acreditación</span>
+<p class="text-white/80">70 - 79: Aprobado</p>
+<p class="font-bold text-white flex items-center">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-2"></span>
+              80 - 89: Aprobado con distinción (Actual)
+            </p>
+<p class="text-white/80">90 - 100: Excelencia académica</p>
+</div>
+</div>
+</section>
+<!-- END: ScoreInstitutionalBanner -->
+<!-- BEGIN: DoubleConfirmationSection -->
+<!-- Sección 6: Doble validación reglamentaria antes del envío -->
+<section aria-label="Validación obligatoria" class="bg-umb-dorado-light border-l-4 border-[#D69E2E] p-6 rounded-r-lg mb-8 shadow-sm">
+<div class="flex items-center space-x-2 text-[#92400E] mb-2">
+<svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" fill-rule="evenodd"></path>
+</svg>
+<h4 class="text-sm font-bold">Confirmación obligatoria</h4>
+</div>
+<p class="text-xs text-[#92400E] leading-relaxed mb-4">
+          Debes confirmar que la calificación es correcta antes de emitir el dictamen final. Una vez confirmada, no podrá modificarse excepto por corrección dentro de las primeras 24 horas.
+        </p>
+<div class="space-y-3">
+<label class="flex items-start space-x-3 cursor-pointer">
+<input checked="" class="mt-0.5 h-4 w-4 text-umb-guinda focus:ring-umb-guinda border-gray-300 rounded" type="checkbox"/>
+<span class="text-xs font-medium text-[#78350F]">
+              Confirmo que he revisado cuidadosamente el informe final y que la calificación asignada es correcta.
+            </span>
+</label>
+<label class="flex items-start space-x-3 cursor-pointer">
+<input checked="" class="mt-0.5 h-4 w-4 text-umb-guinda focus:ring-umb-guinda border-gray-300 rounded" type="checkbox"/>
+<span class="text-xs font-medium text-[#78350F]">
+              Entiendo que esta calificación es definitiva e inmutable, y que no existen exámenes extraordinarios ni prórrogas.
+            </span>
+</label>
+</div>
+</section>
+<!-- END: DoubleConfirmationSection -->
+</main>
+<!-- END: MainContentArea -->
+</div>
+<!-- END: MainContainerWithSidebar -->
+<!-- BEGIN: StickyFooterActionBar -->
+<!-- Barra de acciones inferior fija con confirmación y opciones de guardado -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+<!-- END: StickyFooterActionBar -->
+<!-- BEGIN: DefinitiveConfirmationModal -->
+<!-- Modal reglamentario con backdrop semitransparente -->
+<div aria-labelledby="modal-title" aria-modal="true" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 transition-opacity" id="confirmationModal" role="dialog">
+<div class="bg-white rounded-lg max-w-[480px] w-full p-6 shadow-2xl relative border border-gray-200 animate-in fade-in zoom-in duration-150">
+<!-- Icono superior de candado reglamentario -->
+<div class="mx-auto w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-4">
+<svg class="w-8 h-8 text-[#C53030]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<!-- Título y descripción -->
+<div class="text-center">
+<h2 class="text-xl font-semibold text-umb-carbon" id="modal-title">¿Confirmas la calificación final?</h2>
+<p class="text-sm text-umb-muted mt-2">
+          Estás a punto de emitir la calificación final de Jesús Andrés Mondragón Tenorio. Esta acción es definitiva e inmutable.
+        </p>
+</div>
+<!-- Resumen destacado de la calificación en el modal -->
+<div class="mt-5 bg-[#FEE2E2] border-l-4 border-[#C53030] p-4 rounded-r text-left space-y-1">
+<div class="text-base font-bold text-[#991B1B]">
+          Calificación: 88 / 100
+        </div>
+<div class="text-xs text-[#7F1D1D] font-medium">
+          Estado: Aprobado con distinción
+        </div>
+<div class="text-[11px] text-[#991B1B] pt-1">
+          Ventana de gracia: 24 horas para corrección de captura
+        </div>
+</div>
+<!-- Botones de acción modal -->
+<div class="mt-6 flex space-x-3">
+<button class="w-1/2 py-2.5 text-xs font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 rounded transition" id="btnCloseModal" type="button">
+          Cancelar
+        </button>
+<button class="w-1/2 py-2.5 text-xs font-bold text-white bg-[#C53030] hover:bg-red-800 rounded shadow flex items-center justify-center space-x-1 transition" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Confirmar y emitir</span>
+</button>
+</div>
+</div>
+</div>
+<!-- END: DefinitiveConfirmationModal -->
+<!-- BEGIN: InstitutionalFooter -->
+<!-- Identificador del sistema y ciclo escolar al fondo -->
+<div class="text-center py-4 text-[11px] text-umb-outline bg-umb-surface">
+    SIGRES-UMB · Universidad Mexiquense del Bicentenario · Ciclo 26-27/1
+  </div>
+<!-- END: InstitutionalFooter -->
+<!-- Scripts de interactividad mínima para el modal -->
+<script data-purpose="modal-handlers">
+    const modal = document.getElementById('confirmationModal');
+    const openBtn = document.getElementById('btnOpenModal');
+    const closeBtn = document.getElementById('btnCloseModal');
+
+    // Manejador para abrir modal
+    if (openBtn && modal) {
+      openBtn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+    }
+
+    // Manejador para cerrar modal
+    if (closeBtn && modal) {
+      closeBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      });
+    }
+  </script>
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="02-mis-alumnos.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">group</span>
+      <span class="text-[11px] font-medium mt-0.5">Mis alumnos</span>
+    </a>
+    <a href="04-registrar-asesoria.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">assignment</span>
+      <span class="text-[11px] font-medium mt-0.5">Asesorías</span>
+    </a>
+    <a href="05-revisar-bitacoras.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">fact_check</span>
+      <span class="text-[11px] font-semibold mt-0.5">Evaluaciones</span>
+    </a>
+    <a href="08-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

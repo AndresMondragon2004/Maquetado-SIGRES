@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-umb-surface" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reportes — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col bg-umb-surface text-texto-principal text-sm">
+<!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Control Escolar</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Reportes de control escolar</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="09-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          EY
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Lic. Estefanía Yttesen</span>
+          <span class="text-[10px] text-white/75 leading-none">Control Escolar</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- Layout Principal con Sidebar -->
+<div class="flex-1 flex overflow-hidden">
+<!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              EY
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Lic. Estefanía Yttesen Nava</p>
+              <p class="text-[11px] text-umb-outline truncate">Responsable de Control Escolar</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="02-bandeja-expedientes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">folder_shared</span>
+            <span class="text-sm">Expedientes</span>
+          </a>
+          <a href="04-validar-documentos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">verified</span>
+            <span class="text-sm">Documentos</span>
+          </a>
+          <a href="06-catalogo-empresas.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">domain</span>
+            <span class="text-sm">Empresas</span>
+          </a>
+          <a href="08-reportes.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">analytics</span>
+            <span class="text-sm">Reportes</span>
+          </a>
+          <a href="09-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- Contenedor del Contenido Principal (Scrollable) -->
+<main class="flex-1 overflow-y-auto p-6 md:p-8">
+<div class="max-w-[1280px] mx-auto space-y-6"><!-- Encabezado de la Pantalla -->
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 text-xs text-texto-mutado mb-1">
+<span>Inicio</span>
+<span>/</span>
+<span class="text-texto-principal font-medium">Reportes</span>
+</div>
+<h1 class="text-2xl font-bold text-texto-principal">Reportes</h1>
+<p class="text-sm text-texto-secundario mt-0.5">Genera reportes ejecutivos y de seguimiento del ciclo 26-27/1.</p>
+</div>
+<!-- Badge Ciclo oficial o Acceso Rápido -->
+<div class="flex items-center gap-2 shrink-0">
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-umb-guinda/10 text-umb-guinda border border-umb-guinda/20">
+<span class="w-2 h-2 rounded-full bg-umb-guinda"></span>
+      Ciclo oficial 26-27/1
+    </span>
+<button class="inline-flex items-center justify-center gap-2 px-3.5 py-2 border border-borde bg-white hover:bg-gray-50 text-texto-secundario rounded-lg font-medium text-xs shadow-xs transition-colors" type="button">
+<svg class="w-4 h-4 text-texto-mutado" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Programación de reportes</span>
+</button>
+</div>
+</div>
+<!-- SECCIÓN 1: Filtros Comunes -->
+<section class="bg-white rounded-lg border border-borde shadow-sm p-5 space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="text-xs font-bold uppercase tracking-wider text-texto-secundario">Filtros generales de reporte</h2>
+<p class="text-xs text-texto-mutado mt-0.5">Configura los criterios que aplicarán a las descargas y análisis generados</p>
+</div>
+<span class="text-[11px] text-texto-mutado hidden sm:inline">Aplica a todo el módulo</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 items-end">
+<!-- Dropdown Ciclo -->
+<div>
+<label class="block text-[11px] font-semibold text-texto-secundario uppercase tracking-wide mb-1.5">Ciclo escolar</label>
+<div class="relative">
+<select aria-label="Ciclo" class="w-full appearance-none bg-white border border-borde rounded-lg px-3 py-2.5 pr-8 text-xs text-texto-principal font-medium focus:outline-none focus:ring-1 focus:ring-umb-guinda focus:border-umb-guinda cursor-pointer">
+<option selected="" value="26-27/1">26-27/1</option>
+<option value="25-26/2">25-26/2</option>
+<option value="25-26/1">25-26/1</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-texto-mutado">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Dropdown Carrera -->
+<div>
+<label class="block text-[11px] font-semibold text-texto-secundario uppercase tracking-wide mb-1.5">Carrera</label>
+<div class="relative">
+<select aria-label="Carrera" class="w-full appearance-none bg-white border border-borde rounded-lg px-3 py-2.5 pr-8 text-xs text-texto-principal font-medium focus:outline-none focus:ring-1 focus:ring-umb-guinda focus:border-umb-guinda cursor-pointer">
+<option selected="" value="">Todas las carreras</option>
+<option value="ISC">ISC</option>
+<option value="IIAS">IIAS</option>
+<option value="LCONT">LCONT</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-texto-mutado">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Fecha Inicio -->
+<div>
+<label class="block text-[11px] font-semibold text-texto-secundario uppercase tracking-wide mb-1.5">Fecha inicio</label>
+<div class="relative">
+<input class="w-full bg-white border border-borde rounded-lg px-3 py-2.5 text-xs text-texto-principal font-medium focus:outline-none focus:ring-1 focus:ring-umb-guinda focus:border-umb-guinda" placeholder="dd/mm/aaaa" type="text" value="01/09/2026"/>
+</div>
+</div>
+<!-- Fecha Fin -->
+<div>
+<label class="block text-[11px] font-semibold text-texto-secundario uppercase tracking-wide mb-1.5">Fecha fin</label>
+<div class="relative">
+<input class="w-full bg-white border border-borde rounded-lg px-3 py-2.5 text-xs text-texto-principal font-medium focus:outline-none focus:ring-1 focus:ring-umb-guinda focus:border-umb-guinda" placeholder="dd/mm/aaaa" type="text" value="15/10/2026"/>
+</div>
+</div>
+<!-- Botón Primario Generar reporte -->
+<div>
+<button class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-umb-guinda hover:bg-[#521421] text-white rounded-lg font-medium text-xs shadow-sm transition-colors" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Generar reporte</span>
+</button>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 2: Catálogo de Reportes Disponibles -->
+<section class="space-y-3">
+<div>
+<h2 class="text-base font-bold text-texto-principal">Catálogo de reportes disponibles</h2>
+<p class="text-xs text-texto-mutado">Selecciona el tipo de reporte oficial que requieres consultar o exportar</p>
+</div>
+<!-- Grid 3x2 -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Tarjeta 1: Padrón general de residentes -->
+<div class="bg-white rounded-lg border border-borde p-5 flex flex-col justify-between shadow-sm hover:border-umb-guinda/30 transition-colors">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-lg bg-umb-guinda/10 text-umb-guinda flex items-center justify-center shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">PDF</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">XLSX</span>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold text-texto-principal">Padrón general de residentes</h3>
+<p class="text-xs text-texto-secundario mt-1 leading-relaxed">Listado completo de estudiantes en residencia con sus datos académicos.</p>
+</div>
+</div>
+<div class="pt-4 mt-4 border-t border-borde flex items-center justify-between">
+<span class="text-[11px] text-texto-mutado">45 registros activos</span>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-umb-guinda hover:bg-[#521421] text-white font-medium text-xs shadow-xs transition-colors" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Generar</span>
+</button>
+</div>
+</div>
+<!-- Tarjeta 2: Acreditaciones -->
+<div class="bg-white rounded-lg border border-borde p-5 flex flex-col justify-between shadow-sm hover:border-umb-guinda/30 transition-colors">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">PDF</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">XLSX</span>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold text-texto-principal">Acreditaciones</h3>
+<p class="text-xs text-texto-secundario mt-1 leading-relaxed">Estudiantes que han acreditado la residencia profesional.</p>
+</div>
+</div>
+<div class="pt-4 mt-4 border-t border-borde flex items-center justify-between">
+<span class="text-[11px] text-texto-mutado">25 acreditados</span>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-umb-guinda hover:bg-[#521421] text-white font-medium text-xs shadow-xs transition-colors" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Generar</span>
+</button>
+</div>
+</div>
+<!-- Tarjeta 3: Alumnos en riesgo -->
+<div class="bg-white rounded-lg border border-borde p-5 flex flex-col justify-between shadow-sm hover:border-umb-guinda/30 transition-colors">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 flex items-center justify-center shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">PDF</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">XLSX</span>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold text-texto-principal">Alumnos en riesgo</h3>
+<p class="text-xs text-texto-secundario mt-1 leading-relaxed">Estudiantes con asistencia &lt;80% o rezago crítico de horas.</p>
+</div>
+</div>
+<div class="pt-4 mt-4 border-t border-borde flex items-center justify-between">
+<span class="text-[11px] text-rose-700 font-medium">8 casos detectados</span>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-umb-guinda hover:bg-[#521421] text-white font-medium text-xs shadow-xs transition-colors" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Generar</span>
+</button>
+</div>
+</div>
+<!-- Tarjeta 4: Convenios vigentes -->
+<div class="bg-white rounded-lg border border-borde p-5 flex flex-col justify-between shadow-sm hover:border-umb-guinda/30 transition-colors">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-lg bg-amber-50 text-umb-dorado border border-amber-200/60 flex items-center justify-center shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">PDF</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">XLSX</span>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold text-texto-principal">Convenios vigentes</h3>
+<p class="text-xs text-texto-secundario mt-1 leading-relaxed">Empresas e instituciones con convenio activo con la UMB.</p>
+</div>
+</div>
+<div class="pt-4 mt-4 border-t border-borde flex items-center justify-between">
+<span class="text-[11px] text-texto-mutado">32 empresas receptoras</span>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-umb-guinda hover:bg-[#521421] text-white font-medium text-xs shadow-xs transition-colors" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Generar</span>
+</button>
+</div>
+</div>
+<!-- Tarjeta 5: Documentos por validar -->
+<div class="bg-white rounded-lg border border-borde p-5 flex flex-col justify-between shadow-sm hover:border-umb-guinda/30 transition-colors">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">PDF</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">XLSX</span>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold text-texto-principal">Documentos por validar</h3>
+<p class="text-xs text-texto-secundario mt-1 leading-relaxed">Documentos pendientes de cotejo físico o digital.</p>
+</div>
+</div>
+<div class="pt-4 mt-4 border-t border-borde flex items-center justify-between">
+<span class="text-[11px] text-amber-800 font-medium">12 pendientes</span>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-umb-guinda hover:bg-[#521421] text-white font-medium text-xs shadow-xs transition-colors" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Generar</span>
+</button>
+</div>
+</div>
+<!-- Tarjeta 6: Distribución por sector -->
+<div class="bg-white rounded-lg border border-borde p-5 flex flex-col justify-between shadow-sm hover:border-umb-guinda/30 transition-colors">
+<div class="space-y-3">
+<div class="flex items-start justify-between">
+<div class="w-10 h-10 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center shrink-0">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">PDF</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">XLSX</span>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-bold text-texto-principal">Distribución por sector</h3>
+<p class="text-xs text-texto-secundario mt-1 leading-relaxed">Estadísticas de residencias por sector empresarial (privado, social, público).</p>
+</div>
+</div>
+<div class="pt-4 mt-4 border-t border-borde flex items-center justify-between">
+<span class="text-[11px] text-texto-mutado">Privado 65% · Público 35%</span>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-umb-guinda hover:bg-[#521421] text-white font-medium text-xs shadow-xs transition-colors" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Generar</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 3: Historial de Reportes Generados -->
+<section class="bg-white rounded-lg border border-borde shadow-sm overflow-hidden">
+<div class="p-5 border-b border-borde flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+<div>
+<h2 class="text-sm font-bold text-texto-principal">Historial de reportes generados</h2>
+<p class="text-xs text-texto-mutado mt-0.5">Últimas exportaciones realizadas en la plataforma</p>
+</div>
+<span class="text-[11px] text-texto-secundario font-medium">3 reportes recientes</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F9FAFB] border-b border-borde">
+<th class="py-3 px-4 text-[11px] font-semibold text-texto-mutado uppercase tracking-wider" scope="col">Nombre del reporte</th>
+<th class="py-3 px-4 text-[11px] font-semibold text-texto-mutado uppercase tracking-wider" scope="col">Ciclo / Carrera</th>
+<th class="py-3 px-4 text-[11px] font-semibold text-texto-mutado uppercase tracking-wider" scope="col">Fecha de generación</th>
+<th class="py-3 px-4 text-[11px] font-semibold text-texto-mutado uppercase tracking-wider" scope="col">Usuario que generó</th>
+<th class="py-3 px-4 text-[11px] font-semibold text-texto-mutado uppercase tracking-wider" scope="col">Formato</th>
+<th class="py-3 px-4 text-[11px] font-semibold text-texto-mutado uppercase tracking-wider text-right" scope="col">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-borde text-xs">
+<!-- Fila 1 -->
+<tr class="hover:bg-gray-50/70 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-texto-principal whitespace-nowrap">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded bg-umb-guinda/10 text-umb-guinda flex items-center justify-center shrink-0">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<span>Padrón general de residentes</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-texto-secundario whitespace-nowrap">
+            Ciclo 26-27/1 · Todas
+          </td>
+<td class="py-3.5 px-4 text-texto-secundario whitespace-nowrap">
+            10 de octubre de 2026
+          </td>
+<td class="py-3.5 px-4 text-texto-principal font-medium whitespace-nowrap">
+            Lic. Estefanía Yttesen
+          </td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
+              PDF
+            </span>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-2">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded border border-borde hover:bg-gray-50 text-texto-secundario hover:text-umb-guinda transition-colors font-medium text-[11px]" title="Ver" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Ver</span>
+</button>
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-gray-100 hover:bg-gray-200 text-texto-principal transition-colors font-medium text-[11px]" title="Descargar" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Descargar</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Fila 2 -->
+<tr class="hover:bg-gray-50/70 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-texto-principal whitespace-nowrap">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded bg-rose-50 text-rose-700 flex items-center justify-center shrink-0">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<span>Alumnos en riesgo</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-texto-secundario whitespace-nowrap">
+            Ciclo 26-27/1 · ISC
+          </td>
+<td class="py-3.5 px-4 text-texto-secundario whitespace-nowrap">
+            8 de octubre de 2026
+          </td>
+<td class="py-3.5 px-4 text-texto-principal font-medium whitespace-nowrap">
+            Lic. Estefanía Yttesen
+          </td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              XLSX
+            </span>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-2">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded border border-borde hover:bg-gray-50 text-texto-secundario hover:text-umb-guinda transition-colors font-medium text-[11px]" title="Ver" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Ver</span>
+</button>
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-gray-100 hover:bg-gray-200 text-texto-principal transition-colors font-medium text-[11px]" title="Descargar" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Descargar</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Fila 3 -->
+<tr class="hover:bg-gray-50/70 transition-colors">
+<td class="py-3.5 px-4 font-semibold text-texto-principal whitespace-nowrap">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded bg-amber-50 text-umb-dorado flex items-center justify-center shrink-0">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<span>Convenios vigentes</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-texto-secundario whitespace-nowrap">
+            Ciclo 26-27/1 · General
+          </td>
+<td class="py-3.5 px-4 text-texto-secundario whitespace-nowrap">
+            5 de octubre de 2026
+          </td>
+<td class="py-3.5 px-4 text-texto-principal font-medium whitespace-nowrap">
+            Lic. Estefanía Yttesen
+          </td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200">
+              PDF
+            </span>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-2">
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded border border-borde hover:bg-gray-50 text-texto-secundario hover:text-umb-guinda transition-colors font-medium text-[11px]" title="Ver" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Ver</span>
+</button>
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-gray-100 hover:bg-gray-200 text-texto-principal transition-colors font-medium text-[11px]" title="Descargar" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Descargar</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Pie de página reglamentario -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer></div>
+</main>
+</div>
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="02-bandeja-expedientes.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">folder_shared</span>
+      <span class="text-[11px] font-medium mt-0.5">Expedientes</span>
+    </a>
+    <a href="04-validar-documentos.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">verified</span>
+      <span class="text-[11px] font-medium mt-0.5">Documentos</span>
+    </a>
+    <a href="06-catalogo-empresas.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">domain</span>
+      <span class="text-[11px] font-medium mt-0.5">Empresas</span>
+    </a>
+    <a href="09-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

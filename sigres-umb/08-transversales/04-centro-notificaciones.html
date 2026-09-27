@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro de Notificaciones Reutilizable — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- ========================================================================= -->
+  <!-- APP BAR INSTITUCIONAL DE MUESTRA (64px, fondo guinda #681B2B) -->
+  <!-- ========================================================================= -->
+  <header class="w-full bg-umb-guinda h-16 sticky top-0 z-40 px-4 sm:px-6 lg:px-8 flex items-center justify-between shadow-md border-b border-[#521422]">
+    <!-- Izquierda: Logo institucional + SIGRES-UMB -->
+    <div class="flex items-center space-x-3">
+      <div class="bg-white rounded p-1 flex items-center justify-center h-10 w-10 shadow-sm overflow-hidden">
+        <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-8 w-8 object-contain">
+      </div>
+      <div class="flex flex-col">
+        <div class="flex items-center space-x-2">
+          <span class="text-white font-bold text-base tracking-tight leading-none">SIGRES-UMB</span>
+          <span class="bg-white/20 text-white text-[10px] uppercase font-semibold px-1.5 py-0.5 rounded tracking-wider">Módulo global</span>
+        </div>
+        <span class="text-white/80 text-xs font-normal leading-tight mt-0.5">Universidad Mexiquense del Bicentenario</span>
+      </div>
+    </div>
+
+    <!-- Centro: Nombre de la vista actual -->
+    <div class="hidden md:flex items-center space-x-3 text-white/90">
+      <div class="h-4 w-px bg-white/30"></div>
+      <span class="text-sm font-medium text-white tracking-wide">Componente: Centro de notificaciones</span>
+    </div>
+
+    <!-- Derecha: Trigger de notificaciones & Perfil de usuario -->
+    <div class="flex items-center space-x-4 relative">
+      
+      <!-- ========================================================== -->
+      <!-- TRIGGER DE NOTIFICACIONES (ÍCONO DE CAMPANA + BADGE) -->
+      <!-- ========================================================== -->
+      <div class="relative">
+        <button id="notificationTrigger" 
+                onclick="toggleNotifications()"
+                aria-label="Abrir centro de notificaciones"
+                title="Centro de notificaciones (Presiona para alternar)"
+                class="p-2 rounded-full text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 relative flex items-center justify-center">
+          <!-- Ícono de campana 24px -->
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+          </svg>
+          <!-- Badge rojo circular en la esquina superior derecha -->
+          <span id="unreadBadge" class="absolute top-1.5 right-1.5 min-w-[18px] h-[18px] px-1 bg-[#C53030] text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-umb-guinda shadow-sm transform transition-transform scale-100">
+            3
+          </span>
+        </button>
+
+        <!-- ========================================================== -->
+        <!-- DROPDOWN: CENTRO DE NOTIFICACIONES (ANCHO 400PX, FLOTANTE) -->
+        <!-- ========================================================== -->
+        <div id="notificationDropdown" 
+             class="dropdown-enter absolute right-0 mt-2 w-[390px] sm:w-[400px] bg-white rounded-lg shadow-dropdown border border-umb-border z-50 overflow-hidden flex flex-col text-umb-carbon transform origin-top-right">
+          
+          <!-- 1. ENCABEZADO FIJO (Fondo #F9FAFB, padding 16px) -->
+          <div class="bg-[#F9FAFB] px-4 py-3.5 border-b border-umb-border flex items-center justify-between flex-shrink-0">
+            <div class="flex items-center space-x-2">
+              <h2 class="text-base font-semibold text-umb-carbon leading-tight">Notificaciones</h2>
+              <span id="newBadgeCount" class="bg-umb-guinda/10 text-umb-guinda text-[11px] font-semibold px-2 py-0.5 rounded-full">
+                3 nuevas
+              </span>
+            </div>
+            <button onclick="markAllAsRead()" 
+                    class="text-xs font-medium text-umb-guinda hover:text-[#521422] hover:underline focus:outline-none focus:ring-1 focus:ring-umb-guinda rounded px-1 py-0.5 transition-colors">
+              Marcar todas como leídas
+            </button>
+          </div>
+
+          <!-- 2. LISTA DE NOTIFICACIONES (SCROLLABLE, MÁXIMO 500PX DE ALTO) -->
+          <div id="notificationsList" class="max-h-[380px] overflow-y-auto custom-scrollbar divide-y divide-[#E2E8F0]/60 flex-1">
+            
+            <!-- Fila 1 (no leída, bitácora) -->
+            <div id="notif-1" onclick="toggleReadState('notif-1')" class="notification-item flex items-start gap-3 p-3.5 bg-white border-l-[3px] border-umb-guinda hover:bg-umb-surface transition-colors cursor-pointer group relative">
+              <!-- Ícono circular 40px: Azul / Documento -->
+              <div class="w-10 h-10 rounded-full bg-[#EFF6FF] flex items-center justify-center flex-shrink-0 text-[#2B6CB0]">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0 pr-2">
+                <div class="flex items-baseline justify-between gap-1 mb-0.5">
+                  <h3 class="text-[13px] font-semibold text-umb-carbon truncate group-hover:text-umb-guinda transition-colors">
+                    Nueva bitácora por validar
+                  </h3>
+                </div>
+                <p class="text-[12px] text-umb-muted line-clamp-2 leading-relaxed">
+                  Jesús Andrés Mondragón Tenorio envió la bitácora de la Semana 10.
+                </p>
+                <span class="text-[11px] text-umb-outline font-normal block mt-1">Hace 2 horas</span>
+              </div>
+              <!-- Punto guinda indicador de no leída -->
+              <span class="unread-dot w-2 h-2 rounded-full bg-umb-guinda flex-shrink-0 mt-1.5 ring-2 ring-white"></span>
+            </div>
+
+            <!-- Fila 2 (no leída, aprobación) -->
+            <div id="notif-2" onclick="toggleReadState('notif-2')" class="notification-item flex items-start gap-3 p-3.5 bg-white border-l-[3px] border-umb-guinda hover:bg-umb-surface transition-colors cursor-pointer group relative">
+              <!-- Ícono circular 40px: Verde / Check -->
+              <div class="w-10 h-10 rounded-full bg-[#DCFCE7] flex items-center justify-center flex-shrink-0 text-[#2D8C4E]">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0 pr-2">
+                <div class="flex items-baseline justify-between gap-1 mb-0.5">
+                  <h3 class="text-[13px] font-semibold text-umb-carbon truncate group-hover:text-umb-guinda transition-colors">
+                    Bitácora aprobada
+                  </h3>
+                </div>
+                <p class="text-[12px] text-umb-muted line-clamp-2 leading-relaxed">
+                  Tu asesor externo aprobó la bitácora de la Semana 9.
+                </p>
+                <span class="text-[11px] text-umb-outline font-normal block mt-1">Hace 5 horas</span>
+              </div>
+              <!-- Punto guinda -->
+              <span class="unread-dot w-2 h-2 rounded-full bg-umb-guinda flex-shrink-0 mt-1.5 ring-2 ring-white"></span>
+            </div>
+
+            <!-- Fila 3 (no leída, alerta) -->
+            <div id="notif-3" onclick="toggleReadState('notif-3')" class="notification-item flex items-start gap-3 p-3.5 bg-white border-l-[3px] border-umb-guinda hover:bg-umb-surface transition-colors cursor-pointer group relative">
+              <!-- Ícono circular 40px: Rojo / Alerta -->
+              <div class="w-10 h-10 rounded-full bg-[#FEE2E2] flex items-center justify-center flex-shrink-0 text-[#C53030]">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0 pr-2">
+                <div class="flex items-baseline justify-between gap-1 mb-0.5">
+                  <h3 class="text-[13px] font-semibold text-umb-carbon truncate group-hover:text-umb-guinda transition-colors">
+                    Alerta de asistencia
+                  </h3>
+                </div>
+                <p class="text-[12px] text-umb-muted line-clamp-2 leading-relaxed">
+                  Tu porcentaje de asistencia ha bajado al 82%.
+                </p>
+                <span class="text-[11px] text-umb-outline font-normal block mt-1">Hace 1 día</span>
+              </div>
+              <!-- Punto guinda -->
+              <span class="unread-dot w-2 h-2 rounded-full bg-umb-guinda flex-shrink-0 mt-1.5 ring-2 ring-white"></span>
+            </div>
+
+            <!-- Fila 4 (leída, información) -->
+            <div id="notif-4" onclick="toggleReadState('notif-4')" class="notification-item flex items-start gap-3 p-3.5 bg-[#F9FAFB] hover:bg-umb-surface transition-colors cursor-pointer group relative">
+              <!-- Ícono circular 40px: Ámbar / Campana -->
+              <div class="w-10 h-10 rounded-full bg-umb-dorado-light flex items-center justify-center flex-shrink-0 text-[#D69E2E]">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0 pr-2">
+                <div class="flex items-baseline justify-between gap-1 mb-0.5">
+                  <h3 class="text-[13px] font-semibold text-umb-carbon truncate group-hover:text-umb-guinda transition-colors">
+                    Hito alcanzado
+                  </h3>
+                </div>
+                <p class="text-[12px] text-umb-muted line-clamp-2 leading-relaxed">
+                  Has alcanzado las 320 horas reglamentarias. Informe parcial desbloqueado.
+                </p>
+                <span class="text-[11px] text-umb-outline font-normal block mt-1">Hace 3 días</span>
+              </div>
+              <!-- Sin punto guinda (leída) -->
+            </div>
+
+            <!-- Fila 5 (leída, aprobación) -->
+            <div id="notif-5" onclick="toggleReadState('notif-5')" class="notification-item flex items-start gap-3 p-3.5 bg-[#F9FAFB] hover:bg-umb-surface transition-colors cursor-pointer group relative">
+              <!-- Ícono circular 40px: Verde / Check -->
+              <div class="w-10 h-10 rounded-full bg-[#DCFCE7] flex items-center justify-center flex-shrink-0 text-[#2D8C4E]">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0 pr-2">
+                <div class="flex items-baseline justify-between gap-1 mb-0.5">
+                  <h3 class="text-[13px] font-semibold text-umb-carbon truncate group-hover:text-umb-guinda transition-colors">
+                    Documentos validados
+                  </h3>
+                </div>
+                <p class="text-[12px] text-umb-muted line-clamp-2 leading-relaxed">
+                  Control Escolar validó 7 de 7 documentos de tu expediente.
+                </p>
+                <span class="text-[11px] text-umb-outline font-normal block mt-1">Hace 5 días</span>
+              </div>
+              <!-- Sin punto guinda (leída) -->
+            </div>
+
+          </div>
+
+          <!-- CONTENEDOR DE ESTADO VACÍO (OCULTO POR DEFECTO) -->
+          <div id="emptyNotificationsState" class="hidden flex-col items-center justify-center py-10 px-6 text-center">
+            <div class="w-16 h-16 rounded-full bg-umb-surface text-umb-outline flex items-center justify-center mb-3">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.143 17.082a24.248 24.248 0 003.844.148m-3.844-.148a23.86 23.86 0 01-5.455-1.31 8.964 8.964 0 002.3-5.542m3.155 6.852a3 3 0 005.667 1.97m1.965-4.227c.45-.884.72-1.88.766-2.929M3 3l18 18M9.75 4.51c.37-.156.772-.276 1.19-.356a6.002 6.002 0 019.06 5.596v.7c0 .548.118 1.077.34 1.564" />
+              </svg>
+            </div>
+            <h3 class="text-sm font-semibold text-umb-outline">No tienes notificaciones</h3>
+            <p class="text-xs text-umb-outline mt-1 max-w-[240px]">
+              Aquí aparecerán las actualizaciones de tu residencia.
+            </p>
+          </div>
+
+          <!-- 3. PIE FIJO DEL DROPDOWN (Fondo #F9FAFB, padding 12px) -->
+          <div class="bg-[#F9FAFB] p-3 border-t border-umb-border flex items-center justify-center flex-shrink-0">
+            <button onclick="alert('Redirigiendo a la bandeja completa de notificaciones...')" 
+                    class="w-full py-1.5 px-3 rounded text-center text-[13px] font-medium text-umb-guinda hover:text-[#521422] hover:bg-umb-guinda/5 transition-colors flex items-center justify-center space-x-1.5 focus:outline-none">
+              <span>Ver todas las notificaciones</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Avatar & Datos del usuario en el app bar -->
+      <div class="flex items-center space-x-2 pl-2 border-l border-white/20">
+        <div class="w-9 h-9 rounded-full bg-white text-umb-guinda font-bold text-xs flex items-center justify-center shadow-inner border border-white/40">
+          LB
+        </div>
+        <div class="hidden xl:flex flex-col text-left text-white leading-tight">
+          <span class="text-xs font-semibold">I.S.C. Leonardo Becerril</span>
+          <span class="text-[11px] text-white/80">Asesor interno</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- CONTENIDO CENTRAL DE MUESTRA Y TESTING DEL COMPONENTE -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- Encabezado de la página de especificación -->
+    <div class="mb-8">
+      <div class="flex items-center space-x-2 text-xs text-umb-outline mb-1">
+        <span>Componentes reutilizables</span>
+        <span>/</span>
+        <span class="text-umb-guinda font-medium">Centro de notificaciones</span>
+      </div>
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Centro de notificaciones interactivo</h1>
+          <p class="text-sm text-umb-muted mt-1">
+            Componente global acoplado al app bar de SIGRES-UMB con dropdown de 400px, 4 variantes de color y tipologías de evento.
+          </p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>
+            Reutilizable en todas las vistas
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid de demostración: Tarjeta visual explicativa + Controles interactivos -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      
+      <!-- Columna izquierda (7 cols): Guía anatómica del componente -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Tarjeta de Especificación -->
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-umb-border">
+          <h2 class="text-base font-semibold text-umb-carbon mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-umb-guinda" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            Anatomía del componente y variantes
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-umb-muted">
+            <div class="p-3.5 rounded-lg bg-[#F9FAFB] border border-umb-border space-y-1.5">
+              <div class="flex items-center gap-2 text-[#2B6CB0] font-semibold">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#2B6CB0]"></span>
+                Bitácora semanal
+              </div>
+              <p>Fondo `#EFF6FF`, ícono azul de documento. Informa sobre envíos y cambios en bitácoras.</p>
+            </div>
+
+            <div class="p-3.5 rounded-lg bg-[#F9FAFB] border border-umb-border space-y-1.5">
+              <div class="flex items-center gap-2 text-[#2D8C4E] font-semibold">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#2D8C4E]"></span>
+                Aprobaciones
+              </div>
+              <p>Fondo `#DCFCE7`, ícono verde de check. Valida firmas, acreditaciones y dictámenes.</p>
+            </div>
+
+            <div class="p-3.5 rounded-lg bg-[#F9FAFB] border border-umb-border space-y-1.5">
+              <div class="flex items-center gap-2 text-[#C53030] font-semibold">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#C53030]"></span>
+                Alertas normativas
+              </div>
+              <p>Fondo `#FEE2E2`, ícono rojo de advertencia. Alertas de asistencia < 85% o contingencias.</p>
+            </div>
+
+            <div class="p-3.5 rounded-lg bg-[#F9FAFB] border border-umb-border space-y-1.5">
+              <div class="flex items-center gap-2 text-[#D69E2E] font-semibold">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#D69E2E]"></span>
+                Información e hitos
+              </div>
+              <p>Fondo `#FEF3C7`, ícono ámbar de campana. Notifica horas alcanzadas (320h / 640h).</p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-umb-border text-xs text-umb-muted space-y-2">
+            <h3 class="font-semibold text-umb-carbon">Reglas de interacción y accesibilidad:</h3>
+            <ul class="list-disc list-inside space-y-1 text-umb-outline">
+              <li><strong class="text-umb-muted">Apertura y Cierre:</strong> Clic en el botón campana o clic fuera del contenedor. Presionar <code class="bg-gray-100 px-1 py-0.5 rounded text-gray-800">Escape</code> cierra el menú instantáneamente.</li>
+              <li><strong class="text-umb-muted">Scroll inteligente:</strong> Con más de 4 notificaciones se habilita el scroll suave interno, respetando el alto máximo de 500px.</li>
+              <li><strong class="text-umb-muted">Lectura en tiempo real:</strong> Hacer clic en cualquier notificación alterna su estado de leída / no leída.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Columna derecha (5 cols): Panel de pruebas interactivas de estados -->
+      <div class="lg:col-span-5 space-y-6">
+        <div class="bg-white rounded-xl p-6 shadow-sm border border-umb-border">
+          <h2 class="text-base font-semibold text-umb-carbon mb-2 flex items-center gap-2">
+            <svg class="w-5 h-5 text-umb-guinda" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+            Simulador de estados del dropdown
+          </h2>
+          <p class="text-xs text-umb-outline mb-5">
+            Interactúa con los controles para validar las variantes requeridas por el sistema institucional.
+          </p>
+
+          <div class="space-y-3">
+            <!-- Botón 1: Estado Normal (3 no leídas) -->
+            <button onclick="setScenario('default')" 
+                    class="w-full text-left p-3 rounded-lg border border-umb-border hover:border-umb-guinda hover:bg-[#F9FAFB] transition-all flex items-center justify-between group">
+              <div>
+                <span class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda">Estado 1: Normal (3 no leídas)</span>
+                <p class="text-[11px] text-umb-outline">Muestra la campana con badge '3' y 5 notificaciones.</p>
+              </div>
+              <span class="text-xs text-umb-guinda font-medium">Activar &rarr;</span>
+            </button>
+
+            <!-- Botón 2: Estado Vacío -->
+            <button onclick="setScenario('empty')" 
+                    class="w-full text-left p-3 rounded-lg border border-umb-border hover:border-umb-guinda hover:bg-[#F9FAFB] transition-all flex items-center justify-between group">
+              <div>
+                <span class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda">Estado 2: Dropdown vacío</span>
+                <p class="text-[11px] text-umb-outline">Sin notificaciones, campana tachada y badge oculto.</p>
+              </div>
+              <span class="text-xs text-umb-guinda font-medium">Activar &rarr;</span>
+            </button>
+
+            <!-- Botón 3: Estado 9+ -->
+            <button onclick="setScenario('ninePlus')" 
+                    class="w-full text-left p-3 rounded-lg border border-umb-border hover:border-umb-guinda hover:bg-[#F9FAFB] transition-all flex items-center justify-between group">
+              <div>
+                <span class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda">Estado 3: Badge con "9+"</span>
+                <p class="text-[11px] text-umb-outline">Alta concurrencia con más de 9 avisos pendientes.</p>
+              </div>
+              <span class="text-xs text-umb-guinda font-medium">Activar &rarr;</span>
+            </button>
+
+            <!-- Botón 4: Alternar visibilidad de dropdown -->
+            <div class="pt-4 border-t border-umb-border flex gap-2">
+              <button onclick="toggleNotifications()" 
+                      class="flex-1 py-2 px-3 bg-umb-guinda text-white text-xs font-medium rounded-lg hover:bg-[#521422] transition-colors shadow-sm text-center">
+                Alternar dropdown (abrir/cerrar)
+              </button>
+              <button onclick="markAllAsRead()" 
+                      class="py-2 px-3 border border-umb-border text-umb-muted text-xs font-medium rounded-lg hover:bg-gray-50 transition-colors">
+                Limpiar no leídas
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner informativo institucional -->
+        <div class="bg-umb-dorado-light border-l-4 border-[#D69E2E] p-4 rounded-r-lg shadow-sm">
+          <div class="flex items-start">
+            <svg class="w-5 h-5 text-[#D69E2E] mt-0.5 mr-2.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <h3 class="text-xs font-semibold text-[#92400E]">Integración técnica</h3>
+              <p class="text-xs text-[#92400E] mt-0.5 leading-relaxed">
+                Este componente se ancla automáticamente al contenedor del app bar mediante <code class="text-[#78350F] font-mono text-[11px]">absolute right-0</code>, manteniendo fidelidad al ciclo oficial 26-27/1.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- PIE DE PÁGINA INSTITUCIONAL OFICIAL -->
+  <!-- ========================================================================= -->
+  <footer class="w-full bg-white border-t border-umb-border py-4 text-center text-xs text-umb-outline">
+    <p>SIGRES-UMB · Universidad Mexiquense del Bicentenario · Ciclo 26-27/1</p>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- SCRIPTS DE INTERACCIÓN Y COMPORTAMIENTOS DEL DROPDOWN -->
+  <!-- ========================================================================= -->
+  <script>
+    let isOpen = true; // Abierto por defecto para permitir revisión visual inmediata
+    let currentScenario = 'default';
+
+    const dropdown = document.getElementById('notificationDropdown');
+    const trigger = document.getElementById('notificationTrigger');
+    const unreadBadge = document.getElementById('unreadBadge');
+    const newBadgeCount = document.getElementById('newBadgeCount');
+    const notificationsList = document.getElementById('notificationsList');
+    const emptyState = document.getElementById('emptyNotificationsState');
+
+    // Función para alternar el dropdown
+    function toggleNotifications() {
+      if (isOpen) {
+        closeDropdown();
+      } else {
+        openDropdown();
+      }
+    }
+
+    function openDropdown() {
+      dropdown.classList.remove('hidden');
+      dropdown.classList.remove('dropdown-exit');
+      dropdown.classList.add('dropdown-enter');
+      isOpen = true;
+    }
+
+    function closeDropdown() {
+      dropdown.classList.remove('dropdown-enter');
+      dropdown.classList.add('dropdown-exit');
+      setTimeout(() => {
+        dropdown.classList.add('hidden');
+        isOpen = false;
+      }, 140);
+    }
+
+    // Cierre al presionar la tecla Escape
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && isOpen) {
+        closeDropdown();
+      }
+    });
+
+    // Cierre al hacer clic fuera del dropdown y del trigger
+    document.addEventListener('click', function(event) {
+      if (isOpen && !dropdown.contains(event.target) && !trigger.contains(event.target)) {
+        closeDropdown();
+      }
+    });
+
+    // Marcar todas las notificaciones como leídas
+    function markAllAsRead() {
+      const items = document.querySelectorAll('.notification-item');
+      items.forEach(item => {
+        item.classList.remove('border-l-[3px]', 'border-umb-guinda', 'bg-white');
+        item.classList.add('bg-[#F9FAFB]');
+        const dot = item.querySelector('.unread-dot');
+        if (dot) dot.remove();
+      });
+
+      unreadBadge.classList.add('hidden');
+      newBadgeCount.textContent = '0 nuevas';
+      newBadgeCount.classList.add('hidden');
+    }
+
+    // Alternar estado individual de lectura
+    function toggleReadState(id) {
+      const item = document.getElementById(id);
+      if (!item) return;
+
+      const isUnread = item.classList.contains('border-umb-guinda');
+      if (isUnread) {
+        item.classList.remove('border-l-[3px]', 'border-umb-guinda', 'bg-white');
+        item.classList.add('bg-[#F9FAFB]');
+        const dot = item.querySelector('.unread-dot');
+        if (dot) dot.remove();
+      } else {
+        item.classList.add('border-l-[3px]', 'border-umb-guinda', 'bg-white');
+        item.classList.remove('bg-[#F9FAFB]');
+        if (!item.querySelector('.unread-dot')) {
+          const dot = document.createElement('span');
+          dot.className = 'unread-dot w-2 h-2 rounded-full bg-umb-guinda flex-shrink-0 mt-1.5 ring-2 ring-white';
+          item.appendChild(dot);
+        }
+      }
+      updateBadgeCounts();
+    }
+
+    function updateBadgeCounts() {
+      const unreadItems = document.querySelectorAll('.unread-dot').length;
+      if (unreadItems > 0) {
+        unreadBadge.classList.remove('hidden');
+        unreadBadge.textContent = unreadItems;
+        newBadgeCount.classList.remove('hidden');
+        newBadgeCount.textContent = `${unreadItems} nuevas`;
+      } else {
+        unreadBadge.classList.add('hidden');
+        newBadgeCount.classList.add('hidden');
+      }
+    }
+
+    // Simulador de escenarios de prueba
+    function setScenario(type) {
+      currentScenario = type;
+      openDropdown();
+
+      if (type === 'empty') {
+        notificationsList.classList.add('hidden');
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+        unreadBadge.classList.add('hidden');
+        newBadgeCount.classList.add('hidden');
+      } else if (type === 'ninePlus') {
+        notificationsList.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+        emptyState.classList.remove('flex');
+        unreadBadge.classList.remove('hidden');
+        unreadBadge.textContent = '9+';
+        newBadgeCount.classList.remove('hidden');
+        newBadgeCount.textContent = '12 nuevas';
+      } else {
+        // Default (3 no leídas)
+        location.reload();
+      }
+    }
+  </script>
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro Inicial de Residente — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="bg-umb-surface min-h-full flex flex-col font-sans text-umb-carbon antialiased selection:bg-umb-guinda selection:text-white">
+
+  <!-- Cabecera institucional compacta -->
+  <header class="w-full pt-8 pb-4 flex justify-center items-center px-4">
+    <div class="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-5 py-2.5 rounded-full border border-gray-200/80 shadow-sm">
+      <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-9 w-auto object-contain">
+      <div class="h-6 w-px bg-umb-border"></div>
+      <div class="flex items-center gap-1.5">
+        <span class="text-[16px] font-semibold text-umb-guinda tracking-tight">SIGRES-UMB</span>
+        <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-umb-guinda/10 text-umb-guinda">UES San José del Rincón</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenedor principal de la tarjeta -->
+  <main class="flex-1 flex items-center justify-center px-4 py-6 sm:py-8">
+    <div class="w-full max-w-[720px] bg-white rounded-[12px] border border-umb-border shadow-card p-6 sm:p-12">
+      
+      <!-- Encabezado de la tarjeta -->
+      <div class="mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-umb-dorado/10 text-umb-dorado text-[12px] font-medium mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-umb-dorado"></span>
+          Registro de estudiante residente
+        </div>
+        <h1 class="text-[24px] font-bold text-umb-carbon leading-tight">
+          Crea tu expediente de residencia
+        </h1>
+        <p class="mt-2 text-[14px] text-umb-muted leading-relaxed">
+          Completa tus datos para dar de alta tu expediente. Recibirás un enlace de acceso en tu correo institucional.
+        </p>
+      </div>
+
+      <!-- Formulario institucional (sin contraseñas) -->
+      <form class="space-y-6" onsubmit="event.preventDefault();">
+        
+        <!-- Campo 1: Nombre completo -->
+        <div>
+          <label for="nombre_completo" class="block text-[12px] font-medium text-umb-carbon mb-1.5">
+            Nombre completo (como aparece en tu acta o credencial UMB)
+          </label>
+          <div class="relative">
+            <input 
+              type="text" 
+              id="nombre_completo" 
+              name="nombre_completo" 
+              placeholder="Ej. Jesús Andrés Mondragón Tenorio" 
+              class="w-full h-[44px] px-3.5 bg-white border border-umb-border rounded-[8px] text-[14px] text-umb-carbon placeholder-[#877273] focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:border-transparent transition-all"
+              required
+            >
+          </div>
+          <p class="mt-1.5 text-[11px] text-umb-outline">
+            Sin abreviaturas ni caracteres especiales.
+          </p>
+        </div>
+
+        <!-- Fila de Matrícula y Programa educativo (Responsive 2 columnas) -->
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-5">
+          
+          <!-- Campo 2: Matrícula institucional -->
+          <div class="sm:col-span-5">
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="matricula" class="text-[12px] font-medium text-umb-carbon">
+                Matrícula institucional (10 dígitos)
+              </label>
+              <span id="contador-matricula" class="text-[11px] font-medium text-umb-outline bg-umb-surface px-2 py-0.5 rounded">
+                0 / 10 dígitos
+              </span>
+            </div>
+            <input 
+              type="text" 
+              id="matricula" 
+              name="matricula" 
+              maxlength="10" 
+              pattern="[0-9]{10}"
+              placeholder="Ej. 13220024" 
+              oninput="document.getElementById('contador-matricula').innerText = this.value.length + ' / 10 dígitos';"
+              class="w-full h-[44px] px-3.5 bg-white border border-umb-border rounded-[8px] text-[14px] font-mono text-umb-carbon placeholder-[#877273] focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:border-transparent transition-all"
+              required
+            >
+            <p class="mt-1.5 text-[11px] text-umb-outline">
+              Número de control asignado por Control Escolar UMB. Formato: 10 dígitos.
+            </p>
+          </div>
+
+          <!-- Campo 3: Programa educativo -->
+          <div class="sm:col-span-7">
+            <label for="carrera" class="block text-[12px] font-medium text-umb-carbon mb-1.5">
+              Programa educativo
+            </label>
+            <div class="relative">
+              <select 
+                id="carrera" 
+                name="carrera" 
+                class="w-full h-[44px] px-3.5 pr-10 bg-white border border-umb-border rounded-[8px] text-[14px] text-umb-carbon appearance-none focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:border-transparent transition-all cursor-pointer"
+                required
+              >
+                <option value="" disabled selected>Selecciona tu carrera...</option>
+                <option value="ISC">Ingeniería en Sistemas Computacionales (ISC)</option>
+                <option value="IIAS">Ingeniería en Innovación Agrícola Sustentable (IIAS)</option>
+                <option value="LC">Licenciatura en Contaduría (LC)</option>
+              </select>
+              <div class="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none text-umb-muted">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </div>
+            <p class="mt-1.5 text-[11px] text-umb-outline">
+              Oferta autorizada para la UES San José del Rincón.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fila de Correo institucional y Teléfono celular -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          
+          <!-- Campo 4: Correo institucional -->
+          <div>
+            <label for="correo" class="block text-[12px] font-medium text-umb-carbon mb-1.5">
+              Correo institucional (@umb.mx)
+            </label>
+            <div class="relative">
+              <input 
+                type="email" 
+                id="correo" 
+                name="correo" 
+                placeholder="valeria.reyes@umb.mx" 
+                class="w-full h-[44px] px-3.5 bg-white border border-umb-border rounded-[8px] text-[14px] text-umb-carbon placeholder-[#877273] focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:border-transparent transition-all"
+                required
+              >
+            </div>
+            <p class="mt-1.5 text-[11px] text-umb-outline">
+              Obligatorio con dominio oficial @umb.mx.
+            </p>
+          </div>
+
+          <!-- Campo 5: Teléfono celular -->
+          <div>
+            <label for="telefono" class="block text-[12px] font-medium text-umb-carbon mb-1.5">
+              Teléfono celular de contacto
+            </label>
+            <div class="relative">
+              <input 
+                type="tel" 
+                id="telefono" 
+                name="telefono" 
+                placeholder="712 123 4567" 
+                class="w-full h-[44px] px-3.5 bg-white border border-umb-border rounded-[8px] text-[14px] text-umb-carbon placeholder-[#877273] focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:border-transparent transition-all"
+                required
+              >
+            </div>
+            <p class="mt-1.5 text-[11px] text-umb-outline">
+              Para notificaciones críticas de dictámenes y asesorías.
+            </p>
+          </div>
+        </div>
+
+        <!-- Caja informativa de Magic Link (acceso sin contraseña) -->
+        <div class="bg-umb-dorado-light border-l-4 border-[#D69E2E] rounded-r-[8px] p-4 flex items-start gap-3.5">
+          <div class="flex-shrink-0 text-[#D69E2E] mt-0.5">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <p class="text-[13px] text-umb-muted leading-relaxed">
+            <strong class="font-semibold text-umb-carbon">Acceso sin contraseña:</strong> una vez registrado, recibirás un enlace de acceso seguro en tu correo institucional. No necesitas crear contraseña.
+          </p>
+        </div>
+
+        <!-- Checkbox obligatorio -->
+        <div class="pt-1">
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input 
+              type="checkbox" 
+              required
+              class="mt-1 w-4 h-4 text-umb-guinda border-umb-border rounded focus:ring-umb-guinda cursor-pointer"
+            >
+            <span class="text-[13px] text-umb-muted leading-normal select-none">
+              He leído y acepto el <a href="#" class="text-umb-guinda font-medium underline underline-offset-2 hover:text-umb-guinda-dark">Reglamento de Residencias Profesionales UMB 2026</a> y el <a href="#" class="text-umb-guinda font-medium underline underline-offset-2 hover:text-umb-guinda-dark">Aviso de Privacidad Institucional</a>.
+            </span>
+          </label>
+        </div>
+
+        <!-- Botón primario de envío -->
+        <button 
+          type="submit" 
+          class="w-full h-[44px] bg-umb-guinda hover:bg-umb-guinda-dark text-white rounded-[8px] font-medium text-[14px] flex items-center justify-center gap-2 shadow-sm transition-colors duration-150 group cursor-pointer"
+        >
+          <span>Crear expediente y continuar</span>
+          <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </button>
+
+        <!-- Pie del formulario: Enlace de inicio de sesión -->
+        <div class="text-center pt-2">
+          <p class="text-[13px] text-umb-muted">
+            ¿Ya tienes expediente? 
+            <a href="#" class="text-umb-guinda font-medium hover:underline hover:text-umb-guinda-dark ml-1">
+              Inicia sesión
+            </a>
+          </p>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer institucional reglamentario -->
+  <footer class="w-full py-6 text-center text-[12px] text-umb-outline border-t border-umb-border bg-white/50 mt-auto">
+    <p class="max-w-4xl mx-auto px-4">
+      SIGRES-UMB — Sistema integral para la gestión de residencias profesionales | Universidad Mexiquense del Bicentenario — UES San José del Rincón | Ciclo 26-27/1
+    </p>
+  </footer>
+
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

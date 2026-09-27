@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-umb-surface" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cohortes y carreras — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col bg-umb-surface text-[#1C1B1F] antialiased">
+<!-- BEGIN: TopAppBar -->
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard-monitoreo.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Coordinación</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Cohortes por carrera</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="08-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          LV
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Luis Ramón Vega</span>
+          <span class="text-[10px] text-white/75 leading-none">Coordinación</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: TopAppBar -->
+<div class="flex flex-1 pt-16">
+<!-- BEGIN: LeftSidebar -->
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              LV
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Luis Ramón Vega Ramírez</p>
+              <p class="text-[11px] text-umb-outline truncate">Coordinador de UES</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard-monitoreo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">monitoring</span>
+            <span class="text-sm">Monitoreo</span>
+          </a>
+          <a href="02-cohortes-carreras.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">school</span>
+            <span class="text-sm">Cohortes</span>
+          </a>
+          <a href="03-supervision-riesgo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">warning</span>
+            <span class="text-sm">Riesgos</span>
+          </a>
+          <a href="04-contingencias.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">support</span>
+            <span class="text-sm">Contingencias</span>
+          </a>
+          <a href="05-firma-cartas.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">draw</span>
+            <span class="text-sm">Firmas</span>
+          </a>
+          <a href="06-reportes-ejecutivos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">summarize</span>
+            <span class="text-sm">Reportes</span>
+          </a>
+          <a href="08-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContentArea -->
+<main class="flex-1 ml-[260px] p-8 overflow-y-auto" data-purpose="primary-workspace">
+<!-- Breadcrumb and Page Header -->
+<div class="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+<div>
+<nav aria-label="Miga de pan" class="flex items-center space-x-2 text-xs text-slate-500 mb-1">
+<span>Coordinación</span>
+<svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-slate-800 font-medium">Cohortes y carreras</span>
+</nav>
+<h1 class="text-2xl font-bold text-[#1C1B1F]">Cohortes y carreras</h1>
+<p class="text-sm text-slate-500 mt-0.5">Consulta el avance de cada programa educativo.</p>
+</div>
+<!-- Header Actions and Badge -->
+<div class="flex items-center space-x-3">
+<div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
+<span class="w-2 h-2 rounded-full bg-[#2D8C4E]"></span>
+<span>45 estudiantes activos</span>
+</div>
+<button class="inline-flex items-center space-x-2 px-4 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-lg shadow-sm transition-colors" type="button">
+<svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Exportar relación</span>
+</button>
+</div>
+</div>
+<!-- BEGIN: SectionTabs -->
+<section class="mb-6" data-purpose="career-filter-tabs">
+<div class="border-b border-slate-200">
+<nav aria-label="Pestañas de programas académicos" class="flex space-x-8 -mb-px">
+<!-- Tab Todas (Active) -->
+<button class="border-umb-guinda text-umb-guinda border-b-2 py-3 px-1 text-sm font-bold inline-flex items-center space-x-2">
+<span>Todas</span>
+<span class="bg-umb-guinda text-white text-[11px] font-semibold px-2 py-0.5 rounded-full">45</span>
+</button>
+<!-- Tab ISC -->
+<button class="border-transparent text-slate-600 hover:text-slate-800 hover:border-slate-300 border-b-2 py-3 px-1 text-sm font-medium inline-flex items-center space-x-2 transition-colors">
+<span>ISC</span>
+<span class="bg-slate-200 text-slate-700 text-[11px] font-semibold px-2 py-0.5 rounded-full">18</span>
+</button>
+<!-- Tab IIAS -->
+<button class="border-transparent text-slate-600 hover:text-slate-800 hover:border-slate-300 border-b-2 py-3 px-1 text-sm font-medium inline-flex items-center space-x-2 transition-colors">
+<span>IIAS</span>
+<span class="bg-slate-200 text-slate-700 text-[11px] font-semibold px-2 py-0.5 rounded-full">15</span>
+</button>
+<!-- Tab LCONT -->
+<button class="border-transparent text-slate-600 hover:text-slate-800 hover:border-slate-300 border-b-2 py-3 px-1 text-sm font-medium inline-flex items-center space-x-2 transition-colors">
+<span>LCONT</span>
+<span class="bg-slate-200 text-slate-700 text-[11px] font-semibold px-2 py-0.5 rounded-full">12</span>
+</button>
+</nav>
+</div>
+</section>
+<!-- END: SectionTabs -->
+<!-- BEGIN: SectionCardsSummary -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8" data-purpose="career-summary-cards">
+<!-- Card 1: ISC -->
+<article class="bg-white rounded-lg border border-slate-200 shadow-sm p-5 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between mb-3">
+<div>
+<span class="text-[11px] font-bold uppercase tracking-wider text-umb-guinda bg-[#FDF2F4] px-2 py-0.5 rounded">Programa ISC</span>
+<h3 class="text-sm font-bold text-slate-900 mt-1.5">Ingeniería en Sistemas Computacionales</h3>
+</div>
+<span class="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-1 rounded">18 alumnos</span>
+</div>
+<!-- Semáforos ISC -->
+<div class="grid grid-cols-3 gap-2 py-2 mb-4 bg-slate-50 rounded-lg p-2.5 border border-slate-100 text-center">
+<div>
+<span class="block text-base font-bold text-[#2D8C4E]">14</span>
+<span class="text-[11px] font-medium text-slate-600">Al día</span>
+</div>
+<div>
+<span class="block text-base font-bold text-[#C53030]">3</span>
+<span class="text-[11px] font-medium text-slate-600">En riesgo</span>
+</div>
+<div>
+<span class="block text-base font-bold text-[#D69E2E]">1</span>
+<span class="text-[11px] font-medium text-slate-600">Contingencia</span>
+</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div>
+<div class="flex justify-between text-xs text-slate-600 font-medium mb-1.5">
+<span>Avance promedio de horas</span>
+<span class="font-bold text-slate-800">52% (~332 / 640 hrs)</span>
+</div>
+<div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-full rounded-full" style="width: 52%"></div>
+</div>
+</div>
+</article>
+<!-- Card 2: IIAS -->
+<article class="bg-white rounded-lg border border-slate-200 shadow-sm p-5 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between mb-3">
+<div>
+<span class="text-[11px] font-bold uppercase tracking-wider text-umb-guinda bg-[#FDF2F4] px-2 py-0.5 rounded">Programa IIAS</span>
+<h3 class="text-sm font-bold text-slate-900 mt-1.5">Ing. en Innovación Agrícola Sustentable</h3>
+</div>
+<span class="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-1 rounded">15 alumnos</span>
+</div>
+<!-- Semáforos IIAS -->
+<div class="grid grid-cols-3 gap-2 py-2 mb-4 bg-slate-50 rounded-lg p-2.5 border border-slate-100 text-center">
+<div>
+<span class="block text-base font-bold text-[#2D8C4E]">12</span>
+<span class="text-[11px] font-medium text-slate-600">Al día</span>
+</div>
+<div>
+<span class="block text-base font-bold text-[#C53030]">2</span>
+<span class="text-[11px] font-medium text-slate-600">En riesgo</span>
+</div>
+<div>
+<span class="block text-base font-bold text-[#D69E2E]">1</span>
+<span class="text-[11px] font-medium text-slate-600">Contingencia</span>
+</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div>
+<div class="flex justify-between text-xs text-slate-600 font-medium mb-1.5">
+<span>Avance promedio de horas</span>
+<span class="font-bold text-slate-800">48% (~307 / 640 hrs)</span>
+</div>
+<div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-full rounded-full" style="width: 48%"></div>
+</div>
+</div>
+</article>
+<!-- Card 3: LCONT -->
+<article class="bg-white rounded-lg border border-slate-200 shadow-sm p-5 flex flex-col justify-between">
+<div>
+<div class="flex items-start justify-between mb-3">
+<div>
+<span class="text-[11px] font-bold uppercase tracking-wider text-umb-guinda bg-[#FDF2F4] px-2 py-0.5 rounded">Programa LCONT</span>
+<h3 class="text-sm font-bold text-slate-900 mt-1.5">Licenciatura en Contaduría</h3>
+</div>
+<span class="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-1 rounded">12 alumnos</span>
+</div>
+<!-- Semáforos LCONT -->
+<div class="grid grid-cols-3 gap-2 py-2 mb-4 bg-slate-50 rounded-lg p-2.5 border border-slate-100 text-center">
+<div>
+<span class="block text-base font-bold text-[#2D8C4E]">11</span>
+<span class="text-[11px] font-medium text-slate-600">Al día</span>
+</div>
+<div>
+<span class="block text-base font-bold text-[#C53030]">1</span>
+<span class="text-[11px] font-medium text-slate-600">En riesgo</span>
+</div>
+<div>
+<span class="block text-base font-bold text-slate-400">0</span>
+<span class="text-[11px] font-medium text-slate-400">Contingencia</span>
+</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div>
+<div class="flex justify-between text-xs text-slate-600 font-medium mb-1.5">
+<span>Avance promedio de horas</span>
+<span class="font-bold text-slate-800">56% (~358 / 640 hrs)</span>
+</div>
+<div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-full rounded-full" style="width: 56%"></div>
+</div>
+</div>
+</article>
+</section>
+<!-- END: SectionCardsSummary -->
+<!-- BEGIN: SectionStudentListTable -->
+<section class="bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden" data-purpose="student-roster-section">
+<!-- Table Toolbar -->
+<div class="p-5 border-b border-slate-200">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+<!-- Search bar input -->
+<div class="relative flex-1 max-w-md">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<input class="w-full pl-9 pr-4 py-2 text-xs border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-umb-guinda focus:border-umb-guinda" placeholder="Buscar estudiante por nombre, matrícula o empresa..." type="text"/>
+</div>
+<!-- Filter Badges & Week Dropdown -->
+<div class="flex flex-wrap items-center gap-3">
+<!-- Quick Status Chips -->
+<div class="flex items-center space-x-1.5 bg-slate-100 p-1 rounded-lg">
+<button class="px-2.5 py-1 text-xs font-semibold bg-white text-slate-800 rounded shadow-xs">Todos</button>
+<button class="px-2.5 py-1 text-xs font-medium text-slate-600 hover:text-slate-900 rounded">Al día</button>
+<button class="px-2.5 py-1 text-xs font-medium text-slate-600 hover:text-slate-900 rounded">En riesgo</button>
+<button class="px-2.5 py-1 text-xs font-medium text-slate-600 hover:text-slate-900 rounded">Contingencia</button>
+</div>
+<!-- Week selector -->
+<div class="relative">
+<select class="text-xs border border-slate-300 rounded-lg py-2 pl-3 pr-8 font-medium text-slate-700 bg-white focus:outline-none focus:ring-1 focus:ring-umb-guinda focus:border-umb-guinda">
+<option>Semana: Semana 9 (actual)</option>
+<option>Semana: Semana 8</option>
+<option>Semana: Semana 7</option>
+<option>Semana: Semana 6</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Counter indicator -->
+<div class="mt-3 flex items-center justify-between text-xs text-slate-500">
+<span>Mostrando <strong class="font-semibold text-slate-800">8</strong> de <strong class="font-semibold text-slate-800">45</strong> estudiantes</span>
+<span class="text-slate-400">Ordenado por: Apellidos (A-Z)</span>
+</div>
+</div>
+<!-- Table Responsive Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse" id="students-table">
+<thead>
+<tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+<th class="py-3.5 px-5" scope="col">Estudiante</th>
+<th class="py-3.5 px-4" scope="col">Carrera</th>
+<th class="py-3.5 px-4" scope="col">Empresa receptora</th>
+<th class="py-3.5 px-4" scope="col">Progreso de horas</th>
+<th class="py-3.5 px-4 text-center" scope="col">Asistencia</th>
+<th class="py-3.5 px-4" scope="col">Estado</th>
+<th class="py-3.5 px-5 text-right" scope="col">Acción</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-xs text-slate-700 font-normal">
+<!-- ROW 1 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-3.5 px-5">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-semibold text-xs flex items-center justify-center shrink-0">VR</div>
+<div>
+<p class="font-semibold text-slate-900">Jesús Andrés Mondragón Tenorio</p>
+<p class="text-[11px] text-slate-400 font-mono">13220024</p>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-800 border border-slate-200">ISC</span>
+</td>
+<td class="py-3.5 px-4">
+<p class="font-medium text-slate-800 truncate max-w-[200px]" title="Universidad Mexiquense del Bicentenario · Dirección Académica">Universidad Mexiquense del Bicentenario · Dirección Académica</p>
+<p class="text-[11px] text-slate-400">Sector Tecnológico</p>
+</td>
+<td class="py-3.5 px-4">
+<div class="w-36">
+<div class="flex justify-between text-[11px] mb-1">
+<span class="font-medium text-slate-700">320 / 640 hrs</span>
+<span class="font-semibold text-slate-900">50%</span>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-full rounded-full" style="width: 50%"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800">100%</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2D8C4E]"></span>
+<span>Al día</span>
+</span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501420] hover:underline" href="#">
+<span>Ver detalle</span>
+<svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</td>
+</tr>
+<!-- ROW 2 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-3.5 px-5">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-semibold text-xs flex items-center justify-center shrink-0">CM</div>
+<div>
+<p class="font-semibold text-slate-900">Cristofer Piña Rodríguez</p>
+<p class="text-[11px] text-slate-400 font-mono">13200018</p>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-800 border border-slate-200">ISC</span>
+</td>
+<td class="py-3.5 px-4">
+<p class="font-medium text-slate-800 truncate max-w-[200px]" title="Grupo Bimbo S.A.B. de C.V.">Grupo Bimbo S.A.B. de C.V.</p>
+<p class="text-[11px] text-slate-400">Industria Manufactura</p>
+</td>
+<td class="py-3.5 px-4">
+<div class="w-36">
+<div class="flex justify-between text-[11px] mb-1">
+<span class="font-medium text-slate-700">480 / 640 hrs</span>
+<span class="font-semibold text-slate-900">75%</span>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-full rounded-full" style="width: 75%"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800">95%</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2D8C4E]"></span>
+<span>Al día</span>
+</span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501420] hover:underline" href="#">
+<span>Ver detalle</span>
+<svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</td>
+</tr>
+<!-- ROW 3 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-3.5 px-5">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-semibold text-xs flex items-center justify-center shrink-0">DA</div>
+<div>
+<p class="font-semibold text-slate-900">Marco Antonio García Cruz</p>
+<p class="text-[11px] text-slate-400 font-mono">13210087</p>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-800 border border-slate-200">IIAS</span>
+</td>
+<td class="py-3.5 px-4">
+<p class="font-medium text-slate-800 truncate max-w-[200px]" title="AgroInnova Lerma S.P.R. de R.L.">AgroInnova Lerma S.P.R. de R.L.</p>
+<p class="text-[11px] text-slate-400">Sector Agroindustrial</p>
+</td>
+<td class="py-3.5 px-4">
+<div class="w-36">
+<div class="flex justify-between text-[11px] mb-1">
+<span class="font-medium text-slate-700">350 / 640 hrs</span>
+<span class="font-semibold text-slate-900">55%</span>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-full rounded-full" style="width: 55%"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800">90%</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2D8C4E]"></span>
+<span>Al día</span>
+</span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501420] hover:underline" href="#">
+<span>Ver detalle</span>
+<svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</td>
+</tr>
+<!-- ROW 4 -->
+<tr class="hover:bg-slate-50/80 transition-colors bg-red-50/20">
+<td class="py-3.5 px-5">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-red-100 text-red-700 font-semibold text-xs flex items-center justify-center shrink-0">MC</div>
+<div>
+<p class="font-semibold text-slate-900">Daniel Benítez</p>
+<p class="text-[11px] text-slate-400 font-mono">13190042</p>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-800 border border-slate-200">LCONT</span>
+</td>
+<td class="py-3.5 px-4">
+<p class="font-medium text-slate-800 truncate max-w-[200px]" title="Despacho Contable SJR y Asociados">Despacho Contable SJR y Asociados</p>
+<p class="text-[11px] text-slate-400">Servicios Financieros</p>
+</td>
+<td class="py-3.5 px-4">
+<div class="w-36">
+<div class="flex justify-between text-[11px] mb-1">
+<span class="font-medium text-slate-700">240 / 640 hrs</span>
+<span class="font-semibold text-red-700">38%</span>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-red-500 h-full rounded-full" style="width: 38%"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800">82%</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200">
+<span class="w-1.5 h-1.5 rounded-full bg-[#C53030]"></span>
+<span>En riesgo</span>
+</span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501420] hover:underline" href="#">
+<span>Ver detalle</span>
+<svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</td>
+</tr>
+<!-- ROW 5 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-3.5 px-5">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-semibold text-xs flex items-center justify-center shrink-0">JD</div>
+<div>
+<p class="font-semibold text-slate-900">José Luis Domínguez Maya</p>
+<p class="text-[11px] text-slate-400 font-mono">13220059</p>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-800 border border-slate-200">ISC</span>
+</td>
+<td class="py-3.5 px-4">
+<p class="font-medium text-slate-800 truncate max-w-[200px]" title="Grupo Bimbo S.A.B. de C.V.">Grupo Bimbo S.A.B. de C.V.</p>
+<p class="text-[11px] text-slate-400">Infraestructura TI</p>
+</td>
+<td class="py-3.5 px-4">
+<div class="w-36">
+<div class="flex justify-between text-[11px] mb-1">
+<span class="font-medium text-slate-700">400 / 640 hrs</span>
+<span class="font-semibold text-slate-900">63%</span>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-full rounded-full" style="width: 63%"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800">88%</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2D8C4E]"></span>
+<span>Al día</span>
+</span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501420] hover:underline" href="#">
+<span>Ver detalle</span>
+<svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</td>
+</tr>
+<!-- ROW 6 -->
+<tr class="hover:bg-slate-50/80 transition-colors bg-red-50/20">
+<td class="py-3.5 px-5">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-red-100 text-red-700 font-semibold text-xs flex items-center justify-center shrink-0">BS</div>
+<div>
+<p class="font-semibold text-slate-900">Brenda Karina Soto</p>
+<p class="text-[11px] text-slate-400 font-mono">13210014</p>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-800 border border-slate-200">LCONT</span>
+</td>
+<td class="py-3.5 px-4">
+<p class="font-medium text-slate-800 truncate max-w-[200px]" title="SAT Módulo Atlacomulco">SAT Módulo Atlacomulco</p>
+<p class="text-[11px] text-slate-400">Sector Público / Fiscal</p>
+</td>
+<td class="py-3.5 px-4">
+<div class="w-36">
+<div class="flex justify-between text-[11px] mb-1">
+<span class="font-medium text-slate-700">190 / 640 hrs</span>
+<span class="font-semibold text-red-700">30%</span>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-red-500 h-full rounded-full" style="width: 30%"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-50 text-red-700">78%</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200">
+<span class="w-1.5 h-1.5 rounded-full bg-[#C53030]"></span>
+<span>En riesgo</span>
+</span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501420] hover:underline" href="#">
+<span>Ver detalle</span>
+<svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</td>
+</tr>
+<!-- ROW 7 -->
+<tr class="hover:bg-slate-50/80 transition-colors bg-red-50/20">
+<td class="py-3.5 px-5">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-red-100 text-red-700 font-semibold text-xs flex items-center justify-center shrink-0">RM</div>
+<div>
+<p class="font-semibold text-slate-900">Rodrigo Mendoza Bautista</p>
+<p class="text-[11px] text-slate-400 font-mono">13200091</p>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-800 border border-slate-200">ISC</span>
+</td>
+<td class="py-3.5 px-4">
+<p class="font-medium text-slate-800 truncate max-w-[200px]" title="Soluciones Cloud México S.A. de C.V.">Soluciones Cloud México S.A. de C.V.</p>
+<p class="text-[11px] text-slate-400">DevOps &amp; Soporte</p>
+</td>
+<td class="py-3.5 px-4">
+<div class="w-36">
+<div class="flex justify-between text-[11px] mb-1">
+<span class="font-medium text-slate-700">180 / 640 hrs</span>
+<span class="font-semibold text-red-700">28%</span>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-red-500 h-full rounded-full" style="width: 28%"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-50 text-red-700">75%</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200">
+<span class="w-1.5 h-1.5 rounded-full bg-[#C53030]"></span>
+<span>En riesgo</span>
+</span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501420] hover:underline" href="#">
+<span>Ver detalle</span>
+<svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</td>
+</tr>
+<!-- ROW 8 -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-3.5 px-5">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-semibold text-xs flex items-center justify-center shrink-0">AB</div>
+<div>
+<p class="font-semibold text-slate-900">Andrea Benítez Colín</p>
+<p class="text-[11px] text-slate-400 font-mono">13210073</p>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-block px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-800 border border-slate-200">LCONT</span>
+</td>
+<td class="py-3.5 px-4">
+<p class="font-medium text-slate-800 truncate max-w-[200px]" title="SAT Módulo Atlacomulco">SAT Módulo Atlacomulco</p>
+<p class="text-[11px] text-slate-400">Auditoría Fiscal</p>
+</td>
+<td class="py-3.5 px-4">
+<div class="w-36">
+<div class="flex justify-between text-[11px] mb-1">
+<span class="font-medium text-slate-700">310 / 640 hrs</span>
+<span class="font-semibold text-slate-900">48%</span>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-full rounded-full" style="width: 48%"></div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800">90%</span>
+</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-[#2D8C4E]"></span>
+<span>Al día</span>
+</span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#501420] hover:underline" href="#">
+<span>Ver detalle</span>
+<svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination Footer -->
+<div class="p-4 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+<p class="text-xs text-slate-500">
+            Página <span class="font-semibold text-slate-800">1</span> de <span class="font-semibold text-slate-800">6</span> (45 registros en total)
+          </p>
+<div class="inline-flex items-center space-x-1 text-xs">
+<button class="px-3 py-1.5 rounded border border-slate-200 text-slate-400 cursor-not-allowed bg-slate-50 font-medium" disabled="">
+              Anterior
+            </button>
+<button class="px-3 py-1.5 rounded bg-umb-guinda text-white font-semibold shadow-xs">
+              1
+            </button>
+<button class="px-3 py-1.5 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 font-medium transition-colors">
+              2
+            </button>
+<button class="px-3 py-1.5 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 font-medium transition-colors">
+              3
+            </button>
+<span class="px-2 text-slate-400">...</span>
+<button class="px-3 py-1.5 rounded border border-slate-200 text-slate-600 hover:bg-slate-50 font-medium transition-colors">
+              6
+            </button>
+<button class="px-3 py-1.5 rounded border border-slate-200 text-slate-700 hover:bg-slate-50 font-medium transition-colors">
+              Siguiente
+            </button>
+</div>
+</div>
+</section>
+<!-- END: SectionStudentListTable -->
+<!-- BEGIN: RegulatoryInstitutionalFooter -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+<!-- END: RegulatoryInstitutionalFooter -->
+</main>
+<!-- END: MainContentArea -->
+</div>
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard-monitoreo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">monitoring</span>
+      <span class="text-[11px] font-medium mt-0.5">Monitoreo</span>
+    </a>
+    <a href="03-supervision-riesgo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">warning</span>
+      <span class="text-[11px] font-medium mt-0.5">Riesgos</span>
+    </a>
+    <a href="04-contingencias.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">support</span>
+      <span class="text-[11px] font-medium mt-0.5">Contingencias</span>
+    </a>
+    <a href="05-firma-cartas.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">draw</span>
+      <span class="text-[11px] font-medium mt-0.5">Firmas</span>
+    </a>
+    <a href="08-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-slate-100" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contingencias — Coordinación SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col bg-umb-surface text-slate-800 antialiased font-sans">
+<!-- BEGIN: TopAppBar -->
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard-monitoreo.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Coordinación</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Gestión de contingencias</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="08-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          LV
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Luis Ramón Vega</span>
+          <span class="text-[10px] text-white/75 leading-none">Coordinación</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: TopAppBar -->
+<!-- Container for Sidebar and Main Page -->
+<div class="flex pt-16 flex-1 min-h-screen">
+<!-- BEGIN: LeftSidebar -->
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              LV
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Luis Ramón Vega Ramírez</p>
+              <p class="text-[11px] text-umb-outline truncate">Coordinador de UES</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard-monitoreo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">monitoring</span>
+            <span class="text-sm">Monitoreo</span>
+          </a>
+          <a href="02-cohortes-carreras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">school</span>
+            <span class="text-sm">Cohortes</span>
+          </a>
+          <a href="03-supervision-riesgo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">warning</span>
+            <span class="text-sm">Riesgos</span>
+          </a>
+          <a href="04-contingencias.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">support</span>
+            <span class="text-sm">Contingencias</span>
+          </a>
+          <a href="05-firma-cartas.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">draw</span>
+            <span class="text-sm">Firmas</span>
+          </a>
+          <a href="06-reportes-ejecutivos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">summarize</span>
+            <span class="text-sm">Reportes</span>
+          </a>
+          <a href="08-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 md:ml-[260px] p-6 lg:p-8 flex flex-col justify-between overflow-y-auto">
+<div class="max-w-7xl w-full mx-auto space-y-8">
+<!-- Breadcrumb & Header row -->
+<section data-purpose="page-header">
+<!-- Breadcrumb -->
+<nav class="flex items-center space-x-2 text-xs text-slate-500 mb-2 font-medium">
+<a class="hover:text-slate-800 transition-colors" href="#">Coordinación</a>
+<svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" fill-rule="evenodd"></path>
+</svg>
+<span class="text-slate-800">Contingencias</span>
+</nav>
+<!-- Main title bar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-slate-900 tracking-tight">Contingencias</h1>
+<p class="text-sm text-slate-500 mt-0.5">Gestión de pausas, reubicaciones y excepciones normativas.</p>
+</div>
+<div class="flex items-center space-x-3">
+<!-- Active cases badge -->
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+<span class="w-2 h-2 rounded-full bg-amber-500 mr-2 animate-pulse"></span>
+                3 casos activos
+              </span>
+<!-- Action button -->
+<button class="inline-flex items-center space-x-2 px-4 py-2 bg-umb-guinda hover:bg-[#521422] text-white text-xs font-medium rounded-lg shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-umb-guinda" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Registrar nueva contingencia</span>
+</button>
+</div>
+</div>
+</section>
+<!-- BEGIN: Section1-SummaryMetrics -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-5" data-purpose="metrics-summary">
+<!-- Card 1: Pausas autorizadas -->
+<div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Pausas autorizadas</span>
+<div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="mt-4">
+<span class="text-3xl font-bold text-slate-900 leading-none">1</span>
+<p class="text-xs text-slate-500 mt-2 leading-relaxed">Incapacidad médica o laboral temporal con reserva de horas.</p>
+</div>
+</div>
+<!-- Card 2: Reubicaciones -->
+<div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Reubicaciones</span>
+<div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="mt-4">
+<span class="text-3xl font-bold text-slate-900 leading-none">1</span>
+<p class="text-xs text-slate-500 mt-2 leading-relaxed">Procesos de reasignación por cierre o incumplimiento.</p>
+</div>
+</div>
+<!-- Card 3: Excepciones -->
+<div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-wide">Excepciones</span>
+<div class="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="mt-4">
+<span class="text-3xl font-bold text-slate-900 leading-none">1</span>
+<p class="text-xs text-slate-500 mt-2 leading-relaxed">Solicitudes de ampliación de plazo o prórroga reglamentaria.</p>
+</div>
+</div>
+</section>
+<!-- END: Section1-SummaryMetrics -->
+<!-- BEGIN: Section2-ActiveCasesList -->
+<section class="space-y-4" data-purpose="active-contingencies">
+<div class="flex items-center justify-between pb-1 border-b border-slate-200">
+<h2 class="text-base font-bold text-slate-900">Casos activos en seguimiento</h2>
+<span class="text-xs text-slate-500">Semana 9 · Ciclo 26-27/1</span>
+</div>
+<!-- Active Case 1: Pausa autorizada -->
+<article class="bg-white rounded-xl border border-slate-200 border-l-[6px] border-l-amber-500 shadow-sm p-5 hover:shadow transition-shadow">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+<div class="flex flex-wrap items-center gap-2.5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+                  Pausa autorizada
+                </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-bold bg-slate-100 text-slate-700">
+                  IIAS
+                </span>
+<span class="text-xs font-mono text-slate-500">Folio: CTG-2026-004</span>
+</div>
+<div class="flex items-center space-x-2 text-xs text-slate-500">
+<span class="font-medium text-slate-700">Horas congeladas:</span>
+<span class="font-semibold text-slate-900">350 / 640 hrs (55%)</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+<!-- Student Info -->
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Estudiante</p>
+<p class="text-sm font-bold text-slate-900 mt-0.5">Marco Antonio García Cruz</p>
+<p class="text-xs text-slate-500">Matrícula: 13220018</p>
+<p class="text-xs text-slate-600 font-medium mt-1">Ing. en Innovación Agrícola Sustentable</p>
+</div>
+<!-- Motive -->
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Motivo justificado</p>
+<p class="text-sm font-medium text-slate-800 mt-0.5">Incapacidad médica prolongada (30 días)</p>
+<p class="text-xs text-slate-500 mt-1">Dictamen médico presentado y sellado por el IMSS.</p>
+</div>
+<!-- Dates Info -->
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Periodo autorizado</p>
+<p class="text-xs text-slate-700 mt-1"><strong class="font-semibold">Inicio:</strong> 15 de octubre de 2026</p>
+<p class="text-xs text-slate-700 mt-0.5"><strong class="font-semibold">Reanudación estimada:</strong> 15 de noviembre de 2026</p>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="flex flex-wrap items-center justify-end gap-2.5 pt-3 border-t border-slate-100">
+<button class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors" type="button">
+                Ver detalle
+              </button>
+<button class="px-3 py-1.5 text-xs font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors" type="button">
+                Cancelar pausa
+              </button>
+<button class="px-3.5 py-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm transition-colors" type="button">
+                Reanudar
+              </button>
+</div>
+</article>
+<!-- Active Case 2: Reubicación -->
+<article class="bg-white rounded-xl border border-slate-200 border-l-[6px] border-l-blue-600 shadow-sm p-5 hover:shadow transition-shadow">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+<div class="flex flex-wrap items-center gap-2.5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+                  Reubicación
+                </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-bold bg-slate-100 text-slate-700">
+                  LCONT
+                </span>
+<span class="text-xs font-mono text-slate-500">Folio: CTG-2026-005</span>
+</div>
+<div class="flex items-center space-x-2 text-xs text-slate-500">
+<span class="font-medium text-slate-700">Horas conservadas:</span>
+<span class="font-semibold text-slate-900">240 hrs reconocidas (37.5%)</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+<!-- Student Info -->
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Estudiante</p>
+<p class="text-sm font-bold text-slate-900 mt-0.5">Daniel Benítez</p>
+<p class="text-xs text-slate-500">Matrícula: 13210112</p>
+<p class="text-xs text-slate-600 font-medium mt-1">Licenciatura en Contaduría</p>
+</div>
+<!-- Motive -->
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Motivo de transferencia</p>
+<p class="text-sm font-medium text-slate-800 mt-0.5">Cierre de la empresa receptora por reestructuración</p>
+<p class="text-xs text-amber-600 font-medium mt-1">Convenio previo revocado sin penalización para el alumno.</p>
+</div>
+<!-- Companies Info -->
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Sedes asignadas</p>
+<p class="text-xs text-slate-500 mt-1 line-through">Anterior: Despacho Contable San José</p>
+<p class="text-xs font-semibold text-blue-700 mt-0.5">Nueva: SAT Módulo Atlacomulco</p>
+<span class="inline-block mt-1 text-[10px] bg-amber-50 text-amber-700 px-1.5 py-0.5 rounded border border-amber-200">
+                  Pendiente de validación
+                </span>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="flex flex-wrap items-center justify-end gap-2.5 pt-3 border-t border-slate-100">
+<button class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors" type="button">
+                Ver detalle
+              </button>
+<button class="px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-red-700 bg-slate-50 hover:bg-red-50 rounded-lg transition-colors" type="button">
+                Rechazar
+              </button>
+<button class="px-3.5 py-1.5 text-xs font-semibold text-white bg-umb-guinda hover:bg-[#521422] rounded-lg shadow-sm transition-colors" type="button">
+                Aprobar reubicación
+              </button>
+</div>
+</article>
+<!-- Active Case 3: Excepción -->
+<article class="bg-white rounded-xl border border-slate-200 border-l-[6px] border-l-red-600 shadow-sm p-5 hover:shadow transition-shadow">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+<div class="flex flex-wrap items-center gap-2.5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200">
+                  Excepción
+                </span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-bold bg-slate-100 text-slate-700">
+                  ISC
+                </span>
+<span class="text-xs font-mono text-slate-500">Folio: CTG-2026-006</span>
+</div>
+<div class="flex items-center space-x-2 text-xs text-slate-500">
+<span class="font-medium text-slate-700">Horas acumuladas:</span>
+<span class="font-semibold text-slate-900">180 / 640 hrs (28%)</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-4">
+<!-- Student Info -->
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Estudiante</p>
+<p class="text-sm font-bold text-slate-900 mt-0.5">Rodrigo Mendoza Bautista</p>
+<p class="text-xs text-slate-500">Matrícula: 13210004</p>
+<p class="text-xs text-slate-600 font-medium mt-1">Ing. en Sistemas Computacionales</p>
+</div>
+<!-- Motive -->
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Motivo de solicitud</p>
+<p class="text-sm font-medium text-slate-800 mt-0.5">Solicitud de extensión del periodo por 15 días</p>
+<p class="text-xs text-slate-500 mt-1">Compromiso de entrega de bitácoras y regularización inmediata.</p>
+</div>
+<!-- Status Info -->
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Estado normativo</p>
+<div class="mt-1 flex items-center space-x-1.5 text-xs text-red-700 font-semibold">
+<span class="w-2 h-2 rounded-full bg-red-500"></span>
+<span>Pendiente de dictamen institucional</span>
+</div>
+<p class="text-xs text-slate-500 mt-1">En espera de resolución del Comité Académico.</p>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="flex flex-wrap items-center justify-end gap-2.5 pt-3 border-t border-slate-100">
+<button class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors" type="button">
+                Ver detalle
+              </button>
+<button class="px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-red-700 bg-slate-50 hover:bg-red-50 rounded-lg transition-colors" type="button">
+                Rechazar
+              </button>
+<button class="px-3.5 py-1.5 text-xs font-semibold text-white bg-umb-guinda hover:bg-[#521422] rounded-lg shadow-sm transition-colors" type="button">
+                Aprobar excepción
+              </button>
+</div>
+</article>
+</section>
+<!-- END: Section2-ActiveCasesList -->
+<!-- BEGIN: Section3-HistoricalTable -->
+<section class="space-y-4" data-purpose="historical-table-container">
+<div>
+<h3 class="text-lg font-bold text-slate-900 tracking-tight">Historial de contingencias cerradas</h3>
+<p class="text-xs text-slate-500 mt-0.5">Registro de solicitudes resueltas, archivadas o concluidas formalmente.</p>
+</div>
+<div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+<th class="py-3 px-4">Tipo</th>
+<th class="py-3 px-4">Estudiante</th>
+<th class="py-3 px-4">Carrera</th>
+<th class="py-3 px-4">Periodo</th>
+<th class="py-3 px-4">Resolución</th>
+<th class="py-3 px-4 text-right">Acción</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-xs text-slate-700">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50/70 transition-colors">
+<td class="py-3.5 px-4 font-medium text-slate-900 whitespace-nowrap">Pausa autorizada</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-slate-900">Jesús Andrés Mondragón Tenorio</div>
+<div class="text-[11px] text-slate-500">13220024</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-block bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[10px]">ISC</span>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap text-slate-500">15 sep – 30 sep 2026</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        Reanudada
+                      </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<a class="text-xs font-semibold text-umb-guinda hover:text-[#521422]" href="#">Ver expediente</a>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50/70 transition-colors">
+<td class="py-3.5 px-4 font-medium text-slate-900 whitespace-nowrap">Reubicación</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-slate-900">Cristofer Piña Rodríguez</div>
+<div class="text-[11px] text-slate-500">13200018</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-block bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[10px]">ISC</span>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap text-slate-500">22 ago – 05 sep 2026</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-blue-50 text-blue-700 border border-blue-200">
+                        Resuelta
+                      </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<a class="text-xs font-semibold text-umb-guinda hover:text-[#521422]" href="#">Ver expediente</a>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50/70 transition-colors">
+<td class="py-3.5 px-4 font-medium text-slate-900 whitespace-nowrap">Excepción</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-slate-900">Brenda Karina Soto</div>
+<div class="text-[11px] text-slate-500">13210014</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-block bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[10px]">LCONT</span>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap text-slate-500">10 sep – 12 sep 2026</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        Aprobada
+                      </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<a class="text-xs font-semibold text-umb-guinda hover:text-[#521422]" href="#">Ver expediente</a>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50/70 transition-colors">
+<td class="py-3.5 px-4 font-medium text-slate-900 whitespace-nowrap">Pausa médica</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-slate-900">José Luis Domínguez Maya</div>
+<div class="text-[11px] text-slate-500">13220059</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-block bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[10px]">ISC</span>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap text-slate-500">05 nov – 25 nov 2025</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        Reanudada
+                      </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<a class="text-xs font-semibold text-umb-guinda hover:text-[#521422]" href="#">Ver expediente</a>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50/70 transition-colors">
+<td class="py-3.5 px-4 font-medium text-slate-900 whitespace-nowrap">Baja temporal</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<div class="font-medium text-slate-900">Andrea Benítez Colín</div>
+<div class="text-[11px] text-slate-500">13210073</div>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-block bg-slate-100 text-slate-700 font-semibold px-2 py-0.5 rounded text-[10px]">LCONT</span>
+</td>
+<td class="py-3.5 px-4 whitespace-nowrap text-slate-500">14 oct 2025</td>
+<td class="py-3.5 px-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                        Concluida
+                      </span>
+</td>
+<td class="py-3.5 px-4 text-right whitespace-nowrap">
+<a class="text-xs font-semibold text-umb-guinda hover:text-[#521422]" href="#">Ver expediente</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- END: Section3-HistoricalTable -->
+<!-- BEGIN: Section4-QuickActionBanner -->
+<section class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-xl p-6 text-white shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4" data-purpose="quick-registration-banner">
+<div>
+<h4 class="text-base font-bold">¿Necesitas reportar una nueva eventualidad académica?</h4>
+<p class="text-xs text-slate-300 mt-1">Registra pausas médicas, cambios de unidad receptora o solicita prórrogas conforme al reglamento.</p>
+</div>
+<button class="flex-shrink-0 inline-flex items-center space-x-2 px-5 py-2.5 bg-umb-guinda hover:bg-[#521422] text-white text-xs font-semibold rounded-lg shadow transition-colors border border-white/10" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Registrar nueva contingencia</span>
+</button>
+</section>
+<!-- END: Section4-QuickActionBanner -->
+</div>
+<!-- BEGIN: InstitutionalFooter -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+<!-- END: InstitutionalFooter -->
+</main>
+<!-- END: MainContent -->
+</div>
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard-monitoreo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">monitoring</span>
+      <span class="text-[11px] font-medium mt-0.5">Monitoreo</span>
+    </a>
+    <a href="03-supervision-riesgo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">warning</span>
+      <span class="text-[11px] font-medium mt-0.5">Riesgos</span>
+    </a>
+    <a href="04-contingencias.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">support</span>
+      <span class="text-[11px] font-semibold mt-0.5">Contingencias</span>
+    </a>
+    <a href="05-firma-cartas.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">draw</span>
+      <span class="text-[11px] font-medium mt-0.5">Firmas</span>
+    </a>
+    <a href="08-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

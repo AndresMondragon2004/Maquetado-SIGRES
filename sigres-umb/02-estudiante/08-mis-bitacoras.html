@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Bitácoras — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-umb-surface flex flex-col">
+
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Estudiante</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Mis bitácoras</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="14-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          JM
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Jesús Andrés Mondragón</span>
+          <span class="text-[10px] text-white/75 leading-none">Estudiante</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL: SIDEBAR + ÁREA DE CONTENIDO -->
+  <div class="flex flex-1 pt-16">
+
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              JM
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Jesús Andrés Mondragón Tenorio</p>
+              <p class="text-[11px] text-umb-outline truncate">Matrícula: 13220024 · ISC</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="08-mis-bitacoras.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">menu_book</span>
+            <span class="text-sm">Bitácoras</span>
+          </a>
+          <a href="02-mi-expediente.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">folder</span>
+            <span class="text-sm">Expediente</span>
+          </a>
+          <a href="13-mis-informes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">description</span>
+            <span class="text-sm">Informes</span>
+          </a>
+          <a href="14-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+
+    <!-- ÁREA DE CONTENIDO PRINCIPAL (Centrado, max 1100px) -->
+    <main class="flex-1 md:pl-64 p-4 sm:p-6 lg:p-8 pb-28">
+      <div class="max-w-[1100px] mx-auto space-y-6">
+
+        <!-- ENCABEZADO DE LA PÁGINA -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <h1 class="text-2xl font-bold text-text-main tracking-tight">Mis bitácoras</h1>
+            <p class="text-sm text-text-muted mt-0.5">Registra tus actividades semanales y da seguimiento a su validación por tu asesor externo.</p>
+          </div>
+          <div class="flex items-center space-x-2 self-start sm:self-auto">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-umb-guinda/10 text-umb-guinda border border-umb-guinda/20">
+              Ciclo 26-27/1
+            </span>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 1: RESUMEN GENERAL (Card blanca, 2 columnas) -->
+        <section class="bg-white rounded-lg shadow-sm border border-gray-200/80 p-5 sm:p-6" aria-labelledby="resumen-heading">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+            
+            <!-- Columna izquierda: Avance de la residencia (60%) -->
+            <div class="lg:col-span-7 space-y-3">
+              <div class="flex items-center justify-between">
+                <h2 id="resumen-heading" class="text-sm font-medium text-text-muted">Avance de la residencia</h2>
+                <span class="text-xs font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  En tiempo y forma
+                </span>
+              </div>
+
+              <!-- Números grandes -->
+              <div class="flex items-baseline space-x-1.5">
+                <span class="text-3xl sm:text-4xl font-bold text-umb-guinda tracking-tight">320</span>
+                <span class="text-base sm:text-lg font-normal text-text-muted">/ 640 horas</span>
+              </div>
+
+              <!-- Barra de progreso (12px, guinda al 50%) -->
+              <div class="w-full bg-umb-border h-3 rounded-full overflow-hidden">
+                <div class="bg-umb-guinda h-full rounded-full transition-all duration-500 ease-out" style="width: 50%;"></div>
+              </div>
+
+              <!-- Metadatos de avance -->
+              <div class="flex items-center justify-between text-xs text-text-muted pt-0.5">
+                <span>50% completado · Faltan 320 horas</span>
+                <span class="font-medium text-text-main">Meta: 640 hrs (18–19 semanas)</span>
+              </div>
+            </div>
+
+            <!-- Divisor sutil en desktop -->
+            <div class="hidden lg:block lg:col-span-1 border-r border-gray-100 h-20"></div>
+
+            <!-- Columna derecha: Grid de 3 sub-métricas (40%) -->
+            <div class="lg:col-span-4 grid grid-cols-3 gap-3 text-center sm:text-left">
+              <!-- Aprobadas -->
+              <div class="p-3 bg-emerald-50/60 rounded-lg border border-emerald-100/80 flex flex-col justify-between">
+                <span class="text-xs text-text-secondary leading-tight">Aprobadas</span>
+                <span class="text-2xl font-bold text-status-success mt-1">9</span>
+                <span class="text-[10px] text-emerald-700 mt-0.5">315 horas</span>
+              </div>
+
+              <!-- Pendientes -->
+              <div class="p-3 bg-amber-50/60 rounded-lg border border-amber-100/80 flex flex-col justify-between">
+                <span class="text-xs text-text-secondary leading-tight">Pendientes</span>
+                <span class="text-2xl font-bold text-status-warning mt-1">1</span>
+                <span class="text-[10px] text-amber-700 mt-0.5">35 horas</span>
+              </div>
+
+              <!-- Rechazadas -->
+              <div class="p-3 bg-rose-50/60 rounded-lg border border-rose-100/80 flex flex-col justify-between">
+                <span class="text-xs text-text-secondary leading-tight">Rechazadas</span>
+                <span class="text-2xl font-bold text-status-danger mt-1">0</span>
+                <span class="text-[10px] text-rose-700 mt-0.5">0 horas</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- SECCIÓN 2: FILTROS Y BÚSQUEDA -->
+        <section class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3.5" aria-label="Búsqueda y filtros">
+          <!-- Barra de búsqueda (44px) -->
+          <div class="relative flex-1 max-w-lg">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-text-secondary">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <input 
+              type="text" 
+              placeholder="Buscar por número de semana o actividad..." 
+              class="w-full h-11 pl-10 pr-4 bg-white border border-gray-300 rounded-lg text-sm text-text-main placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-brand-guinda/20 focus:border-umb-guinda shadow-sm transition"
+            />
+          </div>
+
+          <!-- Chips de filtro de estado -->
+          <div class="flex items-center space-x-2 overflow-x-auto pb-1 sm:pb-0" role="tablist" aria-label="Filtrar por estatus">
+            <!-- Todas (Activo: guinda) -->
+            <button type="button" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-umb-guinda text-white shadow-sm transition hover:bg-umb-guinda-dark whitespace-nowrap">
+              Todas
+            </button>
+            <!-- Aprobadas -->
+            <button type="button" class="px-3.5 py-2 rounded-lg text-xs font-medium bg-white text-text-muted border border-gray-200 hover:bg-gray-50 hover:text-text-main shadow-sm transition whitespace-nowrap flex items-center space-x-1.5">
+              <span>Aprobadas</span>
+              <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-100 text-emerald-800 font-semibold">9</span>
+            </button>
+            <!-- Pendientes -->
+            <button type="button" class="px-3.5 py-2 rounded-lg text-xs font-medium bg-white text-text-muted border border-gray-200 hover:bg-gray-50 hover:text-text-main shadow-sm transition whitespace-nowrap flex items-center space-x-1.5">
+              <span>Pendientes</span>
+              <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-amber-100 text-amber-800 font-semibold">1</span>
+            </button>
+            <!-- Rechazadas -->
+            <button type="button" class="px-3.5 py-2 rounded-lg text-xs font-medium bg-white text-text-muted border border-gray-200 hover:bg-gray-50 hover:text-text-main shadow-sm transition whitespace-nowrap flex items-center space-x-1.5">
+              <span>Rechazadas</span>
+              <span class="px-1.5 py-0.2 rounded-full text-[10px] bg-rose-100 text-rose-800 font-semibold">1</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 3: LISTA DE BITÁCORAS SEMANALES (5 tarjetas representativas) -->
+        <section class="space-y-3.5" aria-label="Historial de bitácoras">
+
+          <!-- BITÁCORA 1: SEMANA 10 (Aprobada) -->
+          <article class="bg-white rounded-lg shadow-sm border border-gray-200/90 border-l-4 border-l-status-success p-5 transition hover:shadow-md">
+            <!-- Fila superior -->
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <div class="flex items-center space-x-2">
+                  <h3 class="text-sm font-semibold text-text-main">Semana 10</h3>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">
+                    <svg class="w-3 h-3 mr-1 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Aprobada
+                  </span>
+                </div>
+                <p class="text-xs text-text-secondary mt-0.5">2 al 6 de octubre de 2026</p>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-umb-surface text-text-muted border border-gray-200">
+                  35 horas
+                </span>
+              </div>
+            </div>
+
+            <!-- Fila central: Descripción -->
+            <p class="text-sm text-text-main mt-3 clamp-2 leading-relaxed">
+              Desarrollo del módulo de autenticación con tokens JWT y pruebas unitarias en Jest con cobertura del 95%.
+            </p>
+
+            <!-- Fila inferior -->
+            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-text-secondary">
+              <div class="flex items-center space-x-1.5 text-text-muted">
+                <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                </svg>
+                <span>1 evidencia adjunta</span>
+              </div>
+              <button type="button" class="inline-flex items-center font-medium text-umb-guinda hover:text-umb-guinda-dark transition">
+                <span>Ver detalle</span>
+                <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- BITÁCORA 2: SEMANA 9 (Aprobada) -->
+          <article class="bg-white rounded-lg shadow-sm border border-gray-200/90 border-l-4 border-l-status-success p-5 transition hover:shadow-md">
+            <!-- Fila superior -->
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <div class="flex items-center space-x-2">
+                  <h3 class="text-sm font-semibold text-text-main">Semana 9</h3>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">
+                    <svg class="w-3 h-3 mr-1 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Aprobada
+                  </span>
+                </div>
+                <p class="text-xs text-text-secondary mt-0.5">25 al 29 de septiembre de 2026</p>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-umb-surface text-text-muted border border-gray-200">
+                  35 horas
+                </span>
+              </div>
+            </div>
+
+            <!-- Fila central: Descripción -->
+            <p class="text-sm text-text-main mt-3 clamp-2 leading-relaxed">
+              Migraciones de base de datos PostgreSQL y optimización de consultas de inventario.
+            </p>
+
+            <!-- Fila inferior -->
+            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-text-secondary">
+              <div class="flex items-center space-x-1.5 text-text-muted">
+                <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                </svg>
+                <span>2 evidencias adjuntas</span>
+              </div>
+              <button type="button" class="inline-flex items-center font-medium text-umb-guinda hover:text-umb-guinda-dark transition">
+                <span>Ver detalle</span>
+                <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- BITÁCORA 3: SEMANA 8 (Pendiente) -->
+          <article class="bg-white rounded-lg shadow-sm border border-gray-200/90 border-l-4 border-l-status-warning p-5 transition hover:shadow-md">
+            <!-- Fila superior -->
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <div class="flex items-center space-x-2">
+                  <h3 class="text-sm font-semibold text-text-main">Semana 8</h3>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-amber-50 text-amber-800 border border-amber-200">
+                    <svg class="w-3 h-3 mr-1 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Pendiente
+                  </span>
+                </div>
+                <p class="text-xs text-text-secondary mt-0.5">18 al 22 de septiembre de 2026</p>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-umb-surface text-text-muted border border-gray-200">
+                  35 horas
+                </span>
+              </div>
+            </div>
+
+            <!-- Fila central: Descripción -->
+            <p class="text-sm text-text-main mt-3 clamp-2 leading-relaxed">
+              Configuración del pipeline CI/CD en GitHub Actions y despliegue en staging.
+            </p>
+
+            <!-- Fila inferior con indicador de revisión -->
+            <div class="mt-4 pt-3 border-t border-gray-100 flex flex-wrap items-center justify-between gap-2 text-xs text-text-secondary">
+              <div class="flex items-center space-x-1.5 text-text-muted">
+                <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                </svg>
+                <span>1 evidencia adjunta</span>
+              </div>
+              <div class="flex items-center text-status-warning font-medium">
+                <span class="w-1.5 h-1.5 rounded-full bg-status-warning mr-1.5"></span>
+                <span>En revisión por asesor externo</span>
+              </div>
+              <button type="button" class="inline-flex items-center font-medium text-umb-guinda hover:text-umb-guinda-dark transition ml-auto">
+                <span>Ver detalle</span>
+                <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- BITÁCORA 4: SEMANA 7 (Aprobada) -->
+          <article class="bg-white rounded-lg shadow-sm border border-gray-200/90 border-l-4 border-l-status-success p-5 transition hover:shadow-md">
+            <!-- Fila superior -->
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <div class="flex items-center space-x-2">
+                  <h3 class="text-sm font-semibold text-text-main">Semana 7</h3>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">
+                    <svg class="w-3 h-3 mr-1 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                    Aprobada
+                  </span>
+                </div>
+                <p class="text-xs text-text-secondary mt-0.5">11 al 15 de septiembre de 2026</p>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-umb-surface text-text-muted border border-gray-200">
+                  35 horas
+                </span>
+              </div>
+            </div>
+
+            <!-- Fila central: Descripción -->
+            <p class="text-sm text-text-main mt-3 clamp-2 leading-relaxed">
+              Modelado de arquitectura de microservicios y diagramas de flujo del sistema.
+            </p>
+
+            <!-- Fila inferior -->
+            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-text-secondary">
+              <div class="flex items-center space-x-1.5 text-text-muted">
+                <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                </svg>
+                <span>3 evidencias adjuntas</span>
+              </div>
+              <button type="button" class="inline-flex items-center font-medium text-umb-guinda hover:text-umb-guinda-dark transition">
+                <span>Ver detalle</span>
+                <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- BITÁCORA 5: SEMANA 6 (Rechazada con caja de observaciones) -->
+          <article class="bg-white rounded-lg shadow-sm border border-gray-200/90 border-l-4 border-l-status-danger p-5 transition hover:shadow-md space-y-3.5">
+            <!-- Fila superior -->
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <div class="flex items-center space-x-2">
+                  <h3 class="text-sm font-semibold text-text-main">Semana 6</h3>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-rose-50 text-rose-800 border border-rose-200">
+                    <svg class="w-3 h-3 mr-1 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Rechazada
+                  </span>
+                </div>
+                <p class="text-xs text-text-secondary mt-0.5">4 al 8 de septiembre de 2026</p>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-umb-surface text-text-muted border border-gray-200">
+                  35 horas
+                </span>
+              </div>
+            </div>
+
+            <!-- Fila central: Descripción -->
+            <p class="text-sm text-text-main clamp-2 leading-relaxed">
+              Revisión documental y soporte a usuarios internos de la empresa.
+            </p>
+
+            <!-- Fila de evidencias y acción primaria -->
+            <div class="pt-1 flex items-center justify-between text-xs text-text-secondary">
+              <div class="flex items-center space-x-1.5 text-text-secondary italic">
+                <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                </svg>
+                <span>Sin evidencia adjunta</span>
+              </div>
+              <button type="button" class="inline-flex items-center font-medium text-umb-guinda hover:text-umb-guinda-dark transition">
+                <span>Ver detalle</span>
+                <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Caja de observaciones de asesor (Si está rechazada) -->
+            <div class="p-3.5 bg-status-danger-bg rounded-lg border-l-4 border-status-danger flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="space-y-1">
+                <h4 class="text-xs font-semibold text-red-900 flex items-center">
+                  <svg class="w-3.5 h-3.5 mr-1.5 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  Observaciones del asesor:
+                </h4>
+                <p class="text-xs text-red-800 leading-relaxed">
+                  El detalle de actividades no coincide con las horas reportadas. Adjunta la evidencia correspondiente.
+                </p>
+              </div>
+              <button type="button" class="self-start sm:self-center px-3 py-1.5 bg-umb-guinda text-white text-xs font-semibold rounded-md shadow-sm hover:bg-umb-guinda-dark transition flex-shrink-0 flex items-center space-x-1">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                <span>Corregir y reenviar</span>
+              </button>
+            </div>
+          </article>
+
+        </section>
+
+        <!-- SECCIÓN 4: PAGINACIÓN -->
+        <div class="pt-4 flex flex-col items-center justify-center space-y-2.5">
+          <p class="text-xs text-text-secondary">Mostrando 1-5 de 16 bitácoras</p>
+          <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-xs font-medium text-text-main bg-white hover:bg-gray-50 shadow-sm transition">
+            <span>Cargar más bitácoras</span>
+            <svg class="w-3.5 h-3.5 ml-1.5 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- PIE DE PÁGINA INSTITUCIONAL -->
+        <footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- BOTÓN FLOTANTE (FAB) — NUEVA BITÁCORA -->
+  <aside class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50">
+    <button 
+      type="button" 
+      class="h-14 px-6 bg-umb-guinda text-white rounded-full shadow-lg hover:bg-umb-guinda-dark hover:shadow-xl transition-all flex items-center space-x-2.5 focus:outline-none focus:ring-4 focus:ring-brand-guinda/30 active:scale-95 group"
+    >
+      <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:rotate-90 transition-transform duration-200">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" />
+        </svg>
+      </div>
+      <span class="text-sm font-semibold tracking-wide">Nueva bitácora</span>
+    </button>
+  </aside>
+
+  <!-- BARRA DE NAVEGACIÓN INFERIOR PARA MÓVILES (64px) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-gray-200 flex items-center justify-around px-2 z-40 shadow-lg" aria-label="Navegación móvil">
+    <a href="#" class="flex flex-col items-center justify-center text-text-secondary hover:text-umb-guinda">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+      <span class="text-[10px] mt-0.5">Inicio</span>
+    </a>
+    <a href="#" class="flex flex-col items-center justify-center text-umb-guinda font-semibold">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+      <span class="text-[10px] mt-0.5">Bitácoras</span>
+    </a>
+    <a href="#" class="flex flex-col items-center justify-center text-text-secondary hover:text-umb-guinda">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
+      </svg>
+      <span class="text-[10px] mt-0.5">Expediente</span>
+    </a>
+    <a href="#" class="flex flex-col items-center justify-center text-text-secondary hover:text-umb-guinda">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+      <span class="text-[10px] mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="08-mis-bitacoras.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">menu_book</span>
+      <span class="text-[11px] font-semibold mt-0.5">Bitácoras</span>
+    </a>
+    <a href="02-mi-expediente.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">folder</span>
+      <span class="text-[11px] font-medium mt-0.5">Expediente</span>
+    </a>
+    <a href="13-mis-informes.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">description</span>
+      <span class="text-[11px] font-medium mt-0.5">Informes</span>
+    </a>
+    <a href="14-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-umb-surface">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard del Estudiante — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full font-sans antialiased text-umb-carbon bg-umb-surface flex flex-col selection:bg-umb-guinda selection:text-white">
+
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Estudiante</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Inicio</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="14-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          JM
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Jesús Andrés Mondragón</span>
+          <span class="text-[10px] text-white/75 leading-none">Estudiante</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL CON SIDEBAR + ÁREA DE CONTENIDO -->
+  <div class="pt-16 min-h-screen flex flex-1 w-full pb-20 lg:pb-10">
+
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              JM
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Jesús Andrés Mondragón Tenorio</p>
+              <p class="text-[11px] text-umb-outline truncate">Matrícula: 13220024 · ISC</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="08-mis-bitacoras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">menu_book</span>
+            <span class="text-sm">Bitácoras</span>
+          </a>
+          <a href="02-mi-expediente.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">folder</span>
+            <span class="text-sm">Expediente</span>
+          </a>
+          <a href="13-mis-informes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">description</span>
+            <span class="text-sm">Informes</span>
+          </a>
+          <a href="14-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+
+    <!-- ÁREA DE CONTENIDO PRINCIPAL -->
+    <main class="flex-1 lg:ml-[260px] p-4 sm:p-6 lg:p-8 flex justify-center">
+      <div class="w-full max-w-[1280px] space-y-6">
+
+        <!-- SECCIÓN 1: TARJETA DE BIENVENIDA -->
+        <section class="bg-white rounded-lg shadow-sm border border-umb-border p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-full bg-umb-guinda text-white font-bold text-lg flex items-center justify-center shadow-inner ring-4 ring-umb-guinda/10 flex-shrink-0">
+              VR
+            </div>
+            <div>
+              <h2 class="text-[20px] font-semibold text-umb-carbon tracking-tight leading-tight">Hola, Valeria</h2>
+              <p class="text-[14px] font-normal text-umb-muted mt-1">Continuemos con tu residencia profesional</p>
+            </div>
+          </div>
+          <!-- Badge de residencia activa con punto pulsante -->
+          <div class="self-start sm:self-auto flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DCFCE7] text-[#166534] text-[12px] font-semibold border border-[#BBF7D0]">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-[#166534]"></span>
+            </span>
+            <span>Residencia activa</span>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 2: GRID DE 2 COLUMNAS (60% / 40%) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+          <!-- COLUMNA IZQUIERDA (60% -> 7 de 12 columnas en Tailwind lg) -->
+          <div class="lg:col-span-7 space-y-6">
+
+            <!-- TARJETA A: PROGRESO DE HORAS (DESTACADA) -->
+            <section class="bg-white rounded-lg shadow-sm border border-umb-border p-6 border-l-4 border-l-[#681B2B] transition-all hover:shadow-md">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-2 text-umb-carbon">
+                  <span class="material-symbols-outlined text-umb-guinda text-[22px]">schedule</span>
+                  <h3 class="text-[16px] font-semibold">Progreso de horas</h3>
+                </div>
+                <span class="px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-umb-surface text-umb-muted border border-umb-border">
+                  Meta: 640 hrs
+                </span>
+              </div>
+
+              <!-- Métrica principal grande -->
+              <div class="flex items-baseline gap-2 mb-3">
+                <span class="text-[36px] font-bold text-umb-guinda leading-none tracking-tight">320</span>
+                <span class="text-[16px] font-normal text-umb-muted">/ 640 horas</span>
+              </div>
+
+              <!-- Barra de progreso -->
+              <div class="w-full bg-umb-border h-3 rounded-full overflow-hidden mb-2">
+                <div class="bg-umb-guinda h-full rounded-full transition-all duration-500" style="width: 50%;"></div>
+              </div>
+
+              <!-- Porcentaje -->
+              <div class="flex items-center justify-between text-[12px] font-medium text-umb-muted mb-5">
+                <span>50% completado</span>
+                <span class="text-umb-outline">Faltan 320 horas</span>
+              </div>
+
+              <!-- Sub-métricas en 2 columnas al pie -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-umb-border">
+                <div class="flex items-center gap-2.5 p-2.5 rounded-lg bg-[#F9FAFB]">
+                  <div class="w-7 h-7 rounded-full bg-[#DCFCE7] text-[#166534] flex items-center justify-center flex-shrink-0">
+                    <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                  </div>
+                  <div>
+                    <p class="text-[11px] text-umb-outline leading-none">Horas validadas</p>
+                    <p class="text-[13px] font-semibold text-umb-carbon mt-0.5">320 hrs</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2.5 p-2.5 rounded-lg bg-[#F9FAFB]">
+                  <div class="w-7 h-7 rounded-full bg-umb-dorado-light text-[#92400E] flex items-center justify-center flex-shrink-0">
+                    <span class="material-symbols-outlined text-[16px]">hourglass_top</span>
+                  </div>
+                  <div>
+                    <p class="text-[11px] text-umb-outline leading-none">Horas restantes</p>
+                    <p class="text-[13px] font-semibold text-umb-carbon mt-0.5">320 hrs</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- TARJETA B: PRÓXIMO HITO (ACENTO DORADO) -->
+            <section class="bg-white rounded-lg shadow-sm border border-umb-border p-6 border-t-4 border-t-[#9E773B] relative overflow-hidden transition-all hover:shadow-md">
+              <div class="flex items-start justify-between gap-2 mb-3">
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded text-[11px] font-semibold bg-umb-dorado-light text-[#92400E] border border-[#FDE68A]">
+                  <span class="material-symbols-outlined text-[14px]">flag</span>
+                  Hito académico
+                </span>
+                <span class="text-[12px] font-medium text-[#2D8C4E] flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[16px]">lock_open</span>
+                  Disponible
+                </span>
+              </div>
+
+              <h3 class="text-[16px] font-semibold text-umb-carbon tracking-tight">¡Informe parcial desbloqueado!</h3>
+              <p class="text-[14px] font-normal text-umb-muted mt-1.5 leading-relaxed">
+                Has alcanzado las 320 horas acumuladas. Cuentas con 5 días hábiles para subir tu informe parcial.
+              </p>
+
+              <!-- Caja de advertencia interna -->
+              <div class="mt-4 p-3.5 rounded-md bg-umb-dorado-light border-l-[3px] border-l-[#D69E2E] flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-[#92400E] text-[18px]">warning</span>
+                <span class="text-[12px] font-medium text-[#92400E]">Fecha límite: 15 de octubre de 2026</span>
+              </div>
+
+              <!-- Botón primario ancho completo -->
+              <div class="mt-5">
+                <button type="button" class="w-full h-11 bg-umb-guinda hover:bg-umb-guinda-dark text-white rounded-lg font-medium text-[14px] flex items-center justify-center gap-2 shadow transition-all focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:ring-offset-2">
+                  <span class="material-symbols-outlined text-[18px]">upload</span>
+                  <span>Subir informe parcial</span>
+                </button>
+              </div>
+            </section>
+
+            <!-- TARJETA C: BITÁCORAS RECIENTES -->
+            <section class="bg-white rounded-lg shadow-sm border border-umb-border p-6 transition-all hover:shadow-md">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-[16px] font-semibold text-umb-carbon">Bitácoras recientes</h3>
+                <a href="#bitacoras" class="text-[13px] font-medium text-umb-guinda hover:underline flex items-center gap-0.5">
+                  <span>Ver todas</span>
+                  <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                </a>
+              </div>
+
+              <!-- Lista de 3 tarjetas pequeñas -->
+              <div class="space-y-3">
+                <!-- Item 1: Semana 10 (Aprobada) -->
+                <div class="p-3.5 rounded-lg border border-umb-border hover:border-[#CBD5E1] transition-colors bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="text-[13px] font-semibold text-umb-carbon">Semana 10 · 2-6 de octubre de 2026</span>
+                      <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#DCFCE7] text-[#166534]">Aprobada</span>
+                    </div>
+                    <p class="text-[12px] text-umb-muted truncate mt-1">Configuración del servidor de pruebas e integración de base de datos</p>
+                  </div>
+                  <div class="flex items-center justify-between sm:justify-end gap-3 flex-shrink-0">
+                    <span class="px-2 py-1 rounded text-[11px] font-medium bg-umb-surface text-umb-carbon border border-umb-border">35 hrs</span>
+                    <button type="button" class="text-[12px] font-medium text-umb-guinda hover:text-umb-guinda-dark px-2.5 py-1 rounded hover:bg-umb-surface transition-colors">
+                      Ver detalle
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Item 2: Semana 9 (Aprobada) -->
+                <div class="p-3.5 rounded-lg border border-umb-border hover:border-[#CBD5E1] transition-colors bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="text-[13px] font-semibold text-umb-carbon">Semana 9 · 25-29 de septiembre de 2026</span>
+                      <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#DCFCE7] text-[#166534]">Aprobada</span>
+                    </div>
+                    <p class="text-[12px] text-umb-muted truncate mt-1">Desarrollo de módulos de autenticación y diseño de pantallas iniciales</p>
+                  </div>
+                  <div class="flex items-center justify-between sm:justify-end gap-3 flex-shrink-0">
+                    <span class="px-2 py-1 rounded text-[11px] font-medium bg-umb-surface text-umb-carbon border border-umb-border">35 hrs</span>
+                    <button type="button" class="text-[12px] font-medium text-umb-guinda hover:text-umb-guinda-dark px-2.5 py-1 rounded hover:bg-umb-surface transition-colors">
+                      Ver detalle
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Item 3: Semana 8 (Pendiente) -->
+                <div class="p-3.5 rounded-lg border border-umb-border hover:border-[#CBD5E1] transition-colors bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="text-[13px] font-semibold text-umb-carbon">Semana 8 · 18-22 de septiembre de 2026</span>
+                      <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-umb-dorado-light text-[#92400E]">Pendiente</span>
+                    </div>
+                    <p class="text-[12px] text-umb-muted truncate mt-1">Levantamiento de requerimientos y análisis del sistema con asesor externo</p>
+                  </div>
+                  <div class="flex items-center justify-between sm:justify-end gap-3 flex-shrink-0">
+                    <span class="px-2 py-1 rounded text-[11px] font-medium bg-umb-surface text-umb-carbon border border-umb-border">35 hrs</span>
+                    <button type="button" class="text-[12px] font-medium text-umb-guinda hover:text-umb-guinda-dark px-2.5 py-1 rounded hover:bg-umb-surface transition-colors">
+                      Ver detalle
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+          <!-- COLUMNA DERECHA (40% -> 5 de 12 columnas en Tailwind lg) -->
+          <div class="lg:col-span-5 space-y-6">
+
+            <!-- TARJETA D: ASISTENCIA A ASESORÍAS -->
+            <section class="bg-white rounded-lg shadow-sm border border-umb-border p-6 flex flex-col items-center text-center transition-all hover:shadow-md">
+              <div class="w-full flex items-center justify-between mb-4">
+                <h3 class="text-[16px] font-semibold text-umb-carbon">Asistencia a asesorías</h3>
+                <span class="material-symbols-outlined text-umb-outline text-[20px]" title="Información">help_outline</span>
+              </div>
+
+              <!-- Círculo grande con porcentaje -->
+              <div class="my-2 relative flex items-center justify-center">
+                <!-- Anillo decorativo SVG -->
+                <svg class="w-32 h-32 transform -rotate-90">
+                  <circle cx="64" cy="64" r="54" stroke="#F4F5F7" stroke-width="10" fill="transparent" />
+                  <circle cx="64" cy="64" r="54" stroke="#681B2B" stroke-width="10" stroke-dasharray="339.29" stroke-dashoffset="0" stroke-linecap="round" fill="transparent" />
+                </svg>
+                <div class="absolute flex flex-col items-center justify-center">
+                  <span class="text-[32px] font-bold text-umb-guinda leading-none">100%</span>
+                  <span class="text-[12px] font-semibold text-[#2D8C4E] mt-1 flex items-center gap-0.5">
+                    <span class="material-symbols-outlined text-[14px]">verified</span>
+                    Cumple
+                  </span>
+                </div>
+              </div>
+
+              <p class="text-[14px] font-normal text-umb-muted mt-2">10 de 10 sesiones asistidas</p>
+              <div class="mt-3 pt-3 border-t border-umb-border w-full text-center">
+                <span class="text-[11px] font-normal text-umb-outline">Mínimo requerido: 80%</span>
+              </div>
+            </section>
+
+            <!-- TARJETA E: MI ASESOR INTERNO -->
+            <section class="bg-white rounded-lg shadow-sm border border-umb-border p-6 transition-all hover:shadow-md">
+              <h3 class="text-[16px] font-semibold text-umb-carbon mb-4">Mi asesor interno</h3>
+
+              <!-- Tarjeta interna del docente -->
+              <div class="p-4 rounded-lg bg-[#F9FAFB] border border-umb-border">
+                <div class="flex items-center gap-3.5">
+                  <div class="w-12 h-12 rounded-full bg-umb-muted text-white flex items-center justify-center font-semibold text-sm shadow-inner flex-shrink-0 ring-2 ring-white">
+                    LB
+                  </div>
+                  <div class="min-w-0 flex-1">
+                    <h4 class="text-[14px] font-semibold text-umb-carbon truncate leading-snug">I.S.C. Leonardo Becerril Sánchez</h4>
+                    <p class="text-[12px] font-normal text-umb-outline truncate mt-0.5">Docente de ISC</p>
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-umb-border flex items-center justify-between">
+                  <span class="text-[11px] text-umb-muted flex items-center gap-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    En línea hoy
+                  </span>
+                  <button type="button" class="h-8 px-3 rounded-md border border-umb-guinda text-umb-guinda hover:bg-umb-guinda hover:text-white transition-colors text-[12px] font-medium flex items-center gap-1.5 focus:outline-none">
+                    <span class="material-symbols-outlined text-[16px]">mail</span>
+                    <span>Enviar mensaje</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <!-- TARJETA F: FECHA ESTIMADA DE TÉRMINO -->
+            <section class="bg-white rounded-lg shadow-sm border border-umb-border p-6 transition-all hover:shadow-md">
+              <h3 class="text-[16px] font-semibold text-umb-carbon mb-3">Fecha estimada de término</h3>
+
+              <div class="flex items-center gap-3.5 p-3 rounded-lg bg-[#F9FAFB] border border-umb-border">
+                <div class="w-11 h-11 rounded-lg bg-umb-guinda/10 text-umb-guinda flex items-center justify-center flex-shrink-0">
+                  <span class="material-symbols-outlined text-[24px]">event</span>
+                </div>
+                <div>
+                  <div class="text-[20px] font-semibold text-umb-guinda leading-tight">20 de enero de 2027</div>
+                  <p class="text-[12px] font-normal text-umb-outline mt-0.5">Conforme al calendario oficial UMB</p>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+
+        <!-- FOOTER DISCRETO INSTITUCIONAL -->
+        <footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- BOTÓN FLOTANTE (FAB) PARA NUEVA BITÁCORA -->
+  <aside aria-label="Acción rápida" class="fixed right-6 bottom-20 lg:bottom-8 z-40">
+    <button type="button" class="h-14 px-6 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white shadow-xl hover:shadow-2xl transition-all flex items-center gap-2.5 font-medium text-[14px] group focus:outline-none focus:ring-4 focus:ring-umb-guinda/30 transform active:scale-95">
+      <span class="material-symbols-outlined text-[24px] transition-transform group-hover:rotate-90">add</span>
+      <span class="tracking-normal font-semibold">Nueva bitácora</span>
+    </button>
+  </aside>
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">home</span>
+      <span class="text-[11px] font-semibold mt-0.5">Inicio</span>
+    </a>
+    <a href="08-mis-bitacoras.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">menu_book</span>
+      <span class="text-[11px] font-medium mt-0.5">Bitácoras</span>
+    </a>
+    <a href="02-mi-expediente.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">folder</span>
+      <span class="text-[11px] font-medium mt-0.5">Expediente</span>
+    </a>
+    <a href="13-mis-informes.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">description</span>
+      <span class="text-[11px] font-medium mt-0.5">Informes</span>
+    </a>
+    <a href="14-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

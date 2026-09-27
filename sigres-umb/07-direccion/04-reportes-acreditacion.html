@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reportes de Acreditación — Dirección Académica SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col antialiased">
+<!-- BEGIN: MainHeader -->
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard-ejecutivo.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Dirección</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Reportes de acreditación</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="06-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          AA
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Armando Alcalde</span>
+          <span class="text-[10px] text-white/75 leading-none">Dirección</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: MainHeader -->
+<div class="flex pt-16 flex-1">
+<!-- BEGIN: LeftSidebar -->
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              AA
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Armando Alcalde Martínez</p>
+              <p class="text-[11px] text-umb-outline truncate">Director Académico · UMB</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard-ejecutivo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">dashboard</span>
+            <span class="text-sm">Dashboard</span>
+          </a>
+          <a href="02-vinculacion-convenios.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">handshake</span>
+            <span class="text-sm">Vinculación</span>
+          </a>
+          <a href="03-sectores-productivos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">factory</span>
+            <span class="text-sm">Sectores</span>
+          </a>
+          <a href="04-reportes-acreditacion.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">verified_user</span>
+            <span class="text-sm">Acreditación</span>
+          </a>
+          <a href="05-configuracion-global.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">settings</span>
+            <span class="text-sm">Configuración</span>
+          </a>
+          <a href="06-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContentArea -->
+<main class="ml-[260px] flex-1 min-w-0 bg-umb-surface p-8" data-purpose="main-dashboard-body">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- SECTION 1: HEADER & ACTIONS -->
+<!-- BEGIN: PageHeader -->
+<section class="flex flex-col md:flex-row md:items-center md:justify-between gap-4" data-purpose="page-header">
+<div>
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="flex items-center text-xs text-umb-outline space-x-2 mb-1">
+<span>Dirección Académica</span>
+<span>/</span>
+<span class="text-umb-muted font-medium">Reportes de acreditación</span>
+</nav>
+<h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Reportes de acreditación</h1>
+<p class="text-sm text-umb-muted mt-0.5">Análisis de eficacia terminal y acreditación institucional del ciclo 26-27/1.</p>
+</div>
+<!-- Actions Bar -->
+<div class="flex items-center gap-3">
+<!-- Secondary Button: PDF -->
+<button class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-umb-carbon bg-white border border-[#D1D5DB] rounded-lg shadow-sm hover:bg-gray-50 transition-colors" type="button">
+<svg class="w-4 h-4 text-umb-muted" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Exportar PDF</span>
+</button>
+<!-- Primary Button: Excel -->
+<button class="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-umb-guinda hover:bg-[#521422] rounded-lg shadow-sm transition-colors" type="button">
+<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 10h18M3 14h18m-9-4v8m-7 4h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Exportar Excel</span>
+</button>
+</div>
+</section>
+<!-- END: PageHeader -->
+<!-- SECTION 2: REPORT FILTERS -->
+<!-- BEGIN: FilterSection -->
+<section class="bg-white rounded-lg p-5 shadow-sm border border-gray-200/80" data-purpose="report-filters">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Filter 1: Cycle -->
+<div>
+<label class="block text-xs font-medium text-umb-muted mb-1.5" for="filter-ciclo">Ciclo</label>
+<select class="w-full text-xs font-medium text-umb-carbon bg-[#F9FAFB] border border-[#D1D5DB] rounded-md py-2 px-3 focus:ring-1 focus:ring-umb-guinda focus:border-umb-guinda" id="filter-ciclo">
+<option selected="">26-27/1</option>
+<option>25-26/2</option>
+<option>25-26/1</option>
+</select>
+</div>
+<!-- Filter 2: Academic Unit -->
+<div>
+<label class="block text-xs font-medium text-umb-muted mb-1.5" for="filter-unidad">Unidad académica</label>
+<select class="w-full text-xs font-medium text-umb-carbon bg-[#F9FAFB] border border-[#D1D5DB] rounded-md py-2 px-3 focus:ring-1 focus:ring-umb-guinda focus:border-umb-guinda" id="filter-unidad">
+<option selected="">Todas las unidades</option>
+<option>San José del Rincón</option>
+<option>Atlacomulco</option>
+<option>Ixtapan de la Sal</option>
+<option>Tejupilco</option>
+<option>Valle de Bravo</option>
+</select>
+</div>
+<!-- Filter 3: Career / Major -->
+<div>
+<label class="block text-xs font-medium text-umb-muted mb-1.5" for="filter-carrera">Carrera</label>
+<select class="w-full text-xs font-medium text-umb-carbon bg-[#F9FAFB] border border-[#D1D5DB] rounded-md py-2 px-3 focus:ring-1 focus:ring-umb-guinda focus:border-umb-guinda" id="filter-carrera">
+<option selected="">Todas las carreras</option>
+<option>ISC (Ingeniería en Sistemas Computacionales)</option>
+<option>IIAS (Innovación Agrícola Sustentable)</option>
+<option>LCONT (Licenciatura en Contaduría)</option>
+</select>
+</div>
+<!-- Filter 4: Date Range -->
+<div>
+<label class="block text-xs font-medium text-umb-muted mb-1.5">Rango de fechas</label>
+<div class="relative flex items-center">
+<input class="w-full text-xs font-medium text-umb-carbon bg-[#F9FAFB] border border-[#D1D5DB] rounded-md py-2 pl-9 pr-3 cursor-pointer focus:ring-1 focus:ring-umb-guinda focus:border-umb-guinda" readonly="" type="text" value="01 ago 2026 — 31 ene 2027"/>
+<div class="absolute left-2.5 pointer-events-none text-umb-outline">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: FilterSection -->
+<!-- SECTION 3: 4 KPIS INSTITUCIONALES -->
+<!-- BEGIN: KPICardsGrid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-purpose="institutional-kpis">
+<!-- Card A: Tasa de acreditación -->
+<article class="bg-white rounded-lg p-5 shadow-sm border border-gray-200/80 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold text-umb-outline uppercase tracking-wider">Tasa de acreditación</span>
+<div class="w-9 h-9 rounded-full bg-[#DCFCE7] text-[#166534] flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="mt-2">
+<div class="text-[28px] font-bold text-[#2D8C4E] leading-none">88%</div>
+<div class="text-xs text-[#166534] font-medium mt-1">Meta institucional: 80%</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full bg-umb-border h-2 rounded-full mt-4 overflow-hidden">
+<div class="bg-[#2D8C4E] h-2 rounded-full" style="width: 88%"></div>
+</div>
+</article>
+<!-- Card B: Estudiantes acreditados -->
+<article class="bg-white rounded-lg p-5 shadow-sm border border-gray-200/80 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold text-umb-outline uppercase tracking-wider">Acreditados</span>
+<div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="mt-2">
+<div class="text-[28px] font-bold text-umb-carbon leading-none">308</div>
+<div class="text-xs text-umb-muted font-medium mt-1">De 350 estudiantes totales</div>
+</div>
+<div class="mt-4 pt-2 border-t border-gray-100 text-[11px] text-emerald-700 font-medium flex items-center gap-1">
+<span>↑ +4% respecto al ciclo anterior</span>
+</div>
+</article>
+<!-- Card C: No acreditados -->
+<article class="bg-white rounded-lg p-5 shadow-sm border border-gray-200/80 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold text-umb-outline uppercase tracking-wider">No acreditados</span>
+<div class="w-9 h-9 rounded-full bg-[#FEE2E2] text-[#991B1B] flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="mt-2">
+<div class="text-[28px] font-bold text-[#C53030] leading-none">42</div>
+<div class="text-xs text-[#991B1B] font-medium mt-1">12% del total</div>
+</div>
+<div class="mt-4 pt-2 border-t border-gray-100 text-[11px] text-[#991B1B] font-medium flex items-center gap-1">
+<span>Bajo monitoreo de seguimiento</span>
+</div>
+</article>
+<!-- Card D: Tiempo promedio -->
+<article class="bg-white rounded-lg p-5 shadow-sm border border-gray-200/80 flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold text-umb-outline uppercase tracking-wider">Tiempo promedio</span>
+<div class="w-9 h-9 rounded-full bg-[#FCE7E7] text-umb-guinda flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="mt-2">
+<div class="text-[28px] font-bold text-umb-carbon leading-none">5.2 meses</div>
+<div class="text-xs text-umb-muted font-medium mt-1">Rango óptimo: 4-6 meses</div>
+</div>
+<div class="mt-4 pt-2 border-t border-gray-100 text-[11px] text-gray-500 font-medium">
+              Cumplimiento normativo vigente
+            </div>
+</article>
+</section>
+<!-- END: KPICardsGrid -->
+<!-- SECTION 4: 2-COLUMN COMPARISONS (60% / 40%) -->
+<!-- BEGIN: DetailedComparisons -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6" data-purpose="comparative-analysis">
+<!-- Left Column (60% -> col-span-7) -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Card A: Eficacia terminal por unidad académica -->
+<div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200/80">
+<div class="mb-5">
+<h3 class="text-base font-bold text-umb-carbon">Eficacia terminal por unidad académica</h3>
+<p class="text-xs text-umb-muted mt-0.5">Comparativa de la tasa de acreditación entre las 5 unidades de la UMB.</p>
+</div>
+<!-- Bar List -->
+<div class="space-y-4">
+<!-- 1. UES Atlacomulco -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1.5">
+<span class="font-medium text-umb-carbon">UES Atlacomulco</span>
+<span class="font-semibold text-umb-muted">58/63 · <span class="text-[#2D8C4E]">92%</span></span>
+</div>
+<div class="w-full bg-[#E5E7EB] h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-2.5 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<!-- 2. UES Valle de Bravo -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1.5">
+<span class="font-medium text-umb-carbon">UES Valle de Bravo</span>
+<span class="font-semibold text-umb-muted">45/50 · <span class="text-[#2D8C4E]">90%</span></span>
+</div>
+<div class="w-full bg-[#E5E7EB] h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-2.5 rounded-full" style="width: 90%"></div>
+</div>
+</div>
+<!-- 3. UES San José del Rincón -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1.5">
+<span class="font-medium text-umb-carbon">UES San José del Rincón</span>
+<span class="font-semibold text-umb-muted">45/51 · <span class="text-[#2D8C4E]">88%</span></span>
+</div>
+<div class="w-full bg-[#E5E7EB] h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-2.5 rounded-full" style="width: 88%"></div>
+</div>
+</div>
+<!-- 4. UES Ixtapan de la Sal -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1.5">
+<span class="font-medium text-umb-carbon">UES Ixtapan de la Sal</span>
+<span class="font-semibold text-umb-muted">34/40 · <span class="text-[#D97706]">85%</span></span>
+</div>
+<div class="w-full bg-[#E5E7EB] h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#D97706] h-2.5 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<!-- 5. UES Tejupilco -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1.5">
+<span class="font-medium text-umb-carbon">UES Tejupilco</span>
+<span class="font-semibold text-umb-muted">29/37 · <span class="text-[#DC2626]">78%</span></span>
+</div>
+<div class="w-full bg-[#E5E7EB] h-2.5 rounded-full overflow-hidden">
+<div class="bg-[#DC2626] h-2.5 rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+<!-- Footer Notice Box -->
+<div class="mt-5 bg-[#F9FAFB] rounded-lg p-3 flex items-start gap-2.5 border border-gray-100">
+<svg class="w-4 h-4 text-[#2D8C4E] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<p class="text-xs text-umb-muted leading-relaxed">
+                  La UMB mantiene una tasa de acreditación superior a la meta institucional del 80% en 4 de sus 5 unidades.
+                </p>
+</div>
+</div>
+<!-- Card B: Eficacia por carrera -->
+<div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200/80">
+<div class="mb-4">
+<h3 class="text-base font-bold text-umb-carbon">Eficacia por carrera</h3>
+<p class="text-xs text-umb-muted mt-0.5">Comparativa de acreditación entre los 3 programas educativos.</p>
+</div>
+<!-- Grid of 3 mini cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<!-- Program 1: ISC -->
+<div class="p-3.5 bg-gray-50/70 rounded-lg border border-gray-100 flex flex-col justify-between">
+<div>
+<span class="text-sm font-semibold text-umb-guinda">ISC</span>
+<p class="text-[11px] text-umb-outline line-clamp-1">Ing. Sistemas Comp.</p>
+<div class="mt-3 text-2xl font-bold text-[#2D8C4E]">92%</div>
+<p class="text-[11px] text-umb-muted mt-0.5">142 de 154 estudiantes</p>
+</div>
+<div class="w-full bg-[#E5E7EB] h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-[#2D8C4E] h-1.5 rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<!-- Program 2: IIAS -->
+<div class="p-3.5 bg-gray-50/70 rounded-lg border border-gray-100 flex flex-col justify-between">
+<div>
+<span class="text-sm font-semibold text-umb-dorado">IIAS</span>
+<p class="text-[11px] text-umb-outline line-clamp-1">Ing. Innovación Agrícola</p>
+<div class="mt-3 text-2xl font-bold text-[#2D8C4E]">86%</div>
+<p class="text-[11px] text-umb-muted mt-0.5">89 de 104 estudiantes</p>
+</div>
+<div class="w-full bg-[#E5E7EB] h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-[#2D8C4E] h-1.5 rounded-full" style="width: 86%"></div>
+</div>
+</div>
+<!-- Program 3: LCONT -->
+<div class="p-3.5 bg-gray-50/70 rounded-lg border border-gray-100 flex flex-col justify-between">
+<div>
+<span class="text-sm font-semibold text-umb-guinda">LCONT</span>
+<p class="text-[11px] text-umb-outline line-clamp-1">Lic. en Contaduría</p>
+<div class="mt-3 text-2xl font-bold text-[#2D8C4E]">84%</div>
+<p class="text-[11px] text-umb-muted mt-0.5">77 de 92 estudiantes</p>
+</div>
+<div class="w-full bg-[#E5E7EB] h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-[#2D8C4E] h-1.5 rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (40% -> col-span-5) -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Card C: Distribución por calificación -->
+<div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200/80">
+<div class="mb-4">
+<h3 class="text-base font-bold text-umb-carbon">Distribución por calificación</h3>
+<p class="text-xs text-umb-muted mt-0.5">Rangos de calificación final de los estudiantes acreditados.</p>
+</div>
+<!-- List with 3 tiers -->
+<div class="space-y-4">
+<!-- Tier 1 -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1">
+<span class="font-medium text-umb-carbon">Excelencia académica (90-100)</span>
+<span class="text-umb-muted font-semibold">68 est. · 22%</span>
+</div>
+<div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-2 rounded-full" style="width: 22%"></div>
+</div>
+</div>
+<!-- Tier 2 -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1">
+<span class="font-medium text-umb-carbon">Aprobado con distinción (80-89)</span>
+<span class="text-umb-muted font-semibold">154 est. · 50%</span>
+</div>
+<div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-2 rounded-full" style="width: 50%"></div>
+</div>
+</div>
+<!-- Tier 3 -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1">
+<span class="font-medium text-umb-carbon">Aprobado (70-79)</span>
+<span class="text-umb-muted font-semibold">86 est. · 28%</span>
+</div>
+<div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+<div class="bg-[#2D8C4E] h-2 rounded-full" style="width: 28%"></div>
+</div>
+</div>
+</div>
+<!-- Notice Badge -->
+<div class="mt-5 bg-[#F0FDF4] border border-[#BBF7D0] p-3 rounded-lg flex items-center gap-2.5">
+<svg class="w-4 h-4 text-[#166534] flex-shrink-0" fill="currentColor" viewbox="0 0 20 20">
+<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+</svg>
+<p class="text-xs text-[#166534] font-medium leading-snug">
+                  72% de los acreditados obtuvo calificación de 80 o superior.
+                </p>
+</div>
+</div>
+<!-- Card D: Motivos de no acreditación -->
+<div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200/80">
+<div class="mb-4">
+<h3 class="text-base font-bold text-umb-carbon">Motivos de no acreditación</h3>
+<p class="text-xs text-umb-muted mt-0.5">Causas identificadas en los 42 estudiantes no acreditados.</p>
+</div>
+<div class="space-y-3.5">
+<!-- Reason 1 -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1">
+<span class="text-umb-carbon font-medium">No completó las 640 horas</span>
+<span class="text-[#DC2626] font-semibold">18 est. · 43%</span>
+</div>
+<div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+<div class="bg-[#DC2626] h-2 rounded-full" style="width: 43%"></div>
+</div>
+</div>
+<!-- Reason 2 -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1">
+<span class="text-umb-carbon font-medium">Asistencia menor al 80%</span>
+<span class="text-[#DC2626] font-semibold">12 est. · 29%</span>
+</div>
+<div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+<div class="bg-[#DC2626] h-2 rounded-full" style="width: 29%"></div>
+</div>
+</div>
+<!-- Reason 3 -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1">
+<span class="text-umb-carbon font-medium">Informe final no aprobado</span>
+<span class="text-[#D97706] font-semibold">8 est. · 19%</span>
+</div>
+<div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+<div class="bg-[#D97706] h-2 rounded-full" style="width: 19%"></div>
+</div>
+</div>
+<!-- Reason 4 -->
+<div>
+<div class="flex justify-between items-center text-xs mb-1">
+<span class="text-umb-carbon font-medium">Baja voluntaria o cancelación</span>
+<span class="text-[#D97706] font-semibold">4 est. · 9%</span>
+</div>
+<div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+<div class="bg-[#D97706] h-2 rounded-full" style="width: 9%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- END: DetailedComparisons -->
+<!-- SECTION 5: DETAILED TABLE -->
+<!-- BEGIN: DetailedTableSection -->
+<section class="bg-white rounded-lg shadow-sm border border-gray-200/80 overflow-hidden" data-purpose="detailed-unit-table">
+<div class="p-5 border-b border-gray-200/80 flex items-center justify-between">
+<div>
+<h3 class="text-base font-bold text-umb-carbon">Acreditación detallada por unidad y carrera</h3>
+<p class="text-xs text-umb-muted mt-0.5">Desglose de aprobados sobre matrícula total por centro universitario.</p>
+</div>
+<button class="text-xs font-semibold text-umb-guinda hover:text-[#521422] flex items-center gap-1" type="button">
+              Ver detalle completo
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse text-xs">
+<thead>
+<tr class="bg-gray-50 border-b border-gray-200 text-umb-outline font-semibold uppercase tracking-wider">
+<th class="py-3 px-5" scope="col">Unidad académica</th>
+<th class="py-3 px-5 text-center" scope="col">ISC</th>
+<th class="py-3 px-5 text-center" scope="col">IIAS</th>
+<th class="py-3 px-5 text-center" scope="col">LCONT</th>
+<th class="py-3 px-5 text-center" scope="col">Total</th>
+<th class="py-3 px-5 text-center" scope="col">Tasa</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 text-umb-muted">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50/80 transition-colors">
+<td class="py-3.5 px-5 font-semibold text-umb-carbon">UES San José del Rincón</td>
+<td class="py-3.5 px-5 text-center">17/18 <span class="text-[11px] text-gray-400 font-medium">(94%)</span></td>
+<td class="py-3.5 px-5 text-center">13/15 <span class="text-[11px] text-gray-400 font-medium">(87%)</span></td>
+<td class="py-3.5 px-5 text-center">10/12 <span class="text-[11px] text-gray-400 font-medium">(83%)</span></td>
+<td class="py-3.5 px-5 text-center font-medium text-umb-carbon">40/45</td>
+<td class="py-3.5 px-5 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-100 text-[#166534]">88%</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50/80 transition-colors">
+<td class="py-3.5 px-5 font-semibold text-umb-carbon">UES Atlacomulco</td>
+<td class="py-3.5 px-5 text-center">23/25 <span class="text-[11px] text-gray-400 font-medium">(92%)</span></td>
+<td class="py-3.5 px-5 text-center">19/21 <span class="text-[11px] text-gray-400 font-medium">(90%)</span></td>
+<td class="py-3.5 px-5 text-center">16/17 <span class="text-[11px] text-gray-400 font-medium">(94%)</span></td>
+<td class="py-3.5 px-5 text-center font-medium text-umb-carbon">58/63</td>
+<td class="py-3.5 px-5 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-100 text-[#166534]">92%</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50/80 transition-colors">
+<td class="py-3.5 px-5 font-semibold text-umb-carbon">UES Ixtapan de la Sal</td>
+<td class="py-3.5 px-5 text-center">14/16 <span class="text-[11px] text-gray-400 font-medium">(88%)</span></td>
+<td class="py-3.5 px-5 text-center">12/14 <span class="text-[11px] text-gray-400 font-medium">(86%)</span></td>
+<td class="py-3.5 px-5 text-center">8/10 <span class="text-[11px] text-gray-400 font-medium">(80%)</span></td>
+<td class="py-3.5 px-5 text-center font-medium text-umb-carbon">34/40</td>
+<td class="py-3.5 px-5 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-100 text-[#D97706]">85%</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50/80 transition-colors">
+<td class="py-3.5 px-5 font-semibold text-umb-carbon">UES Tejupilco</td>
+<td class="py-3.5 px-5 text-center">11/14 <span class="text-[11px] text-gray-400 font-medium">(79%)</span></td>
+<td class="py-3.5 px-5 text-center">10/13 <span class="text-[11px] text-gray-400 font-medium">(77%)</span></td>
+<td class="py-3.5 px-5 text-center">8/10 <span class="text-[11px] text-gray-400 font-medium">(80%)</span></td>
+<td class="py-3.5 px-5 text-center font-medium text-umb-carbon">29/37</td>
+<td class="py-3.5 px-5 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-rose-100 text-[#DC2626]">78%</span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-gray-50/80 transition-colors">
+<td class="py-3.5 px-5 font-semibold text-umb-carbon">UES Valle de Bravo</td>
+<td class="py-3.5 px-5 text-center">19/21 <span class="text-[11px] text-gray-400 font-medium">(90%)</span></td>
+<td class="py-3.5 px-5 text-center">14/16 <span class="text-[11px] text-gray-400 font-medium">(88%)</span></td>
+<td class="py-3.5 px-5 text-center">12/13 <span class="text-[11px] text-gray-400 font-medium">(92%)</span></td>
+<td class="py-3.5 px-5 text-center font-medium text-umb-carbon">45/50</td>
+<td class="py-3.5 px-5 text-center">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-100 text-[#166534]">90%</span>
+</td>
+</tr>
+<!-- Totals Row -->
+<tr class="bg-[#F9FAFB] font-semibold text-umb-carbon">
+<td class="py-4 px-5">Totales institucionales</td>
+<td class="py-4 px-5 text-center">84/94 <span class="text-[11px] text-gray-500 font-normal">(89%)</span></td>
+<td class="py-4 px-5 text-center">68/79 <span class="text-[11px] text-gray-500 font-normal">(86%)</span></td>
+<td class="py-4 px-5 text-center">54/62 <span class="text-[11px] text-gray-500 font-normal">(87%)</span></td>
+<td class="py-4 px-5 text-center">206/235</td>
+<td class="py-4 px-5 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded text-[11px] font-bold bg-[#DCFCE7] text-[#166534] border border-[#BBF7D0]">88%</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- END: DetailedTableSection -->
+<!-- SECTION 6: HISTORICAL TREND CHART -->
+<!-- BEGIN: HistoricalTrendSection -->
+<section class="bg-white rounded-lg p-6 shadow-sm border border-gray-200/80" data-purpose="historical-trend-card">
+<div class="mb-5">
+<h3 class="text-base font-bold text-umb-carbon">Tendencia histórica de acreditación</h3>
+<p class="text-xs text-umb-muted mt-0.5">Evolución de la tasa de acreditación institucional en los últimos 5 ciclos.</p>
+</div>
+<!-- Chart Area -->
+<div class="relative w-full h-64 mt-4">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 800 220">
+<defs>
+<!-- Guinda Area Gradient -->
+<lineargradient id="guindaGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#681B2B" stop-opacity="0.18"></stop>
+<stop offset="100%" stop-color="#681B2B" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Horizontal Lines -->
+<line stroke="#E5E7EB" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="780" y1="20" y2="20"></line>
+<line stroke="#E5E7EB" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="780" y1="60" y2="60"></line>
+<line stroke="#E5E7EB" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="780" y1="100" y2="100"></line>
+<line stroke="#E5E7EB" stroke-dasharray="3 3" stroke-width="1" x1="40" x2="780" y1="140" y2="140"></line>
+<line stroke="#E5E7EB" stroke-width="1" x1="40" x2="780" y1="180" y2="180"></line>
+<!-- Y-Axis Labels -->
+<text fill="#877273" font-size="10" text-anchor="end" x="30" y="24">100%</text>
+<text fill="#877273" font-size="10" text-anchor="end" x="30" y="64">80%</text>
+<text fill="#877273" font-size="10" text-anchor="end" x="30" y="104">60%</text>
+<text fill="#877273" font-size="10" text-anchor="end" x="30" y="144">40%</text>
+<text fill="#877273" font-size="10" text-anchor="end" x="30" y="184">0%</text>
+<!-- Coordinates (Scale: 0% = y:180, 100% = y:20)
+                   Formula: y = 180 - (rate * 1.6)
+                   2022: x=90,  72% -> y = 180 - 115.2 = 64.8
+                   2023: x=250, 76% -> y = 180 - 121.6 = 58.4
+                   2024: x=420, 80% -> y = 180 - 128.0 = 52.0
+                   2025: x=590, 85% -> y = 180 - 136.0 = 44.0
+                   2026: x=750, 88% -> y = 180 - 140.8 = 39.2
+              -->
+<!-- Filled Area -->
+<path d="M 90,64.8 L 250,58.4 L 420,52.0 L 590,44.0 L 750,39.2 L 750,180 L 90,180 Z" fill="url(#guindaGradient)"></path>
+<!-- Main Trend Line -->
+<path d="M 90,64.8 L 250,58.4 L 420,52.0 L 590,44.0 L 750,39.2" fill="none" stroke="#681B2B" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+<!-- Data Point 1 (2022: 72%) -->
+<circle cx="90" cy="64.8" fill="#681B2B" r="4.5" stroke="#FFFFFF" stroke-width="2"></circle>
+<text fill="#681B2B" font-size="11" font-weight="700" text-anchor="middle" x="90" y="52">72%</text>
+<text fill="#544244" font-size="11" text-anchor="middle" x="90" y="200">2022</text>
+<!-- Data Point 2 (2023: 76%) -->
+<circle cx="250" cy="58.4" fill="#681B2B" r="4.5" stroke="#FFFFFF" stroke-width="2"></circle>
+<text fill="#681B2B" font-size="11" font-weight="700" text-anchor="middle" x="250" y="46">76%</text>
+<text fill="#544244" font-size="11" text-anchor="middle" x="250" y="200">2023</text>
+<!-- Data Point 3 (2024: 80%) -->
+<circle cx="420" cy="52.0" fill="#681B2B" r="4.5" stroke="#FFFFFF" stroke-width="2"></circle>
+<text fill="#681B2B" font-size="11" font-weight="700" text-anchor="middle" x="420" y="40">80%</text>
+<text fill="#544244" font-size="11" text-anchor="middle" x="420" y="200">2024</text>
+<!-- Data Point 4 (2025: 85%) -->
+<circle cx="590" cy="44.0" fill="#681B2B" r="4.5" stroke="#FFFFFF" stroke-width="2"></circle>
+<text fill="#681B2B" font-size="11" font-weight="700" text-anchor="middle" x="590" y="32">85%</text>
+<text fill="#544244" font-size="11" text-anchor="middle" x="590" y="200">2025</text>
+<!-- Data Point 5 (2026: 88%) -->
+<circle cx="750" cy="39.2" fill="#681B2B" r="5" stroke="#FFFFFF" stroke-width="2"></circle>
+<text fill="#681B2B" font-size="12" font-weight="700" text-anchor="middle" x="750" y="27">88%</text>
+<text fill="#1A1A1A" font-size="11" font-weight="600" text-anchor="middle" x="750" y="200">2026</text>
+</svg>
+</div>
+<!-- Bottom Notice Card -->
+<div class="mt-4 bg-[#F0FDF4] p-3 rounded-lg flex items-center gap-2.5 border border-[#BBF7D0]/60">
+<svg class="w-4 h-4 text-[#166534] flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<p class="text-xs text-[#166534] font-medium">
+              Mejora sostenida de +16 puntos porcentuales en 5 años.
+            </p>
+</div>
+</section>
+<!-- END: HistoricalTrendSection -->
+</div>
+</main>
+<!-- END: MainContentArea -->
+</div>
+<!-- BEGIN: InstitutionalFooter -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+<!-- END: InstitutionalFooter -->
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard-ejecutivo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">dashboard</span>
+      <span class="text-[11px] font-medium mt-0.5">Dashboard</span>
+    </a>
+    <a href="02-vinculacion-convenios.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">handshake</span>
+      <span class="text-[11px] font-medium mt-0.5">Vinculación</span>
+    </a>
+    <a href="03-sectores-productivos.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">factory</span>
+      <span class="text-[11px] font-medium mt-0.5">Sectores</span>
+    </a>
+    <a href="04-reportes-acreditacion.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">verified_user</span>
+      <span class="text-[11px] font-semibold mt-0.5">Acreditación</span>
+    </a>
+    <a href="06-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

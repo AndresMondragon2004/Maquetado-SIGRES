@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi cronograma — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+<!-- Top App Bar (64px) -->
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Estudiante</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Cronograma de actividades</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="14-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          JM
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Jesús Andrés Mondragón</span>
+          <span class="text-[10px] text-white/75 leading-none">Estudiante</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<div class="flex-1 flex max-w-full">
+<!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              JM
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Jesús Andrés Mondragón Tenorio</p>
+              <p class="text-[11px] text-umb-outline truncate">Matrícula: 13220024 · ISC</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="08-mis-bitacoras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">menu_book</span>
+            <span class="text-sm">Bitácoras</span>
+          </a>
+          <a href="02-mi-expediente.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">folder</span>
+            <span class="text-sm">Expediente</span>
+          </a>
+          <a href="13-mis-informes.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">description</span>
+            <span class="text-sm">Informes</span>
+          </a>
+          <a href="14-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- Contenido Principal -->
+<main class="flex-1 p-6 md:p-8 overflow-y-auto">
+<div class="max-w-[1280px] mx-auto space-y-6">
+<!-- Encabezado -->
+<div>
+<nav class="text-xs text-umb-outline mb-1.5 flex items-center space-x-1.5">
+<a class="hover:text-umb-guinda" href="#">Inicio</a>
+<span>/</span>
+<span class="text-umb-muted font-medium">Cronograma</span>
+</nav>
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+<div>
+<h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Mi cronograma</h1>
+<p class="text-sm text-umb-muted mt-0.5">Consulta el avance semanal de tu residencia y los días inhábiles oficiales de la UMB.</p>
+</div>
+<div class="self-start sm:self-auto">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-umb-guinda/10 text-umb-guinda border border-umb-guinda/20">
+                Ciclo 26-27/1
+              </span>
+</div>
+</div>
+</div>
+<!-- SECCIÓN 1: Barra de resumen general (Tarjeta blanca con 4 métricas) -->
+<section class="bg-white rounded-lg p-5 shadow-sm border border-umb-border">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 divide-y md:divide-y-0 md:divide-x divide-[#E2E8F0]">
+<!-- Métrica 1 -->
+<div class="pt-2 md:pt-0 md:px-4 first:pl-0">
+<p class="text-[11px] font-normal text-umb-outline uppercase tracking-wider">Semana actual</p>
+<p class="text-xl font-bold text-umb-carbon mt-0.5">Semana 11</p>
+<p class="text-[11px] text-umb-outline mt-0.5">De 18 semanas totales</p>
+</div>
+<!-- Métrica 2 -->
+<div class="pt-2 md:pt-0 md:px-4">
+<p class="text-[11px] font-normal text-umb-outline uppercase tracking-wider">Semanas completadas</p>
+<p class="text-xl font-bold text-[#2D8C4E] mt-0.5">9</p>
+<p class="text-[11px] text-[#166534] font-medium mt-0.5">Aprobadas por asesor</p>
+</div>
+<!-- Métrica 3 -->
+<div class="pt-2 md:pt-0 md:px-4">
+<p class="text-[11px] font-normal text-umb-outline uppercase tracking-wider">Semanas pendientes</p>
+<p class="text-xl font-bold text-[#D69E2E] mt-0.5">9</p>
+<p class="text-[11px] text-[#92400E] font-medium mt-0.5">Por cursar</p>
+</div>
+<!-- Métrica 4 -->
+<div class="pt-2 md:pt-0 md:px-4">
+<p class="text-[11px] font-normal text-umb-outline uppercase tracking-wider">Días inhábiles</p>
+<p class="text-[20px] font-bold text-umb-carbon mt-0.5">16</p>
+<p class="text-[11px] text-umb-muted mt-0.5">Oficiales UMB</p>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 2: Resumen de la semana actual (destacado arriba del calendario para atención inmediata) -->
+<section class="bg-white rounded-lg p-5 shadow-sm border border-umb-border border-l-4 border-l-[#681B2B]">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<div class="flex items-center space-x-2 mb-1">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#F9F5F6] text-umb-guinda border border-umb-guinda/20">
+<span class="w-1.5 h-1.5 rounded-full bg-umb-guinda mr-1"></span> Semana en curso
+                </span>
+</div>
+<h2 class="text-base font-semibold text-umb-carbon">Semana 11 · 2 al 8 de noviembre de 2026</h2>
+<p class="text-xs text-umb-muted mt-0.5">El lunes 2 de noviembre es día inhábil. Registra tu bitácora considerando 28 horas (4 días × 7h).</p>
+</div>
+<div class="shrink-0">
+<button class="inline-flex items-center px-4 py-2.5 rounded-md text-xs font-semibold text-white bg-umb-guinda hover:bg-umb-guinda-dark transition shadow-sm">
+<svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                Registrar bitácora
+              </button>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 3: Controles de navegación del calendario -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-3 rounded-lg border border-umb-border shadow-sm">
+<div class="flex items-center space-x-2">
+<button class="inline-flex items-center px-3 py-1.5 rounded text-xs font-medium text-umb-muted hover:bg-umb-surface border border-transparent hover:border-umb-border transition">
+<svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              Mes anterior
+            </button>
+<button class="inline-flex items-center px-3 py-1.5 rounded text-xs font-medium text-umb-muted hover:bg-umb-surface border border-transparent hover:border-umb-border transition">
+              Mes siguiente
+              <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+<div class="flex items-center justify-center space-x-2 bg-[#F9FAFB] px-4 py-1.5 rounded-md border border-umb-border">
+<svg class="w-4 h-4 text-umb-guinda" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-sm font-semibold text-umb-carbon">Noviembre 2026</span>
+</div>
+<div>
+<button class="inline-flex items-center px-3 py-1.5 rounded text-xs font-medium text-umb-muted hover:text-umb-carbon bg-white border border-umb-border hover:bg-umb-surface transition">
+              Hoy
+            </button>
+</div>
+</div>
+<!-- SECCIÓN 4: Calendario mensual (vista estructurada por semanas en 6 filas completas) -->
+<section class="bg-white rounded-lg p-6 shadow-sm border border-umb-border">
+<!-- Cabecera de días -->
+<div class="grid grid-cols-7 bg-[#F9FAFB] rounded-t-lg border-b border-umb-border py-3 text-center">
+<div class="text-[13px] font-semibold text-umb-carbon">Lunes</div>
+<div class="text-[13px] font-semibold text-umb-carbon">Martes</div>
+<div class="text-[13px] font-semibold text-umb-carbon">Miércoles</div>
+<div class="text-[13px] font-semibold text-umb-carbon">Jueves</div>
+<div class="text-[13px] font-semibold text-umb-carbon">Viernes</div>
+<div class="text-[13px] font-medium text-umb-outline">Sábado</div>
+<div class="text-[13px] font-medium text-umb-outline">Domingo</div>
+</div>
+<!-- GRID DE SEMANAS DEL MES (6 FILAS) -->
+<div class="space-y-2 mt-2">
+<!-- FILA 1: SEMANA 10 (26 oct - 1 nov) · APROBADA (Borde lateral verde #2D8C4E) -->
+<div class="border border-umb-border border-l-4 border-l-[#2D8C4E] rounded-md overflow-hidden bg-white shadow-xs">
+<div class="grid grid-cols-7 divide-x divide-[#E2E8F0]">
+<!-- Lun 26 oct -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white relative">
+<span class="text-sm font-semibold text-umb-carbon">26</span>
+<div class="text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-[#2D8C4E]" title="Productivo validado"></span>
+</div>
+</div>
+<!-- Mar 27 oct -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white relative">
+<span class="text-sm font-semibold text-umb-carbon">27</span>
+<div class="text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-[#2D8C4E]" title="Productivo validado"></span>
+</div>
+</div>
+<!-- Mié 28 oct -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white relative">
+<span class="text-sm font-semibold text-umb-carbon">28</span>
+<div class="text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-[#2D8C4E]" title="Productivo validado"></span>
+</div>
+</div>
+<!-- Jue 29 oct -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white relative">
+<span class="text-sm font-semibold text-umb-carbon">29</span>
+<div class="text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-[#2D8C4E]" title="Productivo validado"></span>
+</div>
+</div>
+<!-- Vie 30 oct -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white relative">
+<span class="text-sm font-semibold text-umb-carbon">30</span>
+<div class="text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-[#2D8C4E]" title="Productivo validado"></span>
+</div>
+</div>
+<!-- Sáb 31 oct (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">31</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+<!-- Dom 1 nov (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">1</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+</div>
+<!-- Barra inferior semana 10 -->
+<div class="bg-[#F0FDF4] px-4 py-1.5 border-t border-[#DCFCE7] flex items-center justify-between text-xs">
+<span class="font-medium text-[#166534] flex items-center">
+<svg class="w-3.5 h-3.5 mr-1 text-[#2D8C4E]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                  Semana 10 · 26 oct - 1 nov
+                </span>
+<span class="font-semibold text-[#166534] bg-white px-2 py-0.5 rounded border border-[#DCFCE7]">35 hrs · Aprobada</span>
+</div>
+</div>
+<!-- FILA 2: SEMANA 11 (2 al 8 de nov) — SEMANA EN CURSO (Borde lateral guinda #681B2B) -->
+<div class="border border-umb-border border-l-4 border-l-[#681B2B] rounded-md overflow-hidden bg-white shadow-xs ring-1 ring-umb-guinda/20">
+<div class="grid grid-cols-7 divide-x divide-[#E2E8F0]">
+<!-- Lun 2 (Inhábil Día de Muertos) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-umb-surface">
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold text-umb-outline">2</span>
+</div>
+<p class="text-[10px] text-umb-outline font-medium leading-tight">Día de Muertos</p>
+<div>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-umb-border text-umb-muted">Inhábil</span>
+</div>
+</div>
+<!-- Mar 3 -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white relative">
+<span class="text-sm font-semibold text-umb-carbon">3</span>
+<div class="text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-[#2D8C4E]" title="Productivo"></span>
+</div>
+</div>
+<!-- Mié 4 -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white relative">
+<span class="text-sm font-semibold text-umb-carbon">4</span>
+<div class="text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-[#2D8C4E]" title="Productivo"></span>
+</div>
+</div>
+<!-- Jue 5 (Hoy destacado con borde de 2px guinda #681B2B) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white relative border-2 border-umb-guinda rounded m-0.5">
+<div class="flex items-center justify-between">
+<span class="text-sm font-bold text-umb-guinda">5</span>
+<span class="text-[10px] font-bold text-white bg-umb-guinda px-1.5 py-0.5 rounded">Hoy</span>
+</div>
+<div class="text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-[#2D8C4E]" title="Productivo"></span>
+</div>
+</div>
+<!-- Vie 6 -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white relative">
+<span class="text-sm font-semibold text-umb-carbon">6</span>
+<div class="text-right">
+<span class="inline-block w-2 h-2 rounded-full bg-[#2D8C4E]" title="Productivo"></span>
+</div>
+</div>
+<!-- Sáb 7 (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">7</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+<!-- Dom 8 (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">8</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+</div>
+<!-- Barra inferior semana 11 -->
+<div class="bg-[#FAF4F5] px-4 py-1.5 border-t border-[#F0D5DA] flex items-center justify-between text-xs">
+<span class="font-medium text-umb-guinda flex items-center">
+<span class="w-2 h-2 rounded-full bg-umb-guinda mr-2"></span>
+                  Semana 11 · 2-8 nov
+                </span>
+<span class="font-semibold text-umb-guinda bg-white px-2 py-0.5 rounded border border-[#F0D5DA]">28 hrs · En curso</span>
+</div>
+</div>
+<!-- FILA 3: SEMANA 12 (9-15 nov) — SEMANA FUTURA (Borde gris #E2E8F0) -->
+<div class="border border-umb-border border-l-4 border-l-[#E2E8F0] rounded-md overflow-hidden bg-white shadow-xs">
+<div class="grid grid-cols-7 divide-x divide-[#E2E8F0]">
+<!-- Lun 9 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">9</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Mar 10 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">10</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Mié 11 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">11</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Jue 12 nov (Evaluaciones parciales) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white relative">
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold text-umb-muted">12</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold bg-[#EFF6FF] text-[#2B6CB0]">Evaluación</span>
+</div>
+<span class="text-[10px] text-[#2B6CB0] font-medium">Evaluación parcial</span>
+</div>
+<!-- Vie 13 nov (Evaluaciones parciales) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white relative">
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold text-umb-muted">13</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold bg-[#EFF6FF] text-[#2B6CB0]">Evaluación</span>
+</div>
+<span class="text-[10px] text-[#2B6CB0] font-medium">Evaluación parcial</span>
+</div>
+<!-- Sáb 14 nov (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">14</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+<!-- Dom 15 nov (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">15</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+</div>
+<!-- Barra inferior semana 12 -->
+<div class="bg-[#F8FAFC] px-4 py-1.5 border-t border-umb-border flex items-center justify-between text-xs">
+<span class="font-medium text-[#64748B] flex items-center">
+<span class="w-2 h-2 rounded-full bg-[#CBD5E1] mr-2"></span>
+                  Semana 12 · 9-15 nov
+                </span>
+<span class="text-umb-outline">Programada</span>
+</div>
+</div>
+<!-- FILA 4: SEMANA 13 (16-22 nov) — SEMANA FUTURA (Borde gris #E2E8F0) -->
+<div class="border border-umb-border border-l-4 border-l-[#E2E8F0] rounded-md overflow-hidden bg-white shadow-xs">
+<div class="grid grid-cols-7 divide-x divide-[#E2E8F0]">
+<!-- Lun 16 (Inhábil Revolución Mexicana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-umb-surface">
+<div class="flex items-center justify-between">
+<span class="text-sm font-semibold text-umb-outline">16</span>
+</div>
+<p class="text-[10px] text-umb-outline font-medium leading-tight">Revolución Mexicana</p>
+<div>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-umb-border text-umb-muted">Inhábil</span>
+</div>
+</div>
+<!-- Mar 17 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">17</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Mié 18 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">18</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Jue 19 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">19</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Vie 20 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">20</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Sáb 21 nov (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">21</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+<!-- Dom 22 nov (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">22</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+</div>
+<!-- Barra inferior semana 13 -->
+<div class="bg-[#F8FAFC] px-4 py-1.5 border-t border-umb-border flex items-center justify-between text-xs">
+<span class="font-medium text-[#64748B] flex items-center">
+<span class="w-2 h-2 rounded-full bg-[#CBD5E1] mr-2"></span>
+                  Semana 13 · 16-22 nov
+                </span>
+<span class="text-umb-outline">Programada</span>
+</div>
+</div>
+<!-- FILA 5: SEMANA 14 (23-29 nov) — SEMANA FUTURA (Borde gris #E2E8F0) -->
+<div class="border border-umb-border border-l-4 border-l-[#E2E8F0] rounded-md overflow-hidden bg-white shadow-xs">
+<div class="grid grid-cols-7 divide-x divide-[#E2E8F0]">
+<!-- Lun 23 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">23</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Mar 24 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">24</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Mié 25 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">25</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Jue 26 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">26</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Vie 27 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">27</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Sáb 28 nov (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">28</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+<!-- Dom 29 nov (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">29</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+</div>
+<!-- Barra inferior semana 14 -->
+<div class="bg-[#F8FAFC] px-4 py-1.5 border-t border-umb-border flex items-center justify-between text-xs">
+<span class="font-medium text-[#64748B] flex items-center">
+<span class="w-2 h-2 rounded-full bg-[#CBD5E1] mr-2"></span>
+                  Semana 14 · 23-29 nov
+                </span>
+<span class="text-umb-outline">Programada</span>
+</div>
+</div>
+<!-- FILA 6: SEMANA 15 (30 nov - 6 dic) — SEMANA FUTURA (Borde gris #E2E8F0) -->
+<div class="border border-umb-border border-l-4 border-l-[#E2E8F0] rounded-md overflow-hidden bg-white shadow-xs">
+<div class="grid grid-cols-7 divide-x divide-[#E2E8F0]">
+<!-- Lun 30 nov -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">30</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Mar 1 dic -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">1</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Mié 2 dic -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">2</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Jue 3 dic -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">3</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Vie 4 dic -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-white">
+<span class="text-sm font-semibold text-umb-muted">4</span>
+<span class="text-[10px] text-umb-outline">Día hábil</span>
+</div>
+<!-- Sáb 5 dic (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">5</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+<!-- Dom 6 dic (Fin de semana) -->
+<div class="p-3 min-h-[95px] flex flex-col justify-between bg-[#F9FAFB]">
+<span class="text-sm font-semibold text-umb-outline">6</span>
+<span class="text-[10px] text-umb-outline">Descanso</span>
+</div>
+</div>
+<!-- Barra inferior semana 15 -->
+<div class="bg-[#F8FAFC] px-4 py-1.5 border-t border-umb-border flex items-center justify-between text-xs">
+<span class="font-medium text-[#64748B] flex items-center">
+<span class="w-2 h-2 rounded-full bg-[#CBD5E1] mr-2"></span>
+                  Semana 15 · 30 nov - 6 dic
+                </span>
+<span class="text-umb-outline">Programada</span>
+</div>
+</div>
+</div>
+<!-- Leyenda horizontal con 6 elementos debajo del calendario -->
+<div class="mt-6 pt-4 border-t border-umb-border flex flex-wrap items-center justify-center gap-4 md:gap-6 text-xs text-umb-muted">
+<div class="flex items-center space-x-2">
+<span class="w-3 h-3 rounded-sm bg-[#2D8C4E]"></span>
+<span>Semana aprobada</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="w-3 h-3 rounded-sm bg-[#D69E2E]"></span>
+<span>Semana pendiente</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="w-3 h-3 rounded-sm bg-umb-guinda"></span>
+<span>Semana en curso</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="w-3 h-3 rounded-sm bg-[#CBD5E1]"></span>
+<span>Semana futura</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="w-3 h-3 rounded-sm bg-umb-surface border border-[#CBD5E1]"></span>
+<span>Día inhábil UMB</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold bg-[#EFF6FF] text-[#2B6CB0]">Evaluación</span>
+<span>Evaluación parcial</span>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 5: Calendario oficial UMB (Próximos días inhábiles y eventos oficiales) -->
+<section class="bg-white rounded-lg p-6 shadow-sm border border-umb-border">
+<div class="mb-4">
+<h3 class="text-base font-semibold text-umb-carbon">Calendario oficial UMB</h3>
+<p class="text-xs text-umb-outline mt-0.5">Eventos y días inhábiles marcados por la UMB durante tu residencia.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3.5">
+<!-- Evento 1 -->
+<div class="p-3.5 rounded-lg bg-[#FAF9F9] border border-[#EBE8E8] flex items-center space-x-3 hover:shadow-xs transition">
+<div class="w-11 h-11 rounded-full bg-[#EAE8E9] text-umb-muted flex flex-col items-center justify-center shrink-0 border border-[#DDD]">
+<span class="text-[12px] font-bold leading-none">2</span>
+<span class="text-[8.5px] uppercase font-semibold text-umb-outline leading-tight">NOV</span>
+</div>
+<div class="min-w-0">
+<h4 class="text-xs font-semibold text-umb-carbon leading-snug truncate">Día de Muertos</h4>
+<p class="text-[11px] text-umb-outline mt-0.5 leading-tight">Lunes · Día inhábil oficial UMB</p>
+</div>
+</div>
+<!-- Evento 2 -->
+<div class="p-3.5 rounded-lg bg-[#FAF9F9] border border-[#EBE8E8] flex items-center space-x-3 hover:shadow-xs transition">
+<div class="w-11 h-11 rounded-full bg-[#EFF6FF] text-[#2B6CB0] flex flex-col items-center justify-center shrink-0 border border-[#BFDBFE]">
+<span class="text-[10px] font-bold leading-none">12-13</span>
+<span class="text-[8.5px] uppercase font-semibold text-[#2B6CB0] leading-tight">NOV</span>
+</div>
+<div class="min-w-0">
+<h4 class="text-xs font-semibold text-umb-carbon leading-snug truncate">Evaluaciones parciales</h4>
+<p class="text-[11px] text-umb-outline mt-0.5 leading-tight">Jueves y viernes · Periodo de evaluaciones</p>
+</div>
+</div>
+<!-- Evento 3 -->
+<div class="p-3.5 rounded-lg bg-[#FAF9F9] border border-[#EBE8E8] flex items-center space-x-3 hover:shadow-xs transition">
+<div class="w-11 h-11 rounded-full bg-[#EAE8E9] text-umb-muted flex flex-col items-center justify-center shrink-0 border border-[#DDD]">
+<span class="text-[12px] font-bold leading-none">16</span>
+<span class="text-[8.5px] uppercase font-semibold text-umb-outline leading-tight">NOV</span>
+</div>
+<div class="min-w-0">
+<h4 class="text-xs font-semibold text-umb-carbon leading-snug truncate">Conmemoración de la Revolución Mexicana</h4>
+<p class="text-[11px] text-umb-outline mt-0.5 leading-tight">Lunes · Día inhábil oficial UMB</p>
+</div>
+</div>
+<!-- Evento 4 -->
+<div class="p-3.5 rounded-lg bg-[#FAF9F9] border border-[#EBE8E8] flex items-center space-x-3 hover:shadow-xs transition">
+<div class="w-11 h-11 rounded-full bg-[#EAE8E9] text-umb-muted flex flex-col items-center justify-center shrink-0 border border-[#DDD]">
+<span class="text-[10px] font-bold leading-none">21-31</span>
+<span class="text-[8.5px] uppercase font-semibold text-umb-outline leading-tight">DIC</span>
+</div>
+<div class="min-w-0">
+<h4 class="text-xs font-semibold text-umb-carbon leading-snug truncate">Periodo vacacional</h4>
+<p class="text-[11px] text-umb-outline mt-0.5 leading-tight">11 días hábiles · Suspensión de actividades</p>
+</div>
+</div>
+<!-- Evento 5 -->
+<div class="p-3.5 rounded-lg bg-[#FAF9F9] border border-[#EBE8E8] flex items-center space-x-3 hover:shadow-xs transition">
+<div class="w-11 h-11 rounded-full bg-[#EAE8E9] text-umb-muted flex flex-col items-center justify-center shrink-0 border border-[#DDD]">
+<span class="text-[12px] font-bold leading-none">1</span>
+<span class="text-[8.5px] uppercase font-semibold text-umb-outline leading-tight">ENE</span>
+</div>
+<div class="min-w-0">
+<h4 class="text-xs font-semibold text-umb-carbon leading-snug truncate">Año Nuevo</h4>
+<p class="text-[11px] text-umb-outline mt-0.5 leading-tight">Viernes · Día inhábil oficial UMB</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- Pie de página general institucional -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="08-mis-bitacoras.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">menu_book</span>
+      <span class="text-[11px] font-medium mt-0.5">Bitácoras</span>
+    </a>
+    <a href="02-mi-expediente.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">folder</span>
+      <span class="text-[11px] font-medium mt-0.5">Expediente</span>
+    </a>
+    <a href="13-mis-informes.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">description</span>
+      <span class="text-[11px] font-semibold mt-0.5">Informes</span>
+    </a>
+    <a href="14-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

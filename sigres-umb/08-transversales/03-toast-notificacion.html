@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notificación Toast Reutilizable — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="bg-umb-surface min-h-screen text-umb-carbon antialiased relative overflow-x-hidden flex flex-col justify-between">
+
+  <!-- ENTORNO DE FONDO: Simulación de pantalla de gestión SIGRES-UMB -->
+  <div class="relative z-0">
+    <!-- Barra superior institucional -->
+    <header class="bg-umb-guinda text-white h-16 px-6 flex items-center justify-between border-b border-[#521422] shadow-sm">
+      <div class="flex items-center space-x-3">
+        <div class="bg-white p-1 rounded flex items-center justify-center h-9 w-9">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center space-x-2">
+            <span class="font-bold text-base tracking-tight leading-none">SIGRES-UMB</span>
+            <span class="bg-black/20 text-[11px] px-2 py-0.5 rounded text-amber-200 font-medium">Asesor Interno</span>
+          </div>
+          <span class="text-[11px] text-white/80 leading-tight">Universidad Mexiquense del Bicentenario</span>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4">
+        <span class="text-xs text-white/90 hidden sm:inline">Ciclo 26-27/1 · UES San José del Rincón</span>
+        <div class="flex items-center space-x-2 border-l border-white/20 pl-4">
+          <div class="w-8 h-8 rounded-full bg-white/15 text-white font-semibold text-xs flex items-center justify-center border border-white/30">
+            LB
+          </div>
+          <span class="text-xs font-medium text-white hidden md:inline">I.S.C. Leonardo Becerril</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Contenido de muestra atenuado (Contexto para previsualizar toasts en acción) -->
+    <main class="max-w-6xl mx-auto p-6 md:p-8 space-y-6 opacity-75 select-none pointer-events-none">
+      <div class="flex items-center justify-between">
+        <div>
+          <div class="text-xs font-medium text-umb-outline mb-1">Supervisión académica / Bitácoras semanales</div>
+          <h1 class="text-2xl font-bold text-umb-carbon">Revisión de bitácoras de residentes</h1>
+        </div>
+        <div class="flex gap-3">
+          <span class="px-3 py-1.5 bg-white border border-gray-200 text-xs rounded-lg text-gray-600 font-medium shadow-sm">Filtro: Pendientes (3)</span>
+        </div>
+      </div>
+
+      <!-- Tabla simulada de fondo -->
+      <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm space-y-4">
+        <div class="h-4 bg-gray-100 rounded w-1/4"></div>
+        <div class="space-y-3">
+          <div class="p-4 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
+            <div class="space-y-1">
+              <div class="h-4 bg-gray-200 rounded w-48"></div>
+              <div class="h-3 bg-gray-200 rounded w-32"></div>
+            </div>
+            <div class="h-8 bg-gray-200 rounded w-28"></div>
+          </div>
+          <div class="p-4 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
+            <div class="space-y-1">
+              <div class="h-4 bg-gray-200 rounded w-52"></div>
+              <div class="h-3 bg-gray-200 rounded w-36"></div>
+            </div>
+            <div class="h-8 bg-gray-200 rounded w-28"></div>
+          </div>
+          <div class="p-4 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-between">
+            <div class="space-y-1">
+              <div class="h-4 bg-gray-200 rounded w-44"></div>
+              <div class="h-3 bg-gray-200 rounded w-28"></div>
+            </div>
+            <div class="h-8 bg-gray-200 rounded w-28"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- PANEL DIDÁCTICO & ANOTACIONES NORMATIVAS (Izquierda/Inferior) -->
+  <aside class="fixed bottom-6 left-6 z-20 max-w-sm w-full bg-white/95 backdrop-blur-md rounded-xl p-5 border border-gray-200 custom-shadow hidden lg:block text-xs text-umb-muted">
+    <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-3">
+      <div class="flex items-center space-x-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-umb-guinda"></span>
+        <h2 class="text-xs font-bold text-umb-carbon uppercase tracking-wider">Sistema Toast SIGRES-UMB</h2>
+      </div>
+      <span class="text-[10px] bg-gray-100 text-gray-700 px-2 py-0.5 rounded font-mono">Reutilizable</span>
+    </div>
+    
+    <div class="space-y-2 mb-4">
+      <div class="flex items-center justify-between text-[11px]">
+        <span class="text-gray-500">Posición fija:</span>
+        <span class="font-medium text-gray-800">Bottom: 24px, Right: 24px</span>
+      </div>
+      <div class="flex items-center justify-between text-[11px]">
+        <span class="text-gray-500">Temporizador de auto-cierre:</span>
+        <span class="font-medium text-gray-800">4 segundos (barra de progreso)</span>
+      </div>
+      <div class="flex items-center justify-between text-[11px]">
+        <span class="text-gray-500">Límite simultáneo:</span>
+        <span class="font-medium text-gray-800">Máximo 3 apilados (gap: 12px)</span>
+      </div>
+      <div class="flex items-center justify-between text-[11px]">
+        <span class="text-gray-500">Animación de entrada:</span>
+        <span class="font-medium text-gray-800">Slide-in derecha 300ms</span>
+      </div>
+      <div class="flex items-center justify-between text-[11px]">
+        <span class="text-gray-500">Animación de salida:</span>
+        <span class="font-medium text-gray-800">Slide-out + Fade 200ms</span>
+      </div>
+    </div>
+
+    <!-- Controles para probar interactivamente los toasts -->
+    <div class="pt-2 border-t border-gray-100">
+      <div class="text-[10px] font-semibold text-gray-600 mb-2 uppercase tracking-wide">Disparar variantes interactivas:</div>
+      <div class="grid grid-cols-2 gap-1.5">
+        <button onclick="triggerToast('success')" class="px-2.5 py-1.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-left font-medium hover:bg-emerald-100 transition flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-[#2D8C4E]"></span>
+          <span>1. Éxito</span>
+        </button>
+        <button onclick="triggerToast('error')" class="px-2.5 py-1.5 rounded-md bg-red-50 text-red-800 border border-red-200 text-left font-medium hover:bg-red-100 transition flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-[#C53030]"></span>
+          <span>2. Error</span>
+        </button>
+        <button onclick="triggerToast('warning')" class="px-2.5 py-1.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200 text-left font-medium hover:bg-amber-100 transition flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-[#D69E2E]"></span>
+          <span>3. Advertencia</span>
+        </button>
+        <button onclick="triggerToast('info')" class="px-2.5 py-1.5 rounded-md bg-blue-50 text-blue-800 border border-blue-200 text-left font-medium hover:bg-blue-100 transition flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-[#2B6CB0]"></span>
+          <span>4. Información</span>
+        </button>
+      </div>
+      <button onclick="resetStack()" class="mt-2 w-full py-1 text-center text-[10px] text-umb-guinda hover:underline font-medium">
+        Restaurar muestra de las 4 variantes apiladas
+      </button>
+    </div>
+  </aside>
+
+  <!-- CONTENEDOR MAESTRO DE NOTIFICACIONES TOAST (Esquina inferior derecha) -->
+  <!-- Separación fija de 24px desde el borde inferior y derecho, ancho configurable de 360px a 420px -->
+  <section 
+    id="toast-container" 
+    aria-live="polite" 
+    aria-label="Notificaciones del sistema"
+    class="fixed bottom-6 right-6 z-50 flex flex-col-reverse gap-3 max-w-[420px] w-[calc(100vw-48px)] sm:w-[400px] pointer-events-none"
+  >
+
+    <!-- ========================================================================= -->
+    <!-- VARIANTE 4: INFORMACIÓN -->
+    <!-- ========================================================================= -->
+    <div id="toast-demo-info" class="pointer-events-auto bg-white rounded-lg p-4 custom-shadow border-l-4 border-[#2B6CB0] flex items-start justify-between gap-3 animate-slide-in relative overflow-hidden transition-all duration-200" role="status">
+      <!-- Ícono circular azul 24px -->
+      <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#EFF6FF] text-[#2B6CB0] flex items-center justify-center mt-0.5">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+      </div>
+
+      <!-- Contenido textual (Máximo 2 líneas de texto) -->
+      <div class="flex-1 min-w-0 pr-1">
+        <h3 class="text-sm font-semibold text-umb-carbon leading-tight">Novedad disponible</h3>
+        <p class="text-xs text-umb-muted mt-0.5 leading-normal">El reporte mensual está listo para descargar.</p>
+      </div>
+
+      <!-- Acciones: Botón ghost específico + Botón cerrar X -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <button type="button" class="text-xs font-semibold text-[#2B6CB0] hover:text-blue-800 hover:underline px-1.5 py-1 rounded transition focus:outline-none focus:ring-1 focus:ring-[#2B6CB0]">
+          Ver
+        </button>
+        <button type="button" onclick="closeToast('toast-demo-info')" aria-label="Cerrar notificación" class="text-umb-outline hover:text-umb-carbon p-1 rounded hover:bg-gray-100 transition focus:outline-none">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Barra de progreso visual (4s timer) -->
+      <div class="absolute bottom-0 left-0 h-[2px] bg-[#2B6CB0]/20 w-full">
+        <div class="h-full bg-[#2B6CB0] animate-shrink-timer"></div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- VARIANTE 3: ADVERTENCIA -->
+    <!-- ========================================================================= -->
+    <div id="toast-demo-warning" class="pointer-events-auto bg-white rounded-lg p-4 custom-shadow border-l-4 border-[#D69E2E] flex items-start justify-between gap-3 animate-slide-in relative overflow-hidden transition-all duration-200" role="status">
+      <!-- Ícono circular ámbar 24px -->
+      <div class="flex-shrink-0 w-6 h-6 rounded-full bg-umb-dorado-light text-[#D69E2E] flex items-center justify-center mt-0.5">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </div>
+
+      <!-- Contenido textual (Máximo 2 líneas de texto) -->
+      <div class="flex-1 min-w-0 pr-1">
+        <h3 class="text-sm font-semibold text-umb-carbon leading-tight">Revisa esta información</h3>
+        <p class="text-xs text-umb-muted mt-0.5 leading-normal">Tienes 2 documentos pendientes de validar.</p>
+      </div>
+
+      <!-- Acciones: Botón ghost específico + Botón cerrar X -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <button type="button" class="text-xs font-semibold text-[#D69E2E] hover:text-amber-800 hover:underline px-1.5 py-1 rounded transition focus:outline-none focus:ring-1 focus:ring-[#D69E2E]">
+          Ver detalles
+        </button>
+        <button type="button" onclick="closeToast('toast-demo-warning')" aria-label="Cerrar notificación" class="text-umb-outline hover:text-umb-carbon p-1 rounded hover:bg-gray-100 transition focus:outline-none">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Barra de progreso visual (4s timer) -->
+      <div class="absolute bottom-0 left-0 h-[2px] bg-[#D69E2E]/20 w-full">
+        <div class="h-full bg-[#D69E2E] animate-shrink-timer"></div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- VARIANTE 2: ERROR -->
+    <!-- ========================================================================= -->
+    <div id="toast-demo-error" class="pointer-events-auto bg-white rounded-lg p-4 custom-shadow border-l-4 border-[#C53030] flex items-start justify-between gap-3 animate-slide-in relative overflow-hidden transition-all duration-200" role="alert">
+      <!-- Ícono circular rojo 24px -->
+      <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#FEE2E2] text-[#C53030] flex items-center justify-center mt-0.5">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
+      </div>
+
+      <!-- Contenido textual (Máximo 2 líneas de texto) -->
+      <div class="flex-1 min-w-0 pr-1">
+        <h3 class="text-sm font-semibold text-umb-carbon leading-tight">Ocurrió un error</h3>
+        <p class="text-xs text-umb-muted mt-0.5 leading-normal">No se pudo completar la acción. Intenta de nuevo.</p>
+      </div>
+
+      <!-- Acciones: Botón ghost "Reintentar" + Botón cerrar X -->
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <button type="button" class="text-xs font-semibold text-[#C53030] hover:text-red-800 hover:underline px-1.5 py-1 rounded transition focus:outline-none focus:ring-1 focus:ring-[#C53030]">
+          Reintentar
+        </button>
+        <button type="button" onclick="closeToast('toast-demo-error')" aria-label="Cerrar notificación" class="text-umb-outline hover:text-umb-carbon p-1 rounded hover:bg-gray-100 transition focus:outline-none">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Barra de progreso visual (4s timer) -->
+      <div class="absolute bottom-0 left-0 h-[2px] bg-[#C53030]/20 w-full">
+        <div class="h-full bg-[#C53030] animate-shrink-timer"></div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- VARIANTE 1: ÉXITO (Ejemplo principal para el diseño) -->
+    <!-- ========================================================================= -->
+    <div id="toast-demo-success" class="pointer-events-auto bg-white rounded-lg p-4 custom-shadow border-l-4 border-[#2D8C4E] flex items-start justify-between gap-3 animate-slide-in relative overflow-hidden transition-all duration-200" role="status">
+      <!-- Ícono circular verde 24px con check -->
+      <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#DCFCE7] text-[#2D8C4E] flex items-center justify-center mt-0.5">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+
+      <!-- Contenido textual (Máximo 2 líneas de texto) -->
+      <div class="flex-1 min-w-0 pr-1">
+        <h3 class="text-sm font-semibold text-umb-carbon leading-tight">Acción completada</h3>
+        <p class="text-xs text-umb-muted mt-0.5 leading-normal">Bitácora aprobada correctamente.</p>
+      </div>
+
+      <!-- Botón ghost "Cerrar" (X) a la derecha -->
+      <button 
+        type="button" 
+        onclick="closeToast('toast-demo-success')" 
+        aria-label="Cerrar notificación" 
+        class="text-umb-outline hover:text-umb-carbon p-1 rounded hover:bg-gray-100 transition focus:outline-none focus:ring-1 focus:ring-gray-300 flex-shrink-0"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <!-- Barra de progreso visual (4s timer) -->
+      <div class="absolute bottom-0 left-0 h-[2px] bg-[#2D8C4E]/20 w-full">
+        <div class="h-full bg-[#2D8C4E] animate-shrink-timer"></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- PIE INSTITUCIONAL REGLAMENTARIO -->
+  <footer class="text-center py-4 text-[11px] text-umb-outline border-t border-gray-200/60 bg-white/50 relative z-10">
+    SIGRES-UMB · Universidad Mexiquense del Bicentenario · Ciclo 26-27/1
+  </footer>
+
+  <!-- LÓGICA INTERACTIVA DEL COMPONENTE REUTILIZABLE -->
+  <script>
+    // Configuración reglamentaria de toasts
+    const MAX_VISIBLE_TOASTS = 3;
+    const AUTO_CLOSE_DELAY = 4000; // 4 segundos
+
+    // Función para cerrar un toast con animación fluida
+    function closeToast(toastId) {
+      const el = typeof toastId === 'string' ? document.getElementById(toastId) : toastId;
+      if (!el) return;
+
+      // Aplicar animación de salida (slide-out + fade)
+      el.classList.remove('animate-slide-in');
+      el.classList.add('animate-slide-out');
+
+      setTimeout(() => {
+        if (el && el.parentNode) {
+          el.parentNode.removeChild(el);
+        }
+      }, 200);
+    }
+
+    // Configuración de los 4 tipos normativos
+    const TOAST_TEMPLATES = {
+      success: {
+        border: 'border-[#2D8C4E]',
+        bgIcon: 'bg-[#DCFCE7]',
+        textIcon: 'text-[#2D8C4E]',
+        iconSvg: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>',
+        title: 'Acción completada',
+        text: 'Bitácora aprobada correctamente.',
+        timerColor: 'bg-[#2D8C4E]',
+        actionBtn: ''
+      },
+      error: {
+        border: 'border-[#C53030]',
+        bgIcon: 'bg-[#FEE2E2]',
+        textIcon: 'text-[#C53030]',
+        iconSvg: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>',
+        title: 'Ocurrió un error',
+        text: 'No se pudo completar la acción. Intenta de nuevo.',
+        timerColor: 'bg-[#C53030]',
+        actionBtn: '<button type="button" class="text-xs font-semibold text-[#C53030] hover:text-red-800 hover:underline px-1.5 py-1 rounded transition focus:outline-none">Reintentar</button>'
+      },
+      warning: {
+        border: 'border-[#D69E2E]',
+        bgIcon: 'bg-umb-dorado-light',
+        textIcon: 'text-[#D69E2E]',
+        iconSvg: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>',
+        title: 'Revisa esta información',
+        text: 'Tienes 2 documentos pendientes de validar.',
+        timerColor: 'bg-[#D69E2E]',
+        actionBtn: '<button type="button" class="text-xs font-semibold text-[#D69E2E] hover:text-amber-800 hover:underline px-1.5 py-1 rounded transition focus:outline-none">Ver detalles</button>'
+      },
+      info: {
+        border: 'border-[#2B6CB0]',
+        bgIcon: 'bg-[#EFF6FF]',
+        textIcon: 'text-[#2B6CB0]',
+        iconSvg: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>',
+        title: 'Novedad disponible',
+        text: 'El reporte mensual está listo para descargar.',
+        timerColor: 'bg-[#2B6CB0]',
+        actionBtn: '<button type="button" class="text-xs font-semibold text-[#2B6CB0] hover:text-blue-800 hover:underline px-1.5 py-1 rounded transition focus:outline-none">Ver</button>'
+      }
+    };
+
+    function triggerToast(type) {
+      const container = document.getElementById('toast-container');
+      const conf = TOAST_TEMPLATES[type];
+      if (!container || !conf) return;
+
+      // Si se excede el límite de 3 toasts, descartar el más antiguo
+      const existing = container.querySelectorAll('[role="status"], [role="alert"]');
+      if (existing.length >= MAX_VISIBLE_TOASTS) {
+        closeToast(existing[0]);
+      }
+
+      const id = 'toast-' + Date.now();
+      const toast = document.createElement('div');
+      toast.id = id;
+      toast.className = `pointer-events-auto bg-white rounded-lg p-4 custom-shadow border-l-4 ${conf.border} flex items-start justify-between gap-3 animate-slide-in relative overflow-hidden transition-all duration-200`;
+      toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
+
+      toast.innerHTML = `
+        <div class="flex-shrink-0 w-6 h-6 rounded-full ${conf.bgIcon} ${conf.textIcon} flex items-center justify-center mt-0.5">
+          ${conf.iconSvg}
+        </div>
+        <div class="flex-1 min-w-0 pr-1">
+          <h3 class="text-sm font-semibold text-umb-carbon leading-tight">${conf.title}</h3>
+          <p class="text-xs text-umb-muted mt-0.5 leading-normal">${conf.text}</p>
+        </div>
+        <div class="flex items-center space-x-2 flex-shrink-0">
+          ${conf.actionBtn}
+          <button type="button" onclick="closeToast('${id}')" aria-label="Cerrar notificación" class="text-umb-outline hover:text-umb-carbon p-1 rounded hover:bg-gray-100 transition focus:outline-none">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="absolute bottom-0 left-0 h-[2px] bg-black/10 w-full">
+          <div class="h-full ${conf.timerColor} animate-shrink-timer"></div>
+        </div>
+      `;
+
+      container.appendChild(toast);
+
+      // Auto-cierre reglamentario a los 4 segundos
+      setTimeout(() => {
+        closeToast(id);
+      }, AUTO_CLOSE_DELAY);
+    }
+
+    function resetStack() {
+      const container = document.getElementById('toast-container');
+      container.innerHTML = `
+        <!-- VARIANTE 4: INFORMACIÓN -->
+        <div id="toast-demo-info" class="pointer-events-auto bg-white rounded-lg p-4 custom-shadow border-l-4 border-[#2B6CB0] flex items-start justify-between gap-3 animate-slide-in relative overflow-hidden transition-all duration-200" role="status">
+          <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#EFF6FF] text-[#2B6CB0] flex items-center justify-center mt-0.5">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          </div>
+          <div class="flex-1 min-w-0 pr-1">
+            <h3 class="text-sm font-semibold text-umb-carbon leading-tight">Novedad disponible</h3>
+            <p class="text-xs text-umb-muted mt-0.5 leading-normal">El reporte mensual está listo para descargar.</p>
+          </div>
+          <div class="flex items-center space-x-2 flex-shrink-0">
+            <button type="button" class="text-xs font-semibold text-[#2B6CB0] hover:text-blue-800 hover:underline px-1.5 py-1 rounded transition focus:outline-none">Ver</button>
+            <button type="button" onclick="closeToast('toast-demo-info')" aria-label="Cerrar notificación" class="text-umb-outline hover:text-umb-carbon p-1 rounded hover:bg-gray-100 transition focus:outline-none">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+          </div>
+          <div class="absolute bottom-0 left-0 h-[2px] bg-[#2B6CB0]/20 w-full"><div class="h-full bg-[#2B6CB0] animate-shrink-timer"></div></div>
+        </div>
+
+        <!-- VARIANTE 3: ADVERTENCIA -->
+        <div id="toast-demo-warning" class="pointer-events-auto bg-white rounded-lg p-4 custom-shadow border-l-4 border-[#D69E2E] flex items-start justify-between gap-3 animate-slide-in relative overflow-hidden transition-all duration-200" role="status">
+          <div class="flex-shrink-0 w-6 h-6 rounded-full bg-umb-dorado-light text-[#D69E2E] flex items-center justify-center mt-0.5">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          </div>
+          <div class="flex-1 min-w-0 pr-1">
+            <h3 class="text-sm font-semibold text-umb-carbon leading-tight">Revisa esta información</h3>
+            <p class="text-xs text-umb-muted mt-0.5 leading-normal">Tienes 2 documentos pendientes de validar.</p>
+          </div>
+          <div class="flex items-center space-x-2 flex-shrink-0">
+            <button type="button" class="text-xs font-semibold text-[#D69E2E] hover:text-amber-800 hover:underline px-1.5 py-1 rounded transition focus:outline-none">Ver detalles</button>
+            <button type="button" onclick="closeToast('toast-demo-warning')" aria-label="Cerrar notificación" class="text-umb-outline hover:text-umb-carbon p-1 rounded hover:bg-gray-100 transition focus:outline-none">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+          </div>
+          <div class="absolute bottom-0 left-0 h-[2px] bg-[#D69E2E]/20 w-full"><div class="h-full bg-[#D69E2E] animate-shrink-timer"></div></div>
+        </div>
+
+        <!-- VARIANTE 2: ERROR -->
+        <div id="toast-demo-error" class="pointer-events-auto bg-white rounded-lg p-4 custom-shadow border-l-4 border-[#C53030] flex items-start justify-between gap-3 animate-slide-in relative overflow-hidden transition-all duration-200" role="alert">
+          <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#FEE2E2] text-[#C53030] flex items-center justify-center mt-0.5">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+          </div>
+          <div class="flex-1 min-w-0 pr-1">
+            <h3 class="text-sm font-semibold text-umb-carbon leading-tight">Ocurrió un error</h3>
+            <p class="text-xs text-umb-muted mt-0.5 leading-normal">No se pudo completar la acción. Intenta de nuevo.</p>
+          </div>
+          <div class="flex items-center space-x-2 flex-shrink-0">
+            <button type="button" class="text-xs font-semibold text-[#C53030] hover:text-red-800 hover:underline px-1.5 py-1 rounded transition focus:outline-none">Reintentar</button>
+            <button type="button" onclick="closeToast('toast-demo-error')" aria-label="Cerrar notificación" class="text-umb-outline hover:text-umb-carbon p-1 rounded hover:bg-gray-100 transition focus:outline-none">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+          </div>
+          <div class="absolute bottom-0 left-0 h-[2px] bg-[#C53030]/20 w-full"><div class="h-full bg-[#C53030] animate-shrink-timer"></div></div>
+        </div>
+
+        <!-- VARIANTE 1: ÉXITO -->
+        <div id="toast-demo-success" class="pointer-events-auto bg-white rounded-lg p-4 custom-shadow border-l-4 border-[#2D8C4E] flex items-start justify-between gap-3 animate-slide-in relative overflow-hidden transition-all duration-200" role="status">
+          <div class="flex-shrink-0 w-6 h-6 rounded-full bg-[#DCFCE7] text-[#2D8C4E] flex items-center justify-center mt-0.5">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div class="flex-1 min-w-0 pr-1">
+            <h3 class="text-sm font-semibold text-umb-carbon leading-tight">Acción completada</h3>
+            <p class="text-xs text-umb-muted mt-0.5 leading-normal">Bitácora aprobada correctamente.</p>
+          </div>
+          <button type="button" onclick="closeToast('toast-demo-success')" aria-label="Cerrar notificación" class="text-umb-outline hover:text-umb-carbon p-1 rounded hover:bg-gray-100 transition focus:outline-none">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+          <div class="absolute bottom-0 left-0 h-[2px] bg-[#2D8C4E]/20 w-full"><div class="h-full bg-[#2D8C4E] animate-shrink-timer"></div></div>
+        </div>
+      `;
+    }
+  </script>
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

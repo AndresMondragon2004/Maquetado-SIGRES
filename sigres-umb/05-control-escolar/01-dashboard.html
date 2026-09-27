@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-umb-surface" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGRES-UMB - Panel de Control Escolar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full font-sans antialiased text-umb-text bg-umb-surface flex flex-col">
+<!-- BEGIN: TopAppBar -->
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Control Escolar</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Inicio</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="09-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          EY
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Lic. Estefanía Yttesen</span>
+          <span class="text-[10px] text-white/75 leading-none">Control Escolar</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: TopAppBar -->
+<!-- Container for Sidebar and Main Content -->
+<div class="flex pt-16 flex-1 min-h-screen">
+<!-- BEGIN: LeftSidebar -->
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              EY
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Lic. Estefanía Yttesen Nava</p>
+              <p class="text-[11px] text-umb-outline truncate">Responsable de Control Escolar</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="02-bandeja-expedientes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">folder_shared</span>
+            <span class="text-sm">Expedientes</span>
+          </a>
+          <a href="04-validar-documentos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">verified</span>
+            <span class="text-sm">Documentos</span>
+          </a>
+          <a href="06-catalogo-empresas.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">domain</span>
+            <span class="text-sm">Empresas</span>
+          </a>
+          <a href="08-reportes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">analytics</span>
+            <span class="text-sm">Reportes</span>
+          </a>
+          <a href="09-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 md:pl-64 flex flex-col justify-between overflow-x-hidden min-w-0" data-purpose="main-dashboard">
+<div class="max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+<!-- Header: Breadcrumb & Title Action Bar -->
+<section aria-label="Encabezado del panel" data-purpose="page-header">
+<!-- Breadcrumb -->
+<nav aria-label="Ruta de navegación" class="flex items-center space-x-1.5 text-xs text-umb-subtle mb-1">
+<a class="hover:text-gray-800" href="#">Inicio</a>
+<span>/</span>
+<span class="text-gray-700 font-medium">Panel de Control Escolar</span>
+</nav>
+<!-- Title Bar -->
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-gray-900 tracking-tight">Panel de Control Escolar</h1>
+<p class="text-sm text-umb-muted mt-0.5">Resumen general de expedientes y trámites del ciclo 26-27/1.</p>
+</div>
+<div>
+<button class="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-umb-guinda hover:bg-[#521522] text-white text-sm font-medium shadow-sm transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:ring-offset-2" type="button">
+<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                Nuevo expediente
+              </button>
+</div>
+</div>
+</section>
+<!-- BEGIN: SectionKPIs -->
+<section aria-label="Métricas clave" data-purpose="kpi-grid">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- KPI 1: Expedientes activos -->
+<div class="bg-white rounded-lg p-5 border border-gray-200 shadow-sm flex items-start justify-between">
+<div class="space-y-1">
+<p class="text-[13px] font-semibold text-gray-900">Expedientes activos</p>
+<p class="text-3xl font-bold text-gray-900 leading-none py-1">45</p>
+<p class="text-[11px] text-umb-subtle">En el ciclo 26-27/1</p>
+</div>
+<div class="w-11 h-11 rounded-lg bg-[#F9ECEF] flex items-center justify-center text-umb-guinda flex-shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- KPI 2: Documentos pendientes -->
+<div class="bg-white rounded-lg p-5 border border-gray-200 shadow-sm flex items-start justify-between">
+<div class="space-y-1">
+<p class="text-[13px] font-semibold text-gray-900">Documentos pendientes</p>
+<p class="text-3xl font-bold text-[#D69E2E] leading-none py-1">12</p>
+<p class="text-[11px] text-[#92400E]">Por validar esta semana</p>
+</div>
+<div class="w-11 h-11 rounded-lg bg-umb-dorado-light flex items-center justify-center text-[#D69E2E] flex-shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- KPI 3: En riesgo -->
+<div class="bg-white rounded-lg p-5 border border-gray-200 shadow-sm flex items-start justify-between">
+<div class="space-y-1">
+<p class="text-[13px] font-semibold text-gray-900">En riesgo</p>
+<p class="text-3xl font-bold text-[#C53030] leading-none py-1">8</p>
+<p class="text-[11px] text-[#991B1B]">Asistencia &lt;80% o rezago</p>
+</div>
+<div class="w-11 h-11 rounded-lg bg-[#FEE2E2] flex items-center justify-center text-[#C53030] flex-shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- KPI 4: Acreditados -->
+<div class="bg-white rounded-lg p-5 border border-gray-200 shadow-sm flex items-start justify-between">
+<div class="space-y-1">
+<p class="text-[13px] font-semibold text-gray-900">Acreditados</p>
+<p class="text-3xl font-bold text-[#2D8C4E] leading-none py-1">25</p>
+<p class="text-[11px] text-[#166534]">55% del total</p>
+</div>
+<div class="w-11 h-11 rounded-lg bg-[#DCFCE7] flex items-center justify-center text-[#2D8C4E] flex-shrink-0">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<!-- END: SectionKPIs -->
+<!-- BEGIN: MainContentGrid (60% / 40%) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Columna Izquierda (7/12 ~ 60%) -->
+<div class="lg:col-span-7 space-y-6">
+<!-- Tarjeta A: Expedientes recientes -->
+<section class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden" data-purpose="recent-records">
+<div class="px-5 py-4 border-b border-gray-200 flex items-center justify-between">
+<h2 class="text-base font-semibold text-gray-900">Expedientes recientes</h2>
+<a class="inline-flex items-center text-xs font-medium text-umb-guinda hover:text-[#521522] transition-colors" href="#">
+                  Ver todos
+                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</div>
+<!-- Table container with horizontal scroll for responsiveness -->
+<div class="overflow-x-auto">
+<table class="min-w-full divide-y divide-gray-200 text-left">
+<thead class="bg-[#F9FAFB]">
+<tr>
+<th class="px-5 py-3 text-[11px] font-semibold text-umb-subtle tracking-wider uppercase" scope="col">Folio</th>
+<th class="px-4 py-3 text-[11px] font-semibold text-umb-subtle tracking-wider uppercase" scope="col">Estudiante</th>
+<th class="px-3 py-3 text-[11px] font-semibold text-umb-subtle tracking-wider uppercase text-center" scope="col">Carrera</th>
+<th class="px-4 py-3 text-[11px] font-semibold text-umb-subtle tracking-wider uppercase text-center" scope="col">Estado</th>
+<th class="px-4 py-3 text-[11px] font-semibold text-umb-subtle tracking-wider uppercase text-right" scope="col">Acción</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100 text-xs">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-50/75 transition-colors">
+<td class="px-5 py-3.5 font-medium text-gray-900 whitespace-nowrap">
+                        UMB-SJR-2026-001
+                      </td>
+<td class="px-4 py-3.5 whitespace-nowrap">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-rose-100 text-umb-guinda font-semibold flex items-center justify-center text-xs flex-shrink-0">
+                            VR
+                          </div>
+<div>
+<p class="font-medium text-gray-900 leading-tight">Jesús Andrés Mondragón Tenorio</p>
+<p class="text-[11px] text-gray-500">13220024</p>
+</div>
+</div>
+</td>
+<td class="px-3 py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-800">
+                          ISC
+                        </span>
+</td>
+<td class="px-4 py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#DCFCE7] text-[#166534]">
+                          Acreditado
+                        </span>
+</td>
+<td class="px-4 py-3.5 text-right whitespace-nowrap">
+<button class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-umb-guinda hover:bg-[#F9ECEF] rounded transition-colors" title="Ver expediente" type="button">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                          Ver
+                        </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-50/75 transition-colors">
+<td class="px-5 py-3.5 font-medium text-gray-900 whitespace-nowrap">
+                        UMB-SJR-2026-002
+                      </td>
+<td class="px-4 py-3.5 whitespace-nowrap">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-semibold flex items-center justify-center text-xs flex-shrink-0">
+                            DA
+                          </div>
+<div>
+<p class="font-medium text-gray-900 leading-tight">Marco Antonio García Cruz</p>
+<p class="text-[11px] text-gray-500">13210045</p>
+</div>
+</div>
+</td>
+<td class="px-3 py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-800">
+                          IIAS
+                        </span>
+</td>
+<td class="px-4 py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#EFF6FF] text-[#1E40AF]">
+                          En curso
+                        </span>
+</td>
+<td class="px-4 py-3.5 text-right whitespace-nowrap">
+<button class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-umb-guinda hover:bg-[#F9ECEF] rounded transition-colors" title="Ver expediente" type="button">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                          Ver
+                        </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-50/75 transition-colors">
+<td class="px-5 py-3.5 font-medium text-gray-900 whitespace-nowrap">
+                        UMB-SJR-2026-003
+                      </td>
+<td class="px-4 py-3.5 whitespace-nowrap">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 font-semibold flex items-center justify-center text-xs flex-shrink-0">
+                            MC
+                          </div>
+<div>
+<p class="font-medium text-gray-900 leading-tight">Daniel Benítez</p>
+<p class="text-[11px] text-gray-500">13220089</p>
+</div>
+</div>
+</td>
+<td class="px-3 py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-800">
+                          LCONT
+                        </span>
+</td>
+<td class="px-4 py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#FEE2E2] text-[#991B1B]">
+                          En riesgo
+                        </span>
+</td>
+<td class="px-4 py-3.5 text-right whitespace-nowrap">
+<button class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-umb-guinda hover:bg-[#F9ECEF] rounded transition-colors" title="Ver expediente" type="button">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                          Ver
+                        </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-50/75 transition-colors">
+<td class="px-5 py-3.5 font-medium text-gray-900 whitespace-nowrap">
+                        UMB-SJR-2026-004
+                      </td>
+<td class="px-4 py-3.5 whitespace-nowrap">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-purple-100 text-purple-800 font-semibold flex items-center justify-center text-xs flex-shrink-0">
+                            JD
+                          </div>
+<div>
+<p class="font-medium text-gray-900 leading-tight">José Luis Domínguez Maya</p>
+<p class="text-[11px] text-gray-500">13200112</p>
+</div>
+</div>
+</td>
+<td class="px-3 py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-800">
+                          ISC
+                        </span>
+</td>
+<td class="px-4 py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-umb-dorado-light text-[#92400E]">
+                          Pendiente
+                        </span>
+</td>
+<td class="px-4 py-3.5 text-right whitespace-nowrap">
+<button class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-umb-guinda hover:bg-[#F9ECEF] rounded transition-colors" title="Ver expediente" type="button">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                          Ver
+                        </button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-gray-50/75 transition-colors">
+<td class="px-5 py-3.5 font-medium text-gray-900 whitespace-nowrap">
+                        UMB-SJR-2026-005
+                      </td>
+<td class="px-4 py-3.5 whitespace-nowrap">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 font-semibold flex items-center justify-center text-xs flex-shrink-0">
+                            AB
+                          </div>
+<div>
+<p class="font-medium text-gray-900 leading-tight">Andrea Benítez Colín</p>
+<p class="text-[11px] text-gray-500">13210078</p>
+</div>
+</div>
+</td>
+<td class="px-3 py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex px-2 py-0.5 rounded text-[11px] font-medium bg-gray-100 text-gray-800">
+                          LCONT
+                        </span>
+</td>
+<td class="px-4 py-3.5 text-center whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-[#EFF6FF] text-[#1E40AF]">
+                          En curso
+                        </span>
+</td>
+<td class="px-4 py-3.5 text-right whitespace-nowrap">
+<button class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-umb-guinda hover:bg-[#F9ECEF] rounded transition-colors" title="Ver expediente" type="button">
+<svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                          Ver
+                        </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Tarjeta B: Actividad reciente -->
+<section class="bg-white rounded-lg border border-gray-200 shadow-sm p-5" data-purpose="recent-activity">
+<h2 class="text-base font-semibold text-gray-900 mb-4">Actividad reciente</h2>
+<!-- Timeline Container -->
+<div class="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-gray-200">
+<!-- Event 1 -->
+<div class="relative group">
+<div class="absolute -left-6 top-1.5 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-4 ring-white"></div>
+<div>
+<p class="text-[13px] font-medium text-gray-900">
+                      Validaste los documentos de Jesús Andrés Mondragón Tenorio
+                    </p>
+<div class="flex items-center space-x-2 mt-0.5">
+<span class="text-[11px] text-umb-subtle">Hace 1 hora</span>
+<span class="text-gray-300">•</span>
+<span class="text-[11px] text-gray-600">Expediente UMB-SJR-2026-001 completado al 100%.</span>
+</div>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="relative group">
+<div class="absolute -left-6 top-1.5 w-3.5 h-3.5 rounded-full bg-blue-500 ring-4 ring-white"></div>
+<div>
+<p class="text-[13px] font-medium text-gray-900">
+                      Registraste una empresa nueva: InnovaTech Solutions
+                    </p>
+<div class="flex items-center space-x-2 mt-0.5">
+<span class="text-[11px] text-umb-subtle">Hace 3 horas</span>
+<span class="text-gray-300">•</span>
+<span class="text-[11px] text-gray-600">Convenio en revisión jurídica.</span>
+</div>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="relative group">
+<div class="absolute -left-6 top-1.5 w-3.5 h-3.5 rounded-full bg-umb-guinda ring-4 ring-white"></div>
+<div>
+<p class="text-[13px] font-medium text-gray-900">
+                      Aprobaste el expediente de Cristofer Piña Rodríguez
+                    </p>
+<div class="flex items-center space-x-2 mt-0.5">
+<span class="text-[11px] text-umb-subtle">Ayer</span>
+<span class="text-gray-300">•</span>
+<span class="text-[11px] text-gray-600">Hito 640 hrs validado.</span>
+</div>
+</div>
+</div>
+<!-- Event 4 -->
+<div class="relative group">
+<div class="absolute -left-6 top-1.5 w-3.5 h-3.5 rounded-full bg-amber-500 ring-4 ring-white"></div>
+<div>
+<p class="text-[13px] font-medium text-gray-900">
+                      Rechazaste la bitácora de Rodolfo Cruz
+                    </p>
+<div class="flex items-center space-x-2 mt-0.5">
+<span class="text-[11px] text-umb-subtle">Ayer</span>
+<span class="text-gray-300">•</span>
+<span class="text-[11px] text-red-600">Falta firma de asesor externo.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Columna Derecha (5/12 ~ 40%) -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Tarjeta C: Distribución por carrera -->
+<section class="bg-white rounded-lg border border-gray-200 shadow-sm p-5" data-purpose="career-distribution">
+<div class="mb-4">
+<h2 class="text-base font-semibold text-gray-900 leading-tight">Distribución por carrera</h2>
+<p class="text-xs text-umb-subtle mt-0.5">Expedientes registrados por programa académico</p>
+</div>
+<!-- Donut Chart & Metrics -->
+<div class="flex flex-col items-center my-3">
+<!-- SVG Donut Chart (Total = 45 -> circumference ~ 282.74 with r=45) -->
+<!-- ISC: 18/45 = 40% (length: 113.1) -->
+<!-- IIAS: 15/45 = 33.3% (length: 94.2) -->
+<!-- LCONT: 12/45 = 26.7% (length: 75.4) -->
+<div class="relative w-44 h-44 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 120 120">
+<!-- Background ring -->
+<circle cx="60" cy="60" fill="none" r="45" stroke="#F1F5F9" stroke-width="14"></circle>
+<!-- Segment 1: ISC (40%) -->
+<circle class="transition-all duration-500" cx="60" cy="60" fill="none" r="45" stroke="#681B2B" stroke-dasharray="113.1 282.74" stroke-dashoffset="0" stroke-width="14"></circle>
+<!-- Segment 2: IIAS (33.3%) -->
+<circle class="transition-all duration-500" cx="60" cy="60" fill="none" r="45" stroke="#9E773B" stroke-dasharray="94.2 282.74" stroke-dashoffset="-113.1" stroke-width="14"></circle>
+<!-- Segment 3: LCONT (26.7%) -->
+<circle class="transition-all duration-500" cx="60" cy="60" fill="none" r="45" stroke="#94A3B8" stroke-dasharray="75.4 282.74" stroke-dashoffset="-207.3" stroke-width="14"></circle>
+</svg>
+<!-- Central Total Counter -->
+<div class="absolute flex flex-col items-center justify-center text-center">
+<span class="text-2xl font-bold text-gray-900 leading-none">45</span>
+<span class="text-[11px] text-umb-subtle mt-0.5">Total</span>
+</div>
+</div>
+</div>
+<!-- Legend with progress indicators -->
+<div class="space-y-3 mt-4 pt-3 border-t border-gray-100">
+<!-- Program 1: ISC -->
+<div>
+<div class="flex items-center justify-between text-xs mb-1">
+<div class="flex items-center space-x-2">
+<span class="w-2.5 h-2.5 rounded-full bg-umb-guinda"></span>
+<span class="font-medium text-gray-800">Ingeniería en Sistemas Computacionales</span>
+</div>
+<span class="font-semibold text-gray-900">18 <span class="text-gray-400 font-normal">(40%)</span></span>
+</div>
+<div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+<div class="bg-umb-guinda h-1.5 rounded-full" style="width: 40%"></div>
+</div>
+</div>
+<!-- Program 2: IIAS -->
+<div>
+<div class="flex items-center justify-between text-xs mb-1">
+<div class="flex items-center space-x-2">
+<span class="w-2.5 h-2.5 rounded-full bg-umb-dorado"></span>
+<span class="font-medium text-gray-800">Ingeniería Industrial y de Admón. de Servicios</span>
+</div>
+<span class="font-semibold text-gray-900">15 <span class="text-gray-400 font-normal">(33%)</span></span>
+</div>
+<div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+<div class="bg-umb-dorado h-1.5 rounded-full" style="width: 33%"></div>
+</div>
+</div>
+<!-- Program 3: LCONT -->
+<div>
+<div class="flex items-center justify-between text-xs mb-1">
+<div class="flex items-center space-x-2">
+<span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+<span class="font-medium text-gray-800">Licenciatura en Contaduría</span>
+</div>
+<span class="font-semibold text-gray-900">12 <span class="text-gray-400 font-normal">(27%)</span></span>
+</div>
+<div class="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+<div class="bg-slate-400 h-1.5 rounded-full" style="width: 27%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Tarjeta D: Próximos vencimientos -->
+<section class="bg-white rounded-lg border border-gray-200 shadow-sm p-5" data-purpose="upcoming-deadlines">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-base font-semibold text-gray-900">Próximos vencimientos</h2>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-red-50 text-red-700 border border-red-100">
+                  Atención prioritaria
+                </span>
+</div>
+<!-- List of Alerts -->
+<div class="space-y-3">
+<!-- Alert 1 -->
+<div class="p-3 bg-[#FFFBEB] border-l-4 border-[#D69E2E] rounded-r-md">
+<div class="flex items-start space-x-2.5">
+<svg class="w-4 h-4 text-[#D69E2E] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div>
+<h3 class="text-[13px] font-semibold text-[#92400E] leading-snug">
+                        5 expedientes con documentos pendientes vencen en 3 días
+                      </h3>
+<p class="text-[11px] text-[#B45309] mt-0.5">
+                        Requieren validación de cartas de aceptación y seguro facultativo.
+                      </p>
+</div>
+</div>
+</div>
+<!-- Alert 2 -->
+<div class="p-3 bg-[#FFFBEB] border-l-4 border-[#D69E2E] rounded-r-md">
+<div class="flex items-start space-x-2.5">
+<svg class="w-4 h-4 text-[#D69E2E] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div>
+<h3 class="text-[13px] font-semibold text-[#92400E] leading-snug">
+                        2 empresas con convenio por vencer
+                      </h3>
+<p class="text-[11px] text-[#B45309] mt-0.5">
+                        Universidad Mexiquense del Bicentenario y Logística Mexiquense antes del 15 de nov.
+                      </p>
+</div>
+</div>
+</div>
+<!-- Alert 3 -->
+<div class="p-3 bg-[#FEF2F2] border-l-4 border-[#C53030] rounded-r-md">
+<div class="flex items-start space-x-2.5">
+<svg class="w-4 h-4 text-[#C53030] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<div>
+<h3 class="text-[13px] font-semibold text-[#991B1B] leading-snug">
+                        8 alumnos con asistencia crítica requieren seguimiento
+                      </h3>
+<p class="text-[11px] text-[#B91C1C] mt-0.5">
+                        Reportan menos del 80% de horas o rezago de más de 2 bitácoras.
+                      </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- END: MainContentGrid -->
+</div>
+<!-- BEGIN: InstitutionalFooter -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+<!-- END: InstitutionalFooter -->
+</main>
+<!-- END: MainContent -->
+</div>
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">home</span>
+      <span class="text-[11px] font-semibold mt-0.5">Inicio</span>
+    </a>
+    <a href="02-bandeja-expedientes.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">folder_shared</span>
+      <span class="text-[11px] font-medium mt-0.5">Expedientes</span>
+    </a>
+    <a href="04-validar-documentos.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">verified</span>
+      <span class="text-[11px] font-medium mt-0.5">Documentos</span>
+    </a>
+    <a href="06-catalogo-empresas.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">domain</span>
+      <span class="text-[11px] font-medium mt-0.5">Empresas</span>
+    </a>
+    <a href="09-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

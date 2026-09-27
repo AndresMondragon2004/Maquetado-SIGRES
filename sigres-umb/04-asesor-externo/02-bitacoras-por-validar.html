@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-umb-surface">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitácoras por validar — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col bg-umb-surface text-umb-carbon antialiased selection:bg-umb-guinda/20 selection:text-umb-guinda">
+
+  <!-- Top App Bar (64px) -->
+    <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Asesor externo</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Bitácoras por validar</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="06-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          AA
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Armando Alcalde</span>
+          <span class="text-[10px] text-white/75 leading-none">Asesor externo</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- Body Layout -->
+  <div class="pt-16 pb-16 lg:pb-0 flex flex-1 overflow-hidden">
+    
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              AA
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Armando Alcalde Martínez</p>
+              <p class="text-[11px] text-umb-outline truncate">Director Académico · UMB</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="02-bitacoras-por-validar.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">menu_book</span>
+            <span class="text-sm">Bitácoras</span>
+          </a>
+          <a href="04-residentes-asignados.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">group</span>
+            <span class="text-sm">Residentes</span>
+          </a>
+          <a href="05-historial-validaciones.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">history</span>
+            <span class="text-sm">Historial</span>
+          </a>
+          <a href="06-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+
+    <!-- Main Content Canvas -->
+    <main class="flex-1 overflow-y-auto custom-scrollbar px-4 sm:px-6 lg:px-8 py-6">
+      <div class="max-w-[1280px] mx-auto space-y-6">
+
+        <!-- Header & Breadcrumbs -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <div class="flex items-center space-x-2 text-xs text-umb-outline mb-1">
+              <a href="#" class="hover:underline hover:text-umb-guinda">Inicio</a>
+              <span>/</span>
+              <span class="text-umb-muted font-medium">Bitácoras por validar</span>
+            </div>
+            <h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Bitácoras por validar</h1>
+            <p class="text-sm text-umb-muted mt-0.5">Revisa y valida las bitácoras semanales de tus residentes asignados en Universidad Mexiquense del Bicentenario · Dirección Académica.</p>
+          </div>
+
+          <!-- Pending Counter Badge -->
+          <div class="self-start sm:self-center">
+            <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-umb-dorado-light text-[#92400E] border border-[#FDE68A] shadow-xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#D69E2E] mr-2 animate-pulse"></span>
+              3 pendientes
+            </span>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 1: Tarjeta de resumen general (4 métricas) -->
+        <section class="bg-white rounded-lg p-5 shadow-xs border border-umb-border">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-0 md:divide-x divide-[#E2E8F0]">
+            <!-- Metrica 1: Pendientes -->
+            <div class="md:px-4 first:pl-0">
+              <p class="text-[11px] font-normal uppercase tracking-wider text-umb-outline">Pendientes</p>
+              <p class="text-2xl font-bold text-[#D69E2E] mt-1">3</p>
+              <p class="text-[11px] text-[#92400E] mt-0.5 font-normal">Requieren tu validación</p>
+            </div>
+
+            <!-- Metrica 2: Aprobadas este mes -->
+            <div class="md:px-4">
+              <p class="text-[11px] font-normal uppercase tracking-wider text-umb-outline">Aprobadas este mes</p>
+              <p class="text-2xl font-bold text-[#2D8C4E] mt-1">9</p>
+              <p class="text-[11px] text-[#166534] mt-0.5 font-normal">Sin rechazos</p>
+            </div>
+
+            <!-- Metrica 3: Rechazadas -->
+            <div class="md:px-4">
+              <p class="text-[11px] font-normal uppercase tracking-wider text-umb-outline">Rechazadas</p>
+              <p class="text-2xl font-bold text-umb-carbon mt-1">0</p>
+              <p class="text-[11px] text-umb-muted mt-0.5 font-normal">Sin correcciones</p>
+            </div>
+
+            <!-- Metrica 4: Residentes asignados -->
+            <div class="md:px-4 last:pr-0">
+              <p class="text-[11px] font-normal uppercase tracking-wider text-umb-outline">Residentes asignados</p>
+              <p class="text-2xl font-bold text-umb-carbon mt-1">2</p>
+              <p class="text-[11px] text-umb-muted mt-0.5 font-normal">Valeria y Carlos</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 4 (Preview interactivo): Panel de aprobación rápida sticky (cuando hay seleccionadas) -->
+        <div id="bulkActionBar" class="bg-umb-guinda text-white rounded-lg p-3 px-4 shadow-md flex flex-wrap items-center justify-between gap-3 transition-all duration-200">
+          <div class="flex items-center space-x-3">
+            <label class="flex items-center space-x-2 cursor-pointer select-none">
+              <input type="checkbox" id="selectAllCheckbox" checked class="w-4 h-4 rounded text-umb-guinda border-white/30 focus:ring-offset-0 focus:ring-0 accent-white">
+              <span class="text-xs font-semibold text-white/90">Seleccionar todas</span>
+            </label>
+            <span class="text-white/40">|</span>
+            <span class="text-xs font-medium text-white flex items-center gap-1.5">
+              <span class="inline-block w-2 h-2 rounded-full bg-[#E5C06E]"></span>
+              <strong id="selectedCountText">3 bitácoras seleccionadas</strong>
+            </span>
+          </div>
+
+          <div class="flex items-center space-x-2.5">
+            <button onclick="openApprovalModal('todas las 3 bitácoras seleccionadas', '3 semanas agrupadas', '105 hrs')" class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 bg-white text-umb-guinda text-xs font-semibold rounded-md shadow-xs hover:bg-umb-surface transition-colors">
+              <svg class="w-3.5 h-3.5 text-[#2D8C4E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span>Aprobar todas las seleccionadas</span>
+            </button>
+            <button onclick="toggleBulkSelection(false)" class="text-xs text-white/80 hover:text-white px-2 py-1 transition-colors">
+              Cancelar
+            </button>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 2: Filtros y búsqueda -->
+        <section class="bg-white rounded-lg p-5 shadow-xs border border-umb-border">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <!-- Search bar (flex-1) -->
+            <div class="relative flex-1">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-umb-outline">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </div>
+              <input 
+                type="text" 
+                placeholder="Busca por nombre, matrícula o número de semana..." 
+                class="w-full h-11 pl-10 pr-4 text-xs bg-white border border-umb-border rounded-lg text-umb-carbon placeholder-[#877273] focus:outline-none focus:border-umb-guinda focus:ring-1 focus:ring-umb-guinda transition-colors"
+              >
+            </div>
+
+            <!-- Chips & Dropdown -->
+            <div class="flex flex-wrap items-center gap-2.5">
+              <!-- Filter chips -->
+              <div class="flex items-center space-x-1.5 overflow-x-auto pb-1 lg:pb-0">
+                <button class="px-3 py-2 rounded-lg text-xs font-semibold bg-umb-guinda text-white shadow-xs">
+                  Pendientes (3)
+                </button>
+                <button class="px-3 py-2 rounded-lg text-xs font-medium bg-white border border-umb-border text-umb-muted hover:bg-umb-surface transition-colors">
+                  Aprobadas (9)
+                </button>
+                <button class="px-3 py-2 rounded-lg text-xs font-medium bg-white border border-umb-border text-umb-muted hover:bg-umb-surface transition-colors">
+                  Rechazadas (0)
+                </button>
+                <button class="px-3 py-2 rounded-lg text-xs font-medium bg-white border border-umb-border text-umb-muted hover:bg-umb-surface transition-colors">
+                  Todas (12)
+                </button>
+              </div>
+
+              <div class="h-5 w-px bg-umb-border hidden sm:block"></div>
+
+              <!-- Selector de residente -->
+              <div class="relative min-w-[210px]">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-umb-outline">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+                  </svg>
+                </div>
+                <select class="w-full h-11 pl-9 pr-8 text-xs bg-white border border-umb-border rounded-lg text-umb-carbon font-medium appearance-none focus:outline-none focus:border-umb-guinda focus:ring-1 focus:ring-umb-guinda cursor-pointer">
+                  <option selected>Todos los residentes</option>
+                  <option>Jesús Andrés Mondragón Tenorio</option>
+                  <option>Cristofer Piña Rodríguez</option>
+                </select>
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-umb-outline">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 3: Lista de bitácoras pendientes (3 tarjetas de ejemplo) -->
+        <section class="space-y-4">
+
+          <!-- TARJETA 1: Jesús Andrés Mondragón Tenorio (Semana 10) -->
+          <article class="bg-white rounded-lg p-6 shadow-xs border border-umb-border border-l-4 border-l-[#D69E2E] transition-shadow hover:shadow-sm">
+            <!-- Fila superior -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3">
+              <div class="flex items-center space-x-3">
+                <input type="checkbox" checked class="item-checkbox w-4 h-4 rounded text-umb-guinda border-[#CBD5E1] focus:ring-0 cursor-pointer">
+                <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                  VR
+                </div>
+                <div>
+                  <h3 class="text-sm font-semibold text-umb-carbon leading-tight">Jesús Andrés Mondragón Tenorio</h3>
+                  <p class="text-xs text-umb-outline leading-tight mt-0.5">13220024 · Semana 10</p>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-2 self-start sm:self-center">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-umb-dorado-light text-[#92400E]">
+                  Pendiente
+                </span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-umb-surface text-umb-carbon border border-umb-border">
+                  35 hrs
+                </span>
+              </div>
+            </div>
+
+            <!-- Fila central: Descripción -->
+            <div class="py-2">
+              <p class="text-[13px] text-umb-carbon leading-relaxed line-clamp-3">
+                Desarrollo del módulo de autenticación con tokens JWT y pruebas unitarias en Jest con cobertura del 95%. Documentación de endpoints en Swagger para el equipo de frontend.
+              </p>
+            </div>
+
+            <!-- Fila de evidencias y fecha -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-3 text-xs text-umb-outline border-b border-umb-border">
+              <div class="flex items-center space-x-1.5">
+                <svg class="w-4 h-4 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                </svg>
+                <span>2 evidencias adjuntas</span>
+              </div>
+
+              <div class="text-[11px]">
+                Enviada el 6 de octubre de 2026 a las 14:32 hrs
+              </div>
+
+              <div>
+                <button onclick="showToast('Visualizando evidencias de Jesús Andrés Mondragón (Semana 10)')" class="inline-flex items-center space-x-1 text-xs font-medium text-umb-guinda hover:underline">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                  <span>Ver evidencias</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Fila de acciones -->
+            <div class="pt-4 flex flex-wrap items-center justify-end gap-2.5">
+              <button onclick="showToast('Abriendo detalle de bitácora...')" class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-lg text-xs font-medium text-umb-muted hover:bg-umb-surface transition-colors">
+                <svg class="w-3.5 h-3.5 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+                <span>Ver detalle completo</span>
+              </button>
+
+              <button onclick="openRejectModal('Jesús Andrés Mondragón Tenorio', 'Semana 10')" class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-[#C53030] text-[#C53030] hover:bg-[#FEE2E2]/30 transition-colors">
+                <svg class="w-3.5 h-3.5 text-[#C53030]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                <span>Rechazar con observaciones</span>
+              </button>
+
+              <button onclick="openApprovalModal('Jesús Andrés Mondragón Tenorio', 'Semana 10', '35 hrs')" class="inline-flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-semibold bg-[#2D8C4E] text-white hover:bg-[#257340] shadow-xs transition-colors">
+                <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Aprobar bitácora</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- TARJETA 2: Cristofer Piña Rodríguez (Semana 10) -->
+          <article class="bg-white rounded-lg p-6 shadow-xs border border-umb-border border-l-4 border-l-[#D69E2E] transition-shadow hover:shadow-sm">
+            <!-- Fila superior -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3">
+              <div class="flex items-center space-x-3">
+                <input type="checkbox" checked class="item-checkbox w-4 h-4 rounded text-umb-guinda border-[#CBD5E1] focus:ring-0 cursor-pointer">
+                <div class="w-10 h-10 rounded-full bg-[#1E3A8A] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                  CM
+                </div>
+                <div>
+                  <h3 class="text-sm font-semibold text-umb-carbon leading-tight">Cristofer Piña Rodríguez</h3>
+                  <p class="text-xs text-umb-outline leading-tight mt-0.5">13200018 · Semana 10</p>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-2 self-start sm:self-center">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-umb-dorado-light text-[#92400E]">
+                  Pendiente
+                </span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-umb-surface text-umb-carbon border border-umb-border">
+                  35 hrs
+                </span>
+              </div>
+            </div>
+
+            <!-- Fila central: Descripción -->
+            <div class="py-2">
+              <p class="text-[13px] text-umb-carbon leading-relaxed line-clamp-3">
+                Configuración de pipeline CI/CD en GitHub Actions con despliegue automatizado en ambiente staging. Pruebas de integración con contenedores Docker.
+              </p>
+            </div>
+
+            <!-- Fila de evidencias y fecha -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-3 text-xs text-umb-outline border-b border-umb-border">
+              <div class="flex items-center space-x-1.5">
+                <svg class="w-4 h-4 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                </svg>
+                <span>1 evidencia adjunta</span>
+              </div>
+
+              <div class="text-[11px]">
+                Enviada el 6 de octubre de 2026 a las 09:15 hrs
+              </div>
+
+              <div>
+                <button onclick="showToast('Visualizando evidencias de Cristofer Piña (Semana 10)')" class="inline-flex items-center space-x-1 text-xs font-medium text-umb-guinda hover:underline">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                  <span>Ver evidencias</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Fila de acciones -->
+            <div class="pt-4 flex flex-wrap items-center justify-end gap-2.5">
+              <button onclick="showToast('Abriendo detalle de bitácora...')" class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-lg text-xs font-medium text-umb-muted hover:bg-umb-surface transition-colors">
+                <svg class="w-3.5 h-3.5 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+                <span>Ver detalle completo</span>
+              </button>
+
+              <button onclick="openRejectModal('Cristofer Piña Rodríguez', 'Semana 10')" class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-[#C53030] text-[#C53030] hover:bg-[#FEE2E2]/30 transition-colors">
+                <svg class="w-3.5 h-3.5 text-[#C53030]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                <span>Rechazar con observaciones</span>
+              </button>
+
+              <button onclick="openApprovalModal('Cristofer Piña Rodríguez', 'Semana 10', '35 hrs')" class="inline-flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-semibold bg-[#2D8C4E] text-white hover:bg-[#257340] shadow-xs transition-colors">
+                <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Aprobar bitácora</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- TARJETA 3: Jesús Andrés Mondragón Tenorio (Semana 9) -->
+          <article class="bg-white rounded-lg p-6 shadow-xs border border-umb-border border-l-4 border-l-[#D69E2E] transition-shadow hover:shadow-sm">
+            <!-- Fila superior -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3">
+              <div class="flex items-center space-x-3">
+                <input type="checkbox" checked class="item-checkbox w-4 h-4 rounded text-umb-guinda border-[#CBD5E1] focus:ring-0 cursor-pointer">
+                <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                  VR
+                </div>
+                <div>
+                  <h3 class="text-sm font-semibold text-umb-carbon leading-tight">Jesús Andrés Mondragón Tenorio</h3>
+                  <p class="text-xs text-umb-outline leading-tight mt-0.5">13220024 · Semana 9</p>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-2 self-start sm:self-center">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-umb-dorado-light text-[#92400E]">
+                  Pendiente
+                </span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-umb-surface text-umb-carbon border border-umb-border">
+                  35 hrs
+                </span>
+              </div>
+            </div>
+
+            <!-- Fila central: Descripción -->
+            <div class="py-2">
+              <p class="text-[13px] text-umb-carbon leading-relaxed line-clamp-3">
+                Migraciones de base de datos PostgreSQL y optimización de consultas de inventario. Implementación de índices para mejorar el rendimiento del sistema.
+              </p>
+            </div>
+
+            <!-- Fila de evidencias y fecha -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-3 text-xs text-umb-outline border-b border-umb-border">
+              <div class="flex items-center space-x-1.5">
+                <svg class="w-4 h-4 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                </svg>
+                <span>2 evidencias adjuntas</span>
+              </div>
+
+              <div class="text-[11px]">
+                Enviada el 29 de septiembre de 2026 a las 16:45 hrs
+              </div>
+
+              <div>
+                <button onclick="showToast('Visualizando evidencias de Jesús Andrés Mondragón (Semana 9)')" class="inline-flex items-center space-x-1 text-xs font-medium text-umb-guinda hover:underline">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                  <span>Ver evidencias</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Fila de acciones -->
+            <div class="pt-4 flex flex-wrap items-center justify-end gap-2.5">
+              <button onclick="showToast('Abriendo detalle de bitácora...')" class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-lg text-xs font-medium text-umb-muted hover:bg-umb-surface transition-colors">
+                <svg class="w-3.5 h-3.5 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                </svg>
+                <span>Ver detalle completo</span>
+              </button>
+
+              <button onclick="openRejectModal('Jesús Andrés Mondragón Tenorio', 'Semana 9')" class="inline-flex items-center space-x-1.5 px-3 py-2 rounded-lg text-xs font-medium border border-[#C53030] text-[#C53030] hover:bg-[#FEE2E2]/30 transition-colors">
+                <svg class="w-3.5 h-3.5 text-[#C53030]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                <span>Rechazar con observaciones</span>
+              </button>
+
+              <button onclick="openApprovalModal('Jesús Andrés Mondragón Tenorio', 'Semana 9', '35 hrs')" class="inline-flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-semibold bg-[#2D8C4E] text-white hover:bg-[#257340] shadow-xs transition-colors">
+                <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Aprobar bitácora</span>
+              </button>
+            </div>
+          </article>
+
+        </section>
+
+        <!-- Pie de página institucional -->
+        <footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="02-bitacoras-por-validar.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">menu_book</span>
+      <span class="text-[11px] font-semibold mt-0.5">Bitácoras</span>
+    </a>
+    <a href="04-residentes-asignados.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">group</span>
+      <span class="text-[11px] font-medium mt-0.5">Residentes</span>
+    </a>
+    <a href="05-historial-validaciones.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">history</span>
+      <span class="text-[11px] font-medium mt-0.5">Historial</span>
+    </a>
+    <a href="06-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+  <!-- MODAL DE APROBACIÓN -->
+  <div id="modalApproval" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 hidden">
+    <div class="bg-white rounded-xl shadow-2xl max-w-[400px] w-full p-8 text-center animate-in fade-in zoom-in-95 duration-150">
+      <!-- Icono circular verde con check (64px) -->
+      <div class="w-16 h-16 rounded-full bg-[#DCFCE7] text-[#166534] mx-auto flex items-center justify-center mb-4">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+
+      <h2 class="text-xl font-semibold text-umb-carbon leading-tight mb-2">¿Aprobar esta bitácora?</h2>
+      <p id="approvalModalDesc" class="text-[13px] text-umb-muted leading-relaxed mb-5">
+        Estás a punto de validar la bitácora de Jesús Andrés Mondragón Tenorio (Semana 10) por 35 horas.
+      </p>
+
+      <!-- Caja destacada verde -->
+      <div class="bg-[#F0FDF4] border-l-[3px] border-l-[#2D8C4E] rounded-md p-4 text-left mb-6">
+        <p id="approvalModalWeek" class="text-[13px] font-semibold text-[#166534]">Bitácora: Semana 10</p>
+        <p id="approvalModalHours" class="text-[13px] font-semibold text-[#166534] mt-0.5">Horas validadas: 35 hrs</p>
+      </div>
+
+      <!-- 2 botones al pie -->
+      <div class="flex items-center space-x-3">
+        <button onclick="closeModal('modalApproval')" class="flex-1 py-2.5 px-4 rounded-lg text-xs font-medium border border-[#CBD5E1] text-umb-muted hover:bg-umb-surface transition-colors">
+          Cancelar
+        </button>
+        <button onclick="confirmApprovalAction()" class="flex-1 py-2.5 px-4 rounded-lg text-xs font-semibold bg-[#2D8C4E] text-white hover:bg-[#257340] shadow-xs transition-colors flex items-center justify-center space-x-1.5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <span>Confirmar aprobación</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE RECHAZO -->
+  <div id="modalReject" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 hidden">
+    <div class="bg-white rounded-xl shadow-2xl max-w-[480px] w-full p-8 text-left animate-in fade-in zoom-in-95 duration-150">
+      <!-- Icono circular rojo con X (64px) -->
+      <div class="w-16 h-16 rounded-full bg-[#FEE2E2] text-[#991B1B] mx-auto flex items-center justify-center mb-4">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </div>
+
+      <div class="text-center mb-5">
+        <h2 class="text-xl font-semibold text-umb-carbon">Rechazar bitácora</h2>
+        <p id="rejectModalSub" class="text-[13px] text-umb-muted mt-1">Explica al residente qué debe corregir para reenviar su bitácora.</p>
+      </div>
+
+      <!-- Formulario de observaciones obligatorias -->
+      <div class="space-y-2 mb-6">
+        <div class="flex justify-between items-center">
+          <label class="text-xs font-medium text-umb-muted">Observaciones (obligatorio)</label>
+          <span id="charCount" class="text-[11px] text-umb-outline">0 / 100 caracteres mínimos</span>
+        </div>
+        <textarea 
+          id="rejectTextarea"
+          rows="4" 
+          oninput="updateCharCount(this)"
+          placeholder="Ejemplo: El detalle de actividades no coincide con las horas reportadas. Adjunta la evidencia correspondiente y vuelve a enviar."
+          class="w-full text-xs p-3 bg-white border border-umb-border rounded-lg text-umb-carbon placeholder-[#877273] focus:outline-none focus:border-[#C53030] focus:ring-1 focus:ring-[#C53030] transition-colors"
+        ></textarea>
+      </div>
+
+      <!-- 2 botones al pie -->
+      <div class="flex items-center space-x-3">
+        <button onclick="closeModal('modalReject')" class="flex-1 py-2.5 px-4 rounded-lg text-xs font-medium border border-[#CBD5E1] text-umb-muted hover:bg-umb-surface transition-colors">
+          Cancelar
+        </button>
+        <button id="btnConfirmReject" onclick="confirmRejectAction()" class="flex-1 py-2.5 px-4 rounded-lg text-xs font-semibold bg-[#C53030] text-white hover:bg-[#B91C1C] shadow-xs transition-colors flex items-center justify-center space-x-1.5">
+          <span>Confirmar rechazo</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST DE CONFIRMACIÓN FLOTANTE -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-white rounded-lg shadow-xl border border-umb-border p-4 flex items-center space-x-3 max-w-md transform translate-y-16 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="w-8 h-8 rounded-full bg-[#DCFCE7] text-[#166534] flex items-center justify-center shrink-0">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+      </svg>
+    </div>
+    <div class="flex-1 pr-2">
+      <p id="toastMessage" class="text-[13px] font-medium text-[#166534]">Bitácora aprobada correctamente</p>
+    </div>
+    <button onclick="hideToast()" class="text-umb-outline hover:text-umb-carbon p-1">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Scripts para interactividad de modales, toasts y selección -->
+  <script>
+    function openApprovalModal(resident, week, hours) {
+      document.getElementById('approvalModalDesc').innerText = `Estás a punto de validar la bitácora de ${resident} (${week}) por ${hours}.`;
+      document.getElementById('approvalModalWeek').innerText = `Bitácora: ${week}`;
+      document.getElementById('approvalModalHours').innerText = `Horas validadas: ${hours}`;
+      document.getElementById('modalApproval').classList.remove('hidden');
+    }
+
+    function openRejectModal(resident, week) {
+      document.getElementById('rejectModalSub').innerText = `Explica a ${resident} (${week}) qué debe corregir para reenviar su bitácora.`;
+      document.getElementById('rejectTextarea').value = '';
+      updateCharCount(document.getElementById('rejectTextarea'));
+      document.getElementById('modalReject').classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    function confirmApprovalAction() {
+      closeModal('modalApproval');
+      showToast('Bitácora aprobada correctamente');
+    }
+
+    function confirmRejectAction() {
+      const val = document.getElementById('rejectTextarea').value.trim();
+      if (val.length < 20) {
+        alert('Por favor describe las observaciones detalladas para el alumno antes de rechazar.');
+        return;
+      }
+      closeModal('modalReject');
+      showToast('Bitácora devuelta al residente con observaciones');
+    }
+
+    function updateCharCount(el) {
+      const count = el.value.length;
+      document.getElementById('charCount').innerText = `${count} / 100 caracteres mínimos`;
+      if (count >= 100) {
+        document.getElementById('charCount').classList.add('text-[#166534]');
+        document.getElementById('charCount').classList.remove('text-umb-outline');
+      } else {
+        document.getElementById('charCount').classList.remove('text-[#166534]');
+        document.getElementById('charCount').classList.add('text-umb-outline');
+      }
+    }
+
+    let toastTimer = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotification');
+      document.getElementById('toastMessage').innerText = msg;
+      toast.classList.remove('translate-y-16', 'opacity-0', 'pointer-events-none');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        hideToast();
+      }, 4000);
+    }
+
+    function hideToast() {
+      const toast = document.getElementById('toastNotification');
+      toast.classList.add('translate-y-16', 'opacity-0', 'pointer-events-none');
+    }
+
+    function toggleBulkSelection(enable) {
+      const checkboxes = document.querySelectorAll('.item-checkbox');
+      const masterCheckbox = document.getElementById('selectAllCheckbox');
+      const bar = document.getElementById('bulkActionBar');
+      
+      masterCheckbox.checked = enable;
+      checkboxes.forEach(cb => cb.checked = enable);
+      
+      if (!enable) {
+        bar.classList.add('opacity-40');
+        document.getElementById('selectedCountText').innerText = '0 bitácoras seleccionadas';
+      } else {
+        bar.classList.remove('opacity-40');
+        document.getElementById('selectedCountText').innerText = `${checkboxes.length} bitácoras seleccionadas`;
+      }
+    }
+
+    document.getElementById('selectAllCheckbox').addEventListener('change', function(e) {
+      toggleBulkSelection(e.target.checked);
+    });
+
+    document.querySelectorAll('.item-checkbox').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const checkedCount = document.querySelectorAll('.item-checkbox:checked').length;
+        document.getElementById('selectedCountText').innerText = `${checkedCount} bitácoras seleccionadas`;
+        document.getElementById('selectAllCheckbox').checked = (checkedCount === 3);
+        const bar = document.getElementById('bulkActionBar');
+        if (checkedCount === 0) {
+          bar.classList.add('opacity-40');
+        } else {
+          bar.classList.remove('opacity-40');
+        }
+      });
+    });
+  </script>
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

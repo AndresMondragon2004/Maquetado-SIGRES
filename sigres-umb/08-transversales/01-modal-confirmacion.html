@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modal de Confirmación Genérico — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full bg-umb-surface text-umb-carbon flex flex-col relative overflow-hidden">
+
+  <!-- Interfaz de fondo simulada (Dashboard / Bandeja de bitácoras de fondo para realismo institucional) -->
+  <div class="flex-1 flex flex-col pointer-events-none select-none filter blur-[2px] opacity-80" aria-hidden="true">
+    <!-- App Bar institucional fija -->
+    <header class="h-16 bg-umb-guinda text-white flex items-center justify-between px-6 shadow-sm">
+      <div class="flex items-center space-x-3">
+        <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-9 w-auto bg-white rounded p-0.5 object-contain">
+        <div>
+          <div class="text-base font-semibold leading-tight tracking-tight text-white">SIGRES-UMB</div>
+          <div class="text-[11px] text-white/80 font-normal">Supervisión de Residencias Profesionales</div>
+        </div>
+      </div>
+      <div class="flex items-center space-x-4 text-xs">
+        <span class="bg-white/10 px-3 py-1 rounded-full text-white/90">Ciclo 26-27/1 · UES San José del Rincón</span>
+      </div>
+    </header>
+
+    <!-- Contenido de fondo simulado -->
+    <main class="flex-1 p-8 max-w-6xl mx-auto w-full">
+      <div class="mb-6 flex justify-between items-center">
+        <div>
+          <h1 class="text-2xl font-bold text-umb-carbon">Revisión de bitácoras semanales</h1>
+          <p class="text-sm text-umb-muted">Residentes asignados en el periodo activo</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl shadow-sm border border-neutral-border p-6 space-y-4">
+        <div class="h-8 bg-gray-100 rounded w-1/3"></div>
+        <div class="h-12 bg-gray-50 rounded-lg w-full"></div>
+        <div class="h-12 bg-gray-50 rounded-lg w-full"></div>
+        <div class="h-12 bg-gray-50 rounded-lg w-full"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- OVERLAY OSCURO (Cubre toda la pantalla con fondo negro 50% de opacidad) -->
+  <div id="modalOverlay" 
+       class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm transition-opacity duration-200"
+       role="dialog" 
+       aria-modal="true" 
+       aria-labelledby="modalTitle" 
+       aria-describedby="modalDescription"
+       onclick="handleBackdropClick(event)">
+
+    <!-- TARJETA DEL MODAL (420px de ancho, fondo blanco, radio 12px, padding 32px, sombra elevada) -->
+    <div id="modalCard"
+         class="bg-white rounded-xl shadow-modal w-full max-w-[420px] p-8 flex flex-col items-center text-center transform transition-all duration-200 scale-100 animate-in fade-in zoom-in-95"
+         onclick="event.stopPropagation()">
+
+      <!-- 1. ÍCONO CIRCULAR CENTRADO (64px de diámetro, 32px de ícono) -->
+      <div id="modalIconContainer" 
+           class="w-16 h-16 rounded-full bg-[#DCFCE7] flex items-center justify-center transition-colors duration-200 flex-shrink-0">
+        <!-- Ícono en verde (#2D8C4E) con check (contexto positivo) -->
+        <svg id="modalIcon" class="w-8 h-8 text-[#2D8C4E]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+
+      <!-- 2. TÍTULO CENTRADO (20px SemiBold #1A1A1A, margen superior 20px) -->
+      <h2 id="modalTitle" 
+          class="mt-5 text-xl font-semibold text-umb-carbon tracking-tight leading-snug">
+        ¿Aprobar esta bitácora?
+      </h2>
+
+      <!-- 3. TEXTO DESCRIPTIVO CENTRADO (13px Regular #544244, max-w 340px, margen superior 8px) -->
+      <p id="modalDescription" 
+         class="mt-2 text-[13px] text-umb-muted leading-relaxed max-w-[340px]">
+        Estás a punto de aprobar la bitácora de Jesús Andrés Mondragón Tenorio (Semana 10) por 35 horas.
+      </p>
+
+      <!-- 4. CAJA INFORMATIVA OPCIONAL (Fondo #F9FAFB, radio 8px, padding 16px, margen superior 20px) -->
+      <div id="modalInfoBox" 
+           class="mt-5 w-full bg-[#F9FAFB] border border-umb-border rounded-lg p-4 text-left flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 rounded-md bg-umb-guinda/10 flex items-center justify-center text-umb-guinda font-semibold text-xs">
+            10
+          </div>
+          <div>
+            <div class="text-[13px] font-semibold text-umb-carbon">
+              Bitácora: Semana 10 · 35 hrs
+            </div>
+            <div class="text-[11px] text-umb-outline">
+              Acumulado: 350 de 640 horas
+            </div>
+          </div>
+        </div>
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-[#DCFCE7] text-[#166534]">
+          Por acreditar
+        </span>
+      </div>
+
+      <!-- 5. FILA DE BOTONES AL PIE (Separación 12px, altura 44px, flex 1) -->
+      <div class="mt-7 w-full flex items-center gap-3">
+        <!-- Botón Secundario: Cancelar -->
+        <button type="button" 
+                id="btnCancel"
+                onclick="closeModal('cancelado')"
+                class="flex-1 h-11 px-4 rounded-lg border border-umb-border bg-transparent text-[13px] font-medium text-umb-muted hover:bg-umb-surface hover:text-umb-carbon focus:outline-none focus:ring-2 focus:ring-umb-guinda/20 transition-all duration-150 flex items-center justify-center">
+          Cancelar
+        </button>
+
+        <!-- Botón Primario: Confirmar -->
+        <button type="button" 
+                id="btnConfirm"
+                onclick="confirmAction()"
+                class="flex-1 h-11 px-4 rounded-lg bg-umb-guinda text-white text-[13px] font-medium hover:bg-[#521422] focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:ring-offset-2 transition-all duration-150 flex items-center justify-center space-x-2 shadow-sm">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <span>Confirmar</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PANEL FLOTANTE DE DOCUMENTACIÓN Y PREVIEWS DE VARIANTES (Para uso de diseñadores y evaluadores) -->
+  <aside class="fixed bottom-6 right-6 z-[60] bg-white border border-umb-border shadow-xl rounded-xl p-4 w-80 text-xs text-umb-carbon">
+    <div class="flex items-center justify-between pb-2 mb-2 border-b border-umb-border">
+      <span class="font-semibold text-umb-guinda flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Probar contextos del componente
+      </span>
+      <span class="text-[10px] text-umb-outline font-mono">ESC para cerrar</span>
+    </div>
+    <div class="space-y-1.5">
+      <p class="text-umb-muted text-[11px] mb-2 leading-relaxed">
+        Alterna interactivamente entre los estados normativos del modal genérico reutilizable:
+      </p>
+      <div class="grid grid-cols-3 gap-1.5">
+        <button onclick="setContext('positive')" class="px-2 py-1.5 bg-[#DCFCE7] text-[#2D8C4E] hover:bg-green-200 rounded font-medium text-[11px] transition text-center">
+          Positivo
+        </button>
+        <button onclick="setContext('neutral')" class="px-2 py-1.5 bg-[#EFF6FF] text-[#2B6CB0] hover:bg-blue-200 rounded font-medium text-[11px] transition text-center">
+          Neutral
+        </button>
+        <button onclick="setContext('warning')" class="px-2 py-1.5 bg-umb-dorado-light text-[#D69E2E] hover:bg-amber-200 rounded font-medium text-[11px] transition text-center">
+          Alerta
+        </button>
+      </div>
+      <div class="pt-2 flex justify-between items-center text-[10px] text-umb-outline">
+        <span>Teclado: <kbd class="px-1 py-0.5 bg-gray-100 border border-gray-300 rounded text-[9px]">Tab</kbd>, <kbd class="px-1 py-0.5 bg-gray-100 border border-gray-300 rounded text-[9px]">Enter</kbd>, <kbd class="px-1 py-0.5 bg-gray-100 border border-gray-300 rounded text-[9px]">Esc</kbd></span>
+        <button onclick="toggleInfoBox()" class="text-umb-guinda hover:underline font-medium">Toggle datos</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Script interactivo y accesibilidad por teclado -->
+  <script>
+    const contexts = {
+      positive: {
+        bg: '#DCFCE7',
+        iconColor: '#2D8C4E',
+        title: '¿Aprobar esta bitácora?',
+        desc: 'Estás a punto de aprobar la bitácora de Jesús Andrés Mondragón Tenorio (Semana 10) por 35 horas.',
+        infoTitle: 'Bitácora: Semana 10 · 35 hrs',
+        infoSub: 'Acumulado: 350 de 640 horas',
+        badge: 'Por acreditar',
+        badgeClass: 'bg-[#DCFCE7] text-[#166534]',
+        iconSvg: '<path d="M5 13l4 4L19 7"/>'
+      },
+      neutral: {
+        bg: '#EFF6FF',
+        iconColor: '#2B6CB0',
+        title: '¿Confirmar información?',
+        desc: 'Se registrarán los datos institucionales del convenio para validación por Dirección Académica.',
+        infoTitle: 'Convenio: UMB Académica México S.A.',
+        infoSub: 'Vigencia propuesta: 3 años',
+        badge: 'En revisión',
+        badgeClass: 'bg-[#EFF6FF] text-[#1E3A8A]',
+        iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />'
+      },
+      warning: {
+        bg: '#FEF3C7',
+        iconColor: '#D69E2E',
+        title: '¿Continuar con la revisión?',
+        desc: 'El estudiante registra un 82% de asistencia, próximo al umbral preventivo institucional (85%).',
+        infoTitle: 'Alerta preventiva de asistencia',
+        infoSub: 'Estudiante: Marco Aurelio Gómez (ISC)',
+        badge: 'Atención requerida',
+        badgeClass: 'bg-umb-dorado-light text-[#92400E]',
+        iconSvg: '<path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />'
+      }
+    };
+
+    function setContext(type) {
+      const data = contexts[type];
+      const iconContainer = document.getElementById('modalIconContainer');
+      const icon = document.getElementById('modalIcon');
+      const title = document.getElementById('modalTitle');
+      const desc = document.getElementById('modalDescription');
+      const infoBox = document.getElementById('modalInfoBox');
+
+      iconContainer.style.backgroundColor = data.bg;
+      icon.style.color = data.iconColor;
+      icon.innerHTML = data.iconSvg;
+      title.textContent = data.title;
+      desc.textContent = data.desc;
+
+      if (infoBox) {
+        infoBox.innerHTML = `
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-md bg-umb-guinda/10 flex items-center justify-center text-umb-guinda font-semibold text-xs">
+              ${type === 'positive' ? '10' : 'UMB'}
+            </div>
+            <div>
+              <div class="text-[13px] font-semibold text-umb-carbon">${data.infoTitle}</div>
+              <div class="text-[11px] text-umb-outline">${data.infoSub}</div>
+            </div>
+          </div>
+          <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium ${data.badgeClass}">
+            ${data.badge}
+          </span>
+        `;
+      }
+    }
+
+    function toggleInfoBox() {
+      const infoBox = document.getElementById('modalInfoBox');
+      if (infoBox.style.display === 'none') {
+        infoBox.style.display = 'flex';
+      } else {
+        infoBox.style.display = 'none';
+      }
+    }
+
+    function handleBackdropClick(e) {
+      if (e.target.id === 'modalOverlay') {
+        closeModal('clic en overlay');
+      }
+    }
+
+    function closeModal(source) {
+      const overlay = document.getElementById('modalOverlay');
+      overlay.classList.add('opacity-0');
+      setTimeout(() => {
+        alert('Modal cerrado (' + source + '). Para reabrirlo o probar de nuevo, recarga la pantalla o selecciona un contexto.');
+        overlay.classList.remove('opacity-0');
+      }, 200);
+    }
+
+    function confirmAction() {
+      const title = document.getElementById('modalTitle').textContent;
+      alert('Acción confirmada exitosamente: "' + title + '"');
+    }
+
+    // Navegación por teclado (Accesibilidad)
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal('tecla Escape');
+      } else if (event.key === 'Enter') {
+        // Si el foco no está en el botón cancelar, confirma
+        if (document.activeElement.id !== 'btnCancel') {
+          confirmAction();
+        }
+      }
+    });
+
+    // Enfoque inicial accesible en botón confirmar
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('btnConfirm').focus();
+    });
+  </script>
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

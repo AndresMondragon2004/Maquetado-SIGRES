@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de Bitácora — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+<!-- BEGIN: MainHeader -->
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Asesor externo</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Detalle de bitácora</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="06-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          AA
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Armando Alcalde</span>
+          <span class="text-[10px] text-white/75 leading-none">Asesor externo</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: MainHeader -->
+<!-- BEGIN: PageContainer -->
+<div class="flex pt-16 flex-1">
+<!-- BEGIN: LeftSidebar -->
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              AA
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Armando Alcalde Martínez</p>
+              <p class="text-[11px] text-umb-outline truncate">Director Académico · UMB</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="02-bitacoras-por-validar.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">menu_book</span>
+            <span class="text-sm">Bitácoras</span>
+          </a>
+          <a href="04-residentes-asignados.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">group</span>
+            <span class="text-sm">Residentes</span>
+          </a>
+          <a href="05-historial-validaciones.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">history</span>
+            <span class="text-sm">Historial</span>
+          </a>
+          <a href="06-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContent -->
+<main class="ml-64 flex-1 p-6 md:p-8 max-w-7xl w-full mx-auto">
+<!-- Top Navigation & Header Row -->
+<div class="mb-6">
+<!-- Breadcrumb Navigation -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+<a class="hover:text-slate-800 transition-colors" href="#">Bitácoras por validar</a>
+<i class="w-3.5 h-3.5" data-lucide="chevron-right"></i>
+<a class="hover:text-slate-800 transition-colors" href="#">Jesús Andrés Mondragón Tenorio</a>
+<i class="w-3.5 h-3.5" data-lucide="chevron-right"></i>
+<span class="text-slate-900 font-medium">Semana 10</span>
+</nav>
+<!-- Back Link and Page Heading -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<a class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-umb-guinda mb-2 transition-colors" href="#">
+<i class="w-3.5 h-3.5" data-lucide="arrow-left"></i>
+<span>Volver a bitácoras por validar</span>
+</a>
+<h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Bitácora Semana 10</h1>
+<p class="text-sm text-umb-muted mt-0.5">Jesús Andrés Mondragón Tenorio · Universidad Mexiquense del Bicentenario · Dirección Académica</p>
+</div>
+<!-- Status Badge -->
+<div class="self-start md:self-auto">
+<span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-umb-dorado-light text-[#92400E] border border-amber-200/80 shadow-xs">
+<span class="w-2 h-2 rounded-full bg-[#D69E2E] animate-pulse"></span>
+              Pendiente de validación
+            </span>
+</div>
+</div>
+</div>
+<!-- SECTION 1: Resident Context Overview Card -->
+<section aria-label="Contexto del residente" class="bg-white rounded-lg border border-slate-200 p-5 shadow-xs mb-6">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+<!-- Resident Identity (4 cols) -->
+<div class="lg:col-span-4 flex items-center gap-3.5">
+<div class="w-12 h-12 rounded-full bg-umb-guinda text-white font-bold flex items-center justify-center text-sm shadow-xs">
+              VR
+            </div>
+<div>
+<h3 class="text-sm font-semibold text-umb-carbon">Jesús Andrés Mondragón Tenorio</h3>
+<p class="text-xs text-umb-outline">13220024 · Ingeniería en Sistemas Computacionales</p>
+</div>
+</div>
+<!-- Project Context (5 cols) -->
+<div class="lg:col-span-5 lg:border-l lg:border-r border-slate-200 lg:px-5">
+<span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider block">Proyecto de Residencia</span>
+<p class="text-xs font-medium text-umb-carbon mt-0.5 leading-relaxed">
+              Plataforma web para el control de información relativa al proceso de residencia profesional
+            </p>
+</div>
+<!-- Cumulative Progress (3 cols) -->
+<div class="lg:col-span-3">
+<div class="flex justify-between items-baseline mb-1">
+<span class="text-[11px] font-semibold text-umb-outline uppercase tracking-wider">Horas Acumuladas</span>
+<span class="text-xs font-bold text-umb-carbon">320 / 640 hrs <span class="text-slate-500 font-normal">· 50%</span></span>
+</div>
+<div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+<div class="bg-[#2D8C4E] h-2.5 rounded-full transition-all duration-500" style="width: 50%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Main Two-Column Layout (60% / 40%) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- LEFT COLUMN (60% / col-span-7) -->
+<div class="lg:col-span-7 space-y-6">
+<!-- TARJETA A: Datos Generales de la Bitácora -->
+<div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden">
+<div class="px-5 py-4 border-b border-slate-100">
+<h3 class="text-sm font-bold text-umb-carbon">Datos de la bitácora</h3>
+</div>
+<div class="grid grid-cols-3 divide-x divide-slate-100 text-center py-4">
+<div class="px-3">
+<span class="text-[11px] uppercase font-semibold text-umb-outline block mb-1">Folio</span>
+<span class="text-xs font-mono font-medium text-slate-800 bg-slate-50 px-2 py-0.5 rounded border border-slate-200">UMB-SJR-2026-BIT-010</span>
+</div>
+<div class="px-3">
+<span class="text-[11px] uppercase font-semibold text-umb-outline block mb-1">Semana</span>
+<span class="text-xs font-semibold text-slate-900">Semana 10</span>
+</div>
+<div class="px-3">
+<span class="text-[11px] uppercase font-semibold text-umb-outline block mb-1">Total de horas</span>
+<span class="text-sm font-bold text-[#2D8C4E]">35.0 hrs</span>
+<span class="text-[10px] text-[#166534] block">Jornada completa</span>
+</div>
+</div>
+</div>
+<!-- TARJETA B: Distribución de Horas -->
+<div class="bg-white rounded-lg border border-slate-200 shadow-xs overflow-hidden">
+<div class="px-5 py-4 border-b border-slate-100 flex justify-between items-center">
+<div>
+<h3 class="text-sm font-bold text-umb-carbon">Distribución de horas</h3>
+<p class="text-xs text-umb-outline mt-0.5">Desglose diario validado por el horario de residencia.</p>
+</div>
+<span class="text-xs font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded">5 días registrados</span>
+</div>
+<!-- Table of days -->
+<div class="divide-y divide-slate-100">
+<!-- Día 1: Lunes -->
+<div class="px-5 py-3 flex items-center justify-between gap-4 text-xs">
+<div class="w-36 font-medium text-slate-700">Lunes · 2 de octubre</div>
+<div class="flex-1 max-w-xs bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2 rounded-full w-full"></div>
+</div>
+<div class="text-right font-semibold text-slate-800 w-16">7.0 hrs</div>
+</div>
+<!-- Día 2: Martes -->
+<div class="px-5 py-3 flex items-center justify-between gap-4 text-xs">
+<div class="w-36 font-medium text-slate-700">Martes · 3 de octubre</div>
+<div class="flex-1 max-w-xs bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2 rounded-full w-full"></div>
+</div>
+<div class="text-right font-semibold text-slate-800 w-16">7.0 hrs</div>
+</div>
+<!-- Día 3: Miércoles -->
+<div class="px-5 py-3 flex items-center justify-between gap-4 text-xs">
+<div class="w-36 font-medium text-slate-700">Miércoles · 4 de octubre</div>
+<div class="flex-1 max-w-xs bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2 rounded-full w-full"></div>
+</div>
+<div class="text-right font-semibold text-slate-800 w-16">7.0 hrs</div>
+</div>
+<!-- Día 4: Jueves -->
+<div class="px-5 py-3 flex items-center justify-between gap-4 text-xs">
+<div class="w-36 font-medium text-slate-700">Jueves · 5 de octubre</div>
+<div class="flex-1 max-w-xs bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2 rounded-full w-full"></div>
+</div>
+<div class="text-right font-semibold text-slate-800 w-16">7.0 hrs</div>
+</div>
+<!-- Día 5: Viernes -->
+<div class="px-5 py-3 flex items-center justify-between gap-4 text-xs">
+<div class="w-36 font-medium text-slate-700">Viernes · 6 de octubre</div>
+<div class="flex-1 max-w-xs bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-umb-guinda h-2 rounded-full w-full"></div>
+</div>
+<div class="text-right font-semibold text-slate-800 w-16">7.0 hrs</div>
+</div>
+<!-- Fila Total -->
+<div class="px-5 py-3.5 bg-slate-50 flex items-center justify-between text-xs font-semibold text-slate-800">
+<span>Total semanal registrado</span>
+<span class="text-sm font-bold text-[#2D8C4E]">35.0 hrs</span>
+</div>
+</div>
+</div>
+<!-- TARJETA C: Actividades Realizadas -->
+<div class="bg-white rounded-lg border border-slate-200 p-5 shadow-xs">
+<div class="mb-3">
+<h3 class="text-sm font-bold text-umb-carbon">Actividades realizadas</h3>
+<p class="text-xs text-umb-outline">Descripción registrada por el residente.</p>
+</div>
+<div class="bg-slate-50 border border-slate-200/80 rounded-md p-4">
+<p class="text-xs md:text-sm text-slate-700 leading-relaxed text-justify">
+                Durante esta semana desarrollé el módulo de autenticación con tokens JWT para el sistema de control de inventarios. Configuré los endpoints protegidos con middleware de validación, implementé el hash de contraseñas con bcrypt y realicé las pruebas unitarias correspondientes alcanzando un 95% de cobertura en Jest. También documenté los nuevos endpoints en Swagger para el equipo de frontend y participé en la reunión de sprint review con el equipo de arquitectura de la empresa.
+              </p>
+</div>
+</div>
+<!-- TARJETA D: Evidencias Adjuntas -->
+<div class="bg-white rounded-lg border border-slate-200 p-5 shadow-xs">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h3 class="text-sm font-bold text-umb-carbon">Evidencias adjuntas</h3>
+<p class="text-xs text-umb-outline">2 archivos adjuntos</p>
+</div>
+<span class="text-xs text-slate-400 flex items-center gap-1">
+<i class="w-3.5 h-3.5" data-lucide="paperclip"></i>
+                Verificadas por hash
+              </span>
+</div>
+<div class="space-y-3">
+<!-- Evidencia 1 -->
+<div class="flex items-center justify-between p-3 rounded-lg border border-slate-200 bg-white hover:border-slate-300 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded bg-[#F0FDF4] border border-[#2D8C4E]/20 text-[#2D8C4E] flex items-center justify-center">
+<i class="w-5 h-5" data-lucide="image"></i>
+</div>
+<div>
+<h4 class="text-xs font-semibold text-slate-800">evidencia_modulo_auth.png</h4>
+<p class="text-[11px] text-umb-outline">2.4 MB · Subido el 6 de octubre</p>
+</div>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium text-slate-700 hover:bg-slate-100 border border-slate-200 transition-colors" type="button">
+<i class="w-3.5 h-3.5" data-lucide="eye"></i>
+<span>Ver</span>
+</button>
+</div>
+<!-- Evidencia 2 -->
+<div class="flex items-center justify-between p-3 rounded-lg border border-slate-200 bg-white hover:border-slate-300 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded bg-[#FEE2E2] border border-[#C53030]/20 text-[#C53030] flex items-center justify-center">
+<i class="w-5 h-5" data-lucide="file-text"></i>
+</div>
+<div>
+<h4 class="text-xs font-semibold text-slate-800">reporte_cobertura_jest.pdf</h4>
+<p class="text-[11px] text-umb-outline">1.2 MB · Subido el 6 de octubre</p>
+</div>
+</div>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-medium text-slate-700 hover:bg-slate-100 border border-slate-200 transition-colors" type="button">
+<i class="w-3.5 h-3.5" data-lucide="eye"></i>
+<span>Ver</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (40% / col-span-5) -->
+<div class="lg:col-span-5 space-y-6">
+<!-- TARJETA E: Dictamen del Asesor Externo -->
+<div class="bg-white rounded-lg border border-slate-200 p-5 shadow-xs border-l-4 border-l-[#681B2B]" data-purpose="decision-panel">
+<h3 class="text-sm font-bold text-umb-carbon">Tu dictamen</h3>
+<p class="text-xs text-umb-outline mb-4">Aprueba o rechaza la bitácora del residente.</p>
+<!-- Info Notice -->
+<div class="p-3 bg-[#EFF6FF] border-l-2 border-[#2B6CB0] rounded-r-md text-xs text-[#1E3A8A] mb-4 flex items-start gap-2.5">
+<i class="w-4 h-4 text-[#2B6CB0] shrink-0 mt-0.5" data-lucide="info"></i>
+<span>Al aprobar esta bitácora, se acreditarán <strong>35 horas</strong> al expediente del residente.</span>
+</div>
+<!-- Observations textarea -->
+<div class="space-y-1.5 mb-5">
+<label class="block text-xs font-medium text-umb-muted" for="observations-text">
+                Observaciones (opcional al aprobar, obligatorio al rechazar)
+              </label>
+<textarea class="w-full text-xs rounded-md border-slate-300 focus:border-umb-guinda focus:ring focus:ring-umb-guinda/20 p-2.5 placeholder-slate-400" id="observations-text" placeholder="Puedes agregar comentarios técnicos, sugerencias o correcciones específicas." rows="4"></textarea>
+<div class="flex justify-between text-[11px] text-umb-outline">
+<span>Mínimo 100 caracteres al rechazar</span>
+<span id="char-counter">0 / 100</span>
+</div>
+</div>
+<!-- Action buttons -->
+<div class="flex flex-col sm:flex-row gap-3 pt-2">
+<button class="w-full sm:w-1/2 inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-md border border-[#C53030] text-[#C53030] text-xs font-semibold hover:bg-[#FEE2E2] transition-colors" id="btn-open-reject" type="button">
+<i class="w-4 h-4" data-lucide="x"></i>
+<span>Rechazar con observaciones</span>
+</button>
+<button class="w-full sm:w-1/2 inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-md bg-[#2D8C4E] text-white text-xs font-semibold hover:bg-[#23703E] transition-colors shadow-xs" id="btn-open-approve" type="button">
+<i class="w-4 h-4" data-lucide="check"></i>
+<span>Aprobar bitácora</span>
+</button>
+</div>
+</div>
+<!-- TARJETA F: Historial de Bitácoras de Valeria -->
+<div class="bg-white rounded-lg border border-slate-200 p-5 shadow-xs">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h3 class="text-sm font-bold text-umb-carbon">Historial de Valeria</h3>
+<p class="text-xs text-umb-outline">Últimas bitácoras validadas.</p>
+</div>
+<a class="text-xs font-medium text-umb-guinda hover:underline" href="#">Ver todas</a>
+</div>
+<div class="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200">
+<!-- Historial 1 -->
+<div class="relative">
+<span class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#F0FDF4] border-2 border-[#2D8C4E] flex items-center justify-center text-[#2D8C4E]">
+<i class="w-3 h-3" data-lucide="check"></i>
+</span>
+<div class="text-xs">
+<div class="flex justify-between items-baseline">
+<h4 class="font-semibold text-slate-800">Semana 9 · 25 al 29 de septiembre</h4>
+<span class="font-bold text-[#2D8C4E]">35 hrs</span>
+</div>
+<p class="text-[11px] text-umb-outline mt-0.5">Aprobada por ti</p>
+</div>
+</div>
+<!-- Historial 2 -->
+<div class="relative">
+<span class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#F0FDF4] border-2 border-[#2D8C4E] flex items-center justify-center text-[#2D8C4E]">
+<i class="w-3 h-3" data-lucide="check"></i>
+</span>
+<div class="text-xs">
+<div class="flex justify-between items-baseline">
+<h4 class="font-semibold text-slate-800">Semana 8 · 18 al 22 de septiembre</h4>
+<span class="font-bold text-[#2D8C4E]">35 hrs</span>
+</div>
+<p class="text-[11px] text-umb-outline mt-0.5">Aprobada por ti</p>
+</div>
+</div>
+<!-- Historial 3 -->
+<div class="relative">
+<span class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-[#F0FDF4] border-2 border-[#2D8C4E] flex items-center justify-center text-[#2D8C4E]">
+<i class="w-3 h-3" data-lucide="check"></i>
+</span>
+<div class="text-xs">
+<div class="flex justify-between items-baseline">
+<h4 class="font-semibold text-slate-800">Semana 7 · 11 al 15 de septiembre</h4>
+<span class="font-bold text-[#2D8C4E]">35 hrs</span>
+</div>
+<p class="text-[11px] text-umb-outline mt-0.5">Aprobada por ti</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Academic Advisor Support Contact -->
+<div class="bg-white rounded-lg border border-slate-200 p-4 shadow-xs">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-full bg-umb-guinda-dark text-white flex items-center justify-center text-xs font-semibold">
+                LB
+              </div>
+<div class="flex-1 min-w-0">
+<span class="text-[10px] text-slate-400 uppercase font-semibold">Asesor interno asignado</span>
+<h4 class="text-xs font-semibold text-slate-800 truncate">I.S.C. Leonardo Becerril</h4>
+<p class="text-[11px] text-slate-500">leonardo.becerril@umb.mx</p>
+</div>
+<button class="p-2 rounded hover:bg-slate-100 text-slate-600 border border-slate-200" title="Contactar asesor" type="button">
+<i class="w-4 h-4" data-lucide="mail"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Institutional Footer Note -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+</main>
+<!-- END: MainContent -->
+</div>
+<!-- END: PageContainer -->
+<!-- BEGIN: ModalApprove -->
+<div aria-labelledby="modal-approve-title" aria-modal="true" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50 backdrop-blur-xs p-4" id="modal-approve" role="dialog">
+<div class="bg-white rounded-xl shadow-xl max-w-[420px] w-full p-6 text-center transform transition-all">
+<!-- Icon -->
+<div class="w-16 h-16 rounded-full bg-[#F0FDF4] text-[#2D8C4E] border border-[#2D8C4E]/20 mx-auto flex items-center justify-center mb-4">
+<i class="w-8 h-8" data-lucide="check"></i>
+</div>
+<!-- Title & Text -->
+<h3 class="text-lg font-bold text-slate-900 mb-1" id="modal-approve-title">¿Aprobar esta bitácora?</h3>
+<p class="text-xs text-umb-muted mb-5">
+        Se validarán formalmente las horas reportadas correspondientes a la semana de residencia profesional.
+      </p>
+<!-- Details Box -->
+<div class="bg-[#F0FDF4] border border-[#2D8C4E]/20 rounded-lg p-3 text-xs text-left mb-6 space-y-1">
+<div class="flex justify-between">
+<span class="text-slate-600">Residente:</span>
+<span class="font-semibold text-slate-800">Jesús Andrés Mondragón Tenorio</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-600">Bitácora:</span>
+<span class="font-semibold text-slate-800">Semana 10</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-600">Horas a acreditar:</span>
+<span class="font-bold text-[#2D8C4E]">35.0 hrs</span>
+</div>
+</div>
+<!-- Buttons -->
+<div class="flex gap-3">
+<button class="btn-close-modal flex-1 px-4 py-2.5 rounded-md border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors" type="button">
+          Cancelar
+        </button>
+<button class="flex-1 px-4 py-2.5 rounded-md bg-[#2D8C4E] hover:bg-[#23703E] text-xs font-semibold text-white transition-colors shadow-xs" id="btn-confirm-approve" type="button">
+          Confirmar aprobación
+        </button>
+</div>
+</div>
+</div>
+<!-- END: ModalApprove -->
+<!-- BEGIN: ModalReject -->
+<div aria-labelledby="modal-reject-title" aria-modal="true" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50 backdrop-blur-xs p-4" id="modal-reject" role="dialog">
+<div class="bg-white rounded-xl shadow-xl max-w-[480px] w-full p-6 transform transition-all">
+<div class="text-center mb-4">
+<!-- Icon -->
+<div class="w-16 h-16 rounded-full bg-[#FEE2E2] text-[#C53030] border border-[#C53030]/20 mx-auto flex items-center justify-center mb-3">
+<i class="w-8 h-8" data-lucide="alert-triangle"></i>
+</div>
+<h3 class="text-lg font-bold text-slate-900 mb-1" id="modal-reject-title">Rechazar bitácora</h3>
+<p class="text-xs text-umb-muted">
+          Indica con claridad los motivos o correcciones necesarias para que el residente reenvíe su bitácora.
+        </p>
+</div>
+<!-- Mandatory Observations in Modal -->
+<div class="mb-5 space-y-1.5">
+<label class="block text-xs font-semibold text-slate-700" for="reject-reason">
+          Motivos del rechazo <span class="text-red-500">*</span>
+</label>
+<textarea class="w-full text-xs rounded-md border-slate-300 focus:border-[#C53030] focus:ring focus:ring-[#C53030]/20 p-2.5" id="reject-reason" placeholder="Escribe aquí las observaciones obligatorias para la corrección..." rows="4"></textarea>
+<div class="flex justify-between text-[11px] text-slate-400">
+<span>Obligatorio (mínimo 100 caracteres)</span>
+<span id="modal-char-counter">0 / 100</span>
+</div>
+</div>
+<!-- Buttons -->
+<div class="flex gap-3">
+<button class="btn-close-modal flex-1 px-4 py-2.5 rounded-md border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors" type="button">
+          Cancelar
+        </button>
+<button class="flex-1 px-4 py-2.5 rounded-md bg-[#C53030] hover:bg-[#A82525] text-xs font-semibold text-white transition-colors shadow-xs" id="btn-confirm-reject" type="button">
+          Confirmar rechazo
+        </button>
+</div>
+</div>
+</div>
+<!-- END: ModalReject -->
+<!-- BEGIN: ToastNotification -->
+<div class="fixed bottom-6 right-6 z-50 hidden bg-white border border-slate-200 rounded-lg shadow-lg p-4 flex items-center gap-3 max-w-sm transition-all" id="toast-success">
+<div class="w-8 h-8 rounded-full bg-[#F0FDF4] text-[#2D8C4E] flex items-center justify-center shrink-0">
+<i class="w-5 h-5" data-lucide="check-circle"></i>
+</div>
+<div class="flex-1">
+<h4 class="text-xs font-bold text-slate-900">Bitácora procesada</h4>
+<p class="text-[11px] text-slate-600" id="toast-message">La acción fue guardada correctamente en el sistema.</p>
+</div>
+<button class="text-slate-400 hover:text-slate-600 p-1" id="toast-close" type="button">
+<i class="w-3.5 h-3.5" data-lucide="x"></i>
+</button>
+</div>
+<!-- END: ToastNotification -->
+<!-- BEGIN: InteractivityScript -->
+<script data-purpose="modals-and-actions">
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Lucide Icons
+      lucide.createIcons();
+
+      // Elements
+      const modalApprove = document.getElementById('modal-approve');
+      const modalReject = document.getElementById('modal-reject');
+      const btnOpenApprove = document.getElementById('btn-open-approve');
+      const btnOpenReject = document.getElementById('btn-open-reject');
+      const closeButtons = document.querySelectorAll('.btn-close-modal');
+      const btnConfirmApprove = document.getElementById('btn-confirm-approve');
+      const btnConfirmReject = document.getElementById('btn-confirm-reject');
+      const toast = document.getElementById('toast-success');
+      const toastMessage = document.getElementById('toast-message');
+      const toastClose = document.getElementById('toast-close');
+      
+      const obsText = document.getElementById('observations-text');
+      const charCounter = document.getElementById('char-counter');
+      const modalRejectReason = document.getElementById('reject-reason');
+      const modalCharCounter = document.getElementById('modal-char-counter');
+
+      // Character counters
+      if (obsText && charCounter) {
+        obsText.addEventListener('input', (e) => {
+          const len = e.target.value.length;
+          charCounter.textContent = `${len} / 100`;
+        });
+      }
+
+      if (modalRejectReason && modalCharCounter) {
+        modalRejectReason.addEventListener('input', (e) => {
+          const len = e.target.value.length;
+          modalCharCounter.textContent = `${len} / 100`;
+        });
+      }
+
+      // Modal Open/Close helpers
+      const openModal = (modal) => {
+        modal.classList.remove('hidden');
+      };
+
+      const closeModal = (modal) => {
+        modal.classList.add('hidden');
+      };
+
+      // Event Listeners for Open
+      btnOpenApprove?.addEventListener('click', () => openModal(modalApprove));
+      btnOpenReject?.addEventListener('click', () => {
+        // Pre-fill modal observation if user typed in the sidebar
+        if (obsText && obsText.value.trim() !== '') {
+          modalRejectReason.value = obsText.value;
+          modalCharCounter.textContent = `${obsText.value.length} / 100`;
+        }
+        openModal(modalReject);
+      });
+
+      // Event Listeners for Close
+      closeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          closeModal(modalApprove);
+          closeModal(modalReject);
+        });
+      });
+
+      // Close on Backdrop click
+      [modalApprove, modalReject].forEach(modal => {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal(modal);
+        });
+      });
+
+      // Show Toast Notification
+      const showToast = (message) => {
+        toastMessage.textContent = message;
+        toast.classList.remove('hidden');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 4000);
+      };
+
+      toastClose?.addEventListener('click', () => {
+        toast.classList.add('hidden');
+      });
+
+      // Action Handlers
+      btnConfirmApprove?.addEventListener('click', () => {
+        closeModal(modalApprove);
+        showToast('Bitácora aprobada exitosamente. 35 horas acreditadas.');
+      });
+
+      btnConfirmReject?.addEventListener('click', () => {
+        closeModal(modalReject);
+        showToast('Bitácora rechazada con observaciones enviadas al residente.');
+      });
+    });
+  </script>
+<!-- END: InteractivityScript -->
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="02-bitacoras-por-validar.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">menu_book</span>
+      <span class="text-[11px] font-semibold mt-0.5">Bitácoras</span>
+    </a>
+    <a href="04-residentes-asignados.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">group</span>
+      <span class="text-[11px] font-medium mt-0.5">Residentes</span>
+    </a>
+    <a href="05-historial-validaciones.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">history</span>
+      <span class="text-[11px] font-medium mt-0.5">Historial</span>
+    </a>
+    <a href="06-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

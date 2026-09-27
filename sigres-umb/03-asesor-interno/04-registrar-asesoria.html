@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Asesoría — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-umb-surface antialiased selection:bg-umb-guinda selection:text-white">
+
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Asesor interno</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Registrar asesoría</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="08-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          LB
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">I.S.C. Leonardo Becerril</span>
+          <span class="text-[10px] text-white/75 leading-none">Asesor interno</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL CON SIDEBAR -->
+  <div class="flex flex-1 pt-16">
+    
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              LB
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">I.S.C. Leonardo Becerril Sánchez</p>
+              <p class="text-[11px] text-umb-outline truncate">Docente Asesor · ISC</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="02-mis-alumnos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">group</span>
+            <span class="text-sm">Mis alumnos</span>
+          </a>
+          <a href="04-registrar-asesoria.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">assignment</span>
+            <span class="text-sm">Asesorías</span>
+          </a>
+          <a href="05-revisar-bitacoras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">fact_check</span>
+            <span class="text-sm">Evaluaciones</span>
+          </a>
+          <a href="08-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+
+    <!-- ÁREA DE CONTENIDO PRINCIPAL (Centrado, máx 1100px) -->
+    <main class="flex-1 lg:ml-[260px] pb-32">
+      <div class="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <!-- ENCABEZADO -->
+        <div>
+          <!-- Botón Volver al Alumno y Breadcrumb -->
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center space-x-2 text-[12px] text-umb-outline">
+              <span class="hover:text-umb-guinda cursor-pointer">Mis alumnos</span>
+              <span>/</span>
+              <span class="hover:text-umb-guinda cursor-pointer">Jesús Andrés Mondragón Tenorio</span>
+              <span>/</span>
+              <span class="text-umb-carbon font-medium">Registrar asesoría</span>
+            </div>
+
+            <button class="inline-flex items-center space-x-1.5 text-xs font-medium text-umb-guinda hover:text-umb-guinda-dark hover:bg-umb-guinda/5 px-2.5 py-1.5 rounded-md transition-colors">
+              <i data-lucide="arrow-left" class="w-4 h-4"></i>
+              <span>Volver al alumno</span>
+            </button>
+          </div>
+
+          <!-- Título, Subtítulo y Badge de Semana -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Registrar asesoría</h1>
+              <p class="text-sm text-umb-muted mt-0.5">Captura la información de la sesión semanal con el alumno.</p>
+            </div>
+            <div>
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-umb-guinda/10 text-umb-guinda border border-umb-guinda/20 shadow-xs">
+                <i data-lucide="clock" class="w-3.5 h-3.5 mr-1.5"></i>
+                Semana 11
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECCIÓN 1 — TARJETA DE CONTEXTO DEL ALUMNO -->
+        <section class="bg-white rounded-xl p-5 shadow-xs border border-umb-border">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            
+            <!-- Izquierda: Estudiante -->
+            <div class="flex items-center space-x-3.5">
+              <div class="w-14 h-14 rounded-full bg-umb-guinda text-white font-bold text-base flex items-center justify-center shadow-sm flex-shrink-0 border-2 border-white">
+                VR
+              </div>
+              <div>
+                <div class="flex items-center space-x-2">
+                  <h2 class="text-base font-semibold text-umb-carbon">Jesús Andrés Mondragón Tenorio</h2>
+                  <span class="text-[10px] font-semibold bg-umb-guinda/10 text-umb-guinda px-1.5 py-0.5 rounded">ISC</span>
+                </div>
+                <p class="text-xs text-umb-outline font-medium">Matrícula 13220024 · 9º semestre</p>
+              </div>
+            </div>
+
+            <!-- Centro: Empresa & Progreso de Horas -->
+            <div class="grid grid-cols-2 gap-4 border-y md:border-y-0 md:border-x border-umb-border py-3 md:py-0 md:px-6">
+              <div>
+                <span class="block text-[11px] font-medium uppercase tracking-wider text-umb-outline">Empresa</span>
+                <span class="text-xs sm:text-sm font-medium text-umb-carbon truncate block" title="Universidad Mexiquense del Bicentenario · Dirección Académica">Universidad Mexiquense del Bicentenario · Dirección Académica</span>
+              </div>
+              <div>
+                <span class="block text-[11px] font-medium uppercase tracking-wider text-umb-outline">Progreso de horas</span>
+                <div class="flex items-center space-x-2">
+                  <span class="text-xs sm:text-sm font-medium text-umb-carbon">320 / 640 hrs</span>
+                  <span class="text-[11px] font-semibold text-umb-guinda bg-umb-guinda/10 px-1.5 py-0.5 rounded">50%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Derecha: Asistencia acumulada -->
+            <div class="flex flex-col md:items-end justify-center">
+              <span class="text-[11px] font-medium uppercase tracking-wider text-umb-outline">Asistencia acumulada</span>
+              <div class="flex items-center space-x-2 mt-0.5">
+                <span class="text-lg font-bold text-[#2D8C4E]">100%</span>
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#DCFCE7] text-[#166534]">
+                  <i data-lucide="check" class="w-3 h-3 mr-0.5"></i> Cumple
+                </span>
+              </div>
+              <span class="text-[11px] text-umb-outline">10 de 10 sesiones</span>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- FORMULARIO PRINCIPAL -->
+        <form id="form-asesoria" onsubmit="event.preventDefault();" class="space-y-6">
+
+          <!-- SECCIÓN 2 — DATOS DE LA SESIÓN -->
+          <section class="bg-white rounded-xl p-6 shadow-xs border border-umb-border">
+            <h3 class="text-base font-semibold text-umb-carbon mb-4 flex items-center space-x-2">
+              <i data-lucide="calendar-clock" class="w-4 h-4 text-umb-guinda"></i>
+              <span>Datos de la sesión</span>
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Campo 1 — Fecha de la sesión -->
+              <div class="space-y-1.5">
+                <label for="fecha-sesion" class="block text-xs font-medium text-umb-muted">
+                  Fecha de la sesión <span class="text-red-500 font-bold">*</span>
+                </label>
+                <div class="relative rounded-lg shadow-xs">
+                  <input type="date" id="fecha-sesion" name="fecha_sesion" value="2026-11-12" required
+                    class="w-full text-xs sm:text-sm font-medium text-umb-carbon bg-white border border-umb-border rounded-lg px-3.5 py-2.5 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all">
+                </div>
+                <p class="text-[11px] text-umb-outline">Sesión correspondiente a la semana en curso.</p>
+              </div>
+
+              <!-- Campo 2 — Horario -->
+              <div class="space-y-1.5">
+                <label class="block text-xs font-medium text-umb-muted">
+                  Horario <span class="text-red-500 font-bold">*</span>
+                </label>
+                <div class="flex items-center space-x-2">
+                  <div class="relative flex-1">
+                    <input type="time" id="hora-inicio" value="11:00" required
+                      class="w-full text-xs sm:text-sm font-medium text-umb-carbon bg-white border border-umb-border rounded-lg px-3.5 py-2.5 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all">
+                  </div>
+                  <span class="text-umb-outline font-medium">—</span>
+                  <div class="relative flex-1">
+                    <input type="time" id="hora-fin" value="12:00" required
+                      class="w-full text-xs sm:text-sm font-medium text-umb-carbon bg-white border border-umb-border rounded-lg px-3.5 py-2.5 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all">
+                  </div>
+                </div>
+                <p class="text-[11px] text-umb-outline">Duración mínima recomendada: 1 hora.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- SECCIÓN 3 — MODALIDAD DE LA SESIÓN -->
+          <section class="bg-white rounded-xl p-6 shadow-xs border border-umb-border">
+            <h3 class="text-base font-semibold text-umb-carbon mb-4 flex items-center space-x-2">
+              <i data-lucide="video" class="w-4 h-4 text-umb-guinda"></i>
+              <span>Modalidad de la sesión</span>
+            </h3>
+
+            <!-- Opciones Radio Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+              <!-- Opción 1: Presencial (Seleccionada por defecto) -->
+              <label id="card-presencial" class="relative flex items-center p-4 border-2 border-umb-guinda bg-[#F9F5F6] rounded-xl cursor-pointer transition-all hover:shadow-xs">
+                <input type="radio" name="modalidad" value="presencial" checked class="sr-only" onchange="actualizarModalidad('presencial')">
+                <div class="w-10 h-10 rounded-lg bg-umb-guinda/10 text-umb-guinda flex items-center justify-center flex-shrink-0 mr-3.5">
+                  <i data-lucide="building-2" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-semibold text-umb-carbon">Presencial</span>
+                    <span class="w-4 h-4 rounded-full border-2 border-umb-guinda flex items-center justify-center">
+                      <span id="dot-presencial" class="w-2 h-2 rounded-full bg-umb-guinda"></span>
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-umb-outline mt-0.5">En las instalaciones de la UES.</p>
+                </div>
+              </label>
+
+              <!-- Opción 2: Virtual -->
+              <label id="card-virtual" class="relative flex items-center p-4 border-2 border-umb-border bg-white rounded-xl cursor-pointer transition-all hover:border-neutral-300">
+                <input type="radio" name="modalidad" value="virtual" class="sr-only" onchange="actualizarModalidad('virtual')">
+                <div class="w-10 h-10 rounded-lg bg-neutral-100 text-umb-outline flex items-center justify-center flex-shrink-0 mr-3.5">
+                  <i data-lucide="video" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-semibold text-umb-carbon">Virtual</span>
+                    <span class="w-4 h-4 rounded-full border-2 border-umb-border flex items-center justify-center">
+                      <span id="dot-virtual" class="w-2 h-2 rounded-full bg-transparent"></span>
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-umb-outline mt-0.5">Mediante videollamada.</p>
+                </div>
+              </label>
+            </div>
+
+            <!-- Campo Adicional Presencial (Lugar) -->
+            <div id="campo-lugar" class="space-y-1.5 pt-1">
+              <label for="input-lugar" class="block text-xs font-medium text-umb-muted">Lugar</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-umb-outline">
+                  <i data-lucide="map-pin" class="w-4 h-4"></i>
+                </div>
+                <input type="text" id="input-lugar" value="Cubículo 4 · Edificio A"
+                  class="w-full text-xs sm:text-sm font-medium text-umb-carbon bg-white border border-umb-border rounded-lg pl-9 pr-3.5 py-2.5 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all">
+              </div>
+              <p class="text-[11px] text-umb-outline">Espacio físico asignado en la UES San José del Rincón.</p>
+            </div>
+
+            <!-- Campo Adicional Virtual (Enlace) -->
+            <div id="campo-enlace" class="space-y-1.5 pt-1 hidden">
+              <label for="input-enlace" class="block text-xs font-medium text-umb-muted">Enlace de la videollamada</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-umb-outline">
+                  <i data-lucide="link" class="w-4 h-4"></i>
+                </div>
+                <input type="url" id="input-enlace" value="https://teams.microsoft.com/l/meetup-join/sigres-umb-isc-asesoria"
+                  class="w-full text-xs sm:text-sm font-medium text-umb-carbon bg-white border border-umb-border rounded-lg pl-9 pr-3.5 py-2.5 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all">
+              </div>
+              <p class="text-[11px] text-umb-outline">Plataforma oficial institucional (MS Teams / Google Meet).</p>
+            </div>
+          </section>
+
+          <!-- SECCIÓN 4 — ASISTENCIA DEL ALUMNO -->
+          <section class="bg-white rounded-xl p-6 shadow-xs border border-umb-border">
+            <h3 class="text-base font-semibold text-umb-carbon mb-4 flex items-center space-x-2">
+              <i data-lucide="user-check" class="w-4 h-4 text-umb-guinda"></i>
+              <span>Asistencia del alumno</span>
+            </h3>
+
+            <!-- Radio Cards de Asistencia (3 opciones) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+              <!-- Opción 1: Asistió (Por defecto) -->
+              <label id="card-asistio" class="relative flex items-center p-4 border-2 border-[#2D8C4E] bg-[#F0FDF4] rounded-xl cursor-pointer transition-all hover:shadow-xs">
+                <input type="radio" name="asistencia" value="asistio" checked class="sr-only" onchange="actualizarAsistencia('asistio')">
+                <div class="w-10 h-10 rounded-lg bg-[#2D8C4E]/10 text-[#2D8C4E] flex items-center justify-center flex-shrink-0 mr-3">
+                  <i data-lucide="check-circle" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-semibold text-umb-carbon">Asistió</span>
+                    <span class="w-4 h-4 rounded-full border-2 border-[#2D8C4E] flex items-center justify-center">
+                      <span id="dot-asistio" class="w-2 h-2 rounded-full bg-[#2D8C4E]"></span>
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-umb-outline mt-0.5 truncate">El alumno asistió a la sesión.</p>
+                </div>
+              </label>
+
+              <!-- Opción 2: Justificada -->
+              <label id="card-justificada" class="relative flex items-center p-4 border-2 border-umb-border bg-white rounded-xl cursor-pointer transition-all hover:border-neutral-300">
+                <input type="radio" name="asistencia" value="justificada" class="sr-only" onchange="actualizarAsistencia('justificada')">
+                <div class="w-10 h-10 rounded-lg bg-amber-50 text-[#D69E2E] flex items-center justify-center flex-shrink-0 mr-3">
+                  <i data-lucide="clock-alert" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-semibold text-umb-carbon">Justificada</span>
+                    <span class="w-4 h-4 rounded-full border-2 border-umb-border flex items-center justify-center">
+                      <span id="dot-justificada" class="w-2 h-2 rounded-full bg-transparent"></span>
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-umb-outline mt-0.5 truncate">Presentó justificante válido.</p>
+                </div>
+              </label>
+
+              <!-- Opción 3: No asistió -->
+              <label id="card-falta" class="relative flex items-center p-4 border-2 border-umb-border bg-white rounded-xl cursor-pointer transition-all hover:border-neutral-300">
+                <input type="radio" name="asistencia" value="falta" class="sr-only" onchange="actualizarAsistencia('falta')">
+                <div class="w-10 h-10 rounded-lg bg-red-50 text-[#C53030] flex items-center justify-center flex-shrink-0 mr-3">
+                  <i data-lucide="x-circle" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-semibold text-umb-carbon">No asistió</span>
+                    <span class="w-4 h-4 rounded-full border-2 border-umb-border flex items-center justify-center">
+                      <span id="dot-falta" class="w-2 h-2 rounded-full bg-transparent"></span>
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-umb-outline mt-0.5 truncate">Faltó sin justificación.</p>
+                </div>
+              </label>
+            </div>
+
+            <!-- CAMPO CONDICIONAL: JUSTIFICADA -->
+            <div id="condicional-justificada" class="space-y-4 pt-3 border-t border-umb-border hidden">
+              <div class="space-y-1.5">
+                <label for="motivo-justificante" class="block text-xs font-medium text-umb-muted">Motivo de la justificación</label>
+                <select id="motivo-justificante" class="w-full text-xs sm:text-sm font-medium text-umb-carbon bg-white border border-umb-border rounded-lg px-3.5 py-2.5 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all">
+                  <option value="medico">Motivo médico (IMSS / ISSEMYM)</option>
+                  <option value="laboral">Causa de fuerza mayor laboral</option>
+                  <option value="academica">Comisión académica UMB</option>
+                </select>
+                <p class="text-[11px] text-umb-outline italic">Conforme al Artículo 42 del Reglamento UMB 2026, las faltas justificadas no restan al cómputo del 80% reglamentario.</p>
+              </div>
+
+              <div class="space-y-1.5">
+                <span class="block text-xs font-medium text-umb-muted">Zona de carga para comprobante</span>
+                <div class="p-4 border-2 border-dashed border-umb-border rounded-xl bg-[#F9FAFB] flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-lg bg-umb-guinda/10 text-umb-guinda flex items-center justify-center flex-shrink-0">
+                      <i data-lucide="paperclip" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                      <span class="text-xs font-medium text-umb-carbon">Documento probatorio oficial</span>
+                      <p class="text-[11px] text-umb-outline">Formatos: PDF, JPG. Máximo 5 MB.</p>
+                    </div>
+                  </div>
+                  <button type="button" class="inline-flex items-center space-x-1.5 px-3 py-2 bg-white border border-umb-border hover:border-umb-guinda text-umb-guinda text-xs font-semibold rounded-lg transition-colors shadow-xs">
+                    <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                    <span>Adjuntar comprobante</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CAMPO CONDICIONAL: NO ASISTIÓ -->
+            <div id="condicional-falta" class="space-y-2 pt-3 border-t border-umb-border hidden">
+              <label for="observaciones-falta" class="block text-xs font-medium text-umb-muted">Observaciones de la inasistencia</label>
+              <textarea id="observaciones-falta" rows="2" placeholder="Describe brevemente el contexto de la falta."
+                class="w-full text-xs sm:text-sm text-umb-carbon bg-white border border-umb-border rounded-lg p-3 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all"></textarea>
+              <div class="flex items-center space-x-1.5 text-[11px] text-[#92400E] bg-umb-dorado-light p-2.5 rounded-lg border border-[#FDE68A]">
+                <i data-lucide="alert-triangle" class="w-4 h-4 flex-shrink-0"></i>
+                <span class="italic">Al guardar, se enviará una notificación automática a Control Escolar y coordinación de carrera.</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- SECCIÓN 5 — TEMAS TRATADOS Y ACUERDOS -->
+          <section class="bg-white rounded-xl p-6 shadow-xs border border-umb-border space-y-6">
+            <div>
+              <h3 class="text-base font-semibold text-umb-carbon flex items-center space-x-2">
+                <i data-lucide="file-text" class="w-4 h-4 text-umb-guinda"></i>
+                <span>Temas tratados y acuerdos</span>
+              </h3>
+              <p class="text-xs text-umb-outline mt-0.5">Registra los temas abordados y los compromisos acordados con el alumno.</p>
+            </div>
+
+            <!-- Chips de inserción rápida -->
+            <div>
+              <span class="block text-[11px] font-semibold text-umb-muted uppercase tracking-wider mb-2">Plantillas e inserción rápida</span>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="insertarChip('Revisión de bitácora semanal: ')" class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[#F9F5F6] text-umb-guinda border border-[#E8D5D8] hover:bg-umb-guinda hover:text-white transition-all shadow-2xs">
+                  + Revisión de bitácora semanal
+                </button>
+                <button type="button" onclick="insertarChip('Avance de módulo en arquitectura de microservicios: ')" class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[#F9F5F6] text-umb-guinda border border-[#E8D5D8] hover:bg-umb-guinda hover:text-white transition-all shadow-2xs">
+                  + Avance de módulo
+                </button>
+                <button type="button" onclick="insertarChip('Corrección de código y refactorización: ')" class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[#F9F5F6] text-umb-guinda border border-[#E8D5D8] hover:bg-umb-guinda hover:text-white transition-all shadow-2xs">
+                  + Corrección de código
+                </button>
+                <button type="button" onclick="insertarChip('Próximo hito de 320 horas reglamentarias: ')" class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-[#F9F5F6] text-umb-guinda border border-[#E8D5D8] hover:bg-umb-guinda hover:text-white transition-all shadow-2xs">
+                  + Próximo hito
+                </button>
+              </div>
+            </div>
+
+            <!-- Campo 1 — Temas tratados -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label for="temas-tratados" class="block text-xs font-medium text-umb-muted">
+                  Temas tratados <span class="text-red-500 font-bold">*</span>
+                </label>
+                <span id="contador-temas" class="text-[11px] font-semibold text-umb-outline">
+                  170 / 300 caracteres mínimos
+                </span>
+              </div>
+              <textarea id="temas-tratados" rows="4" required oninput="actualizarContadorTemas(this)"
+                class="w-full text-xs sm:text-sm text-umb-carbon bg-white border border-umb-border rounded-lg p-3 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all leading-relaxed">Revisión del módulo de autenticación con JWT y middleware de validación. Análisis de las pruebas unitarias implementadas con Jest y discusión sobre los resultados obtenidos.</textarea>
+              <p class="text-[11px] text-umb-outline">Detalla las revisiones técnicas, metodológicas y retroalimentación brindada durante la sesión.</p>
+            </div>
+
+            <!-- Campo 2 — Acuerdos y compromisos -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label for="acuerdos-compromisos" class="block text-xs font-medium text-umb-muted">
+                  Acuerdos y compromisos <span class="text-red-500 font-bold">*</span>
+                </label>
+                <span id="contador-acuerdos" class="text-[11px] font-semibold text-umb-outline">
+                  146 / 200 caracteres mínimos
+                </span>
+              </div>
+              <textarea id="acuerdos-compromisos" rows="4" required oninput="actualizarContadorAcuerdos(this)"
+                class="w-full text-xs sm:text-sm text-umb-carbon bg-white border border-umb-border rounded-lg p-3 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all leading-relaxed">El alumno se compromete a completar la documentación de Swagger antes del viernes. Próxima sesión: revisión conjunta del informe parcial.</textarea>
+              <p class="text-[11px] text-umb-outline">Establece compromisos medibles para dar seguimiento en la próxima sesión semanal.</p>
+            </div>
+          </section>
+
+          <!-- SECCIÓN 6 — OBSERVACIONES ADICIONALES (OPCIONAL) -->
+          <section class="bg-white rounded-xl p-5 shadow-xs border border-umb-border">
+            <h3 class="text-sm font-semibold text-umb-carbon mb-1 flex items-center space-x-2">
+              <i data-lucide="message-square-plus" class="w-4 h-4 text-umb-outline"></i>
+              <span>Observaciones adicionales (opcional)</span>
+            </h3>
+            <p class="text-[11px] text-umb-outline mb-2.5">Si necesitas dejar alguna nota privada o comentario para el expediente, escríbelo aquí.</p>
+            <textarea id="observaciones-adicionales" rows="2" placeholder="Si necesitas dejar alguna nota privada o comentario para el expediente, escríbelo aquí."
+              class="w-full text-xs sm:text-sm text-umb-carbon bg-white border border-umb-border rounded-lg p-3 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all"></textarea>
+          </section>
+
+          <!-- SECCIÓN 7 — ARCHIVOS ADJUNTOS (OPCIONAL) -->
+          <section class="bg-white rounded-xl p-6 shadow-xs border border-umb-border">
+            <div class="mb-4">
+              <h3 class="text-base font-semibold text-umb-carbon flex items-center space-x-2">
+                <i data-lucide="paperclip" class="w-4 h-4 text-umb-guinda"></i>
+                <span>Archivos adjuntos (opcional)</span>
+              </h3>
+              <p class="text-xs text-umb-outline mt-0.5">Puedes adjuntar minutas, capturas o documentos relacionados con la sesión.</p>
+            </div>
+
+            <!-- Dropzone -->
+            <div class="border-2 border-dashed border-umb-border hover:border-umb-guinda bg-[#F9FAFB] rounded-xl p-6 text-center transition-all cursor-pointer group">
+              <div class="w-12 h-12 rounded-full bg-umb-guinda/10 text-umb-guinda flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition-transform">
+                <i data-lucide="cloud-upload" class="w-6 h-6"></i>
+              </div>
+              <p class="text-xs sm:text-sm font-medium text-umb-carbon">Arrastra tus archivos aquí o haz clic para seleccionar</p>
+              <p class="text-[11px] text-umb-outline mt-1">Formatos: PDF, PNG, JPG. Máximo 5 archivos, 5 MB por archivo.</p>
+              <div class="mt-3">
+                <span class="inline-flex items-center text-xs font-semibold text-umb-guinda bg-white border border-[#E8D5D8] px-3 py-1.5 rounded-lg shadow-2xs group-hover:bg-umb-guinda group-hover:text-white transition-colors">
+                  Examinar archivos en este equipo
+                </span>
+              </div>
+            </div>
+          </section>
+
+        </form>
+
+        <!-- PIE INSTITUCIONAL -->
+        <footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- BARRA DE ACCIONES INFERIOR (STICKY AL PIE) -->
+  <div class="fixed bottom-0 left-0 right-0 lg:left-[260px] bg-white/95 backdrop-blur-md border-t border-umb-border shadow-lg z-40 py-3.5 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1100px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      
+      <!-- Izquierda: Cancelar y descartar -->
+      <button type="button" class="w-full sm:w-auto text-xs font-medium text-umb-outline hover:text-[#C53030] px-3 py-2 rounded-lg hover:bg-red-50 transition-colors inline-flex items-center justify-center space-x-1.5">
+        <i data-lucide="x" class="w-4 h-4"></i>
+        <span>Cancelar y descartar</span>
+      </button>
+
+      <!-- Derecha: Aviso normativo y Botones de Guardar -->
+      <div class="w-full sm:w-auto flex flex-col sm:items-end space-y-1.5">
+        <span class="text-[11px] text-umb-outline text-center sm:text-right">
+          Al guardar, se registrará la asistencia del alumno en su expediente.
+        </span>
+
+        <div class="flex items-center space-x-3 w-full sm:w-auto justify-end">
+          <!-- Guardar como borrador -->
+          <button type="button" class="flex-1 sm:flex-initial inline-flex items-center justify-center space-x-1.5 px-4 py-2 rounded-lg border border-umb-guinda text-umb-guinda text-xs font-semibold hover:bg-umb-guinda/5 transition-colors shadow-2xs">
+            <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+            <span>Guardar como borrador</span>
+          </button>
+
+          <!-- Guardar asesoría (Primario) -->
+          <button type="button" id="btn-guardar" class="flex-1 sm:flex-initial inline-flex items-center justify-center space-x-2 px-5 py-2 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold transition-all shadow-sm">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Guardar asesoría</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCRIPT INTERACTIVO Y VALIDACIONES -->
+  <script>
+    // Inicializar íconos de Lucide
+    lucide.createIcons();
+
+    // Función de cambio de modalidad
+    function actualizarModalidad(tipo) {
+      const cardPresencial = document.getElementById('card-presencial');
+      const cardVirtual = document.getElementById('card-virtual');
+      const dotPresencial = document.getElementById('dot-presencial');
+      const dotVirtual = document.getElementById('dot-virtual');
+      const campoLugar = document.getElementById('campo-lugar');
+      const campoEnlace = document.getElementById('campo-enlace');
+
+      if (tipo === 'presencial') {
+        cardPresencial.className = 'relative flex items-center p-4 border-2 border-umb-guinda bg-[#F9F5F6] rounded-xl cursor-pointer transition-all hover:shadow-xs';
+        cardVirtual.className = 'relative flex items-center p-4 border-2 border-umb-border bg-white rounded-xl cursor-pointer transition-all hover:border-neutral-300';
+        dotPresencial.className = 'w-2 h-2 rounded-full bg-umb-guinda';
+        dotVirtual.className = 'w-2 h-2 rounded-full bg-transparent';
+        campoLugar.classList.remove('hidden');
+        campoEnlace.classList.add('hidden');
+      } else {
+        cardVirtual.className = 'relative flex items-center p-4 border-2 border-umb-guinda bg-[#F9F5F6] rounded-xl cursor-pointer transition-all hover:shadow-xs';
+        cardPresencial.className = 'relative flex items-center p-4 border-2 border-umb-border bg-white rounded-xl cursor-pointer transition-all hover:border-neutral-300';
+        dotVirtual.className = 'w-2 h-2 rounded-full bg-umb-guinda';
+        dotPresencial.className = 'w-2 h-2 rounded-full bg-transparent';
+        campoEnlace.classList.remove('hidden');
+        campoLugar.classList.add('hidden');
+      }
+      lucide.createIcons();
+    }
+
+    // Función de cambio de asistencia
+    function actualizarAsistencia(tipo) {
+      const cardAsistio = document.getElementById('card-asistio');
+      const cardJustificada = document.getElementById('card-justificada');
+      const cardFalta = document.getElementById('card-falta');
+      const dotAsistio = document.getElementById('dot-asistio');
+      const dotJustificada = document.getElementById('dot-justificada');
+      const dotFalta = document.getElementById('dot-falta');
+      const condJustificada = document.getElementById('condicional-justificada');
+      const condFalta = document.getElementById('condicional-falta');
+
+      // Reset
+      cardAsistio.className = 'relative flex items-center p-4 border-2 border-umb-border bg-white rounded-xl cursor-pointer transition-all hover:border-neutral-300';
+      cardJustificada.className = 'relative flex items-center p-4 border-2 border-umb-border bg-white rounded-xl cursor-pointer transition-all hover:border-neutral-300';
+      cardFalta.className = 'relative flex items-center p-4 border-2 border-umb-border bg-white rounded-xl cursor-pointer transition-all hover:border-neutral-300';
+      dotAsistio.className = 'w-2 h-2 rounded-full bg-transparent';
+      dotJustificada.className = 'w-2 h-2 rounded-full bg-transparent';
+      dotFalta.className = 'w-2 h-2 rounded-full bg-transparent';
+      condJustificada.classList.add('hidden');
+      condFalta.classList.add('hidden');
+
+      if (tipo === 'asistio') {
+        cardAsistio.className = 'relative flex items-center p-4 border-2 border-[#2D8C4E] bg-[#F0FDF4] rounded-xl cursor-pointer transition-all hover:shadow-xs';
+        dotAsistio.className = 'w-2 h-2 rounded-full bg-[#2D8C4E]';
+      } else if (tipo === 'justificada') {
+        cardJustificada.className = 'relative flex items-center p-4 border-2 border-[#D69E2E] bg-amber-50/60 rounded-xl cursor-pointer transition-all hover:shadow-xs';
+        dotJustificada.className = 'w-2 h-2 rounded-full bg-[#D69E2E]';
+        condJustificada.classList.remove('hidden');
+      } else if (tipo === 'falta') {
+        cardFalta.className = 'relative flex items-center p-4 border-2 border-[#C53030] bg-red-50/60 rounded-xl cursor-pointer transition-all hover:shadow-xs';
+        dotFalta.className = 'w-2 h-2 rounded-full bg-[#C53030]';
+        condFalta.classList.remove('hidden');
+      }
+      lucide.createIcons();
+    }
+
+    // Contadores de caracteres dinámicos
+    function actualizarContadorTemas(textarea) {
+      const len = textarea.value.length;
+      const contador = document.getElementById('contador-temas');
+      if (len >= 300) {
+        contador.textContent = `${len} / 300 caracteres mínimos (Cumplido)`;
+        contador.className = 'text-[11px] font-semibold text-[#2D8C4E]';
+      } else {
+        contador.textContent = `${len} / 300 caracteres mínimos`;
+        contador.className = 'text-[11px] font-semibold text-umb-outline';
+      }
+      validarEstadoBoton();
+    }
+
+    function actualizarContadorAcuerdos(textarea) {
+      const len = textarea.value.length;
+      const contador = document.getElementById('contador-acuerdos');
+      if (len >= 200) {
+        contador.textContent = `${len} / 200 caracteres mínimos (Cumplido)`;
+        contador.className = 'text-[11px] font-semibold text-[#2D8C4E]';
+      } else {
+        contador.textContent = `${len} / 200 caracteres mínimos`;
+        contador.className = 'text-[11px] font-semibold text-umb-outline';
+      }
+      validarEstadoBoton();
+    }
+
+    function insertarChip(texto) {
+      const textarea = document.getElementById('temas-tratados');
+      if (textarea.value.trim() === '') {
+        textarea.value = texto;
+      } else {
+        textarea.value += ' ' + texto;
+      }
+      actualizarContadorTemas(textarea);
+    }
+
+    function validarEstadoBoton() {
+      const fecha = document.getElementById('fecha-sesion').value;
+      const temasLen = document.getElementById('temas-tratados').value.length;
+      const acuerdosLen = document.getElementById('acuerdos-compromisos').value.length;
+      const btn = document.getElementById('btn-guardar');
+
+      // Validar campos mínimos
+      if (fecha && temasLen >= 300 && acuerdosLen >= 200) {
+        btn.disabled = false;
+        btn.className = 'flex-1 sm:flex-initial inline-flex items-center justify-center space-x-2 px-5 py-2 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold transition-all shadow-sm cursor-pointer';
+      } else {
+        // En vista de diseño mostramos activo para interactividad, pero indicamos estilo responsivo
+      }
+    }
+
+    // Inicializar estado de contadores al cargar
+    document.addEventListener('DOMContentLoaded', () => {
+      const temas = document.getElementById('temas-tratados');
+      const acuerdos = document.getElementById('acuerdos-compromisos');
+      if (temas) actualizarContadorTemas(temas);
+      if (acuerdos) actualizarContadorAcuerdos(acuerdos);
+    });
+  </script>
+
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="02-mis-alumnos.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">group</span>
+      <span class="text-[11px] font-medium mt-0.5">Mis alumnos</span>
+    </a>
+    <a href="04-registrar-asesoria.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">assignment</span>
+      <span class="text-[11px] font-semibold mt-0.5">Asesorías</span>
+    </a>
+    <a href="05-revisar-bitacoras.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">fact_check</span>
+      <span class="text-[11px] font-medium mt-0.5">Evaluaciones</span>
+    </a>
+    <a href="08-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

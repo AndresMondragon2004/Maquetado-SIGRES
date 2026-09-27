@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página de Error 500 — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between bg-umb-surface">
+
+  <!-- App Bar Superior Fija de 64px -->
+  <header class="h-16 bg-umb-guinda w-full px-6 flex items-center justify-between shadow-sm sticky top-0 z-50">
+    <div class="flex items-center gap-4">
+      <!-- Logo institucional UMB en contenedor blanco limpio -->
+      <div class="bg-white rounded-md px-2.5 py-1 flex items-center justify-center shadow-sm h-10">
+        <img 
+          src="../assets/logo_umb.png" 
+          alt="Logotipo oficial de la Universidad Mexiquense del Bicentenario" 
+          class="h-7 w-auto object-contain"
+        />
+      </div>
+
+      <div class="h-6 w-px bg-white/20"></div>
+
+      <!-- Nombre del sistema y campus -->
+      <div class="flex flex-col sm:flex-row sm:items-center sm:gap-2 text-white">
+        <span class="font-bold tracking-tight text-base sm:text-lg">SIGRES-UMB</span>
+        <span class="hidden sm:inline text-white/50 text-xs">·</span>
+        <span class="text-xs sm:text-sm font-normal text-white/90">UES San José del Rincón</span>
+      </div>
+    </div>
+
+    <!-- Controles de estado interactivos para visualización y revisión -->
+    <div class="flex items-center gap-3">
+      <div class="flex items-center bg-black/20 rounded-lg p-1 text-xs text-white border border-white/10">
+        <button id="btn-estado-1" onclick="cambiarEstado(1)" class="px-2.5 py-1 rounded bg-white/20 font-medium text-white transition-colors" title="Ver Estado 1: Error 500 genérico">
+          Estado 1: Genérico
+        </button>
+        <button id="btn-estado-2" onclick="cambiarEstado(2)" class="px-2.5 py-1 rounded text-white/70 hover:text-white transition-colors" title="Ver Estado 2: Error 500 en operación con sesión activa">
+          Estado 2: En operación
+        </button>
+      </div>
+
+      <div class="hidden md:flex items-center gap-2 border-l border-white/15 pl-3">
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-red-500/20 text-red-200 border border-red-400/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse"></span>
+          Error 500
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido Central -->
+  <main class="flex-1 flex flex-col items-center justify-center px-4 py-8 md:py-12">
+    <div class="w-full max-w-[520px] flex flex-col items-center text-center">
+
+      <!-- Caja de aviso de sesión activa (Variante contextual para usuario autenticado) -->
+      <div id="aviso-sesion" class="w-full mb-6 p-3.5 bg-umb-dorado-light border border-[#FDE68A] rounded-lg text-left hidden shadow-sm transition-all duration-300">
+        <div class="flex items-start gap-3">
+          <div class="mt-0.5 w-5 h-5 rounded-full bg-[#F59E0B]/20 text-[#92400E] flex items-center justify-center shrink-0">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="text-xs text-[#92400E] leading-relaxed">
+            <p class="font-medium">Tu sesión sigue activa.</p>
+            <p class="text-[#92400E]/90 mt-0.5">Los datos que estabas capturando en tu bitácora no se han perdido y están resguardados en almacenamiento local.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ilustración grande centrada: Número 500 + Ícono circular engranaje de fallo -->
+      <div class="relative flex items-center justify-center w-full h-[140px] mb-2 user-select-none">
+        <!-- Número 500 grande decorativo al 15% opacidad -->
+        <span class="text-[120px] font-extrabold text-[#C53030] opacity-15 tracking-tighter leading-none select-none pointer-events-none transform -translate-y-1">
+          500
+        </span>
+
+        <!-- Ícono circular sobrepuesto (96px, fondo #FEE2E2, borde 2px #FECACA) -->
+        <div class="absolute w-24 h-24 rounded-full bg-[#FEE2E2] border-2 border-[#FECACA] flex items-center justify-center shadow-sm">
+          <!-- Ícono de engranaje con signo de exclamación en rojo #C53030 (48px) -->
+          <svg class="w-12 h-12 text-[#C53030]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Engrane -->
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" stroke-dasharray="2 1" class="opacity-40" />
+            <!-- Cuerpo del engranaje con fallo central -->
+            <circle cx="12" cy="12" r="9" />
+            <!-- Signo de exclamación en el centro -->
+            <line x1="12" y1="8" x2="12" y2="12" stroke-width="2.2" />
+            <circle cx="12" cy="15.5" r="0.75" fill="currentColor" stroke-width="1" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Título principal centrado -->
+      <h1 id="error-title" class="text-[28px] font-bold text-umb-carbon tracking-tight mt-8 leading-snug">
+        Algo salió mal
+      </h1>
+
+      <!-- Descripción empática y profesional centrada (máximo 420px) -->
+      <p id="error-desc" class="text-[15px] font-normal text-umb-muted max-w-[420px] mt-3 leading-relaxed">
+        Tuvimos un problema al procesar tu solicitud. Nuestro equipo ha sido notificado y estamos trabajando para solucionarlo.
+      </p>
+
+      <!-- Código de error (Badge gris monospace) -->
+      <div class="mt-4 inline-flex items-center gap-1.5 px-3 py-1 bg-[#EBECEF] rounded-md border border-umb-border">
+        <svg class="w-3.5 h-3.5 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+        <span id="error-code" class="font-mono text-xs font-normal text-umb-outline tracking-wide">
+          Código de error: 500 · ERR_INTERNAL
+        </span>
+      </div>
+
+      <!-- Caja de información "¿Qué puedes hacer?" -->
+      <div class="w-full bg-[#F9FAFB] border border-umb-border rounded-lg p-4 mt-6 text-left shadow-xs">
+        <h2 class="text-[13px] font-semibold text-umb-carbon mb-3 flex items-center gap-2">
+          <svg class="w-4 h-4 text-umb-guinda" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          ¿Qué puedes hacer?
+        </h2>
+        <ul class="space-y-2.5">
+          <li class="flex items-start gap-2.5 text-xs text-umb-muted leading-relaxed">
+            <!-- Ícono de flecha -->
+            <svg class="w-3.5 h-3.5 text-umb-guinda mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+            </svg>
+            <span>Intenta recargar la página en unos segundos</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-xs text-umb-muted leading-relaxed">
+            <!-- Ícono de flecha -->
+            <svg class="w-3.5 h-3.5 text-umb-guinda mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+            </svg>
+            <span>Si el problema persiste, espera unos minutos y vuelve a intentarlo</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-xs text-umb-muted leading-relaxed">
+            <!-- Ícono de flecha -->
+            <svg class="w-3.5 h-3.5 text-umb-guinda mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+            </svg>
+            <span>Reporta el problema a soporte técnico si es urgente</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Botones de Acción (Fila horizontal al pie) -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full mt-6">
+        <!-- Botón secundario "Contactar soporte" -->
+        <a 
+          href="mailto:soporte@umb.mx?subject=Reporte%20Error%20500%20-%20SIGRES-UMB" 
+          class="w-full sm:w-auto h-11 px-5 rounded-lg bg-white border border-umb-border text-umb-muted text-sm font-medium hover:bg-gray-50 hover:border-gray-300 transition-colors inline-flex items-center justify-center gap-2 shadow-xs order-2 sm:order-1"
+        >
+          <svg class="w-4 h-4 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Contactar soporte
+        </a>
+
+        <!-- Botón primario "Recargar página" -->
+        <button 
+          id="btn-recargar"
+          onclick="recargarSimulado()" 
+          class="w-full sm:w-auto h-11 px-6 rounded-lg bg-umb-guinda hover:bg-[#531422] active:scale-[0.99] text-white text-sm font-medium transition-all inline-flex items-center justify-center gap-2 shadow-sm order-1 sm:order-2"
+        >
+          <svg id="icon-refresh" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          <span id="btn-recargar-text">Recargar página</span>
+        </button>
+      </div>
+
+      <!-- Información de contacto de soporte -->
+      <div class="mt-4 text-center">
+        <p class="text-xs font-normal text-umb-outline">
+          Soporte técnico UMB: <span class="font-medium text-umb-muted">soporte@umb.mx</span> · <span class="font-medium text-umb-muted">Ext. 110</span>
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Pie de página institucional centrado -->
+  <footer class="w-full py-6 mt-12 border-t border-umb-border/80 text-center">
+    <p class="text-[11px] font-normal text-umb-outline tracking-wide">
+      SIGRES-UMB · Universidad Mexiquense del Bicentenario · Ciclo 26-27/1
+    </p>
+  </footer>
+
+  <!-- Script interactivo para soporte de estados y recarga -->
+  <script>
+    let estadoActual = 1;
+
+    function cambiarEstado(estado) {
+      estadoActual = estado;
+      const btn1 = document.getElementById('btn-estado-1');
+      const btn2 = document.getElementById('btn-estado-2');
+      const aviso = document.getElementById('aviso-sesion');
+      const title = document.getElementById('error-title');
+      const desc = document.getElementById('error-desc');
+      const code = document.getElementById('error-code');
+
+      if (estado === 1) {
+        // Estado 1: Error 500 genérico sin contexto
+        btn1.className = 'px-2.5 py-1 rounded bg-white/20 font-medium text-white transition-colors';
+        btn2.className = 'px-2.5 py-1 rounded text-white/70 hover:text-white transition-colors';
+        
+        aviso.classList.add('hidden');
+        title.textContent = 'Algo salió mal';
+        desc.textContent = 'Tuvimos un problema al procesar tu solicitud. Nuestro equipo ha sido notificado y estamos trabajando para solucionarlo.';
+        code.textContent = 'Código de error: 500 · ERR_INTERNAL';
+      } else {
+        // Estado 2: Error 500 durante operación específica (ej. guardar bitácora) con sesión activa
+        btn2.className = 'px-2.5 py-1 rounded bg-white/20 font-medium text-white transition-colors';
+        btn1.className = 'px-2.5 py-1 rounded text-white/70 hover:text-white transition-colors';
+        
+        aviso.classList.remove('hidden');
+        title.textContent = 'Error al guardar la bitácora';
+        desc.textContent = 'No pudimos registrar tu reporte semanal en el servidor central en este momento debido a una interrupción momentánea en la base de datos.';
+        code.textContent = 'Código de error: 500 · ERR_OPERATION_SAVE_LOG';
+      }
+    }
+
+    function recargarSimulado() {
+      const icon = document.getElementById('icon-refresh');
+      const text = document.getElementById('btn-recargar-text');
+      const btn = document.getElementById('btn-recargar');
+
+      btn.disabled = true;
+      icon.classList.add('animate-spin-custom');
+      text.textContent = 'Reintentando conexión...';
+
+      setTimeout(() => {
+        icon.classList.remove('animate-spin-custom');
+        text.textContent = 'Recargar página';
+        btn.disabled = false;
+      }, 1000);
+    }
+  </script>
+
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

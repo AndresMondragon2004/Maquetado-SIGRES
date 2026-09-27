@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Bitácoras — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-umb-surface flex flex-col">
+<!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Estudiante</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Nueva bitácora</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="14-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          JM
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Jesús Andrés Mondragón</span>
+          <span class="text-[10px] text-white/75 leading-none">Estudiante</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- CONTENEDOR PRINCIPAL: SIDEBAR + ÁREA DE CONTENIDO -->
+<div class="flex flex-1 pt-16">
+<!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              JM
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Jesús Andrés Mondragón Tenorio</p>
+              <p class="text-[11px] text-umb-outline truncate">Matrícula: 13220024 · ISC</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="08-mis-bitacoras.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">menu_book</span>
+            <span class="text-sm">Bitácoras</span>
+          </a>
+          <a href="02-mi-expediente.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">folder</span>
+            <span class="text-sm">Expediente</span>
+          </a>
+          <a href="13-mis-informes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">description</span>
+            <span class="text-sm">Informes</span>
+          </a>
+          <a href="14-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- ÁREA DE CONTENIDO PRINCIPAL (Centrado, max 1100px) -->
+<main class="flex-1 md:pl-64 p-4 sm:p-6 lg:p-8 pb-28"><div class="max-w-[1100px] mx-auto space-y-6 pb-24"><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"><div><nav aria-label="Miga de pan" class="flex items-center text-xs text-text-secondary space-x-2 mb-1.5"><a class="hover:text-umb-guinda transition" href="#">Mis bitácoras</a><svg class="w-3 h-3 text-text-secondary" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span class="font-medium text-text-main">Nueva bitácora</span></nav><h1 class="text-2xl font-bold text-text-main tracking-tight">Nueva bitácora semanal</h1><p class="text-sm text-text-muted mt-0.5">Registra las actividades que realizaste esta semana en tu empresa receptora. Recuerda que la jornada máxima es de 7 horas diarias.</p></div><div class="flex items-center self-start sm:self-auto"><span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-umb-guinda/10 text-umb-guinda border border-umb-guinda/20">Semana 11</span></div></div><section class="bg-white rounded-lg shadow-sm border border-gray-200/80 p-5 space-y-4"><div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div class="flex flex-wrap items-center gap-3"><div class="space-y-1"><label class="block text-xs font-medium text-text-muted" for="fecha-inicio">Semana a registrar</label><input class="h-10 px-3 bg-white border border-gray-300 rounded-md text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-brand-guinda/20 focus:border-umb-guinda shadow-sm" id="fecha-inicio" type="date" value="2026-11-10"/></div><span class="text-text-secondary self-end pb-2 hidden sm:inline-block">—</span><div class="space-y-1"><label class="block text-xs font-medium text-text-muted">Fecha de término</label><div class="h-10 px-3.5 bg-umb-surface border border-gray-200 rounded-md text-xs font-medium text-text-secondary flex items-center">Viernes: 14 de noviembre de 2026</div></div></div><div class="self-start sm:self-end pb-0.5"><span class="inline-flex items-center px-2.5 py-1 rounded text-[11px] font-semibold bg-[#DCFCE7] text-[#166534] border border-emerald-200">10 al 14 de noviembre de 2026</span></div></div><div class="p-3 bg-[#EFF6FF] border-l-[3px] border-[#2B6CB0] rounded text-xs text-[#1E3A8A] flex items-center space-x-2"><svg class="w-4 h-4 flex-shrink-0 text-[#2B6CB0]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Solo puedes registrar una bitácora por semana. Si necesitas editar una bitácora anterior, ve a la sección 'Mis bitácoras'.</span></div></section><section class="bg-white rounded-lg shadow-sm border border-gray-200/80 p-6 space-y-5"><div><h3 class="text-base font-semibold text-text-main">Distribución de horas por día</h3><p class="text-xs text-text-secondary mt-0.5">Registra las horas trabajadas cada día. La suma debe ser exactamente 35 horas.</p></div><div class="space-y-2.5"><div class="flex items-center justify-between p-3 rounded-lg border border-gray-200/90 hover:bg-[#F9FAFB] transition"><div class="flex items-center space-x-2.5"><div class="w-2 h-2 rounded-full bg-umb-guinda"></div><span class="text-sm font-medium text-text-main">Lunes</span><span class="text-xs text-text-secondary">· 10 de noviembre</span></div><div class="flex items-center space-x-2"><input class="day-hour-input w-20 h-10 text-center font-semibold text-sm text-text-main bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-guinda/20 focus:border-umb-guinda shadow-sm" max="7.0" min="0" step="0.5" type="number" value="7.0"/><span class="text-xs text-text-secondary w-6">hrs</span></div></div><div class="flex items-center justify-between p-3 rounded-lg border border-gray-200/90 hover:bg-[#F9FAFB] transition"><div class="flex items-center space-x-2.5"><div class="w-2 h-2 rounded-full bg-umb-guinda"></div><span class="text-sm font-medium text-text-main">Martes</span><span class="text-xs text-text-secondary">· 11 de noviembre</span></div><div class="flex items-center space-x-2"><input class="day-hour-input w-20 h-10 text-center font-semibold text-sm text-text-main bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-guinda/20 focus:border-umb-guinda shadow-sm" max="7.0" min="0" step="0.5" type="number" value="7.0"/><span class="text-xs text-text-secondary w-6">hrs</span></div></div><div class="flex items-center justify-between p-3 rounded-lg border border-gray-200/90 hover:bg-[#F9FAFB] transition"><div class="flex items-center space-x-2.5"><div class="w-2 h-2 rounded-full bg-umb-guinda"></div><span class="text-sm font-medium text-text-main">Miércoles</span><span class="text-xs text-text-secondary">· 12 de noviembre</span></div><div class="flex items-center space-x-2"><input class="day-hour-input w-20 h-10 text-center font-semibold text-sm text-text-main bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-guinda/20 focus:border-umb-guinda shadow-sm" max="7.0" min="0" step="0.5" type="number" value="7.0"/><span class="text-xs text-text-secondary w-6">hrs</span></div></div><div class="flex items-center justify-between p-3 rounded-lg border border-gray-200/90 hover:bg-[#F9FAFB] transition"><div class="flex items-center space-x-2.5"><div class="w-2 h-2 rounded-full bg-umb-guinda"></div><span class="text-sm font-medium text-text-main">Jueves</span><span class="text-xs text-text-secondary">· 13 de noviembre</span></div><div class="flex items-center space-x-2"><input class="day-hour-input w-20 h-10 text-center font-semibold text-sm text-text-main bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-guinda/20 focus:border-umb-guinda shadow-sm" max="7.0" min="0" step="0.5" type="number" value="7.0"/><span class="text-xs text-text-secondary w-6">hrs</span></div></div><div class="flex items-center justify-between p-3 rounded-lg border border-gray-200/90 hover:bg-[#F9FAFB] transition"><div class="flex items-center space-x-2.5"><div class="w-2 h-2 rounded-full bg-umb-guinda"></div><span class="text-sm font-medium text-text-main">Viernes</span><span class="text-xs text-text-secondary">· 14 de noviembre</span></div><div class="flex items-center space-x-2"><input class="day-hour-input w-20 h-10 text-center font-semibold text-sm text-text-main bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-guinda/20 focus:border-umb-guinda shadow-sm" max="7.0" min="0" step="0.5" type="number" value="7.0"/><span class="text-xs text-text-secondary w-6">hrs</span></div></div></div><div class="bg-[#F9FAFB] border border-umb-border p-4 rounded-md flex justify-between items-center"><span class="text-sm font-semibold text-text-main">Total semanal</span><span class="text-lg font-bold text-[#2D8C4E]" id="total-hours-display">35.0 hrs</span></div><div class="p-3.5 bg-[#DCFCE7] border-l-[3px] border-[#2D8C4E] rounded text-xs font-medium text-[#166534] flex items-center space-x-2" id="validation-box"><svg class="w-4 h-4 text-[#2D8C4E] flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg><span id="validation-message">Total semanal correcto. Puedes continuar.</span></div></section><section class="bg-white rounded-lg shadow-sm border border-gray-200/80 p-6 space-y-4"><div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2"><div><h3 class="text-base font-semibold text-text-main">Descripción de actividades</h3><p class="text-xs text-text-secondary mt-0.5">Describe las actividades más relevantes que realizaste durante la semana.</p></div><div class="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-200 self-start sm:self-auto" id="char-counter-badge"><svg class="w-3.5 h-3.5 mr-1 text-emerald-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span id="char-counter-text">Descripción suficiente (538 / 500 mín. 2000 máx.)</span></div></div><textarea class="w-full p-4 bg-white border border-gray-300 rounded-lg text-sm text-text-main leading-relaxed focus:outline-none focus:ring-2 focus:ring-brand-guinda/20 focus:border-umb-guinda shadow-sm min-h-[160px]" id="actividades-textarea" placeholder="Detalla las actividades, metodologías empleadas, tecnologías o entregables logrados..." rows="6">Durante esta semana completé la refactorización integral del módulo de autenticación multifactor utilizando tokens JWT y cookies seguras HttpOnly. Se implementaron 28 pruebas unitarias automatizadas con Jest alcanzando una cobertura global del 96% en los servicios críticos de login y renovación de credenciales. Asimismo, configuré el pipeline de integración continua en GitHub Actions para ejecutar el análisis estático de SonarCloud y el despliegue automático hacia el entorno de staging. Finalmente, actualicé la documentación técnica de los endpoints en Swagger OpenAPI para el equipo de frontend.</textarea></section><section class="bg-white rounded-lg shadow-sm border border-gray-200/80 p-6 space-y-5"><div><h3 class="text-base font-semibold text-text-main">Evidencias adjuntas</h3><p class="text-xs text-text-secondary mt-0.5">Adjunta al menos un archivo que respalde tus actividades (capturas, reportes, diagramas, código, etc.).</p></div><div class="border-2 border-dashed border-umb-border rounded-lg p-8 bg-[#F9FAFB] text-center hover:bg-gray-50 transition cursor-pointer flex flex-col items-center justify-center space-y-2"><svg class="w-12 h-12 text-umb-guinda" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg><p class="text-sm font-medium text-text-main">Arrastra tus archivos aquí o <span class="text-umb-guinda underline cursor-pointer">haz clic para seleccionar</span></p><p class="text-[11px] text-text-secondary">Formatos permitidos: PDF, PNG, JPG, ZIP. Máximo 5 archivos, 10 MB por archivo.</p></div><div class="space-y-2.5"><div class="flex items-center justify-between p-3.5 bg-[#F9FAFB] border border-umb-border rounded-md"><div class="flex items-center space-x-3"><div class="w-9 h-9 rounded bg-emerald-100 flex items-center justify-center text-emerald-700 flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div><div><p class="text-sm font-medium text-text-main leading-tight">evidencia_modulo_auth.png</p><p class="text-xs text-text-secondary mt-0.5">2.4 MB</p></div></div><button aria-label="Eliminar archivo" class="p-1.5 text-red-600 hover:text-red-800 hover:bg-red-50 rounded transition" type="button"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button></div><div class="flex items-center justify-between p-3.5 bg-[#F9FAFB] border border-umb-border rounded-md"><div class="flex items-center space-x-3"><div class="w-9 h-9 rounded bg-rose-100 flex items-center justify-center text-rose-700 flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div><div><p class="text-sm font-medium text-text-main leading-tight">reporte_cobertura_jest.pdf</p><p class="text-xs text-text-secondary mt-0.5">1.2 MB</p></div></div><button aria-label="Eliminar archivo" class="p-1.5 text-red-600 hover:text-red-800 hover:bg-red-50 rounded transition" type="button"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></button></div></div></section><section class="bg-white rounded-lg shadow-sm border border-gray-200/80 p-5 space-y-2"><div><h3 class="text-sm font-semibold text-text-main">Comentario para el asesor (opcional)</h3></div><textarea class="w-full p-3 bg-white border border-gray-300 rounded-md text-sm text-text-main placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-brand-guinda/20 focus:border-umb-guinda shadow-sm h-20" placeholder="Si necesitas aclarar algo sobre tus actividades, escríbelo aquí." rows="3"></textarea></section><footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer></div></main>
+</div>
+<!-- BOTÓN FLOTANTE (FAB) — NUEVA BITÁCORA -->
+<!-- BARRA DE NAVEGACIÓN INFERIOR PARA MÓVILES (64px) -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-3.5 px-4 sm:px-8 z-40 shadow-[0_-4px_12px_rgba(0,0,0,0.06)]"><div class="max-w-[1100px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3"><button class="text-xs font-medium text-text-secondary hover:text-red-700 transition px-2 py-1" type="button">Cancelar y descartar</button><div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto justify-end"><span class="text-[11px] text-text-secondary text-center sm:text-right">Al enviar, tu asesor externo recibirá una notificación para validar la bitácora.</span><div class="flex items-center space-x-2.5 justify-end"><button class="px-4 py-2 text-xs font-semibold text-umb-guinda border border-umb-guinda rounded-lg hover:bg-rose-50 transition" type="button">Guardar como borrador</button><button class="px-5 py-2 text-xs font-semibold bg-umb-guinda text-white rounded-lg shadow-sm hover:bg-umb-guinda-dark transition flex items-center space-x-1.5" id="submit-btn" type="button"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span>Enviar a revisión</span></button></div></div></div></div><nav aria-label="Navegación móvil" class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-gray-200 flex items-center justify-around px-2 z-40 shadow-lg">
+<a class="flex flex-col items-center justify-center text-text-secondary hover:text-umb-guinda" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+<span class="text-[10px] mt-0.5">Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-umb-guinda font-semibold" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] mt-0.5">Bitácoras</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-secondary hover:text-umb-guinda" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+<span class="text-[10px] mt-0.5">Expediente</span>
+</a>
+<a class="flex flex-col items-center justify-center text-text-secondary hover:text-umb-guinda" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+<span class="text-[10px] mt-0.5">Perfil</span>
+</a>
+</nav>
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="08-mis-bitacoras.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">menu_book</span>
+      <span class="text-[11px] font-semibold mt-0.5">Bitácoras</span>
+    </a>
+    <a href="02-mi-expediente.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">folder</span>
+      <span class="text-[11px] font-medium mt-0.5">Expediente</span>
+    </a>
+    <a href="13-mis-informes.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">description</span>
+      <span class="text-[11px] font-medium mt-0.5">Informes</span>
+    </a>
+    <a href="14-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

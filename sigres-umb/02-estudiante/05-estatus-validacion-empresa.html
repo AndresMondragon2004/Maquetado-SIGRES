@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-umb-surface">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estatus de validación de empresa — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full bg-umb-surface text-umb-carbon flex flex-col">
+
+  <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Estudiante</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Estatus de validación</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="14-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          JM
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Jesús Andrés Mondragón</span>
+          <span class="text-[10px] text-white/75 leading-none">Estudiante</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL CON SIDEBAR -->
+  <div class="flex-1 pt-16 flex overflow-hidden">
+
+    <!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              JM
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Jesús Andrés Mondragón Tenorio</p>
+              <p class="text-[11px] text-umb-outline truncate">Matrícula: 13220024 · ISC</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">home</span>
+            <span class="text-sm">Inicio</span>
+          </a>
+          <a href="08-mis-bitacoras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">menu_book</span>
+            <span class="text-sm">Bitácoras</span>
+          </a>
+          <a href="02-mi-expediente.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">folder</span>
+            <span class="text-sm">Expediente</span>
+          </a>
+          <a href="13-mis-informes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">description</span>
+            <span class="text-sm">Informes</span>
+          </a>
+          <a href="14-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+
+    <!-- ÁREA DE CONTENIDO PRINCIPAL SCROLLABLE -->
+    <main class="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center">
+      
+      <!-- Contenedor centrado max-w-[800px] -->
+      <div class="w-full max-w-[800px] space-y-6">
+
+        <!-- Barra de navegación contextual y selector de simulación para pruebas -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <nav class="flex items-center text-xs text-umb-outline space-x-2" aria-label="Miga de pan">
+            <a href="#" class="hover:text-umb-guinda transition-colors">Mi expediente</a>
+            <span>/</span>
+            <a href="#" class="hover:text-umb-guinda transition-colors">Buscar empresa receptora</a>
+            <span>/</span>
+            <span class="text-umb-carbon font-medium">Estatus de validación</span>
+          </nav>
+
+          <!-- Conmutador interactivo para visualizar los 3 estados solicitados -->
+          <div class="inline-flex items-center p-1 bg-white rounded-lg border border-[#E5E7EB] shadow-xs text-xs">
+            <span class="text-umb-outline px-2 font-medium hidden md:inline">Ver estado:</span>
+            <button onclick="setEstado('revision')" id="btn-tab-revision" class="px-2.5 py-1 rounded-md font-medium transition-all bg-umb-dorado-light text-[#92400E]">
+              En revisión
+            </button>
+            <button onclick="setEstado('aprobada')" id="btn-tab-aprobada" class="px-2.5 py-1 rounded-md font-medium text-umb-muted hover:text-umb-carbon transition-all">
+              Aprobada
+            </button>
+            <button onclick="setEstado('rechazada')" id="btn-tab-rechazada" class="px-2.5 py-1 rounded-md font-medium text-umb-muted hover:text-umb-carbon transition-all">
+              Rechazada
+            </button>
+          </div>
+        </div>
+
+        <!-- TARJETA PRINCIPAL DEL ESTATUS (Radio 12px, Padding 32px, Sombra sutil) -->
+        <section class="bg-white rounded-xl shadow-sm border border-[#E5E7EB] p-6 sm:p-8 space-y-6 transition-all duration-200">
+          
+          <!-- CABECERA DE LA TARJETA (Ícono 72px, Título, Descripción) -->
+          <div class="flex flex-col items-center text-center space-y-4 pt-2">
+            
+            <!-- Ícono circular grande (72px) -->
+            <div id="status-icon-container" class="w-[72px] h-[72px] rounded-full flex items-center justify-center transition-all bg-umb-dorado-light text-[#92400E]">
+              <!-- Ícono: En revisión (Reloj) -->
+              <svg id="icon-revision" class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+
+              <!-- Ícono: Aprobada (Check) -->
+              <svg id="icon-aprobada" class="w-9 h-9 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M5 13l4 4L19 7" />
+              </svg>
+
+              <!-- Ícono: Rechazada (X) -->
+              <svg id="icon-rechazada" class="w-9 h-9 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+
+            <!-- Título y descripción dinámica -->
+            <div class="max-w-lg space-y-2">
+              <div class="flex items-center justify-center space-x-2">
+                <h1 id="status-title" class="text-2xl sm:text-2xl font-bold text-umb-carbon tracking-tight">
+                  Tu empresa está en revisión
+                </h1>
+                <span id="status-badge" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-umb-dorado-light text-[#92400E]">
+                  En revisión
+                </span>
+              </div>
+              <p id="status-description" class="text-sm sm:text-base text-umb-muted leading-relaxed">
+                Control Escolar validará la información que enviaste en un plazo máximo de 5 días hábiles. Recibirás una notificación cuando termine el proceso.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- LÍNEA SEPARADORA SUTIL -->
+          <div class="border-t border-[#F3F4F6]"></div>
+
+          <!-- SECCIÓN DE OBSERVACIONES (SOLO SI FUE RECHAZADA) -->
+          <div id="section-observaciones" class="hidden rounded-lg bg-[#FEE2E2] border-l-4 border-[#C53030] p-4 sm:p-5 space-y-2 transition-all">
+            <div class="flex items-center space-x-2">
+              <svg class="w-4 h-4 text-[#991B1B] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <h2 class="text-xs sm:text-sm font-semibold text-[#991B1B]">Observaciones de Control Escolar</h2>
+            </div>
+            <p class="text-xs sm:text-sm text-[#7F1D1D] leading-relaxed pl-6">
+              El comprobante de registro fiscal presentado no contiene la homoclave visible en la cédula oficial de RFC, y el acta constitutiva adjunta no incluye la carátula con sello del Registro Público de Comercio (RPC). Por favor actualiza los archivos digitales con documentos legibles y vigentes.
+            </p>
+            <div class="pt-2 pl-6">
+              <button onclick="setEstado('revision')" class="inline-flex items-center px-3.5 py-1.5 rounded-md text-xs font-semibold bg-umb-guinda text-white hover:bg-[#4e1420] transition-colors shadow-xs">
+                <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                Corregir y reenviar
+              </button>
+            </div>
+          </div>
+
+          <!-- SECCIÓN DE DETALLE (TARJETA INTERNA CON FONDO #F9FAFB) -->
+          <div class="bg-[#F9FAFB] rounded-lg border border-[#E5E7EB] p-4 sm:p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-[#E5E7EB] pb-3">
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4 text-umb-outline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <h2 class="text-xs font-semibold uppercase tracking-wider text-umb-outline">Detalle de la solicitud enviada</h2>
+              </div>
+              <span class="text-xs font-mono font-medium px-2 py-0.5 rounded bg-white text-umb-carbon border border-[#E5E7EB]">
+                Folio: EMP-2026-0042
+              </span>
+            </div>
+
+            <!-- Grid de datos enviados -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3.5 gap-x-6 text-sm">
+              <div>
+                <dt class="text-xs font-normal text-umb-outline">Razón social</dt>
+                <dd class="text-sm font-semibold text-umb-carbon mt-0.5">Soluciones Digitales y Automatización de México S.A. de C.V.</dd>
+              </div>
+
+              <div>
+                <dt class="text-xs font-normal text-umb-outline">RFC registrado</dt>
+                <dd class="text-sm font-mono font-medium text-umb-carbon mt-0.5">SDA180422XY9</dd>
+              </div>
+
+              <div>
+                <dt class="text-xs font-normal text-umb-outline">Sector registrado</dt>
+                <dd class="text-sm font-medium text-umb-carbon mt-0.5 flex items-center">
+                  <span class="w-2 h-2 rounded-full bg-umb-guinda mr-2"></span>
+                  Privado (Persona moral)
+                </dd>
+              </div>
+
+              <div>
+                <dt class="text-xs font-normal text-umb-outline">Fecha de envío</dt>
+                <dd class="text-sm font-medium text-umb-carbon mt-0.5">18 de octubre de 2026 · 11:42 hrs</dd>
+              </div>
+            </div>
+
+            <!-- Tarjeta complementaria de asesor propuesto -->
+            <div class="pt-3 border-t border-[#E5E7EB] flex flex-col sm:flex-row sm:items-center justify-between text-xs text-umb-muted gap-2">
+              <div class="flex items-center space-x-2">
+                <span class="text-umb-outline">Asesor externo propuesto:</span>
+                <span class="font-medium text-umb-carbon">Ing. I.S.C. Leonardo Becerril Sánchez</span>
+              </div>
+              <span class="text-umb-outline">roberto.almanza@empresa.com</span>
+            </div>
+          </div>
+
+          <!-- LÍNEA DE TIEMPO SUTIL DE PROGRESO DE VALIDACIÓN -->
+          <div class="bg-white rounded-lg p-4 border border-[#F3F4F6] space-y-3">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-umb-outline">Etapas del proceso</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="flex items-start space-x-2.5">
+                <div class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold mt-0.5">✓</div>
+                <div>
+                  <p class="text-xs font-medium text-umb-carbon">1. Registro enviado</p>
+                  <p class="text-[11px] text-umb-outline">18 de oct, 2026</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-2.5">
+                <div id="step-2-indicator" class="w-5 h-5 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-bold mt-0.5">2</div>
+                <div>
+                  <p id="step-2-title" class="text-xs font-medium text-umb-carbon">2. Revisión de Control Escolar</p>
+                  <p id="step-2-desc" class="text-[11px] text-umb-outline">En proceso (máx. 5 días)</p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-2.5">
+                <div id="step-3-indicator" class="w-5 h-5 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center text-xs font-bold mt-0.5">3</div>
+                <div>
+                  <p id="step-3-title" class="text-xs font-medium text-umb-outline">3. Dictamen y alta</p>
+                  <p id="step-3-desc" class="text-[11px] text-umb-outline">Pendiente de resolución</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AVISO INSTITUCIONAL AL PIE -->
+          <div class="rounded-lg bg-[#EFF6FF] border-l-4 border-[#2B6CB0] p-3.5 flex items-start space-x-3">
+            <svg class="w-5 h-5 text-[#2B6CB0] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-xs text-[#1E3A8A] leading-relaxed">
+              Conforme al <strong>Artículo 12 del Reglamento de Residencias Profesionales UMB 2026</strong>, la validez del registro de una empresa receptora está sujeta a la corroboración de su personalidad jurídica y viabilidad formativa para el residente.
+            </p>
+          </div>
+
+          <!-- ACCIONES AL PIE DE LA TARJETA (Dinámicas según estado) -->
+          <div class="pt-2 flex flex-col-reverse sm:flex-row items-center justify-between gap-3 border-t border-[#E5E7EB]">
+            
+            <a href="#" class="w-full sm:w-auto text-center px-4 py-2.5 text-xs font-medium text-umb-muted hover:text-umb-carbon hover:bg-[#F9FAFB] rounded-lg transition-colors">
+              Ir al inicio
+            </a>
+
+            <div class="w-full sm:w-auto flex items-center justify-end space-x-3">
+              
+              <!-- Botón: Estado En revisión (Secundario) -->
+              <button id="btn-action-revision" class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold border border-umb-guinda text-umb-guinda bg-white hover:bg-umb-guinda/5 transition-colors shadow-xs">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Volver al expediente
+              </button>
+
+              <!-- Botón: Estado Aprobada (Primario) -->
+              <button id="btn-action-aprobada" class="hidden w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold bg-umb-guinda text-white hover:bg-[#4e1420] transition-colors shadow-sm">
+                Continuar con solicitud de residencia
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+
+              <!-- Botón: Estado Rechazada (Primario) -->
+              <button id="btn-action-rechazada" class="hidden w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold bg-umb-guinda text-white hover:bg-[#4e1420] transition-colors shadow-sm">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+                Corregir información
+              </button>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- PIE INSTITUCIONAL -->
+        <footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- BARRA DE NAVEGACIÓN INFERIOR PARA MÓVIL (<1024px, 64px) -->
+    <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span class="text-[11px] font-medium mt-0.5">Inicio</span>
+    </a>
+    <a href="08-mis-bitacoras.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">menu_book</span>
+      <span class="text-[11px] font-medium mt-0.5">Bitácoras</span>
+    </a>
+    <a href="02-mi-expediente.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">folder</span>
+      <span class="text-[11px] font-semibold mt-0.5">Expediente</span>
+    </a>
+    <a href="13-mis-informes.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">description</span>
+      <span class="text-[11px] font-medium mt-0.5">Informes</span>
+    </a>
+    <a href="14-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+  <!-- LÓGICA DE CAMBIO DE ESTADOS INTERACTIVA -->
+  <script>
+    function setEstado(estado) {
+      const container = document.getElementById('status-icon-container');
+      const iconRev = document.getElementById('icon-revision');
+      const iconApr = document.getElementById('icon-aprobada');
+      const iconRec = document.getElementById('icon-rechazada');
+      const title = document.getElementById('status-title');
+      const badge = document.getElementById('status-badge');
+      const desc = document.getElementById('status-description');
+      const secObs = document.getElementById('section-observaciones');
+
+      const btnRev = document.getElementById('btn-action-revision');
+      const btnApr = document.getElementById('btn-action-aprobada');
+      const btnRec = document.getElementById('btn-action-rechazada');
+
+      const tabRev = document.getElementById('btn-tab-revision');
+      const tabApr = document.getElementById('btn-tab-aprobada');
+      const tabRec = document.getElementById('btn-tab-rechazada');
+
+      const step2Ind = document.getElementById('step-2-indicator');
+      const step2Title = document.getElementById('step-2-title');
+      const step2Desc = document.getElementById('step-2-desc');
+
+      const step3Ind = document.getElementById('step-3-indicator');
+      const step3Title = document.getElementById('step-3-title');
+      const step3Desc = document.getElementById('step-3-desc');
+
+      // Reset tabs style
+      [tabRev, tabApr, tabRec].forEach(t => {
+        t.className = "px-2.5 py-1 rounded-md font-medium text-umb-muted hover:text-umb-carbon transition-all";
+      });
+
+      // Hide all icons
+      iconRev.classList.add('hidden');
+      iconApr.classList.add('hidden');
+      iconRec.classList.add('hidden');
+
+      // Hide all action buttons
+      btnRev.classList.add('hidden');
+      btnApr.classList.add('hidden');
+      btnRec.classList.add('hidden');
+
+      if (estado === 'revision') {
+        tabRev.className = "px-2.5 py-1 rounded-md font-medium bg-umb-dorado-light text-[#92400E] shadow-xs";
+        container.className = "w-[72px] h-[72px] rounded-full flex items-center justify-center transition-all bg-umb-dorado-light text-[#92400E]";
+        iconRev.classList.remove('hidden');
+
+        title.textContent = "Tu empresa está en revisión";
+        badge.textContent = "En revisión";
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-semibold bg-umb-dorado-light text-[#92400E]";
+        desc.textContent = "Control Escolar validará la información que enviaste en un plazo máximo de 5 días hábiles. Recibirás una notificación cuando termine el proceso.";
+
+        secObs.classList.add('hidden');
+        btnRev.classList.remove('hidden');
+
+        // Línea de tiempo
+        step2Ind.className = "w-5 h-5 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-bold mt-0.5";
+        step2Ind.textContent = "2";
+        step2Title.className = "text-xs font-medium text-umb-carbon";
+        step2Desc.textContent = "En proceso (máx. 5 días)";
+
+        step3Ind.className = "w-5 h-5 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center text-xs font-bold mt-0.5";
+        step3Ind.textContent = "3";
+        step3Title.className = "text-xs font-medium text-umb-outline";
+        step3Desc.textContent = "Pendiente de resolución";
+      } 
+      else if (estado === 'aprobada') {
+        tabApr.className = "px-2.5 py-1 rounded-md font-medium bg-[#DCFCE7] text-[#166534] shadow-xs";
+        container.className = "w-[72px] h-[72px] rounded-full flex items-center justify-center transition-all bg-[#DCFCE7] text-[#166534]";
+        iconApr.classList.remove('hidden');
+
+        title.textContent = "Tu empresa fue aprobada";
+        badge.textContent = "Aprobada";
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#DCFCE7] text-[#166534]";
+        desc.textContent = "Ya puedes continuar con el siguiente paso de tu expediente.";
+
+        secObs.classList.add('hidden');
+        btnApr.classList.remove('hidden');
+
+        // Línea de tiempo
+        step2Ind.className = "w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold mt-0.5";
+        step2Ind.textContent = "✓";
+        step2Title.className = "text-xs font-medium text-umb-carbon";
+        step2Desc.textContent = "Validación favorable";
+
+        step3Ind.className = "w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold mt-0.5";
+        step3Ind.textContent = "✓";
+        step3Title.className = "text-xs font-medium text-umb-carbon";
+        step3Desc.textContent = "Alta exitosa en catálogo";
+      } 
+      else if (estado === 'rechazada') {
+        tabRec.className = "px-2.5 py-1 rounded-md font-medium bg-[#FEE2E2] text-[#991B1B] shadow-xs";
+        container.className = "w-[72px] h-[72px] rounded-full flex items-center justify-center transition-all bg-[#FEE2E2] text-[#991B1B]";
+        iconRec.classList.remove('hidden');
+
+        title.textContent = "Tu empresa no fue aprobada";
+        badge.textContent = "No aprobada";
+        badge.className = "px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#FEE2E2] text-[#991B1B]";
+        desc.textContent = "Consulta las observaciones de Control Escolar y corrige la información para volver a enviarla.";
+
+        secObs.classList.remove('hidden');
+        btnRec.classList.remove('hidden');
+
+        // Línea de tiempo
+        step2Ind.className = "w-5 h-5 rounded-full bg-red-100 text-red-700 flex items-center justify-center text-xs font-bold mt-0.5";
+        step2Ind.textContent = "✕";
+        step2Title.className = "text-xs font-medium text-[#991B1B]";
+        step2Desc.textContent = "Con observaciones";
+
+        step3Ind.className = "w-5 h-5 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center text-xs font-bold mt-0.5";
+        step3Ind.textContent = "3";
+        step3Title.className = "text-xs font-medium text-umb-outline";
+        step3Desc.textContent = "En espera de corrección";
+      }
+    }
+  </script>
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

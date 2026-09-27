@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-umb-surface" lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supervisión de riesgo — Coordinación SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col bg-umb-surface text-slate-800">
+<!-- BEGIN: TopAppBar -->
+<!-- APP BAR SUPERIOR CANÓNICA (64px) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <a href="01-dashboard-monitoreo.html" class="flex items-center gap-2.5 group">
+        <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
+          <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-base tracking-tight text-white leading-none">SIGRES-UMB</span>
+          <span class="text-[11px] text-white/80 leading-tight mt-0.5 hidden sm:block">UES San José del Rincón</span>
+        </div>
+      </a>
+      <div class="hidden sm:block h-6 w-px bg-white/20"></div>
+      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
+        <span class="font-medium text-white/90">Coordinación</span>
+        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+        <span class="text-white font-semibold">Supervisión de riesgo</span>
+      </div>
+    </div>
+
+    <!-- Derecha: Notificaciones + Avatar Usuario -->
+    <div class="flex items-center gap-3 sm:gap-4">
+      <a href="../08-transversales/04-centro-notificaciones.html" class="relative p-2 rounded-full hover:bg-white/10 transition-colors text-white focus:outline-none focus:ring-2 focus:ring-white/40" title="Centro de notificaciones" aria-label="Notificaciones">
+        <span class="material-symbols-outlined text-[24px]">notifications</span>
+        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-umb-warning rounded-full ring-2 ring-umb-guinda"></span>
+      </a>
+      <div class="h-6 w-px bg-white/20"></div>
+      <a href="08-mi-perfil.html" class="flex items-center gap-2.5 hover:opacity-95 transition-opacity group">
+        <div class="w-8 h-8 rounded-full bg-white/20 ring-1 ring-white/40 flex items-center justify-center text-white font-bold text-xs">
+          LV
+        </div>
+        <div class="hidden md:flex flex-col text-right">
+          <span class="text-xs font-semibold text-white leading-tight">Mtro. Luis Ramón Vega</span>
+          <span class="text-[10px] text-white/75 leading-none">Coordinación</span>
+        </div>
+      </a>
+    </div>
+  </header>
+<!-- END: TopAppBar -->
+<!-- BEGIN: MainContainer -->
+<div class="flex-1 flex overflow-hidden">
+<!-- BEGIN: LeftSidebar -->
+<!-- SIDEBAR ESCRITORIO (260px) -->
+    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+      <div>
+        <!-- Ficha de usuario activa -->
+        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
+              LV
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-xs font-bold text-umb-carbon truncate">Mtro. Luis Ramón Vega Ramírez</p>
+              <p class="text-[11px] text-umb-outline truncate">Coordinador de UES</p>
+              <div class="mt-1">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Activo
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegación vertical -->
+        <nav class="space-y-1" aria-label="Navegación principal">
+          <a href="01-dashboard-monitoreo.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">monitoring</span>
+            <span class="text-sm">Monitoreo</span>
+          </a>
+          <a href="02-cohortes-carreras.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">school</span>
+            <span class="text-sm">Cohortes</span>
+          </a>
+          <a href="03-supervision-riesgo.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+            <span class="material-symbols-outlined text-[20px] fill">warning</span>
+            <span class="text-sm">Riesgos</span>
+          </a>
+          <a href="04-contingencias.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">support</span>
+            <span class="text-sm">Contingencias</span>
+          </a>
+          <a href="05-firma-cartas.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">draw</span>
+            <span class="text-sm">Firmas</span>
+          </a>
+          <a href="06-reportes-ejecutivos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">summarize</span>
+            <span class="text-sm">Reportes</span>
+          </a>
+          <a href="08-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span class="text-sm">Perfil</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Pie de navegación del sidebar -->
+      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span>Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          En línea
+        </span>
+      </div>
+    </aside>
+<!-- END: LeftSidebar -->
+<!-- BEGIN: MainContentArea -->
+<main class="flex-1 overflow-y-auto" data-purpose="supervision-dashboard">
+<div class="max-w-[1280px] mx-auto p-7 space-y-6">
+<!-- Miga de navegación -->
+<nav aria-label="Breadcrumb" class="flex items-center space-x-2 text-xs text-slate-500">
+<a class="hover:text-slate-700" href="#">Coordinación</a>
+<svg class="w-3.5 h-3.5 text-slate-400" fill="currentColor" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" fill-rule="evenodd"></path>
+</svg>
+<span class="text-slate-800 font-medium">Supervisión de riesgo</span>
+</nav>
+<!-- Encabezado de Página -->
+<header class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+<div>
+<h1 class="text-2xl font-bold text-slate-900 tracking-tight">Supervisión de riesgo</h1>
+<p class="text-sm text-slate-500 mt-0.5">Estudiantes con asistencia menor al 80% o rezago crítico de horas.</p>
+</div>
+<!-- Badges y Botón de Acción -->
+<div class="flex items-center flex-wrap gap-3">
+<div class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#FEE2E2] text-[#991B1B] border border-[#FCA5A5] shadow-sm">
+<span class="w-2 h-2 mr-2 bg-[#DC2626] rounded-full animate-pulse"></span>
+              8 estudiantes en riesgo
+            </div>
+<button class="inline-flex items-center px-4 py-2 text-xs font-semibold rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-slate-300" type="button">
+<svg class="w-4 h-4 mr-1.5 text-slate-500" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+              Exportar relación de riesgo
+            </button>
+</div>
+</header>
+<!-- BEGIN: RiskSummaryCards -->
+<!-- SECCIÓN 1: Grid de 3 tarjetas de KPI -->
+<section aria-label="Resumen de tipos de riesgo" class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Tarjeta 1: Riesgo Crítico -->
+<article class="bg-white rounded-xl p-5 border-l-4 border-l-[#DC2626] border border-slate-200 shadow-sm hover:shadow transition-shadow flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<div class="w-9 h-9 rounded-lg bg-red-100 flex items-center justify-center text-[#DC2626]">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<span class="px-2 py-0.5 text-[11px] font-semibold bg-red-50 text-red-700 border border-red-200 rounded-full">
+                  Intervención urgente
+                </span>
+</div>
+<h2 class="text-xs font-semibold text-slate-600 uppercase tracking-wide">Riesgo crítico (asistencia &lt;80%)</h2>
+<div class="text-3xl font-bold text-[#991B1B] mt-1 mb-2">4 estudiantes</div>
+<p class="text-xs text-slate-500 leading-relaxed">
+                Incumplimiento del umbral mínimo institucional reglamentario de asistencia (80%).
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-medium text-red-600 flex items-center">
+<span>Requieren citatorio formal inmediato</span>
+</div>
+</article>
+<!-- Tarjeta 2: Riesgo Moderado -->
+<article class="bg-white rounded-xl p-5 border-l-4 border-l-[#D97706] border border-slate-200 shadow-sm hover:shadow transition-shadow flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<div class="w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center text-[#D97706]">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<span class="px-2 py-0.5 text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200 rounded-full">
+                  Acompañamiento preventivo
+                </span>
+</div>
+<h2 class="text-xs font-semibold text-slate-600 uppercase tracking-wide">Riesgo moderado (rezago de horas)</h2>
+<div class="text-3xl font-bold text-[#D97706] mt-1 mb-2">4 estudiantes</div>
+<p class="text-xs text-slate-500 leading-relaxed">
+                Avance menor a 260 hrs en la semana 9 de 16 lectivas reglamentarias.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-medium text-amber-700 flex items-center">
+<span>Programar recordatorio preventivo</span>
+</div>
+</article>
+<!-- Tarjeta 3: Riesgo de Contingencia -->
+<article class="bg-white rounded-xl p-5 border-l-4 border-l-[#4F46E5] border border-slate-200 shadow-sm hover:shadow transition-shadow flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3">
+<div class="w-9 h-9 rounded-lg bg-indigo-100 flex items-center justify-center text-[#4F46E5]">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<span class="px-2 py-0.5 text-[11px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-full">
+                  En seguimiento
+                </span>
+</div>
+<h2 class="text-xs font-semibold text-slate-600 uppercase tracking-wide">Riesgo de contingencia</h2>
+<div class="text-3xl font-bold text-[#4F46E5] mt-1 mb-2">1 estudiante</div>
+<p class="text-xs text-slate-500 leading-relaxed">
+                Estudiante en proceso de reubicación por reestructuración en empresa receptora.
+              </p>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-100 text-[11px] font-medium text-indigo-600 flex items-center">
+<span>Convenio en revisión jurídica</span>
+</div>
+</article>
+</section>
+<!-- END: RiskSummaryCards -->
+<!-- BEGIN: RiskStudentTableSection -->
+<!-- SECCIÓN 2: Lista detallada de estudiantes en riesgo -->
+<section aria-label="Tabla de estudiantes en riesgo" class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+<!-- Barra de Búsqueda y Filtros de la Tabla -->
+<div class="p-4 sm:p-5 border-b border-slate-200 bg-slate-50/40 space-y-3">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+<!-- Buscador -->
+<div class="relative flex-1 max-w-md">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<input class="w-full pl-9 pr-3 py-1.5 bg-white border border-slate-300 rounded-lg text-xs placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:border-transparent" placeholder="Buscar por estudiante, matrícula o asesor..." type="text"/>
+</div>
+<!-- Selector de Ordenación -->
+<div class="flex items-center space-x-2">
+<span class="text-xs text-slate-500 whitespace-nowrap">Ordenar por:</span>
+<select class="text-xs border-slate-300 rounded-lg py-1.5 pl-2.5 pr-8 bg-white focus:outline-none focus:ring-2 focus:ring-umb-guinda">
+<option selected="">Severidad de riesgo (Críticos primero)</option>
+<option>Menor porcentaje de asistencia</option>
+<option>Menor horas acumuladas</option>
+<option>Apellidos (A-Z)</option>
+</select>
+</div>
+</div>
+<!-- Chips de Filtrado Rápido -->
+<div class="flex items-center flex-wrap gap-2 pt-1">
+<button class="px-3 py-1 rounded-full text-xs font-semibold bg-umb-guinda text-white shadow-xs" type="button">
+                Todos (8)
+              </button>
+<button class="px-3 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800 hover:bg-red-200 transition-colors" type="button">
+                Críticos (4)
+              </button>
+<button class="px-3 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 hover:bg-amber-200 transition-colors" type="button">
+                Moderados (4)
+              </button>
+<span class="h-4 w-px bg-slate-300 mx-1"></span>
+<button class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors" type="button">
+                ISC (3)
+              </button>
+<button class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors" type="button">
+                IIAS (3)
+              </button>
+<button class="px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors" type="button">
+                LCONT (2)
+              </button>
+</div>
+</div>
+<!-- Tabla de Datos -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse text-xs">
+<thead>
+<tr class="bg-slate-100/75 border-b border-slate-200 text-slate-600 font-semibold uppercase tracking-wider text-[11px]">
+<th class="py-3 px-4">Estudiante</th>
+<th class="py-3 px-3">Carrera</th>
+<th class="py-3 px-4">Motivo del riesgo</th>
+<th class="py-3 px-3">Semáforo</th>
+<th class="py-3 px-4">Última acción</th>
+<th class="py-3 px-4 text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200/80">
+<!-- FILA 1: Rodrigo Mendoza Bautista (Crítico) -->
+<tr class="hover:bg-red-50/30 transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                        RM
+                      </div>
+<div>
+<div class="font-semibold text-slate-900">Rodrigo Mendoza Bautista</div>
+<div class="text-slate-500 text-[11px] flex items-center space-x-1.5">
+<span class="font-mono">13200091</span>
+<span>•</span>
+<span class="text-slate-600">Asesor: I.S.C. Leonardo Becerril Sánchez</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-block px-2.5 py-1 font-semibold rounded bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">
+                      ISC
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<span class="font-semibold text-red-700">Asistencia 75%</span>
+<span class="text-[10px] text-red-600 font-medium bg-red-100 px-1.5 py-0.2 rounded">(&lt;80% min)</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-24 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-red-600 h-full rounded-full" style="width: 28%"></div>
+</div>
+<span class="text-[11px] text-slate-600 font-medium">180 / 640 hrs (28%)</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-red-100 text-red-800 border border-red-200">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-red-600"></span>
+                      Crítico
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-1.5 text-slate-700">
+<svg class="w-3.5 h-3.5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="font-medium text-slate-800">Citatorio emitido 8 oct</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center space-x-1">
+<button class="px-2 py-1 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded font-medium transition-colors" title="Ver expediente" type="button">
+                        Expediente
+                      </button>
+<button class="px-2.5 py-1 bg-red-700 hover:bg-red-800 text-white rounded font-medium shadow-xs transition-colors" title="Emitir citatorio formal" type="button">
+                        Citatorio
+                      </button>
+<button class="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded" title="Contactar asesor institucional" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- FILA 2: Brenda Karina Soto (Crítico) -->
+<tr class="hover:bg-red-50/30 transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                        BS
+                      </div>
+<div>
+<div class="font-semibold text-slate-900">Brenda Karina Soto</div>
+<div class="text-slate-500 text-[11px] flex items-center space-x-1.5">
+<span class="font-mono">13210014</span>
+<span>•</span>
+<span class="text-slate-600">Asesor: L.C. Sergio Sánchez Sánchez</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-block px-2.5 py-1 font-semibold rounded bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">
+                      LCONT
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<span class="font-semibold text-red-700">Asistencia 78%</span>
+<span class="text-[10px] text-red-600 font-medium bg-red-100 px-1.5 py-0.2 rounded">(&lt;80% min)</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-24 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-red-600 h-full rounded-full" style="width: 30%"></div>
+</div>
+<span class="text-[11px] text-slate-600 font-medium">190 / 640 hrs (30%)</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-red-100 text-red-800 border border-red-200">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-red-600"></span>
+                      Crítico
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-1.5 text-slate-700">
+<svg class="w-3.5 h-3.5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-slate-700">Recordatorio 5 oct</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center space-x-1">
+<button class="px-2 py-1 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded font-medium transition-colors" type="button">
+                        Expediente
+                      </button>
+<button class="px-2.5 py-1 bg-red-700 hover:bg-red-800 text-white rounded font-medium shadow-xs transition-colors" type="button">
+                        Citatorio
+                      </button>
+<button class="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded" title="Contactar asesor institucional" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- FILA 3: Cristofer Piña Rodríguez (Crítico) -->
+<tr class="hover:bg-red-50/30 transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                        CM
+                      </div>
+<div>
+<div class="font-semibold text-slate-900">Cristofer Piña Rodríguez</div>
+<div class="text-slate-500 text-[11px] flex items-center space-x-1.5">
+<span class="font-mono">13200018</span>
+<span>•</span>
+<span class="text-slate-600">Asesor: Ing. Jesús Omar Espinoza Díaz</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-block px-2.5 py-1 font-semibold rounded bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">
+                      IIAS
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<span class="font-semibold text-red-700">Asistencia 78%</span>
+<span class="text-[10px] text-red-600 font-medium bg-red-100 px-1.5 py-0.2 rounded">(&lt;80% min)</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-24 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-red-600 h-full rounded-full" style="width: 30%"></div>
+</div>
+<span class="text-[11px] text-slate-600 font-medium">190 / 640 hrs (30%)</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-red-100 text-red-800 border border-red-200">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-red-600"></span>
+                      Crítico
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-1.5 text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+<span>Sin acciones previas</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center space-x-1">
+<button class="px-2 py-1 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded font-medium transition-colors" type="button">
+                        Expediente
+                      </button>
+<button class="px-2.5 py-1 bg-red-700 hover:bg-red-800 text-white rounded font-medium shadow-xs transition-colors" type="button">
+                        Citatorio
+                      </button>
+<button class="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded" title="Contactar asesor institucional" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- FILA 4: Daniel Benítez (Moderado) -->
+<tr class="hover:bg-amber-50/30 transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                        MC
+                      </div>
+<div>
+<div class="font-semibold text-slate-900">Daniel Benítez</div>
+<div class="text-slate-500 text-[11px] flex items-center space-x-1.5">
+<span class="font-mono">13190042</span>
+<span>•</span>
+<span class="text-slate-600">Asesor: L.C. Sergio Sánchez Sánchez</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-block px-2.5 py-1 font-semibold rounded bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">
+                      LCONT
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<span class="font-medium text-slate-700">Asistencia 82%</span>
+<span class="text-[10px] text-amber-700 font-medium bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200">Rezago de 80 hrs</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-24 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full" style="width: 37.5%"></div>
+</div>
+<span class="text-[11px] text-slate-600 font-medium">240 / 640 hrs (37.5%)</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-amber-500"></span>
+                      Moderado
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-1.5 text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+<span>Sin acciones previas</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center space-x-1">
+<button class="px-2 py-1 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded font-medium transition-colors" type="button">
+                        Expediente
+                      </button>
+<button class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white rounded font-medium shadow-xs transition-colors" type="button">
+                        Recordatorio
+                      </button>
+<button class="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded" title="Contactar asesor institucional" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- FILA 5: Emmanuel Sánchez Vilchis (Moderado) -->
+<tr class="hover:bg-amber-50/30 transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                        ES
+                      </div>
+<div>
+<div class="font-semibold text-slate-900">Emmanuel Sánchez Vilchis</div>
+<div class="text-slate-500 text-[11px] flex items-center space-x-1.5">
+<span class="font-mono">13210039</span>
+<span>•</span>
+<span class="text-slate-600">Asesor: Ing. Jesús Omar Espinoza Díaz</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-block px-2.5 py-1 font-semibold rounded bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">
+                      IIAS
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<span class="font-medium text-slate-700">Asistencia 85%</span>
+<span class="text-[10px] text-amber-700 font-medium bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200">Rezago de 110 hrs</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-24 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full" style="width: 33%"></div>
+</div>
+<span class="text-[11px] text-slate-600 font-medium">210 / 640 hrs (33%)</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-amber-500"></span>
+                      Moderado
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-1.5 text-slate-700">
+<svg class="w-3.5 h-3.5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Recordatorio 3 oct</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center space-x-1">
+<button class="px-2 py-1 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded font-medium transition-colors" type="button">
+                        Expediente
+                      </button>
+<button class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white rounded font-medium shadow-xs transition-colors" type="button">
+                        Recordatorio
+                      </button>
+<button class="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded" title="Contactar asesor institucional" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- FILA 6: Diana Laura Pérez Estrada (Moderado) -->
+<tr class="hover:bg-amber-50/30 transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                        DP
+                      </div>
+<div>
+<div class="font-semibold text-slate-900">Diana Laura Pérez Estrada</div>
+<div class="text-slate-500 text-[11px] flex items-center space-x-1.5">
+<span class="font-mono">13220076</span>
+<span>•</span>
+<span class="text-slate-600">Asesor: I.S.C. Leonardo Becerril Sánchez</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-block px-2.5 py-1 font-semibold rounded bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">
+                      ISC
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<span class="font-medium text-slate-700">Asistencia 87%</span>
+<span class="text-[10px] text-amber-700 font-medium bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200">Rezago de 70 hrs</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-24 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full" style="width: 39%"></div>
+</div>
+<span class="text-[11px] text-slate-600 font-medium">250 / 640 hrs (39%)</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-amber-500"></span>
+                      Moderado
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-1.5 text-slate-700">
+<svg class="w-3.5 h-3.5 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Revisión con asesor 6 oct</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center space-x-1">
+<button class="px-2 py-1 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded font-medium transition-colors" type="button">
+                        Expediente
+                      </button>
+<button class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white rounded font-medium shadow-xs transition-colors" type="button">
+                        Recordatorio
+                      </button>
+<button class="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded" title="Contactar asesor institucional" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- FILA 7: Jimena Cruz Garduño (Moderado) -->
+<tr class="hover:bg-amber-50/30 transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                        JC
+                      </div>
+<div>
+<div class="font-semibold text-slate-900">Jimena Cruz Garduño</div>
+<div class="text-slate-500 text-[11px] flex items-center space-x-1.5">
+<span class="font-mono">13210088</span>
+<span>•</span>
+<span class="text-slate-600">Asesor: Ing. Jesús Omar Espinoza Díaz</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-block px-2.5 py-1 font-semibold rounded bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">
+                      IIAS
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<span class="font-medium text-slate-700">Asistencia 84%</span>
+<span class="text-[10px] text-amber-700 font-medium bg-amber-50 px-1.5 py-0.2 rounded border border-amber-200">Rezago de 100 hrs</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-24 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full" style="width: 34%"></div>
+</div>
+<span class="text-[11px] text-slate-600 font-medium">220 / 640 hrs (34%)</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-amber-500"></span>
+                      Moderado
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-1.5 text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+<span>Sin acciones previas</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center space-x-1">
+<button class="px-2 py-1 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded font-medium transition-colors" type="button">
+                        Expediente
+                      </button>
+<button class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white rounded font-medium shadow-xs transition-colors" type="button">
+                        Recordatorio
+                      </button>
+<button class="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded" title="Contactar asesor institucional" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+<!-- FILA 8: Mateo Salgado Navarrete (Crítico) -->
+<tr class="hover:bg-red-50/30 transition-colors">
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                        MS
+                      </div>
+<div>
+<div class="font-semibold text-slate-900">Mateo Salgado Navarrete</div>
+<div class="text-slate-500 text-[11px] flex items-center space-x-1.5">
+<span class="font-mono">13200054</span>
+<span>•</span>
+<span class="text-slate-600">Asesor: I.S.C. Leonardo Becerril Sánchez</span>
+</div>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-block px-2.5 py-1 font-semibold rounded bg-slate-100 text-slate-700 border border-slate-200 text-[11px]">
+                      ISC
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<span class="font-semibold text-red-700">Asistencia 79%</span>
+<span class="text-[10px] text-red-600 font-medium bg-red-100 px-1.5 py-0.2 rounded">(&lt;80% min)</span>
+</div>
+<div class="flex items-center space-x-2">
+<div class="w-24 bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-red-600 h-full rounded-full" style="width: 29%"></div>
+</div>
+<span class="text-[11px] text-slate-600 font-medium">185 / 640 hrs (29%)</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-red-100 text-red-800 border border-red-200">
+<span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-red-600"></span>
+                      Crítico
+                    </span>
+</td>
+<td class="py-3.5 px-4">
+<div class="flex items-center space-x-1.5 text-slate-700">
+<svg class="w-3.5 h-3.5 text-slate-500 flex-shrink-0" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span>Llamada a empresa 7 oct</span>
+</div>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center space-x-1">
+<button class="px-2 py-1 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded font-medium transition-colors" type="button">
+                        Expediente
+                      </button>
+<button class="px-2.5 py-1 bg-red-700 hover:bg-red-800 text-white rounded font-medium shadow-xs transition-colors" type="button">
+                        Citatorio
+                      </button>
+<button class="p-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded" title="Contactar asesor institucional" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pie informativo de la tabla -->
+<div class="p-3.5 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+<div>Mostrando <span class="font-semibold text-slate-800">8</span> casos prioritarios de <span class="font-semibold text-slate-800">45</span> estudiantes registrados en la UES</div>
+<div class="mt-2 sm:mt-0 flex items-center space-x-4">
+<span class="flex items-center"><span class="w-2 h-2 rounded-full bg-red-600 mr-1.5"></span> Crítico: Asistencia &lt; 80%</span>
+<span class="flex items-center"><span class="w-2 h-2 rounded-full bg-amber-500 mr-1.5"></span> Moderado: Rezago &gt; 60 hrs</span>
+</div>
+</div>
+</section>
+<!-- END: RiskStudentTableSection -->
+<!-- BEGIN: BulkActionsPanel -->
+<!-- SECCIÓN 3: Panel de Acciones Masivas -->
+<section aria-label="Panel de acciones masivas" class="bg-[#FDF8F6] border border-amber-200/80 rounded-xl p-5 shadow-sm">
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
+<div class="space-y-1">
+<div class="flex items-center space-x-2">
+<span class="p-1 rounded bg-umb-guinda text-white">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</span>
+<h3 class="text-sm font-bold text-slate-900">Acciones masivas de intervención</h3>
+</div>
+<p class="text-xs text-slate-600">
+                Aplica resoluciones colectivas a las cohortes identificadas sin alterar sus expedientes individuales.
+              </p>
+<div class="pt-1">
+<a class="inline-flex items-center text-xs font-semibold text-umb-guinda hover:underline" href="#">
+<span>Ver plantilla oficial de citatorio normativo UMB</span>
+<svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</div>
+</div>
+<!-- Botones de Acción Masiva -->
+<div class="flex flex-wrap items-center gap-3">
+<!-- Enviar recordatorio a moderados -->
+<button class="inline-flex items-center px-4 py-2.5 rounded-lg border border-amber-300 bg-amber-50 text-amber-900 hover:bg-amber-100 font-semibold text-xs shadow-xs transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500" type="button">
+<svg class="w-4 h-4 mr-2 text-amber-700" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                Enviar recordatorio a todos los moderados (4)
+              </button>
+<!-- Emitir citatorios a críticos -->
+<button class="inline-flex items-center px-4 py-2.5 rounded-lg bg-umb-guinda hover:bg-[#521421] text-white font-semibold text-xs shadow transition-colors focus:outline-none focus:ring-2 focus:ring-umb-guinda focus:ring-offset-2" type="button">
+<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                Emitir citatorios a críticos (4)
+              </button>
+</div>
+</div>
+</section>
+<!-- END: BulkActionsPanel -->
+<!-- BEGIN: PageFooter -->
+<!-- Pie de página reglamentario institucional -->
+<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+</footer>
+<!-- END: PageFooter -->
+</div>
+</main>
+<!-- END: MainContentArea -->
+</div>
+<!-- END: MainContainer -->
+
+
+
+
+  <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
+  <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
+    <a href="01-dashboard-monitoreo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">monitoring</span>
+      <span class="text-[11px] font-medium mt-0.5">Monitoreo</span>
+    </a>
+    <a href="03-supervision-riesgo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda" aria-current="page">
+      <span class="material-symbols-outlined text-[22px] fill">warning</span>
+      <span class="text-[11px] font-semibold mt-0.5">Riesgos</span>
+    </a>
+    <a href="04-contingencias.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">support</span>
+      <span class="text-[11px] font-medium mt-0.5">Contingencias</span>
+    </a>
+    <a href="05-firma-cartas.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">draw</span>
+      <span class="text-[11px] font-medium mt-0.5">Firmas</span>
+    </a>
+    <a href="08-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">person</span>
+      <span class="text-[11px] font-medium mt-0.5">Perfil</span>
+    </a>
+  </nav>
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body></html>

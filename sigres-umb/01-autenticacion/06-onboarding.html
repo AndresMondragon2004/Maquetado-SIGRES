@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding de Estudiante — SIGRES-UMB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            umb: {
+              guinda: '#681B2B',
+              'guinda-dark': '#4F1420',
+              'guinda-light': '#F9F5F6',
+              dorado: '#9E773B',
+              'dorado-dark': '#7F5E2B',
+              'dorado-light': '#FEF3C7',
+              surface: '#F4F5F7',
+              card: '#FFFFFF',
+              border: '#E2E8F0',
+              carbon: '#1A1A1A',
+              muted: '#544244',
+              outline: '#877273',
+              success: '#2D8C4E',
+              warning: '#D69E2E',
+              danger: '#C53030',
+              info: '#2B6CB0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          borderRadius: {
+            card: '8px',
+            badge: '9999px',
+            modal: '12px'
+          },
+          boxShadow: {
+            card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
+            'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
+            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4F5F7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="bg-white text-textPrimary font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-umb-guinda selection:text-white">
+
+  <!-- BARRA SUPERIOR MÍNIMA INSTITUCIONAL -->
+  <header class="w-full border-b border-borderLight bg-white/95 backdrop-blur px-6 lg:px-12 py-3 flex items-center justify-between sticky top-0 z-30">
+    <div class="flex items-center gap-3">
+      <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-9 w-auto object-contain" />
+      <div class="h-5 w-px bg-borderLight"></div>
+      <span class="text-institutional-guinda font-semibold text-base tracking-tight">SIGRES-UMB</span>
+      <span class="hidden sm:inline-block text-xs font-medium text-textMuted bg-gray-50 px-2 py-0.5 rounded border border-gray-200">UES San José del Rincón</span>
+    </div>
+
+    <!-- BOTÓN SALTAR TOUR -->
+    <div>
+      <button onclick="goToStep(4)" class="inline-flex items-center gap-1 text-xs font-medium text-textMuted hover:text-institutional-guinda hover:bg-gray-50 px-3 py-1.5 rounded-lg transition-colors duration-150">
+        <span>Saltar tour</span>
+        <span class="material-symbols-outlined text-sm">skip_next</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- CONTENIDO CENTRAL PRINCIPAL -->
+  <main class="flex-1 flex flex-col items-center justify-center px-4 py-8 sm:py-12">
+    <div class="w-full max-w-[560px]">
+
+      <!-- TARJETA DEL ONBOARDING -->
+      <section class="bg-white rounded-2xl border border-borderLight shadow-[0_12px_36px_rgba(0,0,0,0.06)] p-6 sm:p-10 flex flex-col relative overflow-hidden">
+        
+        <!-- DECORACIÓN DE FONDO SUTIL -->
+        <div class="absolute -top-24 -right-24 w-48 h-48 rounded-full bg-institutional-guinda-light/20 blur-3xl pointer-events-none"></div>
+
+        <!-- PASO 1: BIENVENIDA -->
+        <div id="step-1" class="step-content flex flex-col items-center text-center">
+          <!-- Ícono circular -->
+          <div class="w-20 h-20 rounded-full bg-institutional-guinda-light flex items-center justify-center mb-6 text-institutional-guinda shadow-inner">
+            <span class="material-symbols-outlined text-[44px]">school</span>
+          </div>
+
+          <!-- Título y descripción -->
+          <h1 class="text-xl sm:text-2xl font-semibold text-textPrimary tracking-tight mb-2">
+            Te damos la bienvenida a SIGRES-UMB
+          </h1>
+          <p class="text-sm text-textSecondary leading-relaxed mb-6 max-w-[430px]">
+            Aquí gestionarás todo el ciclo de tu residencia profesional: desde la solicitud inicial hasta tu liberación.
+          </p>
+
+          <!-- Lista de bullets con checks -->
+          <div class="w-full bg-[#FAFAFA] border border-borderLight/80 rounded-xl p-4 sm:p-5 text-left mb-2 space-y-3">
+            <div class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-[#2D8C4E] text-xl flex-shrink-0 mt-0.5">check_circle</span>
+              <div>
+                <p class="text-sm font-medium text-textPrimary">Registra tus bitácoras semanales</p>
+                <p class="text-xs text-textMuted">Acumula 35 horas por período semanal y adjunta tus evidencias.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-[#2D8C4E] text-xl flex-shrink-0 mt-0.5">check_circle</span>
+              <div>
+                <p class="text-sm font-medium text-textPrimary">Da seguimiento a tus horas acumuladas</p>
+                <p class="text-xs text-textMuted">Monitoreo continuo en tiempo real validado por tu asesor interno.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="material-symbols-outlined text-[#2D8C4E] text-xl flex-shrink-0 mt-0.5">check_circle</span>
+              <div>
+                <p class="text-sm font-medium text-textPrimary">Sube tus informes parcial y final</p>
+                <p class="text-xs text-textMuted">Entrega formal de evidencias académicas al alcanzar tus hitos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 2: TU EXPEDIENTE -->
+        <div id="step-2" class="step-content hidden flex flex-col items-center text-center">
+          <div class="w-20 h-20 rounded-full bg-institutional-guinda-light flex items-center justify-center mb-6 text-institutional-guinda shadow-inner">
+            <span class="material-symbols-outlined text-[44px]">folder_open</span>
+          </div>
+
+          <h2 class="text-xl sm:text-2xl font-semibold text-textPrimary tracking-tight mb-2">
+            Tu expediente digital
+          </h2>
+          <p class="text-sm text-textSecondary leading-relaxed mb-6 max-w-[430px]">
+            Carga tus 7 documentos obligatorios desde la plataforma y consulta su estado de validación en tiempo real.
+          </p>
+
+          <!-- Mini preview de documentos -->
+          <div class="w-full bg-[#FAFAFA] border border-borderLight/80 rounded-xl p-4 sm:p-5 text-left mb-2 space-y-2.5">
+            <!-- Doc 1: Validado/Recibido -->
+            <div class="flex items-center justify-between bg-white px-3.5 py-2.5 rounded-lg border border-borderLight">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-textMuted text-lg">description</span>
+                <div>
+                  <p class="text-xs font-medium text-textPrimary">Carta de aceptación institucional</p>
+                  <p class="text-[11px] text-textMuted">PDF oficial firmado y sellado</p>
+                </div>
+              </div>
+              <span class="inline-flex items-center gap-1 bg-green-50 text-[#2D8C4E] border border-green-200 text-[11px] font-medium px-2 py-0.5 rounded-full">
+                <span class="material-symbols-outlined text-[13px]">check</span>
+                <span>Recibido</span>
+              </span>
+            </div>
+
+            <!-- Doc 2: Pendiente -->
+            <div class="flex items-center justify-between bg-white px-3.5 py-2.5 rounded-lg border border-borderLight">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-textMuted text-lg">description</span>
+                <div>
+                  <p class="text-xs font-medium text-textPrimary">Cronograma preliminar de actividades</p>
+                  <p class="text-[11px] text-textMuted">Aprobación por asesor externo</p>
+                </div>
+              </div>
+              <span class="inline-flex items-center gap-1 bg-amber-50 text-[#B45309] border border-amber-200 text-[11px] font-medium px-2 py-0.5 rounded-full">
+                <span class="material-symbols-outlined text-[13px]">schedule</span>
+                <span>Pendiente</span>
+              </span>
+            </div>
+
+            <!-- Doc 3: Rechazado -->
+            <div class="flex items-center justify-between bg-white px-3.5 py-2.5 rounded-lg border border-borderLight">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-textMuted text-lg">description</span>
+                <div>
+                  <p class="text-xs font-medium text-textPrimary">Seguro facultativo vigente</p>
+                  <p class="text-[11px] text-red-500">Documento poco legible o vencido</p>
+                </div>
+              </div>
+              <span class="inline-flex items-center gap-1 bg-red-50 text-[#C53030] border border-red-200 text-[11px] font-medium px-2 py-0.5 rounded-full">
+                <span class="material-symbols-outlined text-[13px]">error</span>
+                <span>Rechazado</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 3: TUS BITÁCORAS SEMANALES -->
+        <div id="step-3" class="step-content hidden flex flex-col items-center text-center">
+          <div class="w-20 h-20 rounded-full bg-institutional-guinda-light flex items-center justify-center mb-6 text-institutional-guinda shadow-inner">
+            <span class="material-symbols-outlined text-[44px]">menu_book</span>
+          </div>
+
+          <h2 class="text-xl sm:text-2xl font-semibold text-textPrimary tracking-tight mb-2">
+            Registra tus bitácoras
+          </h2>
+          <p class="text-sm text-textSecondary leading-relaxed mb-6 max-w-[430px]">
+            Captura tus actividades semanales en un solo formulario concentrado de 35 horas y adjunta las evidencias correspondientes.
+          </p>
+
+          <!-- Mini mockup de bitácora -->
+          <div class="w-full bg-[#FAFAFA] border border-borderLight/80 rounded-xl p-4 sm:p-5 text-left mb-2">
+            <div class="bg-white p-3.5 rounded-lg border border-borderLight shadow-sm space-y-3">
+              <!-- Encabezado bitácora -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-semibold text-textPrimary">Semana 03 · Desarrollo de módulos</span>
+                  <p class="text-[11px] text-textMuted">Período del 16 al 20 de septiembre</p>
+                </div>
+                <span class="bg-purple-50 text-purple-700 border border-purple-200 text-[11px] font-medium px-2 py-0.5 rounded">
+                  En revisión
+                </span>
+              </div>
+
+              <!-- Barra de progreso 35/35 hrs -->
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs">
+                  <span class="text-textSecondary">Horas cubiertas de la semana:</span>
+                  <span class="font-semibold text-institutional-guinda">35 / 35 hrs</span>
+                </div>
+                <div class="w-full bg-gray-100 h-2.5 rounded-full overflow-hidden">
+                  <div class="bg-institutional-guinda h-full rounded-full w-full"></div>
+                </div>
+              </div>
+
+              <!-- Tags de evidencia -->
+              <div class="flex items-center gap-2 pt-1">
+                <span class="inline-flex items-center gap-1 text-[11px] bg-gray-100 text-textSecondary px-2 py-0.5 rounded">
+                  <span class="material-symbols-outlined text-[13px]">attachment</span>
+                  <span>2 archivos anexos</span>
+                </span>
+                <span class="inline-flex items-center gap-1 text-[11px] bg-green-50 text-[#2D8C4E] px-2 py-0.5 rounded">
+                  <span class="material-symbols-outlined text-[13px]">check</span>
+                  <span>Firma digital adjunta</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PASO 4: TUS HITOS -->
+        <div id="step-4" class="step-content hidden flex flex-col items-center text-center">
+          <div class="w-20 h-20 rounded-full bg-institutional-guinda-light flex items-center justify-center mb-6 text-institutional-guinda shadow-inner">
+            <span class="material-symbols-outlined text-[44px]">flag</span>
+          </div>
+
+          <h2 class="text-xl sm:text-2xl font-semibold text-textPrimary tracking-tight mb-2">
+            No pierdas de vista tus hitos
+          </h2>
+          <p class="text-sm text-textSecondary leading-relaxed mb-6 max-w-[430px]">
+            El sistema te avisará cuando alcances las 320 y 640 horas para habilitar tus informes.
+          </p>
+
+          <!-- Línea de tiempo visual -->
+          <div class="w-full bg-[#FAFAFA] border border-borderLight/80 rounded-xl p-5 text-left mb-2">
+            <div class="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-borderLight">
+              
+              <!-- Hito 1: 320 hrs -->
+              <div class="relative">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-white border-2 border-[#D69E2E] flex items-center justify-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-[#D69E2E]"></div>
+                </div>
+                <div class="bg-white p-3 rounded-lg border border-borderLight">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-textPrimary">320h · Informe parcial</span>
+                    <span class="text-[10px] uppercase font-bold text-[#D69E2E] bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">50% avance</span>
+                  </div>
+                  <p class="text-[11px] text-textSecondary mt-0.5">Se habilita el formato de reporte intermedio y evaluación preliminar de tu asesor.</p>
+                </div>
+              </div>
+
+              <!-- Hito 2: 640 hrs -->
+              <div class="relative">
+                <div class="absolute -left-6 top-0.5 w-5 h-5 rounded-full bg-white border-2 border-institutional-guinda flex items-center justify-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-institutional-guinda"></div>
+                </div>
+                <div class="bg-white p-3 rounded-lg border border-borderLight">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-textPrimary">640h · Informe final</span>
+                    <span class="text-[10px] uppercase font-bold text-institutional-guinda bg-pink-50 px-1.5 py-0.5 rounded border border-pink-200">100% liberación</span>
+                  </div>
+                  <p class="text-[11px] text-textSecondary mt-0.5">Cierre de residencia, entrega de memoria técnica y trámite de carta de término.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- INDICADORES DE PROGRESO Y CONTROLES DE NAVEGACIÓN -->
+        <div class="mt-6 pt-5 border-t border-borderLight/60 flex flex-col items-center">
+          <!-- Indicadores de 4 puntos -->
+          <div class="flex items-center gap-2 mb-6" id="dots-container">
+            <button onclick="goToStep(1)" aria-label="Ir al paso 1" class="w-2.5 h-2.5 rounded-full bg-institutional-guinda transition-all duration-200 dot-indicator" id="dot-1"></button>
+            <button onclick="goToStep(2)" aria-label="Ir al paso 2" class="w-2.5 h-2.5 rounded-full bg-borderLight transition-all duration-200 dot-indicator" id="dot-2"></button>
+            <button onclick="goToStep(3)" aria-label="Ir al paso 3" class="w-2.5 h-2.5 rounded-full bg-borderLight transition-all duration-200 dot-indicator" id="dot-3"></button>
+            <button onclick="goToStep(4)" aria-label="Ir al paso 4" class="w-2.5 h-2.5 rounded-full bg-borderLight transition-all duration-200 dot-indicator" id="dot-4"></button>
+          </div>
+
+          <!-- Botones de acción -->
+          <div class="w-full space-y-2.5">
+            <!-- Botón primario de avance -->
+            <button id="btn-primary" onclick="nextStep()" class="w-full h-11 bg-institutional-guinda hover:bg-institutional-guinda-hover text-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition-all duration-150 flex items-center justify-center gap-2">
+              <span id="btn-text">Siguiente</span>
+              <span class="material-symbols-outlined text-lg" id="btn-icon">arrow_forward</span>
+            </button>
+
+            <!-- Botón secundario anterior (oculto en paso 1) -->
+            <button id="btn-secondary" onclick="prevStep()" class="hidden w-full h-10 text-textMuted hover:text-textPrimary text-xs font-medium rounded-lg transition-colors duration-150 flex items-center justify-center gap-1">
+              <span class="material-symbols-outlined text-base">arrow_back</span>
+              <span>Anterior</span>
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- TARJETA DE ASISTENCIA / AYUDA ADICIONAL -->
+      <div class="mt-6 text-center">
+        <p class="text-xs text-textSecondary">
+          ¿Necesitas ayuda durante el proceso? 
+          <a href="#" class="text-institutional-guinda font-medium hover:underline inline-flex items-center gap-0.5">
+            Consulta la Guía del Residente UMB
+            <span class="material-symbols-outlined text-xs">open_in_new</span>
+          </a>
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER INSTITUCIONAL DISCRETO -->
+  <footer class="w-full py-4 text-center border-t border-borderLight bg-white">
+    <p class="text-[11px] text-textMuted">
+      SIGRES-UMB · Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1
+    </p>
+  </footer>
+
+  <!-- SCRIPT DE NAVEGACIÓN ENTRE PASOS -->
+  <script>
+    let currentStep = 1;
+    const totalSteps = 4;
+
+    function updateView() {
+      // Ocultar todos los pasos
+      for (let i = 1; i <= totalSteps; i++) {
+        const stepEl = document.getElementById(`step-${i}`);
+        const dotEl = document.getElementById(`dot-${i}`);
+        if (i === currentStep) {
+          stepEl.classList.remove('hidden');
+          dotEl.classList.remove('bg-borderLight');
+          dotEl.classList.add('bg-institutional-guinda', 'w-6');
+        } else {
+          stepEl.classList.add('hidden');
+          dotEl.classList.add('bg-borderLight');
+          dotEl.classList.remove('bg-institutional-guinda', 'w-6');
+        }
+      }
+
+      // Actualizar botón secundario
+      const btnSecondary = document.getElementById('btn-secondary');
+      if (currentStep === 1) {
+        btnSecondary.classList.add('hidden');
+      } else {
+        btnSecondary.classList.remove('hidden');
+      }
+
+      // Actualizar botón primario
+      const btnText = document.getElementById('btn-text');
+      const btnIcon = document.getElementById('btn-icon');
+      if (currentStep === totalSteps) {
+        btnText.textContent = 'Comenzar';
+        btnIcon.textContent = 'rocket_launch';
+      } else {
+        btnText.textContent = 'Siguiente';
+        btnIcon.textContent = 'arrow_forward';
+      }
+    }
+
+    function nextStep() {
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateView();
+      } else {
+        // En el último paso, redirige o confirma el inicio
+        alert('¡Bienvenido! Has completado el tour. Ingresando al panel principal de SIGRES-UMB.');
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        updateView();
+      }
+    }
+
+    function goToStep(step) {
+      if (step >= 1 && step <= totalSteps) {
+        currentStep = step;
+        updateView();
+      }
+    }
+
+    // Inicializar visualización
+    updateView();
+  </script>
+
+
+
+
+<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+    <span>Ir al portal</span>
+  </a>
+</aside>
+</body>
+</html>

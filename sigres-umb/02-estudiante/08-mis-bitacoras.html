@@ -79,9 +79,8 @@
 <body class="min-h-screen bg-umb-surface flex flex-col">
 
   <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
-    <!-- APP BAR SUPERIOR CANÓNICA (64px) CON NOTIFICACIONES PERSONALIZADAS -->
-  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
-    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
+<header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb (Inicio / Apartado) -->
     <div class="flex items-center gap-3 md:gap-4">
       <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
         <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
@@ -93,10 +92,13 @@
         </div>
       </a>
       <div class="hidden sm:block h-6 w-px bg-white/20"></div>
-      <div class="hidden lg:flex items-center text-xs text-white/80 ml-2 gap-1.5">
-        <span class="font-medium text-white/90">Estudiante</span>
-        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
-        <span class="text-white font-semibold">Mis bitácoras</span>
+      <div class="hidden sm:flex items-center text-xs text-white/80 ml-3 pl-3 border-l border-white/20 gap-1.5">
+        <a href="01-dashboard.html" class="hover:text-white hover:underline flex items-center gap-1 transition-colors text-white/90">
+          <span class="material-symbols-outlined text-[15px]">home</span>
+          <span>Inicio</span>
+        </a>
+        <span class="material-symbols-outlined text-[13px] text-white/60">chevron_right</span>
+        <span class="font-semibold text-white">Mis bitácoras</span>
       </div>
     </div>
 

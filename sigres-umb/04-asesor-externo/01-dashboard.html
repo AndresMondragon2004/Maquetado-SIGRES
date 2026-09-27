@@ -266,6 +266,39 @@
 <!-- Contenedor dinámico de widgets, kpis y listas de aprobación -->
 <main class="flex-1 lg:ml-[260px] pb-24 lg:pb-12 px-4 sm:px-6 lg:px-8 pt-6 min-w-0">
 <div class="max-w-[1280px] mx-auto space-y-6">
+        <!-- BANNER DE NOTIFICACIÓN PUSH INSTITUCIONAL INTERACTIVO -->
+        <section class="rounded-xl border bg-amber-50 border-amber-200 text-amber-900 p-4 sm:p-5 shadow-card transition-all hover:shadow-card-hover relative overflow-hidden" id="pushNotificationBanner">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            
+            <div class="flex items-start sm:items-center gap-3.5 flex-1 min-w-0">
+              <div class="w-10 h-10 rounded-xl text-amber-700 bg-white border border-amber-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                <span class="material-symbols-outlined text-[22px]">pending_actions</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border bg-amber-100 text-amber-800 border-amber-300">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1 animate-pulse"></span>
+                    Notificación Push Empresarial
+                  </span>
+                </div>
+                <h3 class="text-sm font-bold tracking-tight text-umb-carbon leading-snug">Bitácora semanal #6 lista para tu firma y validación</h3>
+                <p class="text-xs mt-0.5 text-umb-muted leading-relaxed">El residente <strong>Jesús Andrés Mondragón Tenorio</strong> ha reportado 35 horas de avance en la Dirección Académica UMB durante la presente semana.</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 self-end sm:self-center flex-shrink-0">
+              <button type="button" onclick="openPushModal()" class="h-9 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-sm transition-all flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-umb-guinda">
+                <span class="material-symbols-outlined text-[16px]">visibility</span>
+                <span>Validar bitácora</span>
+              </button>
+              <button type="button" onclick="dismissPushBanner()" class="h-9 w-9 rounded-lg bg-white/80 hover:bg-white text-umb-outline hover:text-umb-carbon border border-umb-border flex items-center justify-center transition-colors" title="Descartar notificación" aria-label="Cerrar notificación">
+                <span class="material-symbols-outlined text-[18px]">close</span>
+              </button>
+            </div>
+
+          </div>
+        </section>
+
 <!-- BEGIN: WelcomeHeader -->
 <!-- Cabecera de bienvenida con estado de enlace y periodo -->
 <section class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white p-5 rounded-xl border border-umb-border shadow-sm" data-purpose="welcome-panel">
@@ -716,4 +749,99 @@
     <span>Ir al portal</span>
   </a>
 </aside>
+
+  <!-- MODAL DE NOTIFICACIÓN PUSH DETALLADA -->
+  <div id="pushNotificationModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-150" aria-modal="true" role="dialog">
+    <div class="bg-white rounded-xl shadow-modal max-w-lg w-full overflow-hidden border border-umb-border animate-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
+      
+      <!-- Encabezado del Modal -->
+      <div class="p-4 sm:p-5 bg-gradient-to-r from-umb-surface to-white border-b border-umb-border flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg text-amber-700 bg-amber-100 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[22px]">draw</span>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-umb-dorado">Detalle de Notificación Push</span>
+            <h3 class="text-sm font-bold text-umb-carbon leading-tight">Validación de Bitácora Semanal</h3>
+          </div>
+        </div>
+        <button type="button" onclick="closePushModal()" class="w-8 h-8 rounded-lg text-umb-outline hover:text-umb-carbon hover:bg-umb-surface flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <!-- Cuerpo del Modal -->
+      <div class="p-5">
+
+          <div class="space-y-4 text-xs text-umb-carbon">
+            <div class="p-3.5 rounded-lg bg-amber-50/70 border border-amber-200 flex items-center gap-3">
+              <span class="material-symbols-outlined text-amber-700 text-[24px]">menu_book</span>
+              <div>
+                <p class="font-bold text-amber-900 text-sm">Bitácora #6 · Semana 6 (35 horas)</p>
+                <p class="text-amber-800 text-[11px] mt-0.5">Periodo: 21 al 25 de septiembre de 2026</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 p-3.5 rounded-lg bg-umb-surface border border-umb-border">
+              <div>
+                <p class="text-[10px] text-umb-outline uppercase font-semibold">Residente Asignado</p>
+                <p class="font-bold text-umb-carbon mt-0.5">Jesús Andrés Mondragón Tenorio</p>
+                <p class="text-[11px] text-umb-muted">Matrícula: 13220024 · ISC</p>
+              </div>
+              <div>
+                <p class="text-[10px] text-umb-outline uppercase font-semibold">Sede de Residencia</p>
+                <p class="font-bold text-umb-carbon mt-0.5">Dirección Académica UMB</p>
+                <p class="text-[11px] text-umb-muted">Total acumulado: 355 / 640 hrs</p>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+
+      <!-- Pie del Modal -->
+      <div class="p-4 bg-umb-surface/60 border-t border-umb-border flex items-center justify-end gap-2.5">
+        <button type="button" onclick="closePushModal()" class="h-10 px-4 rounded-lg bg-white border border-umb-border hover:bg-umb-surface text-umb-carbon font-medium text-xs transition-all">
+          Cerrar
+        </button>
+        <a href="02-bitacoras-por-validar.html" class="h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm"><span>Firmar y validar bitácora</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+      </div>
+
+    </div>
+  </div>
+  <!-- SCRIPT DE CONTROL PARA BANNER Y MODAL PUSH -->
+  <script>
+    function openPushModal() {
+      const modal = document.getElementById('pushNotificationModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closePushModal() {
+      const modal = document.getElementById('pushNotificationModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function dismissPushBanner() {
+      const banner = document.getElementById('pushNotificationBanner');
+      if (banner) {
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateY(-10px)';
+        banner.style.transition = 'all 0.3s ease';
+        setTimeout(() => banner.remove(), 300);
+      }
+    }
+
+    // Cerrar modal al hacer clic en el backdrop
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('pushNotificationModal');
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closePushModal();
+        });
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closePushModal();
+    });
+  </script>
 </body></html>

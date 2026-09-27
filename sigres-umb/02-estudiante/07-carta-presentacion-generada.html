@@ -639,5 +639,108 @@
     <span>Ir al portal</span>
   </a>
 </aside>
+
+  <!-- MODAL DE NOTIFICACIÓN PUSH DETALLADA -->
+  <div id="pushNotificationModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-150" aria-modal="true" role="dialog">
+    <div class="bg-white rounded-xl shadow-modal max-w-lg w-full overflow-hidden border border-umb-border animate-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
+      
+      <!-- Encabezado del Modal -->
+      <div class="p-4 sm:p-5 bg-gradient-to-r from-umb-surface to-white border-b border-umb-border flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg text-emerald-700 bg-emerald-100 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[22px]">verified</span>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-umb-dorado">Detalle de Notificación Push</span>
+            <h3 class="text-sm font-bold text-umb-carbon leading-tight">Dictamen de Aprobación de Anteproyecto</h3>
+          </div>
+        </div>
+        <button type="button" onclick="closePushModal()" class="w-8 h-8 rounded-lg text-umb-outline hover:text-umb-carbon hover:bg-umb-surface flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <!-- Cuerpo del Modal -->
+      <div class="p-5">
+
+          <div class="space-y-4 text-xs text-umb-carbon">
+            <div class="p-3.5 rounded-lg bg-emerald-50/70 border border-emerald-200 flex items-center gap-3">
+              <span class="material-symbols-outlined text-emerald-700 text-[24px]">task_alt</span>
+              <div>
+                <p class="font-bold text-emerald-900 text-sm">Proyecto Aprobado y Avalado (Calificación: 100/100)</p>
+                <p class="text-emerald-800 text-[11px] mt-0.5">Dictamen emitido el 24 de septiembre de 2026 · Ciclo 26-27/1</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 p-3.5 rounded-lg bg-umb-surface border border-umb-border">
+              <div>
+                <p class="text-[10px] text-umb-outline uppercase font-semibold">Residente</p>
+                <p class="font-bold text-umb-carbon mt-0.5">Jesús Andrés Mondragón Tenorio</p>
+                <p class="text-[11px] text-umb-muted">Matrícula: 13220024 · ISC</p>
+              </div>
+              <div>
+                <p class="text-[10px] text-umb-outline uppercase font-semibold">Asesor Interno</p>
+                <p class="font-bold text-umb-carbon mt-0.5">I.S.C. Leonardo Becerril Sánchez</p>
+                <p class="text-[11px] text-umb-muted">Docente Asesor UMB</p>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-lg bg-white border border-umb-border">
+              <p class="text-[10px] text-umb-outline uppercase font-semibold">Empresa / Sede Receptora</p>
+              <p class="font-bold text-umb-carbon mt-0.5">Universidad Mexiquense del Bicentenario · Dirección Académica</p>
+              <p class="text-[11px] text-umb-muted mt-1 leading-relaxed">
+                <strong>Observaciones del Asesor:</strong> <em>"El anteproyecto cumple a cabalidad con las competencias del perfil de egreso de Ingeniería en Sistemas Computacionales. Se autoriza la prosecución del registro semanal de bitácoras."</em>
+              </p>
+            </div>
+          </div>
+        
+      </div>
+
+      <!-- Pie del Modal -->
+      <div class="p-4 bg-umb-surface/60 border-t border-umb-border flex items-center justify-end gap-2.5">
+        <button type="button" onclick="closePushModal()" class="h-10 px-4 rounded-lg bg-white border border-umb-border hover:bg-umb-surface text-umb-carbon font-medium text-xs transition-all">
+          Cerrar
+        </button>
+        <a href="08-mis-bitacoras.html" class="h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm"><span>Ir a mis bitácoras</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+      </div>
+
+    </div>
+  </div>
+  <!-- SCRIPT DE CONTROL PARA BANNER Y MODAL PUSH -->
+  <script>
+    function openPushModal() {
+      const modal = document.getElementById('pushNotificationModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closePushModal() {
+      const modal = document.getElementById('pushNotificationModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function dismissPushBanner() {
+      const banner = document.getElementById('pushNotificationBanner');
+      if (banner) {
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateY(-10px)';
+        banner.style.transition = 'all 0.3s ease';
+        setTimeout(() => banner.remove(), 300);
+      }
+    }
+
+    // Cerrar modal al hacer clic en el backdrop
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('pushNotificationModal');
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closePushModal();
+        });
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closePushModal();
+    });
+  </script>
 </body>
 </html>

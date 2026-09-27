@@ -948,4 +948,93 @@
     <span>Ir al portal</span>
   </a>
 </aside>
+
+  <!-- MODAL DE NOTIFICACIÓN PUSH DETALLADA -->
+  <div id="pushNotificationModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-150" aria-modal="true" role="dialog">
+    <div class="bg-white rounded-xl shadow-modal max-w-lg w-full overflow-hidden border border-umb-border animate-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
+      
+      <!-- Encabezado del Modal -->
+      <div class="p-4 sm:p-5 bg-gradient-to-r from-umb-surface to-white border-b border-umb-border flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg text-rose-700 bg-rose-100 flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-[22px]">crisis_alert</span>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-umb-dorado">Detalle de Notificación Push</span>
+            <h3 class="text-sm font-bold text-umb-carbon leading-tight">Supervisión Preventiva de Cohortes</h3>
+          </div>
+        </div>
+        <button type="button" onclick="closePushModal()" class="w-8 h-8 rounded-lg text-umb-outline hover:text-umb-carbon hover:bg-umb-surface flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <!-- Cuerpo del Modal -->
+      <div class="p-5">
+
+          <div class="space-y-4 text-xs text-umb-carbon">
+            <div class="p-3.5 rounded-lg bg-rose-50/70 border border-rose-200 flex items-center gap-3">
+              <span class="material-symbols-outlined text-rose-700 text-[24px]">warning</span>
+              <div>
+                <p class="font-bold text-rose-900 text-sm">Alerta Preventiva de Rezago</p>
+                <p class="text-rose-800 text-[11px] mt-0.5">Cohorte ISC Ciclo 26-27/1 · UES San José del Rincón</p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-lg bg-umb-surface border border-umb-border">
+              <p class="font-semibold text-umb-carbon">Acciones recomendadas:</p>
+              <p class="text-umb-muted text-[11px] mt-1 leading-relaxed">
+                1. Notificar a los asesores internos asignados.<br>
+                2. Realizar firma digital de las 4 cartas de presentación autorizadas.
+              </p>
+            </div>
+          </div>
+        
+      </div>
+
+      <!-- Pie del Modal -->
+      <div class="p-4 bg-umb-surface/60 border-t border-umb-border flex items-center justify-end gap-2.5">
+        <button type="button" onclick="closePushModal()" class="h-10 px-4 rounded-lg bg-white border border-umb-border hover:bg-umb-surface text-umb-carbon font-medium text-xs transition-all">
+          Cerrar
+        </button>
+        <a href="03-supervision-riesgo.html" class="h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm"><span>Abrir semáforo de riesgos</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+      </div>
+
+    </div>
+  </div>
+  <!-- SCRIPT DE CONTROL PARA BANNER Y MODAL PUSH -->
+  <script>
+    function openPushModal() {
+      const modal = document.getElementById('pushNotificationModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closePushModal() {
+      const modal = document.getElementById('pushNotificationModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function dismissPushBanner() {
+      const banner = document.getElementById('pushNotificationBanner');
+      if (banner) {
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateY(-10px)';
+        banner.style.transition = 'all 0.3s ease';
+        setTimeout(() => banner.remove(), 300);
+      }
+    }
+
+    // Cerrar modal al hacer clic en el backdrop
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('pushNotificationModal');
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closePushModal();
+        });
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closePushModal();
+    });
+  </script>
 </body></html>

@@ -281,7 +281,7 @@
             </div>
 
             <button class="inline-flex items-center space-x-1.5 text-xs font-medium text-umb-guinda hover:text-umb-guinda-dark hover:bg-umb-guinda/5 px-2.5 py-1.5 rounded-md transition-colors">
-              <i data-lucide="arrow-left" class="w-4 h-4"></i>
+              <span class="material-symbols-outlined text-[18px]">arrow_back</span>
               <span>Volver al alumno</span>
             </button>
           </div>
@@ -294,7 +294,7 @@
             </div>
             <div>
               <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-umb-guinda/10 text-umb-guinda border border-umb-guinda/20 shadow-xs">
-                <i data-lucide="clock" class="w-3.5 h-3.5 mr-1.5"></i>
+                <span class="material-symbols-outlined text-[15px] mr-1.5">schedule</span>
                 Semana 11
               </span>
             </div>
@@ -338,7 +338,7 @@
               <div class="flex items-center space-x-2 mt-0.5">
                 <span class="text-lg font-bold text-[#2D8C4E]">100%</span>
                 <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-[#DCFCE7] text-[#166534]">
-                  <i data-lucide="check" class="w-3 h-3 mr-0.5"></i> Cumple
+                  <span class="material-symbols-outlined text-[15px] mr-0.5">check</span> Cumple
                 </span>
               </div>
               <span class="text-[11px] text-umb-outline">10 de 10 sesiones</span>
@@ -353,7 +353,7 @@
           <!-- SECCIÓN 2 — DATOS DE LA SESIÓN -->
           <section class="bg-white rounded-xl p-6 shadow-xs border border-umb-border">
             <h3 class="text-base font-semibold text-umb-carbon mb-4 flex items-center space-x-2">
-              <i data-lucide="calendar-clock" class="w-4 h-4 text-umb-guinda"></i>
+              <span class="material-symbols-outlined text-[18px] text-umb-guinda">calendar_month</span>
               <span>Datos de la sesión</span>
             </h3>
 
@@ -394,7 +394,7 @@
           <!-- SECCIÓN 3 — MODALIDAD DE LA SESIÓN -->
           <section class="bg-white rounded-xl p-6 shadow-xs border border-umb-border">
             <h3 class="text-base font-semibold text-umb-carbon mb-4 flex items-center space-x-2">
-              <i data-lucide="video" class="w-4 h-4 text-umb-guinda"></i>
+              <span class="material-symbols-outlined text-[18px] text-umb-guinda">videocam</span>
               <span>Modalidad de la sesión</span>
             </h3>
 
@@ -404,7 +404,7 @@
               <label id="card-presencial" class="relative flex items-center p-4 border-2 border-umb-guinda bg-[#F9F5F6] rounded-xl cursor-pointer transition-all hover:shadow-xs">
                 <input type="radio" name="modalidad" value="presencial" checked class="sr-only" onchange="actualizarModalidad('presencial')">
                 <div class="w-10 h-10 rounded-lg bg-umb-guinda/10 text-umb-guinda flex items-center justify-center flex-shrink-0 mr-3.5">
-                  <i data-lucide="building-2" class="w-5 h-5"></i>
+                  <span class="material-symbols-outlined text-[20px]">apartment</span>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center justify-between">
@@ -421,7 +421,7 @@
               <label id="card-virtual" class="relative flex items-center p-4 border-2 border-umb-border bg-white rounded-xl cursor-pointer transition-all hover:border-neutral-300">
                 <input type="radio" name="modalidad" value="virtual" class="sr-only" onchange="actualizarModalidad('virtual')">
                 <div class="w-10 h-10 rounded-lg bg-neutral-100 text-umb-outline flex items-center justify-center flex-shrink-0 mr-3.5">
-                  <i data-lucide="video" class="w-5 h-5"></i>
+                  <span class="material-symbols-outlined text-[20px]">videocam</span>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center justify-between">
@@ -440,7 +440,7 @@
               <label for="input-lugar" class="block text-xs font-medium text-umb-muted">Lugar</label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-umb-outline">
-                  <i data-lucide="map-pin" class="w-4 h-4"></i>
+                  <span class="material-symbols-outlined text-[18px]">location_on</span>
                 </div>
                 <input type="text" id="input-lugar" value="Cubículo 4 · Edificio A"
                   class="w-full text-xs sm:text-sm font-medium text-umb-carbon bg-white border border-umb-border rounded-lg pl-9 pr-3.5 py-2.5 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all">
@@ -453,7 +453,7 @@
               <label for="input-enlace" class="block text-xs font-medium text-umb-muted">Enlace de la videollamada</label>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-umb-outline">
-                  <i data-lucide="link" class="w-4 h-4"></i>
+                  <span class="material-symbols-outlined text-[18px]">link</span>
                 </div>
                 <input type="url" id="input-enlace" value="https://teams.microsoft.com/l/meetup-join/sigres-umb-isc-asesoria"
                   class="w-full text-xs sm:text-sm font-medium text-umb-carbon bg-white border border-umb-border rounded-lg pl-9 pr-3.5 py-2.5 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all">
@@ -465,7 +465,7 @@
           <!-- SECCIÓN 4 — ASISTENCIA DEL ALUMNO -->
           <section class="bg-white rounded-xl p-6 shadow-xs border border-umb-border">
             <h3 class="text-base font-semibold text-umb-carbon mb-4 flex items-center space-x-2">
-              <i data-lucide="user-check" class="w-4 h-4 text-umb-guinda"></i>
+              <span class="material-symbols-outlined text-[18px] text-umb-guinda">how_to_reg</span>
               <span>Asistencia del alumno</span>
             </h3>
 
@@ -475,7 +475,7 @@
               <label id="card-asistio" class="relative flex items-center p-4 border-2 border-[#2D8C4E] bg-[#F0FDF4] rounded-xl cursor-pointer transition-all hover:shadow-xs">
                 <input type="radio" name="asistencia" value="asistio" checked class="sr-only" onchange="actualizarAsistencia('asistio')">
                 <div class="w-10 h-10 rounded-lg bg-[#2D8C4E]/10 text-[#2D8C4E] flex items-center justify-center flex-shrink-0 mr-3">
-                  <i data-lucide="check-circle" class="w-5 h-5"></i>
+                  <span class="material-symbols-outlined text-[20px]">check_circle</span>
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between">
@@ -492,7 +492,7 @@
               <label id="card-justificada" class="relative flex items-center p-4 border-2 border-umb-border bg-white rounded-xl cursor-pointer transition-all hover:border-neutral-300">
                 <input type="radio" name="asistencia" value="justificada" class="sr-only" onchange="actualizarAsistencia('justificada')">
                 <div class="w-10 h-10 rounded-lg bg-amber-50 text-[#D69E2E] flex items-center justify-center flex-shrink-0 mr-3">
-                  <i data-lucide="clock-alert" class="w-5 h-5"></i>
+                  <span class="material-symbols-outlined text-[20px]">schedule</span>
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between">
@@ -509,7 +509,7 @@
               <label id="card-falta" class="relative flex items-center p-4 border-2 border-umb-border bg-white rounded-xl cursor-pointer transition-all hover:border-neutral-300">
                 <input type="radio" name="asistencia" value="falta" class="sr-only" onchange="actualizarAsistencia('falta')">
                 <div class="w-10 h-10 rounded-lg bg-red-50 text-[#C53030] flex items-center justify-center flex-shrink-0 mr-3">
-                  <i data-lucide="x-circle" class="w-5 h-5"></i>
+                  <span class="material-symbols-outlined text-[20px]">cancel</span>
                 </div>
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between">
@@ -540,7 +540,7 @@
                 <div class="p-4 border-2 border-dashed border-umb-border rounded-xl bg-[#F9FAFB] flex flex-col sm:flex-row items-center justify-between gap-3">
                   <div class="flex items-center space-x-3">
                     <div class="w-9 h-9 rounded-lg bg-umb-guinda/10 text-umb-guinda flex items-center justify-center flex-shrink-0">
-                      <i data-lucide="paperclip" class="w-4 h-4"></i>
+                      <span class="material-symbols-outlined text-[18px]">attach_file</span>
                     </div>
                     <div>
                       <span class="text-xs font-medium text-umb-carbon">Documento probatorio oficial</span>
@@ -548,7 +548,7 @@
                     </div>
                   </div>
                   <button type="button" class="inline-flex items-center space-x-1.5 px-3 py-2 bg-white border border-umb-border hover:border-umb-guinda text-umb-guinda text-xs font-semibold rounded-lg transition-colors shadow-xs">
-                    <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                    <span class="material-symbols-outlined text-[15px]">upload</span>
                     <span>Adjuntar comprobante</span>
                   </button>
                 </div>
@@ -561,7 +561,7 @@
               <textarea id="observaciones-falta" rows="2" placeholder="Describe brevemente el contexto de la falta."
                 class="w-full text-xs sm:text-sm text-umb-carbon bg-white border border-umb-border rounded-lg p-3 focus:ring-2 focus:ring-umb-guinda focus:border-umb-guinda outline-none transition-all"></textarea>
               <div class="flex items-center space-x-1.5 text-[11px] text-[#92400E] bg-umb-dorado-light p-2.5 rounded-lg border border-[#FDE68A]">
-                <i data-lucide="alert-triangle" class="w-4 h-4 flex-shrink-0"></i>
+                <span class="material-symbols-outlined text-[18px] flex-shrink-0">warning</span>
                 <span class="italic">Al guardar, se enviará una notificación automática a Control Escolar y coordinación de carrera.</span>
               </div>
             </div>
@@ -571,7 +571,7 @@
           <section class="bg-white rounded-xl p-6 shadow-xs border border-umb-border space-y-6">
             <div>
               <h3 class="text-base font-semibold text-umb-carbon flex items-center space-x-2">
-                <i data-lucide="file-text" class="w-4 h-4 text-umb-guinda"></i>
+                <span class="material-symbols-outlined text-[18px] text-umb-guinda">description</span>
                 <span>Temas tratados y acuerdos</span>
               </h3>
               <p class="text-xs text-umb-outline mt-0.5">Registra los temas abordados y los compromisos acordados con el alumno.</p>
@@ -630,7 +630,7 @@
           <!-- SECCIÓN 6 — OBSERVACIONES ADICIONALES (OPCIONAL) -->
           <section class="bg-white rounded-xl p-5 shadow-xs border border-umb-border">
             <h3 class="text-sm font-semibold text-umb-carbon mb-1 flex items-center space-x-2">
-              <i data-lucide="message-square-plus" class="w-4 h-4 text-umb-outline"></i>
+              <span class="material-symbols-outlined text-[18px] text-umb-outline">add_comment</span>
               <span>Observaciones adicionales (opcional)</span>
             </h3>
             <p class="text-[11px] text-umb-outline mb-2.5">Si necesitas dejar alguna nota privada o comentario para el expediente, escríbelo aquí.</p>
@@ -642,7 +642,7 @@
           <section class="bg-white rounded-xl p-6 shadow-xs border border-umb-border">
             <div class="mb-4">
               <h3 class="text-base font-semibold text-umb-carbon flex items-center space-x-2">
-                <i data-lucide="paperclip" class="w-4 h-4 text-umb-guinda"></i>
+                <span class="material-symbols-outlined text-[18px] text-umb-guinda">attach_file</span>
                 <span>Archivos adjuntos (opcional)</span>
               </h3>
               <p class="text-xs text-umb-outline mt-0.5">Puedes adjuntar minutas, capturas o documentos relacionados con la sesión.</p>
@@ -651,7 +651,7 @@
             <!-- Dropzone -->
             <div class="border-2 border-dashed border-umb-border hover:border-umb-guinda bg-[#F9FAFB] rounded-xl p-6 text-center transition-all cursor-pointer group">
               <div class="w-12 h-12 rounded-full bg-umb-guinda/10 text-umb-guinda flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition-transform">
-                <i data-lucide="cloud-upload" class="w-6 h-6"></i>
+                <span class="material-symbols-outlined text-[24px]">cloud_upload</span>
               </div>
               <p class="text-xs sm:text-sm font-medium text-umb-carbon">Arrastra tus archivos aquí o haz clic para seleccionar</p>
               <p class="text-[11px] text-umb-outline mt-1">Formatos: PDF, PNG, JPG. Máximo 5 archivos, 5 MB por archivo.</p>
@@ -681,7 +681,7 @@
       
       <!-- Izquierda: Cancelar y descartar -->
       <button type="button" class="w-full sm:w-auto text-xs font-medium text-umb-outline hover:text-[#C53030] px-3 py-2 rounded-lg hover:bg-red-50 transition-colors inline-flex items-center justify-center space-x-1.5">
-        <i data-lucide="x" class="w-4 h-4"></i>
+        <span class="material-symbols-outlined text-[18px]">close</span>
         <span>Cancelar y descartar</span>
       </button>
 
@@ -694,13 +694,13 @@
         <div class="flex items-center space-x-3 w-full sm:w-auto justify-end">
           <!-- Guardar como borrador -->
           <button type="button" class="flex-1 sm:flex-initial inline-flex items-center justify-center space-x-1.5 px-4 py-2 rounded-lg border border-umb-guinda text-umb-guinda text-xs font-semibold hover:bg-umb-guinda/5 transition-colors shadow-2xs">
-            <i data-lucide="bookmark" class="w-3.5 h-3.5"></i>
+            <span class="material-symbols-outlined text-[15px]">bookmark</span>
             <span>Guardar como borrador</span>
           </button>
 
           <!-- Guardar asesoría (Primario) -->
           <button type="button" id="btn-guardar" class="flex-1 sm:flex-initial inline-flex items-center justify-center space-x-2 px-5 py-2 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold transition-all shadow-sm">
-            <i data-lucide="check" class="w-4 h-4"></i>
+            <span class="material-symbols-outlined text-[18px]">check</span>
             <span>Guardar asesoría</span>
           </button>
         </div>

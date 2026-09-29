@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-
-<html lang="es"><head>
+<html lang="es">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buscar empresa receptora — SIGRES-UMB</title>
+  <title>Catálogo Institucional de Empresas — SIGRES-UMB</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -76,11 +76,11 @@
     }
   </style>
 </head>
-<body class="bg-brand-bg text-brand-neutral font-sans antialiased min-h-screen flex flex-col">
-<!-- BEGIN: TopAppBar -->
+<body class="bg-umb-surface text-umb-carbon font-sans antialiased min-h-screen flex flex-col selection:bg-umb-guinda selection:text-white">
+
   <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
-<header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
-    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb (Inicio / Apartado) -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
+    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb -->
     <div class="flex items-center gap-3 md:gap-4">
       <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
         <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
@@ -98,7 +98,7 @@
           <span>Inicio</span>
         </a>
         <span class="material-symbols-outlined text-[13px] text-white/60">chevron_right</span>
-        <span class="font-semibold text-white">Catálogo de empresas</span>
+        <span class="font-semibold text-white">Empresas y convenios</span>
       </div>
     </div>
 
@@ -172,7 +172,6 @@
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-1">
                     <p class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda truncate leading-tight">Empresa nueva registrada</p>
-                    
                   </div>
                   <p class="text-[11px] text-umb-muted leading-snug mt-0.5">Se agregó 'Dirección Académica UMB' para confirmación de convenio.</p>
                   <span class="text-[10px] text-umb-outline mt-1 block">Ayer</span>
@@ -204,10 +203,10 @@
       </a>
     </div>
   </header>
-<!-- END: TopAppBar -->
-<!-- Container for Sidebar and Main Workspace -->
-<div class="pt-16 flex flex-1 overflow-hidden">
-<!-- BEGIN: Sidebar -->
+
+  <!-- CONTENEDOR PRINCIPAL CON SIDEBAR -->
+  <div class="pt-16 flex flex-1 overflow-hidden">
+    
     <!-- SIDEBAR ESCRITORIO (260px) -->
     <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
       <div>
@@ -267,234 +266,380 @@
         </span>
       </div>
     </aside>
-<!-- END: Sidebar -->
-<!-- BEGIN: MainContent -->
-<main class="lg:ml-[260px] flex-1 overflow-y-auto px-4 sm:px-8 py-8 min-w-0 pb-24 lg:pb-8" data-purpose="main-content-scrollable">
-<div class="max-w-[1000px] mx-auto space-y-6">
-<!-- Header Section -->
-<section data-purpose="page-header">
-<nav aria-label="Miga de pan" class="flex items-center space-x-1.5 text-xs text-brand-secondary mb-1.5">
-<span>Mi expediente</span>
-<span>/</span>
-<span class="text-brand-muted font-medium">Buscar empresa receptora</span>
-</nav>
-<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-<div>
-<h1 class="text-2xl font-bold text-brand-neutral tracking-tight">Buscar empresa receptora</h1>
-<p class="text-sm text-brand-muted mt-1 leading-relaxed">
-                Busca si tu empresa o institución ya cuenta con convenio vigente con la UMB. Si no aparece, podrás registrarla.
-              </p>
-</div>
-<div class="flex-shrink-0">
-<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-umb-guinda-light text-umb-guinda border border-umb-guinda/10">
-                Ciclo 26-27/1
-              </span>
-</div>
-</div>
-</section>
-<!-- BEGIN: SearchAndFiltersCard -->
-<section class="bg-white rounded-xl border border-brand-border p-6 shadow-sm" data-purpose="search-and-filters">
-<!-- Search input box -->
-<div class="relative flex items-center mb-4">
-<span class="material-symbols-outlined absolute left-4 text-brand-secondary text-xl pointer-events-none">search</span>
-<input class="w-full h-14 pl-12 pr-12 rounded-xl border border-brand-border text-sm text-brand-neutral placeholder-brand-secondary/70 focus:outline-none focus:ring-2 focus:ring-brand-guinda/20 focus:border-umb-guinda transition-all" placeholder="Busca por nombre, RFC o sector..." type="text" value=""/>
-<button class="absolute right-4 text-brand-secondary hover:text-brand-neutral text-xs font-medium px-2 py-1 rounded transition-colors" title="Limpiar búsqueda" type="button">
-<span class="material-symbols-outlined text-lg">close</span>
-</button>
-</div>
-<!-- Filter tags row -->
-<div class="flex flex-wrap items-center justify-between gap-3 pt-1">
-<div aria-label="Filtros de sector" class="flex items-center space-x-2 overflow-x-auto pb-1" role="group">
-<button class="px-4 py-1.5 rounded-full text-xs font-medium bg-umb-guinda text-white shadow-xs focus:outline-none" type="button">
-                Todas
-              </button>
-<button class="px-4 py-1.5 rounded-full text-xs font-medium bg-white text-brand-muted border border-brand-border hover:border-gray-300 hover:bg-gray-50 focus:outline-none transition-colors" type="button">
-                Privado
-              </button>
-<button class="px-4 py-1.5 rounded-full text-xs font-medium bg-white text-brand-muted border border-brand-border hover:border-gray-300 hover:bg-gray-50 focus:outline-none transition-colors" type="button">
-                Social
-              </button>
-<button class="px-4 py-1.5 rounded-full text-xs font-medium bg-white text-brand-muted border border-brand-border hover:border-gray-300 hover:bg-gray-50 focus:outline-none transition-colors" type="button">
-                Público
-              </button>
-</div>
-<!-- Footer note within search -->
-<div class="flex items-center text-[11px] text-brand-secondary">
-<span class="material-symbols-outlined text-[15px] mr-1.5 text-emerald-600">verified</span>
-              Solo se muestran empresas con convenio vigente con la UMB.
-            </div>
-</div>
-</section>
-<!-- END: SearchAndFiltersCard -->
-<!-- BEGIN: ResultsListSection -->
-<section class="space-y-4" data-purpose="company-results-container">
-<!-- Section title & Counter -->
-<div class="flex items-center justify-between px-1">
-<h2 class="text-base font-semibold text-brand-neutral">Empresas con convenio vigente</h2>
-<span class="text-xs text-brand-secondary font-medium">4 empresas encontradas</span>
-</div>
-<!-- Cards list -->
-<div class="space-y-3.5">
-<!-- Company Card 1 (Suggested / UMB Académica) -->
-<article class="bg-white rounded-xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:border-umb-guinda/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4" data-purpose="company-card">
-<div class="flex items-start space-x-4">
-<div class="h-12 w-12 rounded-full bg-umb-guinda-subtle text-umb-guinda font-bold text-sm flex items-center justify-center flex-shrink-0 border border-umb-guinda/10">
-                  TS
-                </div>
-<div class="space-y-1">
-<div class="flex flex-wrap items-center gap-2">
-<h3 class="text-[15px] font-semibold text-brand-neutral leading-snug">Universidad Mexiquense del Bicentenario · Dirección Académica</h3>
-<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#DCFCE7] text-[#166534]">
-                      Convenio vigente
-                    </span>
-</div>
-<p class="text-xs text-brand-secondary">
-                    RFC: <span class="font-mono text-brand-muted">TSM210315K89</span> · Sector: Privado · Tecnologías de la información
-                  </p>
-<p class="text-xs text-brand-secondary flex items-center">
-<span class="material-symbols-outlined text-sm mr-1 text-brand-secondary/80">location_on</span>
-                    Av. Paseo Tollocan #1204, Toluca · Convenio CV-2024-042
-                  </p>
-</div>
-</div>
-<div class="flex-shrink-0 flex items-center justify-end">
-<button class="h-10 px-5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-brand-guinda" type="button">
-<span>Seleccionar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</article>
-<!-- Company Card 2 (Sistemas Inteligentes) -->
-<article class="bg-white rounded-xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:border-umb-guinda/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4" data-purpose="company-card">
-<div class="flex items-start space-x-4">
-<div class="h-12 w-12 rounded-full bg-umb-guinda-subtle text-umb-guinda font-bold text-sm flex items-center justify-center flex-shrink-0 border border-umb-guinda/10">
-                  SI
-                </div>
-<div class="space-y-1">
-<div class="flex flex-wrap items-center gap-2">
-<h3 class="text-[15px] font-semibold text-brand-neutral leading-snug">Sistemas Inteligentes de Toluca S.A.P.I. de C.V.</h3>
-<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#DCFCE7] text-[#166534]">
-                      Convenio vigente
-                    </span>
-</div>
-<p class="text-xs text-brand-secondary">
-                    RFC: <span class="font-mono text-brand-muted">SIT180914GH2</span> · Sector: Privado · Desarrollo de software y telecomunicaciones
-                  </p>
-<p class="text-xs text-brand-secondary flex items-center">
-<span class="material-symbols-outlined text-sm mr-1 text-brand-secondary/80">location_on</span>
-                    Parque Industrial Toluca 2000 · Convenio CV-2023-018
-                  </p>
-</div>
-</div>
-<div class="flex-shrink-0 flex items-center justify-end">
-<button class="h-10 px-5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-brand-guinda" type="button">
-<span>Seleccionar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</article>
-<!-- Company Card 3 (Ayuntamiento) -->
-<article class="bg-white rounded-xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:border-umb-guinda/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4" data-purpose="company-card">
-<div class="flex items-start space-x-4">
-<div class="h-12 w-12 rounded-full bg-umb-guinda-subtle text-umb-guinda font-bold text-sm flex items-center justify-center flex-shrink-0 border border-umb-guinda/10">
-                  AY
-                </div>
-<div class="space-y-1">
-<div class="flex flex-wrap items-center gap-2">
-<h3 class="text-[15px] font-semibold text-brand-neutral leading-snug">Ayuntamiento Constitucional de San José del Rincón</h3>
-<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#DCFCE7] text-[#166534]">
-                      Convenio vigente
-                    </span>
-</div>
-<p class="text-xs text-brand-secondary">
-                    RFC: <span class="font-mono text-brand-muted">MSJ850101Q58</span> · Sector: Público · Dirección de Tecnologías e Innovación
-                  </p>
-<p class="text-xs text-brand-secondary flex items-center">
-<span class="material-symbols-outlined text-sm mr-1 text-brand-secondary/80">location_on</span>
-                    Plaza Principal S/N, Centro · Convenio CV-2025-001
-                  </p>
-</div>
-</div>
-<div class="flex-shrink-0 flex items-center justify-end">
-<button class="h-10 px-5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-brand-guinda" type="button">
-<span>Seleccionar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</article>
-<!-- Company Card 4 (Desarrollos Médicos) -->
-<article class="bg-white rounded-xl border border-brand-border p-5 shadow-sm hover:shadow-md hover:border-umb-guinda/30 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4" data-purpose="company-card">
-<div class="flex items-start space-x-4">
-<div class="h-12 w-12 rounded-full bg-umb-guinda-subtle text-umb-guinda font-bold text-sm flex items-center justify-center flex-shrink-0 border border-umb-guinda/10">
-                  DM
-                </div>
-<div class="space-y-1">
-<div class="flex flex-wrap items-center gap-2">
-<h3 class="text-[15px] font-semibold text-brand-neutral leading-snug">Desarrollos Médicos y Hospitalarios del Estado de México S.A.</h3>
-<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#DCFCE7] text-[#166534]">
-                      Convenio vigente
-                    </span>
-</div>
-<p class="text-xs text-brand-secondary">
-                    RFC: <span class="font-mono text-brand-muted">DME1506229L1</span> · Sector: Social / Salud · Soporte e infraestructura
-                  </p>
-<p class="text-xs text-brand-secondary flex items-center">
-<span class="material-symbols-outlined text-sm mr-1 text-brand-secondary/80">location_on</span>
-                    Vía Alfredo del Mazo #500, Atlacomulco · Convenio CV-2024-089
-                  </p>
-</div>
-</div>
-<div class="flex-shrink-0 flex items-center justify-end">
-<button class="h-10 px-5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center space-x-1.5 shadow-sm transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-brand-guinda" type="button">
-<span>Seleccionar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</article>
-</div>
-<!-- BEGIN: MissingCompanyCard -->
-<div class="bg-white border-2 border-dashed border-brand-border rounded-xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 mt-6" data-purpose="unregistered-company-cta">
-<div class="flex items-center space-x-4">
-<div class="h-11 w-11 rounded-full bg-gray-100 flex items-center justify-center text-brand-secondary flex-shrink-0">
-<span class="material-symbols-outlined text-2xl text-umb-guinda">domain_add</span>
-</div>
-<div>
-<h4 class="text-sm font-semibold text-brand-neutral">¿No encuentras la empresa donde realizarás tu residencia?</h4>
-<p class="text-xs text-brand-muted mt-0.5">Puedes solicitar el registro de una nueva empresa o institución para validación de Control Escolar.</p>
-</div>
-</div>
-<div class="flex-shrink-0 w-full sm:w-auto">
-<button class="w-full sm:w-auto h-10 px-5 rounded-lg border-1.5 border-umb-guinda text-umb-guinda hover:bg-umb-guinda hover:text-white text-xs font-semibold flex items-center justify-center space-x-2 transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-brand-guinda" type="button">
-<span class="material-symbols-outlined text-base">add</span>
-<span>Registrar empresa nueva</span>
-</button>
-</div>
-</div>
-<!-- END: MissingCompanyCard -->
-</section>
-<!-- END: ResultsListSection -->
-<!-- BEGIN: RegulatoryNotice -->
-<section class="bg-[#EFF6FF] border-l-4 border-[#2B6CB0] rounded-r-lg p-4 sm:p-5 flex items-start space-x-3.5 shadow-xs" data-purpose="regulatory-notice">
-<span class="material-symbols-outlined text-[#2B6CB0] text-xl flex-shrink-0 mt-0.5">info</span>
-<div class="text-xs text-[#1E3A8A] leading-relaxed">
-<p>
-<strong class="font-semibold">Conforme al Artículo 12 del Reglamento UMB 2026</strong>, la empresa o institución receptora debe cumplir con los criterios del sector al que pertenece. Si registras una empresa nueva, Control Escolar validará que cumpla con los requisitos antes de autorizar tu residencia.
+
+    <!-- ÁREA DE CONTENIDO PRINCIPAL -->
+    <main class="lg:ml-[260px] flex-1 overflow-y-auto px-4 sm:px-8 py-8 min-w-0 pb-24 lg:pb-8">
+      <div class="max-w-[1240px] mx-auto space-y-6">
+        
+        <!-- ENCABEZADO DE PÁGINA (Control Escolar) -->
+        <section class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <nav aria-label="Miga de pan" class="flex items-center space-x-1.5 text-xs text-umb-outline mb-1.5">
+              <a href="01-dashboard.html" class="hover:text-umb-guinda hover:underline">Inicio</a>
+              <span>/</span>
+              <span class="text-umb-carbon font-semibold">Empresas y convenios</span>
+            </nav>
+            <h1 class="text-2xl font-bold text-umb-carbon tracking-tight">Catálogo institucional de empresas y convenios</h1>
+            <p class="text-sm text-umb-muted mt-0.5">
+              Administración y consulta del padrón de empresas receptoras vinculadas con la UMB (Ciclo 26-27/1).
             </p>
-</div>
-</section>
-<!-- END: RegulatoryNotice -->
-<!-- Page Footer note -->
-<footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
-  <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
-  <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
-</footer>
-</div>
-</main>
-<!-- END: MainContent -->
-</div>
+          </div>
+          
+          <div class="flex items-center gap-3 flex-wrap">
+            <a href="07-validar-empresas-nuevas.html" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs font-semibold hover:bg-amber-100 transition-colors shadow-xs">
+              <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+              <span>Validar solicitudes (3)</span>
+            </a>
+            <button type="button" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xs transition-colors">
+              <span class="material-symbols-outlined text-[18px]">add_business</span>
+              <span>Registrar nueva empresa</span>
+            </button>
+          </div>
+        </section>
 
+        <!-- TARJETAS DE RESUMEN ADMINISTRATIVO -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- Métrica 1: Empresas Activas -->
+          <div class="bg-white rounded-xl border border-umb-border p-5 shadow-xs flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-umb-outline uppercase tracking-wider">Empresas vinculadas</p>
+              <h3 class="text-2xl font-bold text-umb-carbon mt-1">18</h3>
+              <p class="text-[11px] text-emerald-700 font-medium mt-0.5 flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px]">check_circle</span>
+                Convenios vigentes UMB
+              </p>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-umb-guinda-light text-umb-guinda flex items-center justify-center border border-umb-guinda/15">
+              <span class="material-symbols-outlined text-[26px]">apartment</span>
+            </div>
+          </div>
 
+          <!-- Métrica 2: Solicitudes pendientes -->
+          <div class="bg-white rounded-xl border border-umb-border p-5 shadow-xs flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-umb-outline uppercase tracking-wider">Nuevas por validar</p>
+              <h3 class="text-2xl font-bold text-amber-600 mt-1">3</h3>
+              <p class="text-[11px] text-amber-800 font-medium mt-0.5">Propuestas por estudiantes</p>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center border border-amber-200">
+              <span class="material-symbols-outlined text-[26px]">pending_actions</span>
+            </div>
+          </div>
 
+          <!-- Métrica 3: Residentes asignados -->
+          <div class="bg-white rounded-xl border border-umb-border p-5 shadow-xs flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-umb-outline uppercase tracking-wider">Residentes ubicados</p>
+              <h3 class="text-2xl font-bold text-blue-700 mt-1">24</h3>
+              <p class="text-[11px] text-blue-800 font-medium mt-0.5">En sedes autorizadas</p>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center border border-blue-200">
+              <span class="material-symbols-outlined text-[26px]">groups</span>
+            </div>
+          </div>
+
+          <!-- Métrica 4: Cumplimiento -->
+          <div class="bg-white rounded-xl border border-umb-border p-5 shadow-xs flex items-center justify-between">
+            <div>
+              <p class="text-xs font-semibold text-umb-outline uppercase tracking-wider">Vigencia reglamentaria</p>
+              <h3 class="text-2xl font-bold text-emerald-700 mt-1">100%</h3>
+              <p class="text-[11px] text-emerald-800 font-medium mt-0.5">Convenios dictaminados</p>
+            </div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center border border-emerald-200">
+              <span class="material-symbols-outlined text-[26px]">verified</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- BUSCADOR Y FILTROS AVANZADOS -->
+        <section class="bg-white rounded-xl border border-umb-border p-5 shadow-xs space-y-4">
+          <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+            
+            <!-- Campo de búsqueda -->
+            <div class="relative flex-1">
+              <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-umb-outline text-[20px] pointer-events-none">search</span>
+              <input type="text" 
+                     placeholder="Buscar por razón social, RFC, clave de convenio o titular..." 
+                     class="w-full h-11 pl-10 pr-10 rounded-lg border border-umb-border text-xs sm:text-sm text-umb-carbon placeholder-umb-outline/70 focus:outline-none focus:ring-2 focus:ring-umb-guinda/20 focus:border-umb-guinda transition-all">
+            </div>
+
+            <!-- Chips de filtrado por Sector -->
+            <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0">
+              <button type="button" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-umb-guinda text-white shadow-xs">
+                Todas (18)
+              </button>
+              <button type="button" class="px-3.5 py-2 rounded-lg text-xs font-medium bg-white text-umb-muted border border-umb-border hover:bg-umb-surface transition-colors">
+                Privado (10)
+              </button>
+              <button type="button" class="px-3.5 py-2 rounded-lg text-xs font-medium bg-white text-umb-muted border border-umb-border hover:bg-umb-surface transition-colors">
+                Público (5)
+              </button>
+              <button type="button" class="px-3.5 py-2 rounded-lg text-xs font-medium bg-white text-umb-muted border border-umb-border hover:bg-umb-surface transition-colors">
+                Social (3)
+              </button>
+            </div>
+
+            <!-- Ordenar por -->
+            <div class="flex items-center min-w-[190px]">
+              <select class="w-full h-11 px-3 rounded-lg border border-umb-border text-xs font-medium text-umb-carbon bg-white focus:outline-none focus:border-umb-guinda cursor-pointer">
+                <option>Ordenar: Nombre (A-Z)</option>
+                <option>Ordenar: Más residentes asignados</option>
+                <option>Ordenar: Vigencia de convenio</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- LISTADO DE EMPRESAS CON GESTIÓN DE CONTROL ESCOLAR -->
+        <section class="space-y-4">
+          <div class="flex items-center justify-between px-1">
+            <h2 class="text-sm font-bold text-umb-carbon uppercase tracking-wider">Empresas autorizadas y convenios activos</h2>
+            <span class="text-xs text-umb-outline font-medium">Mostrando 5 de 18 instituciones</span>
+          </div>
+
+          <div class="space-y-3.5">
+            
+            <!-- EMPRESA 1: UMB Dirección Académica (Sede de Jesús Andrés Mondragón) -->
+            <article class="bg-white rounded-xl border border-umb-border border-l-4 border-l-[#2D8C4E] p-5 shadow-xs hover:shadow-sm transition-shadow">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-umb-guinda text-white font-bold text-sm flex items-center justify-center shrink-0 shadow-xs ring-2 ring-umb-guinda/10">
+                    UMB
+                  </div>
+                  <div class="space-y-1">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <h3 class="text-base font-bold text-umb-carbon">Universidad Mexiquense del Bicentenario · Dirección Académica</h3>
+                      <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#DCFCE7] text-[#166534]">
+                        <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                        Convenio vigente
+                      </span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-purple-50 text-purple-700 border border-purple-200">
+                        Sector Público
+                      </span>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-umb-muted pt-0.5">
+                      <span>RFC: <strong class="font-mono text-umb-carbon">UMB0802209L5</strong></span>
+                      <span>•</span>
+                      <span>Convenio: <strong class="font-mono text-umb-carbon">CV-2024-042</strong></span>
+                      <span>•</span>
+                      <span>Titular / Asesor: <strong class="text-umb-carbon">Mtro. Armando Alcalde Martínez</strong></span>
+                    </div>
+
+                    <p class="text-xs text-umb-outline flex items-center gap-1 pt-1">
+                      <span class="material-symbols-outlined text-[15px] text-umb-dorado">location_on</span>
+                      Av. Paseo Tollocan #1204, Toluca, Edo. Méx. · Capacidad máxima: 5 residentes
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex flex-row lg:flex-col items-end justify-between gap-3 shrink-0 border-t lg:border-t-0 pt-3 lg:pt-0 border-umb-border/60">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-1 text-xs font-semibold bg-emerald-50 text-emerald-800 px-2.5 py-1 rounded-md border border-emerald-200">
+                      <span class="material-symbols-outlined text-[15px]">group</span>
+                      2 residentes activos
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button type="button" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors">
+                      <span class="material-symbols-outlined text-[16px]">visibility</span>
+                      <span>Convenio PDF</span>
+                    </button>
+                    <button type="button" class="h-9 px-3.5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs">
+                      <span class="material-symbols-outlined text-[16px]">edit</span>
+                      <span>Gestionar</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- EMPRESA 2: Sistemas Inteligentes de Toluca -->
+            <article class="bg-white rounded-xl border border-umb-border border-l-4 border-l-[#2D8C4E] p-5 shadow-xs hover:shadow-sm transition-shadow">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 font-bold text-sm flex items-center justify-center shrink-0 border border-blue-200">
+                    SIT
+                  </div>
+                  <div class="space-y-1">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <h3 class="text-base font-bold text-umb-carbon">Sistemas Inteligentes de Toluca S.A.P.I. de C.V.</h3>
+                      <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#DCFCE7] text-[#166534]">
+                        <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                        Convenio vigente
+                      </span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-blue-50 text-blue-700 border border-blue-200">
+                        Sector Privado
+                      </span>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-umb-muted pt-0.5">
+                      <span>RFC: <strong class="font-mono text-umb-carbon">SIT180914GH2</strong></span>
+                      <span>•</span>
+                      <span>Convenio: <strong class="font-mono text-umb-carbon">CV-2023-018</strong></span>
+                      <span>•</span>
+                      <span>Titular / Asesor: <strong class="text-umb-carbon">Ing. Roberto Morales Cruz</strong></span>
+                    </div>
+
+                    <p class="text-xs text-umb-outline flex items-center gap-1 pt-1">
+                      <span class="material-symbols-outlined text-[15px] text-umb-dorado">location_on</span>
+                      Parque Industrial Toluca 2000 · Capacidad máxima: 6 residentes
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex flex-row lg:flex-col items-end justify-between gap-3 shrink-0 border-t lg:border-t-0 pt-3 lg:pt-0 border-umb-border/60">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-1 text-xs font-semibold bg-emerald-50 text-emerald-800 px-2.5 py-1 rounded-md border border-emerald-200">
+                      <span class="material-symbols-outlined text-[15px]">group</span>
+                      4 residentes activos
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button type="button" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors">
+                      <span class="material-symbols-outlined text-[16px]">visibility</span>
+                      <span>Convenio PDF</span>
+                    </button>
+                    <button type="button" class="h-9 px-3.5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs">
+                      <span class="material-symbols-outlined text-[16px]">edit</span>
+                      <span>Gestionar</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- EMPRESA 3: Ayuntamiento San José del Rincón -->
+            <article class="bg-white rounded-xl border border-umb-border border-l-4 border-l-[#2D8C4E] p-5 shadow-xs hover:shadow-sm transition-shadow">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-700 font-bold text-sm flex items-center justify-center shrink-0 border border-purple-200">
+                    AYT
+                  </div>
+                  <div class="space-y-1">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <h3 class="text-base font-bold text-umb-carbon">Ayuntamiento Constitucional de San José del Rincón</h3>
+                      <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#DCFCE7] text-[#166534]">
+                        <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                        Convenio vigente
+                      </span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-purple-50 text-purple-700 border border-purple-200">
+                        Sector Público
+                      </span>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-umb-muted pt-0.5">
+                      <span>RFC: <strong class="font-mono text-umb-carbon">MSJ850101Q58</strong></span>
+                      <span>•</span>
+                      <span>Convenio: <strong class="font-mono text-umb-carbon">CV-2025-001</strong></span>
+                      <span>•</span>
+                      <span>Titular / Asesor: <strong class="text-umb-carbon">Lic. Ana Paulina Gómez</strong></span>
+                    </div>
+
+                    <p class="text-xs text-umb-outline flex items-center gap-1 pt-1">
+                      <span class="material-symbols-outlined text-[15px] text-umb-dorado">location_on</span>
+                      Plaza Principal S/N, Centro, San José del Rincón · Capacidad máxima: 8 residentes
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex flex-row lg:flex-col items-end justify-between gap-3 shrink-0 border-t lg:border-t-0 pt-3 lg:pt-0 border-umb-border/60">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-1 text-xs font-semibold bg-emerald-50 text-emerald-800 px-2.5 py-1 rounded-md border border-emerald-200">
+                      <span class="material-symbols-outlined text-[15px]">group</span>
+                      3 residentes activos
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button type="button" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors">
+                      <span class="material-symbols-outlined text-[16px]">visibility</span>
+                      <span>Convenio PDF</span>
+                    </button>
+                    <button type="button" class="h-9 px-3.5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs">
+                      <span class="material-symbols-outlined text-[16px]">edit</span>
+                      <span>Gestionar</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- EMPRESA 4: Desarrollos Médicos y Hospitalarios -->
+            <article class="bg-white rounded-xl border border-umb-border border-l-4 border-l-[#2D8C4E] p-5 shadow-xs hover:shadow-sm transition-shadow">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 font-bold text-sm flex items-center justify-center shrink-0 border border-amber-200">
+                    DMH
+                  </div>
+                  <div class="space-y-1">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <h3 class="text-base font-bold text-umb-carbon">Desarrollos Médicos y Hospitalarios del Estado de México S.A.</h3>
+                      <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#DCFCE7] text-[#166534]">
+                        <span class="material-symbols-outlined text-[14px]">check_circle</span>
+                        Convenio vigente
+                      </span>
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-amber-50 text-amber-800 border border-amber-200">
+                        Sector Social
+                      </span>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-umb-muted pt-0.5">
+                      <span>RFC: <strong class="font-mono text-umb-carbon">DME1506229L1</strong></span>
+                      <span>•</span>
+                      <span>Convenio: <strong class="font-mono text-umb-carbon">CV-2024-089</strong></span>
+                      <span>•</span>
+                      <span>Titular / Asesor: <strong class="text-umb-carbon">Dra. Carmen Valdés Nieto</strong></span>
+                    </div>
+
+                    <p class="text-xs text-umb-outline flex items-center gap-1 pt-1">
+                      <span class="material-symbols-outlined text-[15px] text-umb-dorado">location_on</span>
+                      Vía Alfredo del Mazo #500, Atlacomulco · Capacidad máxima: 4 residentes
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex flex-row lg:flex-col items-end justify-between gap-3 shrink-0 border-t lg:border-t-0 pt-3 lg:pt-0 border-umb-border/60">
+                  <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-1 text-xs font-semibold bg-emerald-50 text-emerald-800 px-2.5 py-1 rounded-md border border-emerald-200">
+                      <span class="material-symbols-outlined text-[15px]">group</span>
+                      2 residentes activos
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button type="button" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors">
+                      <span class="material-symbols-outlined text-[16px]">visibility</span>
+                      <span>Convenio PDF</span>
+                    </button>
+                    <button type="button" class="h-9 px-3.5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs">
+                      <span class="material-symbols-outlined text-[16px]">edit</span>
+                      <span>Gestionar</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- AVISO INSTITUCIONAL DE CONTROL ESCOLAR -->
+        <section class="bg-blue-50/70 border-l-4 border-blue-600 rounded-r-xl p-4.5 sm:p-5 flex items-start gap-3.5 shadow-xs">
+          <span class="material-symbols-outlined text-blue-700 text-[22px] flex-shrink-0 mt-0.5">verified_user</span>
+          <div class="text-xs text-blue-900 leading-relaxed space-y-1">
+            <p>
+              <strong class="font-bold">Marco Reglamentario de Vinculación UMB 2026:</strong> Todos los convenios suscritos son de carácter trianual y cuentan con la validación de la Dirección Académica y el Departamento Jurídico. Control Escolar mantiene la custodia digital de los anexos técnicos de residencias profesionales.
+            </p>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="pt-8 pb-4 text-center text-[12px] text-umb-outline space-y-1">
+          <p>SIGRES-UMB — Sistema integral para la gestión de residencias profesionales</p>
+          <p>Universidad Mexiquense del Bicentenario · UES San José del Rincón · Ciclo 26-27/1</p>
+        </footer>
+      </div>
+    </main>
+  </div>
 
   <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
   <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
@@ -520,97 +665,54 @@
     </a>
   </nav>
 
-<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
-<aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
-  <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
-    <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
-    <span>Ir al portal</span>
-  </a>
-</aside>
+  <!-- BOTÓN FLOTANTE AL PORTAL -->
+  <aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
+    <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
+      <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
+      <span>Ir al portal</span>
+    </a>
+  </aside>
 
-  <!-- MODAL DE NOTIFICACIÓN PUSH DETALLADA -->
-  <div id="pushNotificationModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-150" aria-modal="true" role="dialog">
-    <div class="bg-white rounded-xl shadow-modal max-w-lg w-full overflow-hidden border border-umb-border animate-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
-      
-      <!-- Encabezado del Modal -->
-      <div class="p-4 sm:p-5 bg-gradient-to-r from-umb-surface to-white border-b border-umb-border flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-lg text-purple-700 bg-purple-100 flex items-center justify-center flex-shrink-0">
-            <span class="material-symbols-outlined text-[22px]">print</span>
-          </div>
-          <div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-umb-dorado">Detalle de Notificación Push</span>
-            <h3 class="text-sm font-bold text-umb-carbon leading-tight">Expediente de Residencia Listo para Trámite</h3>
-          </div>
-        </div>
-        <button type="button" onclick="closePushModal()" class="w-8 h-8 rounded-lg text-umb-outline hover:text-umb-carbon hover:bg-umb-surface flex items-center justify-center transition-colors">
-          <span class="material-symbols-outlined text-[20px]">close</span>
-        </button>
-      </div>
-
-      <!-- Cuerpo del Modal -->
-      <div class="p-5">
-
-          <div class="space-y-4 text-xs text-umb-carbon">
-            <div class="p-3.5 rounded-lg bg-purple-50/70 border border-purple-200 flex items-center gap-3">
-              <span class="material-symbols-outlined text-purple-700 text-[24px]">verified</span>
-              <div>
-                <p class="font-bold text-purple-900 text-sm">Expediente Validado al 100%</p>
-                <p class="text-purple-800 text-[11px] mt-0.5">Kárdex, carta compromiso y solicitud autorizados</p>
-              </div>
-            </div>
-            <div class="p-3.5 rounded-lg bg-umb-surface border border-umb-border">
-              <p class="font-semibold text-umb-carbon">Jesús Andrés Mondragón Tenorio (13220024)</p>
-              <p class="text-umb-muted text-[11px] mt-0.5">Carrera: Ingeniería en Sistemas Computacionales · Plantel: San José del Rincón</p>
-            </div>
-          </div>
-        
-      </div>
-
-      <!-- Pie del Modal -->
-      <div class="p-4 bg-umb-surface/60 border-t border-umb-border flex items-center justify-end gap-2.5">
-        <button type="button" onclick="closePushModal()" class="h-10 px-4 rounded-lg bg-white border border-umb-border hover:bg-umb-surface text-umb-carbon font-medium text-xs transition-all">
-          Cerrar
-        </button>
-        <a href="05-generar-carta.html" class="h-10 px-4 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm"><span>Emitir carta oficial</span><span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
-      </div>
-
-    </div>
-  </div>
-  <!-- SCRIPT DE CONTROL PARA BANNER Y MODAL PUSH -->
+  <!-- JS NOTIFICACIONES DE ROL -->
   <script>
-    function openPushModal() {
-      const modal = document.getElementById('pushNotificationModal');
-      if (modal) modal.classList.remove('hidden');
-    }
-
-    function closePushModal() {
-      const modal = document.getElementById('pushNotificationModal');
-      if (modal) modal.classList.add('hidden');
-    }
-
-    function dismissPushBanner() {
-      const banner = document.getElementById('pushNotificationBanner');
-      if (banner) {
-        banner.style.opacity = '0';
-        banner.style.transform = 'translateY(-10px)';
-        banner.style.transition = 'all 0.3s ease';
-        setTimeout(() => banner.remove(), 300);
+    function toggleRoleNotifications(event) {
+      event.stopPropagation();
+      const dropdown = document.getElementById('notifDropdown');
+      if (dropdown) {
+        dropdown.classList.toggle('hidden');
       }
     }
 
-    // Cerrar modal al hacer clic en el backdrop
-    document.addEventListener('DOMContentLoaded', () => {
-      const modal = document.getElementById('pushNotificationModal');
-      if (modal) {
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) closePushModal();
-        });
-      }
-    });
+    function markAllNotificationsAsRead(event) {
+      if (event) event.stopPropagation();
+      const notifBadge = document.getElementById('notifBadge');
+      const notifHeaderBadge = document.getElementById('notifHeaderBadge');
+      const unreadDots = document.querySelectorAll('.unread-dot');
+      const notifItems = document.querySelectorAll('.notif-item');
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closePushModal();
+      if (notifBadge) notifBadge.classList.add('hidden');
+      if (notifHeaderBadge) {
+        notifHeaderBadge.textContent = '0 nuevas';
+        notifHeaderBadge.classList.remove('bg-umb-guinda/10', 'text-umb-guinda');
+        notifHeaderBadge.classList.add('bg-neutral-100', 'text-neutral-500');
+      }
+
+      unreadDots.forEach(dot => dot.remove());
+      notifItems.forEach(item => {
+        item.classList.remove('bg-umb-guinda-light/40');
+        item.classList.add('bg-white');
+      });
+    }
+
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('notifDropdown');
+      const container = document.getElementById('notifContainer');
+      if (dropdown && !dropdown.classList.contains('hidden')) {
+        if (container && !container.contains(event.target)) {
+          dropdown.classList.add('hidden');
+        }
+      }
     });
   </script>
-</body></html>
+</body>
+</html>

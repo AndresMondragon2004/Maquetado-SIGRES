@@ -389,8 +389,9 @@
 <button class="px-3 py-1.5 text-xs font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors" type="button">
                 Cancelar pausa
               </button>
-<button class="px-3.5 py-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm transition-colors" type="button">
-                Reanudar
+<button onclick="openDictamenModal('Marco Antonio García Cruz (13220018)', 'Reanudación tras pausa médica', '350 hrs reactivadas')" class="px-3.5 py-1.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm transition-colors flex items-center gap-1" type="button">
+                <span class="material-symbols-outlined text-[15px]">play_arrow</span>
+                <span>Reanudar</span>
               </button>
 </div>
 </article>
@@ -443,8 +444,9 @@
 <button class="px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-red-700 bg-slate-50 hover:bg-red-50 rounded-lg transition-colors" type="button">
                 Rechazar
               </button>
-<button class="px-3.5 py-1.5 text-xs font-semibold text-white bg-umb-guinda hover:bg-[#521422] rounded-lg shadow-sm transition-colors" type="button">
-                Aprobar reubicación
+<button onclick="openDictamenModal('Daniel Benítez (13210112)', 'Reubicación a SAT Módulo Atlacomulco', '240 hrs reconocidas')" class="px-3.5 py-1.5 text-xs font-semibold text-white bg-umb-guinda hover:bg-umb-guinda-dark rounded-lg shadow-sm transition-colors flex items-center gap-1" type="button">
+                <span class="material-symbols-outlined text-[15px]">verified</span>
+                <span>Aprobar reubicación</span>
               </button>
 </div>
 </article>
@@ -775,4 +777,67 @@
       if (e.key === 'Escape') closePushModal();
     });
   </script>
+
+  <!-- MODAL DE DICTAMEN DE CONTINGENCIA (Transversal 01) -->
+  <div id="dictamenModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-in fade-in duration-150">
+    <div class="bg-white rounded-2xl shadow-modal max-w-md w-full overflow-hidden border border-umb-border">
+      <div class="p-6 bg-gradient-to-r from-umb-surface to-white border-b border-umb-border flex items-center gap-3">
+        <div class="w-12 h-12 rounded-xl bg-umb-guinda text-white flex items-center justify-center font-bold">
+          <span class="material-symbols-outlined text-[24px]">gavel</span>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-slate-900 leading-tight">Emitir Dictamen de Coordinación</h3>
+          <p class="text-[11px] text-slate-500" id="dictamenSubTitle">Resolución reglamentaria de caso</p>
+        </div>
+      </div>
+      <div class="p-5 space-y-3 text-xs text-slate-700">
+        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+          <p class="font-semibold text-slate-900" id="dictamenStudent">Alumno: ...</p>
+          <p class="text-slate-500 mt-0.5" id="dictamenDetail">Resolución: ...</p>
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Observaciones en acta:</label>
+          <textarea rows="2" class="w-full p-2.5 rounded-xl border border-slate-300 outline-none focus:ring-2 focus:ring-umb-guinda" placeholder="Dictamen favorable conforme al Art. 45 del Reglamento de Residencias."></textarea>
+        </div>
+      </div>
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-2.5">
+        <button type="button" onclick="closeDictamenModal()" class="h-10 px-4 rounded-xl border border-slate-300 bg-white text-slate-700 font-semibold text-xs">Cancelar</button>
+        <button type="button" onclick="confirmDictamen()" class="h-10 px-5 rounded-xl bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs shadow-sm flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[18px]">verified</span>
+          <span>Firmar dictamen</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST FLOTANTE COORDINACIÓN (Transversal 03) -->
+  <div id="coordToast" class="fixed top-20 right-6 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700 transform -translate-y-12 opacity-0 transition-all duration-300 pointer-events-none max-w-md">
+    <div class="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white shrink-0 shadow-xs">
+      <span class="material-symbols-outlined text-[20px]">verified</span>
+    </div>
+    <div class="text-xs">
+      <p class="font-bold text-white text-sm" id="coordToastTitle">Dictamen Registrado</p>
+      <p class="text-slate-300 text-[11px] mt-0.5" id="coordToastMessage">El expediente de contingencia fue actualizado.</p>
+    </div>
+  </div>
+
+  <script>
+    function openDictamenModal(student, motive, hours) {
+      document.getElementById('dictamenStudent').textContent = 'Estudiante: ' + student;
+      document.getElementById('dictamenDetail').textContent = motive + ' · ' + hours;
+      document.getElementById('dictamenModal').classList.remove('hidden');
+    }
+    function closeDictamenModal() {
+      document.getElementById('dictamenModal').classList.add('hidden');
+    }
+    function confirmDictamen() {
+      closeDictamenModal();
+      const toast = document.getElementById('coordToast');
+      toast.classList.remove('-translate-y-12', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('-translate-y-12', 'opacity-0', 'pointer-events-none');
+      }, 3500);
+    }
+  </script>
+
 </body></html>

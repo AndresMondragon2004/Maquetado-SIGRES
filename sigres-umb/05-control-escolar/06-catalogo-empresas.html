@@ -400,7 +400,7 @@
           <div class="space-y-3.5">
             
             <!-- EMPRESA 1: UMB Dirección Académica (Sede de Jesús Andrés Mondragón) -->
-            <article class="bg-white rounded-xl border border-umb-border border-l-4 border-l-[#2D8C4E] p-5 shadow-xs hover:shadow-sm transition-shadow">
+            <article id="empresa-1" class="bg-white rounded-xl border border-umb-border border-l-4 border-l-[#2D8C4E] p-5 shadow-xs hover:shadow-sm transition-shadow">
               <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
                 <div class="flex items-start gap-4">
                   <div class="w-12 h-12 rounded-xl bg-umb-guinda text-white font-bold text-sm flex items-center justify-center shrink-0 shadow-xs ring-2 ring-umb-guinda/10">
@@ -441,13 +441,17 @@
                     </span>
                   </div>
                   <div class="flex items-center gap-2">
-                    <button type="button" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors">
+                    <button type="button" onclick="openViewConvenio('Universidad Mexiquense del Bicentenario · Dirección Académica', 'CV-2024-042')" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors" title="Ver archivo de convenio">
                       <span class="material-symbols-outlined text-[16px]">visibility</span>
                       <span>Convenio PDF</span>
                     </button>
-                    <button type="button" class="h-9 px-3.5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs">
+                    <button type="button" onclick="openEditCompany('empresa-1', 'Universidad Mexiquense del Bicentenario · Dirección Académica', 'UMB0802209L5', 'Mtro. Armando Alcalde Martínez', '5')" class="h-9 px-3.5 rounded-lg bg-white border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs" title="Modificar datos de empresa">
                       <span class="material-symbols-outlined text-[16px]">edit</span>
-                      <span>Gestionar</span>
+                      <span>Editar</span>
+                    </button>
+                    <button type="button" onclick="openDeleteModal('empresa-1', 'Universidad Mexiquense del Bicentenario · Dirección Académica', 'CV-2024-042')" class="h-9 px-3 rounded-lg border border-rose-200 text-rose-700 bg-rose-50/70 hover:bg-rose-100 text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs" title="Dar de baja convenio de esta empresa">
+                      <span class="material-symbols-outlined text-[16px]">delete</span>
+                      <span>Baja</span>
                     </button>
                   </div>
                 </div>
@@ -455,7 +459,7 @@
             </article>
 
             <!-- EMPRESA 2: Sistemas Inteligentes de Toluca -->
-            <article class="bg-white rounded-xl border border-umb-border border-l-4 border-l-[#2D8C4E] p-5 shadow-xs hover:shadow-sm transition-shadow">
+            <article id="empresa-2" class="bg-white rounded-xl border border-umb-border border-l-4 border-l-[#2D8C4E] p-5 shadow-xs hover:shadow-sm transition-shadow">
               <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
                 <div class="flex items-start gap-4">
                   <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 font-bold text-sm flex items-center justify-center shrink-0 border border-blue-200">
@@ -496,13 +500,17 @@
                     </span>
                   </div>
                   <div class="flex items-center gap-2">
-                    <button type="button" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors">
+                    <button type="button" onclick="openViewConvenio('Universidad Mexiquense del Bicentenario · Dirección Académica', 'CV-2024-042')" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors" title="Ver archivo de convenio">
                       <span class="material-symbols-outlined text-[16px]">visibility</span>
                       <span>Convenio PDF</span>
                     </button>
-                    <button type="button" class="h-9 px-3.5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs">
+                    <button type="button" onclick="openEditCompany('empresa-1', 'Universidad Mexiquense del Bicentenario · Dirección Académica', 'UMB0802209L5', 'Mtro. Armando Alcalde Martínez', '5')" class="h-9 px-3.5 rounded-lg bg-white border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs" title="Modificar datos de empresa">
                       <span class="material-symbols-outlined text-[16px]">edit</span>
-                      <span>Gestionar</span>
+                      <span>Editar</span>
+                    </button>
+                    <button type="button" onclick="openDeleteModal('empresa-1', 'Universidad Mexiquense del Bicentenario · Dirección Académica', 'CV-2024-042')" class="h-9 px-3 rounded-lg border border-rose-200 text-rose-700 bg-rose-50/70 hover:bg-rose-100 text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs" title="Dar de baja convenio de esta empresa">
+                      <span class="material-symbols-outlined text-[16px]">delete</span>
+                      <span>Baja</span>
                     </button>
                   </div>
                 </div>
@@ -551,13 +559,17 @@
                     </span>
                   </div>
                   <div class="flex items-center gap-2">
-                    <button type="button" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors">
+                    <button type="button" onclick="openViewConvenio('Universidad Mexiquense del Bicentenario · Dirección Académica', 'CV-2024-042')" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors" title="Ver archivo de convenio">
                       <span class="material-symbols-outlined text-[16px]">visibility</span>
                       <span>Convenio PDF</span>
                     </button>
-                    <button type="button" class="h-9 px-3.5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs">
+                    <button type="button" onclick="openEditCompany('empresa-1', 'Universidad Mexiquense del Bicentenario · Dirección Académica', 'UMB0802209L5', 'Mtro. Armando Alcalde Martínez', '5')" class="h-9 px-3.5 rounded-lg bg-white border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs" title="Modificar datos de empresa">
                       <span class="material-symbols-outlined text-[16px]">edit</span>
-                      <span>Gestionar</span>
+                      <span>Editar</span>
+                    </button>
+                    <button type="button" onclick="openDeleteModal('empresa-1', 'Universidad Mexiquense del Bicentenario · Dirección Académica', 'CV-2024-042')" class="h-9 px-3 rounded-lg border border-rose-200 text-rose-700 bg-rose-50/70 hover:bg-rose-100 text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs" title="Dar de baja convenio de esta empresa">
+                      <span class="material-symbols-outlined text-[16px]">delete</span>
+                      <span>Baja</span>
                     </button>
                   </div>
                 </div>
@@ -606,13 +618,17 @@
                     </span>
                   </div>
                   <div class="flex items-center gap-2">
-                    <button type="button" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors">
+                    <button type="button" onclick="openViewConvenio('Universidad Mexiquense del Bicentenario · Dirección Académica', 'CV-2024-042')" class="h-9 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium flex items-center gap-1.5 transition-colors" title="Ver archivo de convenio">
                       <span class="material-symbols-outlined text-[16px]">visibility</span>
                       <span>Convenio PDF</span>
                     </button>
-                    <button type="button" class="h-9 px-3.5 rounded-lg bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs">
+                    <button type="button" onclick="openEditCompany('empresa-1', 'Universidad Mexiquense del Bicentenario · Dirección Académica', 'UMB0802209L5', 'Mtro. Armando Alcalde Martínez', '5')" class="h-9 px-3.5 rounded-lg bg-white border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs" title="Modificar datos de empresa">
                       <span class="material-symbols-outlined text-[16px]">edit</span>
-                      <span>Gestionar</span>
+                      <span>Editar</span>
+                    </button>
+                    <button type="button" onclick="openDeleteModal('empresa-1', 'Universidad Mexiquense del Bicentenario · Dirección Académica', 'CV-2024-042')" class="h-9 px-3 rounded-lg border border-rose-200 text-rose-700 bg-rose-50/70 hover:bg-rose-100 text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs" title="Dar de baja convenio de esta empresa">
+                      <span class="material-symbols-outlined text-[16px]">delete</span>
+                      <span>Baja</span>
                     </button>
                   </div>
                 </div>
@@ -714,5 +730,205 @@
       }
     });
   </script>
+
+  <!-- MODAL DE ELIMINACIÓN / DAR DE BAJA CONVENIO (Transversal 02) -->
+  <div id="deleteModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-in fade-in duration-150" aria-modal="true" role="dialog">
+    <div class="bg-white rounded-2xl shadow-modal max-w-md w-full overflow-hidden border border-rose-200 animate-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
+      
+      <!-- Cabecera del modal de eliminación -->
+      <div class="p-6 text-center bg-gradient-to-b from-rose-50 to-white border-b border-rose-100">
+        <div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-700 border border-rose-200 flex items-center justify-center mx-auto mb-3 shadow-inner">
+          <span class="material-symbols-outlined text-[32px]">warning</span>
+        </div>
+        <h3 class="text-base font-bold text-slate-900 leading-tight">¿Dar de baja convenio institucional?</h3>
+        <p class="text-xs text-slate-600 mt-1.5" id="deleteModalDesc">
+          Estás a punto de dar de baja el convenio de <strong id="deleteTargetName" class="text-rose-900">...</strong>.
+        </p>
+      </div>
+
+      <!-- Cuerpo del modal -->
+      <div class="p-6 space-y-4">
+        <div class="p-3.5 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-amber-600 text-[20px] shrink-0">info</span>
+          <p class="leading-relaxed">
+            Se revocarán los registros del catálogo y se notificará a Coordinación de Carrera. Esta acción quedará asentada en el libro de auditoría.
+          </p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1.5">Motivo reglamentario de la baja:</label>
+          <select id="deleteReason" class="w-full h-10 px-3 rounded-xl border border-slate-300 text-xs bg-white focus:ring-2 focus:ring-rose-500 outline-none">
+            <option value="vencimiento">Conclusión del periodo trianual de convenio</option>
+            <option value="cambio_razon">Cambio de razón social / Reestructuración jurídica</option>
+            <option value="solicitud_empresa">Solicitud expresa de la unidad receptora</option>
+            <option value="incumplimiento">Incumplimiento de cláusulas de residencia</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-2.5">
+        <button type="button" onclick="closeDeleteModal()" class="h-10 px-4 rounded-xl border border-slate-300 hover:bg-white text-slate-700 font-semibold text-xs transition">
+          Cancelar
+        </button>
+        <button type="button" id="confirmDeleteBtn" onclick="confirmDeleteCompany()" class="h-10 px-5 rounded-xl bg-rose-700 hover:bg-rose-800 text-white font-semibold text-xs shadow-sm transition flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[18px]">delete</span>
+          <span>Confirmar baja de convenio</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL DE EDICIÓN / GESTIÓN DE EMPRESA (Transversal) -->
+  <div id="editCompanyModal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-in fade-in duration-150" aria-modal="true" role="dialog">
+    <div class="bg-white rounded-2xl shadow-modal max-w-lg w-full overflow-hidden border border-umb-border animate-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
+      
+      <div class="p-5 bg-gradient-to-r from-umb-surface to-white border-b border-umb-border flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-umb-guinda text-white flex items-center justify-center shadow-xs font-bold text-sm">
+            <span class="material-symbols-outlined text-[20px]">domain</span>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900 leading-tight">Editar Datos de la Empresa</h3>
+            <p class="text-[11px] text-slate-500">Actualización de ficha en catálogo institucional</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeEditModal()" class="w-8 h-8 rounded-lg text-slate-400 hover:text-slate-700 flex items-center justify-center">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Razón Social</label>
+          <input type="text" id="editNameInput" class="w-full h-10 px-3 rounded-xl border border-slate-300 font-medium focus:ring-2 focus:ring-umb-guinda outline-none">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">RFC</label>
+            <input type="text" id="editRfcInput" class="w-full h-10 px-3 rounded-xl border border-slate-300 font-mono focus:ring-2 focus:ring-umb-guinda outline-none">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Capacidad máxima</label>
+            <input type="number" id="editCapInput" class="w-full h-10 px-3 rounded-xl border border-slate-300 font-medium focus:ring-2 focus:ring-umb-guinda outline-none">
+          </div>
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Titular / Asesor Externo</label>
+          <input type="text" id="editTitularInput" class="w-full h-10 px-3 rounded-xl border border-slate-300 font-medium focus:ring-2 focus:ring-umb-guinda outline-none">
+        </div>
+      </div>
+
+      <div class="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-2.5">
+        <button type="button" onclick="closeEditModal()" class="h-10 px-4 rounded-xl border border-slate-300 bg-white text-slate-700 font-semibold text-xs transition">
+          Cancelar
+        </button>
+        <button type="button" onclick="saveCompanyEdit()" class="h-10 px-5 rounded-xl bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs shadow-sm transition flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[18px]">save</span>
+          <span>Guardar cambios</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST FLOTANTE DE NOTIFICACIÓN INSTITUCIONAL (Transversal 03) -->
+  <div id="interactiveToast" class="fixed top-20 right-6 z-50 bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700 transform -translate-y-12 opacity-0 transition-all duration-300 pointer-events-none max-w-md">
+    <div id="toastIconContainer" class="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white shrink-0 shadow-xs">
+      <span class="material-symbols-outlined text-[20px]" id="toastIcon">check_circle</span>
+    </div>
+    <div class="text-xs">
+      <p class="font-bold text-white text-sm" id="toastTitle">Acción completada</p>
+      <p class="text-slate-300 text-[11px] mt-0.5" id="toastMessage">La operación se registró con éxito en SIGRES-UMB.</p>
+    </div>
+  </div>
+
+  <!-- JS INTERACTIVO PARA MODALES Y TOASTS EN CATÁLOGO DE EMPRESAS -->
+  <script>
+    let currentDeleteId = '';
+
+    function openDeleteModal(id, name, convenio) {
+      currentDeleteId = id;
+      document.getElementById('deleteTargetName').textContent = name + ' (' + convenio + ')';
+      document.getElementById('deleteModal').classList.remove('hidden');
+    }
+
+    function closeDeleteModal() {
+      document.getElementById('deleteModal').classList.add('hidden');
+    }
+
+    function confirmDeleteCompany() {
+      const btn = document.getElementById('confirmDeleteBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span> Procesando baja...';
+
+      setTimeout(() => {
+        closeDeleteModal();
+        btn.disabled = false;
+        btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">delete</span><span>Confirmar baja de convenio</span>';
+
+        if (currentDeleteId) {
+          const card = document.getElementById(currentDeleteId);
+          if (card) {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.95)';
+            card.style.transition = 'all 0.4s ease';
+            setTimeout(() => card.remove(), 400);
+          }
+        }
+
+        showToast('Convenio dado de baja', 'El convenio fue removido del catálogo institucional de forma satisfactoria.', 'success');
+      }, 700);
+    }
+
+    let currentEditId = '';
+    function openEditCompany(id, name, rfc, titular, cap) {
+      currentEditId = id;
+      document.getElementById('editNameInput').value = name;
+      document.getElementById('editRfcInput').value = rfc;
+      document.getElementById('editTitularInput').value = titular;
+      document.getElementById('editCapInput').value = cap;
+      document.getElementById('editCompanyModal').classList.remove('hidden');
+    }
+
+    function closeEditModal() {
+      document.getElementById('editCompanyModal').classList.add('hidden');
+    }
+
+    function saveCompanyEdit() {
+      closeEditModal();
+      showToast('Empresa actualizada', 'Los datos del convenio y capacidad fueron guardados correctamente.', 'info');
+    }
+
+    function openViewConvenio(name, folio) {
+      showToast('Convenio consultado', 'Abriendo anexo técnico y convenio ' + folio + ' de ' + name, 'info');
+    }
+
+    function showToast(title, message, type = 'success') {
+      const toast = document.getElementById('interactiveToast');
+      const toastTitle = document.getElementById('toastTitle');
+      const toastMessage = document.getElementById('toastMessage');
+      const toastIcon = document.getElementById('toastIcon');
+      const iconContainer = document.getElementById('toastIconContainer');
+
+      toastTitle.textContent = title;
+      toastMessage.textContent = message;
+
+      if (type === 'success') {
+        iconContainer.className = 'w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center text-white shrink-0 shadow-xs';
+        toastIcon.textContent = 'check_circle';
+      } else if (type === 'info') {
+        iconContainer.className = 'w-9 h-9 rounded-xl bg-umb-guinda flex items-center justify-center text-white shrink-0 shadow-xs';
+        toastIcon.textContent = 'info';
+      }
+
+      toast.classList.remove('-translate-y-12', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('-translate-y-12', 'opacity-0', 'pointer-events-none');
+      }, 3500);
+    }
+  </script>
+
 </body>
 </html>

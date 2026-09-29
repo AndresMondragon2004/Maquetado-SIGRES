@@ -433,5 +433,25 @@
       if (e.key === 'Escape') closePushModal();
     });
   </script>
+  <!-- Script de Sincronización y Guardado en Vivo -->
+  <script>
+    function triggerManualSync() {
+      const dot = document.getElementById('syncIndicatorDot');
+      const title = document.getElementById('syncStatusTitle');
+      const time = document.getElementById('syncStatusTime');
+      const icon = document.getElementById('syncSpinIcon');
+
+      dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-500 animate-ping';
+      title.textContent = 'Sincronizando con la nube institucional...';
+      icon.classList.add('animate-spin');
+
+      setTimeout(() => {
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse';
+        title.textContent = 'Borrador guardado exitosamente';
+        time.textContent = 'Guardado ahora mismo (' + new Date().toLocaleTimeString() + ')';
+        icon.classList.remove('animate-spin');
+      }, 700);
+    }
+  </script>
 </body>
 </html>

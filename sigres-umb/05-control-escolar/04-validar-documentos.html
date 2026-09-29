@@ -74,14 +74,55 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #94A3B8;
     }
+    /* Transición suave para contracción de sidebar */
+    #mainSidebar, #mainWorkspace {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    body.sidebar-collapsed #mainSidebar {
+      width: 72px !important;
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+    body.sidebar-collapsed #mainWorkspace {
+      margin-left: 72px !important;
+    }
+    body.sidebar-collapsed .sidebar-text {
+      display: none !important;
+    }
+    body.sidebar-collapsed .sidebar-link {
+      justify-content: center !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      gap: 0 !important;
+    }
+    body.sidebar-collapsed .sidebar-user-card {
+      justify-content: center !important;
+      padding: 0.5rem 0 !important;
+    }
+    body.sidebar-collapsed .sidebar-footer {
+      justify-content: center !important;
+    }
+    body.sidebar-collapsed .sidebar-footer-text {
+      display: none !important;
+    }
   </style>
 </head>
 <body class="h-full flex flex-col overflow-hidden text-sm select-none antialiased">
 <!-- BEGIN: TopAppBar -->
   <!-- APP BAR SUPERIOR CANÓNICA (64px) -->
 <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
-    <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb (Inicio / Apartado) -->
-    <div class="flex items-center gap-3 md:gap-4">
+    <!-- Izquierda: Toggle Sidebar + Logo UMB + Nombre Sistema + Plantel + Breadcrumb (Inicio / Apartado) -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Botón para contraer/expandir menú lateral -->
+      <button type="button" 
+              id="sidebarToggleBtn"
+              onclick="toggleSidebarCollapse()" 
+              class="hidden lg:flex p-1.5 -ml-1 rounded-lg hover:bg-white/10 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/40 items-center justify-center cursor-pointer" 
+              title="Contraer / expandir menú lateral (Mayor espacio de lectura)" 
+              aria-label="Alternar menú lateral">
+        <span class="material-symbols-outlined text-[24px]" id="sidebarToggleIcon">menu_open</span>
+      </button>
+
       <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
         <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
           <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
@@ -208,68 +249,66 @@
 <!-- Container for Main Layout: Sidebar + Working Area -->
 <div class="pt-16 flex flex-1 overflow-hidden">
 <!-- BEGIN: MainSidebar -->
-    <!-- SIDEBAR ESCRITORIO (260px) -->
-    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+    <!-- SIDEBAR ESCRITORIO (260px / 72px colapsable) -->
+    <aside id="mainSidebar" class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
       <div>
         <!-- Ficha de usuario activa -->
-        <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10">
-              EY
-            </div>
-            <div class="flex-1 min-w-0">
-              <p class="text-xs font-bold text-umb-carbon truncate">Lic. Estefanía Yttesen Nava</p>
-              <p class="text-[11px] text-umb-outline truncate">Responsable de Control Escolar</p>
-              <div class="mt-1">
-                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                  Activo
-                </span>
-              </div>
+        <div class="sidebar-user-card p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-sm ring-2 ring-umb-guinda/10 flex-shrink-0" title="Lic. Estefanía Yttesen Nava (Control Escolar)">
+            EY
+          </div>
+          <div class="sidebar-text flex-1 min-w-0">
+            <p class="text-xs font-bold text-umb-carbon truncate">Lic. Estefanía Yttesen Nava</p>
+            <p class="text-[11px] text-umb-outline truncate">Responsable de Control Escolar</p>
+            <div class="mt-1">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                Activo
+              </span>
             </div>
           </div>
         </div>
 
         <!-- Navegación vertical -->
         <nav class="space-y-1" aria-label="Navegación principal">
-          <a href="01-dashboard.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+          <a href="01-dashboard.html" title="Inicio" class="sidebar-link text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
             <span class="material-symbols-outlined text-[20px]">home</span>
-            <span class="text-sm">Inicio</span>
+            <span class="sidebar-text text-sm">Inicio</span>
           </a>
-          <a href="02-bandeja-expedientes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+          <a href="02-bandeja-expedientes.html" title="Expedientes" class="sidebar-link text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
             <span class="material-symbols-outlined text-[20px]">folder_shared</span>
-            <span class="text-sm">Expedientes</span>
+            <span class="sidebar-text text-sm">Expedientes</span>
           </a>
-          <a href="04-validar-documentos.html" class="bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
+          <a href="04-validar-documentos.html" title="Documentos" class="sidebar-link bg-umb-guinda text-white font-semibold rounded-lg h-11 px-3.5 flex items-center gap-3 shadow-sm transition-colors" aria-current="page">
             <span class="material-symbols-outlined text-[20px] fill">verified</span>
-            <span class="text-sm">Documentos</span>
+            <span class="sidebar-text text-sm">Documentos</span>
           </a>
-          <a href="06-catalogo-empresas.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+          <a href="06-catalogo-empresas.html" title="Empresas" class="sidebar-link text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
             <span class="material-symbols-outlined text-[20px]">domain</span>
-            <span class="text-sm">Empresas</span>
+            <span class="sidebar-text text-sm">Empresas</span>
           </a>
-          <a href="08-reportes.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+          <a href="08-reportes.html" title="Reportes" class="sidebar-link text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
             <span class="material-symbols-outlined text-[20px]">analytics</span>
-            <span class="text-sm">Reportes</span>
+            <span class="sidebar-text text-sm">Reportes</span>
           </a>
-          <a href="09-mi-perfil.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
+          <a href="09-mi-perfil.html" title="Perfil" class="sidebar-link text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
             <span class="material-symbols-outlined text-[20px]">person</span>
-            <span class="text-sm">Perfil</span>
+            <span class="sidebar-text text-sm">Perfil</span>
           </a>
         </nav>
       </div>
 
       <!-- Pie de navegación del sidebar -->
-      <div class="p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
-        <span>Ciclo 26-27/1</span>
-        <span class="flex items-center gap-1.5 text-emerald-700 font-medium">
+      <div class="sidebar-footer p-3 border-t border-umb-border text-[11px] text-umb-outline flex items-center justify-between">
+        <span class="sidebar-footer-text">Ciclo 26-27/1</span>
+        <span class="flex items-center gap-1.5 text-emerald-700 font-medium" title="En línea - Ciclo 26-27/1">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          En línea
+          <span class="sidebar-footer-text">En línea</span>
         </span>
       </div>
     </aside>
 <!-- END: MainSidebar -->
 <!-- Central Workspace -->
-<div class="flex-1 flex flex-col overflow-hidden bg-umb-surface lg:ml-[260px]">
+<div id="mainWorkspace" class="flex-1 flex flex-col overflow-hidden bg-umb-surface lg:ml-[260px]">
 <!-- BEGIN: ValidationHeader -->
 <section class="bg-white border-b border-gray-200 px-6 py-3.5 flex-shrink-0">
 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
@@ -911,6 +950,29 @@
         toast.classList.add('-translate-y-12', 'opacity-0', 'pointer-events-none');
       }, 3500);
     }
+
+    // CONTROL DE CONTRACCIÓN DE MENÚ LATERAL (Mayor espacio de lectura)
+    function toggleSidebarCollapse() {
+      const isCollapsed = document.body.classList.toggle('sidebar-collapsed');
+      try {
+        localStorage.setItem('sigres_sidebar_collapsed', isCollapsed ? 'true' : 'false');
+      } catch (e) {}
+      const icon = document.getElementById('sidebarToggleIcon');
+      if (icon) {
+        icon.textContent = isCollapsed ? 'menu' : 'menu_open';
+      }
+    }
+
+    // Restaurar estado guardado del menú
+    (function initSidebar() {
+      try {
+        if (localStorage.getItem('sigres_sidebar_collapsed') === 'true') {
+          document.body.classList.add('sidebar-collapsed');
+          const icon = document.getElementById('sidebarToggleIcon');
+          if (icon) icon.textContent = 'menu';
+        }
+      } catch (e) {}
+    })();
   </script>
 
 </body></html>

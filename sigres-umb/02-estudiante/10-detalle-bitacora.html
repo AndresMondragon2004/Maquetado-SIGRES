@@ -74,6 +74,37 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #94A3B8;
     }
+      /* Transición suave para contracción de sidebar */
+    #mainSidebar, #mainWorkspace {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    body.sidebar-collapsed #mainSidebar {
+      width: 72px !important;
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+    body.sidebar-collapsed #mainWorkspace {
+      margin-left: 72px !important;
+    }
+    body.sidebar-collapsed .sidebar-text {
+      display: none !important;
+    }
+    body.sidebar-collapsed .sidebar-link {
+      justify-content: center !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      gap: 0 !important;
+    }
+    body.sidebar-collapsed .sidebar-user-card {
+      justify-content: center !important;
+      padding: 0.5rem 0 !important;
+    }
+    body.sidebar-collapsed .sidebar-footer {
+      justify-content: center !important;
+    }
+    body.sidebar-collapsed .sidebar-footer-text {
+      display: none !important;
+    }
   </style>
 </head>
 <body class="h-full flex flex-col bg-umb-surface text-umb-carbon">
@@ -83,7 +114,17 @@
 <header class="fixed top-0 left-0 right-0 h-16 bg-umb-guinda text-white z-50 shadow-md border-b border-umb-guinda-dark flex items-center justify-between px-4 sm:px-6">
     <!-- Izquierda: Logo UMB + Nombre Sistema + Plantel + Breadcrumb (Inicio / Apartado) -->
     <div class="flex items-center gap-3 md:gap-4">
-      <a href="01-dashboard.html" class="flex items-center gap-2.5 group">
+            <!-- Botón para contraer/expandir menú lateral -->
+      <button type="button" 
+              id="sidebarToggleBtn"
+              onclick="toggleSidebarCollapse()" 
+              class="hidden lg:flex p-1.5 -ml-1 rounded-lg hover:bg-white/10 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/40 items-center justify-center cursor-pointer" 
+              title="Contraer / expandir menú lateral (Mayor espacio de lectura)" 
+              aria-label="Alternar menú lateral">
+        <span class="material-symbols-outlined text-[24px]" id="sidebarToggleIcon">menu_open</span>
+      </button>
+
+<a href="01-dashboard.html" class="flex items-center gap-2.5 group">
         <div class="bg-white p-1 rounded h-9 w-auto flex items-center justify-center shadow-sm">
           <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-7 w-auto object-contain">
         </div>
@@ -208,7 +249,7 @@
 
   <div class="pt-16 flex flex-1 overflow-hidden">
     <!-- SIDEBAR ESCRITORIO (260px) -->
-    <aside class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
+    <aside id="mainSidebar" class="w-[260px] fixed top-16 bottom-0 left-0 bg-white border-r border-umb-border z-40 hidden lg:flex flex-col justify-between py-4 px-3 shadow-sm" aria-label="Navegación lateral">
       <div>
         <!-- Ficha de usuario activa -->
         <div class="p-3 mb-3 border-b border-umb-border bg-gradient-to-b from-white to-umb-surface/50 rounded-lg">

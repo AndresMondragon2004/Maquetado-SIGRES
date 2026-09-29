@@ -124,17 +124,16 @@ def build_index_html(is_root=True):
             "title": "Coordinación de Carrera / UES",
             "role": "Coordinador de UES",
             "persona": "Mtro. Luis Ramón Vega Ramírez (LV)",
-            "badge": "8 pantallas",
+            "badge": "7 pantallas",
             "badge_color": "bg-rose-50 text-rose-700 border-rose-200",
             "icon": "hub",
-            "desc": "Supervisión global de cohortes por carrera, semáforo preventivo de riesgos, gestión de contingencias, firma de cartas y emisión de alertas.",
+            "desc": "Supervisión global de cohortes por carrera, semáforo preventivo de riesgos, gestión de contingencias, reportes ejecutivos y emisión de alertas.",
             "main_link": f"{prefix}06-coordinacion/01-dashboard-monitoreo.html",
             "screens": [
                 {"name": "01 · Dashboard de monitoreo general", "file": f"{prefix}06-coordinacion/01-dashboard-monitoreo.html", "icon": "monitoring"},
                 {"name": "02 · Cohortes por carrera (ISC, IIAS, LCONT)", "file": f"{prefix}06-coordinacion/02-cohortes-carreras.html", "icon": "school"},
                 {"name": "03 · Supervisión de riesgos (Semáforo)", "file": f"{prefix}06-coordinacion/03-supervision-riesgo.html", "icon": "warning"},
                 {"name": "04 · Gestión de contingencias", "file": f"{prefix}06-coordinacion/04-contingencias.html", "icon": "support"},
-                {"name": "05 · Firma masiva de cartas", "file": f"{prefix}06-coordinacion/05-firma-cartas.html", "icon": "draw"},
                 {"name": "06 · Reportes ejecutivos de coordinación", "file": f"{prefix}06-coordinacion/06-reportes-ejecutivos.html", "icon": "summarize"},
                 {"name": "07 · Centro de notificaciones institucional", "file": f"{prefix}06-coordinacion/07-notificaciones.html", "icon": "campaign"},
                 {"name": "08 · Mi perfil de coordinador", "file": f"{prefix}06-coordinacion/08-mi-perfil.html", "icon": "person"}
@@ -166,7 +165,7 @@ def build_index_html(is_root=True):
             "title": "Componentes Transversales",
             "role": "Sistema Global / UI Library",
             "persona": "Componentes compartidos",
-            "badge": "12 pantallas",
+            "badge": "13 pantallas",
             "badge_color": "bg-cyan-50 text-cyan-700 border-cyan-200",
             "icon": "widgets",
             "desc": "Biblioteca de estados de interfaz compartidos: centro de notificaciones, modales de confirmación/eliminación, toasts, estados vacíos, skeletons y páginas de error.",
@@ -183,7 +182,8 @@ def build_index_html(is_root=True):
                 {"name": "09 · Error 404 - Página no encontrada", "file": f"{prefix}08-transversales/09-pagina-404.html", "icon": "search_off"},
                 {"name": "10 · Error 500 - Error del servidor", "file": f"{prefix}08-transversales/10-pagina-500.html", "icon": "error"},
                 {"name": "11 · Modal de sesión expirada", "file": f"{prefix}08-transversales/11-modal-sesion-expirada.html", "icon": "timer_off"},
-                {"name": "12 · Búsqueda global (Cmd+K)", "file": f"{prefix}08-transversales/12-busqueda-global.html", "icon": "manage_search"}
+                {"name": "12 · Búsqueda global (Cmd+K)", "file": f"{prefix}08-transversales/12-busqueda-global.html", "icon": "manage_search"},
+                {"name": "13 · Error 403 - Acceso restringido", "file": f"{prefix}08-transversales/13-pagina-403.html", "icon": "lock"}
             ]
         }
     ]

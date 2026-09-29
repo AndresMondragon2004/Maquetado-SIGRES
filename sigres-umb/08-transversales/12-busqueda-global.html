@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-umb-surface">
+<html lang="es" class="h-full bg-slate-900">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Búsqueda Global y Command Palette — SIGRES-UMB</title>
+  <title>Búsqueda Global & Command Palette — SIGRES-UMB</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -35,12 +35,12 @@
           borderRadius: {
             card: '8px',
             badge: '9999px',
-            modal: '12px'
+            modal: '16px'
           },
           boxShadow: {
             card: '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.04)',
             'card-hover': '0 10px 15px -3px rgba(104, 27, 43, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04)',
-            modal: '0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1)'
+            modal: '0 25px 50px -12px rgba(0, 0, 0, 0.35)'
           }
         }
       }
@@ -48,7 +48,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <style>
     .material-symbols-outlined {
@@ -71,38 +71,211 @@
       background: #CBD5E1;
       border-radius: 9999px;
     }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #94A3B8;
-    }
   </style>
 </head>
-<body class="h-full bg-umb-surface text-umb-carbon font-sans flex flex-col justify-between p-6">
-  <header class="bg-umb-guinda text-white p-4 rounded-2xl shadow flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <span class="font-extrabold text-sm tracking-wide">SIGRES UMB</span>
-      <span class="px-2 py-0.5 rounded text-[10px] bg-umb-dorado font-semibold">Estados transversales</span>
+<body class="h-full bg-slate-900 text-slate-800 font-sans flex flex-col justify-between relative overflow-hidden">
+
+  <!-- Interfaz de fondo institucional -->
+  <div class="fixed inset-0 z-0 opacity-30 filter blur-xs pointer-events-none select-none bg-[#F4F5F7]">
+    <header class="h-16 bg-umb-guinda w-full px-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="bg-white p-1.5 rounded"><img src="../assets/logo_umb.png" class="h-7"></div>
+        <span class="text-white font-bold text-base">SIGRES-UMB</span>
+      </div>
+      <div class="w-8 h-8 rounded-full bg-white/20"></div>
+    </header>
+    <div class="max-w-5xl mx-auto p-8 space-y-6">
+      <div class="h-10 bg-slate-200 rounded w-1/4"></div>
+      <div class="grid grid-cols-3 gap-6">
+        <div class="h-28 bg-white rounded-xl border border-slate-200"></div>
+        <div class="h-28 bg-white rounded-xl border border-slate-200"></div>
+        <div class="h-28 bg-white rounded-xl border border-slate-200"></div>
+      </div>
     </div>
-    <a href="../index.html" class="text-xs bg-black/20 hover:bg-black/30 px-3 py-1.5 rounded-lg text-amber-200 transition">← Portal Principal</a>
-  </header>
-  <main class="flex-1  max-w-xl mx-auto my-auto bg-white p-8 rounded-2xl border border-gray-200 shadow-xl text-center space-y-4 min-w-0 pb-24 lg:pb-8">
-    <div class="w-16 h-16 rounded-2xl bg-amber-50 text-umb-dorado mx-auto flex items-center justify-center font-bold text-2xl">
-      🏛️
+  </div>
+
+  <!-- Command Palette Modal Central -->
+  <div class="relative z-10 min-h-screen flex items-start justify-center p-4 sm:p-6 sm:pt-20 backdrop-blur-md bg-black/60">
+    
+    <div class="bg-white rounded-2xl shadow-modal border border-slate-200/90 max-w-2xl w-full overflow-hidden flex flex-col animate-in zoom-in-95 duration-150">
+      
+      <!-- Barra de entrada de búsqueda -->
+      <div class="p-4 border-b border-slate-200 flex items-center gap-3 bg-white">
+        <span class="material-symbols-outlined text-[24px] text-umb-guinda shrink-0">search</span>
+        <input 
+          type="text" 
+          id="commandInput"
+          autofocus 
+          placeholder="Buscar estudiantes, matrículas, empresas, folios o módulos... (Ej. 13220024)" 
+          class="flex-1 text-sm bg-transparent outline-none text-slate-900 placeholder-slate-400 font-medium"
+          oninput="handleSearch(this.value)"
+        />
+        <div class="flex items-center gap-1 shrink-0">
+          <kbd class="px-2 py-0.5 text-[10px] font-mono font-semibold text-slate-500 bg-slate-100 border border-slate-300 rounded shadow-xs">ESC</kbd>
+        </div>
+      </div>
+
+      <!-- Filtros rápidos por categoría -->
+      <div class="px-4 py-2 bg-slate-50 border-b border-slate-200 flex items-center gap-1.5 overflow-x-auto text-xs">
+        <button onclick="setFilter('todos')" class="filter-btn px-2.5 py-1 rounded-full font-medium transition bg-umb-guinda text-white" data-filter="todos">Todos</button>
+        <button onclick="setFilter('estudiante')" class="filter-btn px-2.5 py-1 rounded-full font-medium transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100" data-filter="estudiante">👨‍🎓 Residentes</button>
+        <button onclick="setFilter('empresa')" class="filter-btn px-2.5 py-1 rounded-full font-medium transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100" data-filter="empresa">🏢 Empresas</button>
+        <button onclick="setFilter('documento')" class="filter-btn px-2.5 py-1 rounded-full font-medium transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100" data-filter="documento">📄 Folios</button>
+        <button onclick="setFilter('modulo')" class="filter-btn px-2.5 py-1 rounded-full font-medium transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100" data-filter="modulo">⚡ Accesos rápidos</button>
+      </div>
+
+      <!-- Lista de resultados interactivos -->
+      <div class="max-h-[380px] overflow-y-auto p-2 space-y-1" id="resultsContainer">
+        
+        <!-- Grupo: Estudiantes -->
+        <div class="result-group" data-cat="estudiante">
+          <div class="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400">Estudiantes y Expedientes</div>
+          <a href="../01-estudiante/01-dashboard.html" class="search-item flex items-center justify-between p-2.5 rounded-xl hover:bg-umb-guinda-light/60 hover:text-umb-guinda text-slate-700 transition group border border-transparent hover:border-umb-guinda/20">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 font-bold text-xs flex items-center justify-center shrink-0">JM</div>
+              <div class="min-w-0">
+                <p class="text-xs font-semibold text-slate-900 group-hover:text-umb-guinda truncate">Jesús Andrés Mondragón Tenorio</p>
+                <p class="text-[11px] text-slate-500 font-mono">13220024 · ISC · Proyecto Microservicios UMB</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-umb-guinda group-hover:translate-x-0.5 transition-transform shrink-0">arrow_forward</span>
+          </a>
+
+          <a href="../05-control-escolar/02-bandeja-expedientes.html" class="search-item flex items-center justify-between p-2.5 rounded-xl hover:bg-umb-guinda-light/60 hover:text-umb-guinda text-slate-700 transition group border border-transparent hover:border-umb-guinda/20">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center shrink-0">CP</div>
+              <div class="min-w-0">
+                <p class="text-xs font-semibold text-slate-900 group-hover:text-umb-guinda truncate">Cristofer Piña Rodríguez</p>
+                <p class="text-[11px] text-slate-500 font-mono">13200018 · ISC · Grupo Bimbo</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-umb-guinda group-hover:translate-x-0.5 transition-transform shrink-0">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- Grupo: Empresas -->
+        <div class="result-group" data-cat="empresa">
+          <div class="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400">Empresas & Unidades Receptoras</div>
+          <a href="../05-control-escolar/06-catalogo-empresas.html" class="search-item flex items-center justify-between p-2.5 rounded-xl hover:bg-umb-guinda-light/60 hover:text-umb-guinda text-slate-700 transition group border border-transparent hover:border-umb-guinda/20">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[18px]">domain</span>
+              </div>
+              <div class="min-w-0">
+                <p class="text-xs font-semibold text-slate-900 group-hover:text-umb-guinda truncate">Universidad Mexiquense del Bicentenario · Dirección Académica</p>
+                <p class="text-[11px] text-slate-500">Convenio Vigente CV-2024-042 · Toluca, Edo. Méx.</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-umb-guinda group-hover:translate-x-0.5 transition-transform shrink-0">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- Grupo: Documentos -->
+        <div class="result-group" data-cat="documento">
+          <div class="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400">Folios & Cartas Oficiales</div>
+          <a href="../05-control-escolar/05-generar-carta.html" class="search-item flex items-center justify-between p-2.5 rounded-xl hover:bg-umb-guinda-light/60 hover:text-umb-guinda text-slate-700 transition group border border-transparent hover:border-umb-guinda/20">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[18px]">description</span>
+              </div>
+              <div class="min-w-0">
+                <p class="text-xs font-semibold text-slate-900 group-hover:text-umb-guinda truncate font-mono">UMB/UES-SJR/CE/2026-0148</p>
+                <p class="text-[11px] text-slate-500">Carta de presentación liberada · Jesús Andrés Mondragón</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-umb-guinda group-hover:translate-x-0.5 transition-transform shrink-0">arrow_forward</span>
+          </a>
+        </div>
+
+        <!-- Grupo: Módulos Rápidos -->
+        <div class="result-group" data-cat="modulo">
+          <div class="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400">Módulos del Sistema</div>
+          <a href="../06-coordinacion/01-dashboard-monitoreo.html" class="search-item flex items-center justify-between p-2.5 rounded-xl hover:bg-umb-guinda-light/60 hover:text-umb-guinda text-slate-700 transition group border border-transparent hover:border-umb-guinda/20">
+            <div class="flex items-center gap-3 min-w-0">
+              <div class="w-8 h-8 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[18px]">hub</span>
+              </div>
+              <div class="min-w-0">
+                <p class="text-xs font-semibold text-slate-900 group-hover:text-umb-guinda truncate">Módulo de Coordinación (Monitoreo & Riesgos)</p>
+                <p class="text-[11px] text-slate-500">Supervisión integral de cohortes y contingencias</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-umb-guinda group-hover:translate-x-0.5 transition-transform shrink-0">arrow_forward</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Pie del command palette -->
+      <div class="p-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-500">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono text-[10px]">↑</kbd><kbd class="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono text-[10px]">↓</kbd> Navegar</span>
+          <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 bg-white border border-slate-300 rounded font-mono text-[10px]">ENTER</kbd> Seleccionar</span>
+        </div>
+        <span>SIGRES-UMB · Búsqueda Universal</span>
+      </div>
+
     </div>
-    <h2 class="text-xl font-bold text-gray-900">Búsqueda Global y Command Palette</h2>
-    <p class="text-xs text-gray-500">Componente transversal institucional para el sistema SIGRES-UMB de la Universidad Mexiquense del Bicentenario.</p>
-    <a href="../index.html" class="inline-block px-5 py-2.5 rounded-xl bg-umb-guinda text-white text-xs font-bold shadow hover:bg-[#521422] transition">Volver al Portal</a>
-  </main>
-  <footer class="text-center text-xs text-gray-400">UES San José del Rincón • Ciclo 26-27/1</footer>
 
+  </div>
 
+  <!-- Script interactivo -->
+  <script>
+    let activeFilter = 'todos';
 
+    function setFilter(cat) {
+      activeFilter = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        if (b.getAttribute('data-filter') === cat) {
+          b.className = 'filter-btn px-2.5 py-1 rounded-full font-medium transition bg-umb-guinda text-white';
+        } else {
+          b.className = 'filter-btn px-2.5 py-1 rounded-full font-medium transition bg-white text-slate-600 border border-slate-200 hover:bg-slate-100';
+        }
+      });
+      filterItems();
+    }
 
-<!-- BOTÓN FLOTANTE AL PORTAL (Solo para navegación del prototipo - Eliminar en producción) -->
+    function handleSearch(val) {
+      filterItems(val.toLowerCase());
+    }
+
+    function filterItems(query = document.getElementById('commandInput').value.toLowerCase()) {
+      const groups = document.querySelectorAll('.result-group');
+      groups.forEach(group => {
+        const cat = group.getAttribute('data-cat');
+        const matchesCategory = (activeFilter === 'todos' || activeFilter === cat);
+        let visibleCount = 0;
+
+        const items = group.querySelectorAll('.search-item');
+        items.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          const matchesQuery = text.includes(query);
+          if (matchesCategory && matchesQuery) {
+            item.style.display = 'flex';
+            visibleCount++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        group.style.display = visibleCount > 0 ? 'block' : 'none';
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        window.location.href = '../index.html';
+      }
+    });
+  </script>
+
+<!-- BOTÓN FLOTANTE AL PORTAL -->
 <aside aria-label="Navegación al portal de prototipos" class="fixed bottom-6 right-6 z-50">
   <a href="../index.html" class="h-10 px-4 rounded-full bg-umb-guinda hover:bg-umb-guinda-dark text-white text-xs font-semibold shadow-xl border border-umb-dorado/40 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado">
     <span class="material-symbols-outlined text-sm text-amber-300">apps</span>
     <span>Ir al portal</span>
   </a>
 </aside>
+
 </body>
 </html>

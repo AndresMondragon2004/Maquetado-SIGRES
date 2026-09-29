@@ -235,7 +235,6 @@ ROLE_CONFIGS = {
             {"id": "02-cohortes-carreras", "label": "Cohortes", "icon": "school", "link": "02-cohortes-carreras.html", "matches": ["02-cohortes-carreras.html"]},
             {"id": "03-supervision-riesgo", "label": "Riesgos", "icon": "warning", "link": "03-supervision-riesgo.html", "matches": ["03-supervision-riesgo.html"]},
             {"id": "04-contingencias", "label": "Contingencias", "icon": "support", "link": "04-contingencias.html", "matches": ["04-contingencias.html"]},
-            {"id": "05-firma-cartas", "label": "Firmas", "icon": "draw", "link": "05-firma-cartas.html", "matches": ["05-firma-cartas.html"]},
             {"id": "06-reportes-ejecutivos", "label": "Reportes", "icon": "summarize", "link": "06-reportes-ejecutivos.html", "matches": ["06-reportes-ejecutivos.html"]},
             {"id": "08-mi-perfil", "label": "Perfil", "icon": "person", "link": "08-mi-perfil.html", "matches": ["08-mi-perfil.html"]}
         ],
@@ -243,7 +242,6 @@ ROLE_CONFIGS = {
             {"label": "Monitoreo", "icon": "monitoring", "link": "01-dashboard-monitoreo.html", "matches": ["01-dashboard-monitoreo.html"]},
             {"label": "Riesgos", "icon": "warning", "link": "03-supervision-riesgo.html", "matches": ["03-supervision-riesgo.html"]},
             {"label": "Contingencias", "icon": "support", "link": "04-contingencias.html", "matches": ["04-contingencias.html"]},
-            {"label": "Firmas", "icon": "draw", "link": "05-firma-cartas.html", "matches": ["05-firma-cartas.html"]},
             {"label": "Perfil", "icon": "person", "link": "08-mi-perfil.html", "matches": ["08-mi-perfil.html"]}
         ],
         "screen_names": {
@@ -251,7 +249,6 @@ ROLE_CONFIGS = {
             "02-cohortes-carreras.html": "Cohortes por carrera",
             "03-supervision-riesgo.html": "Supervisión de riesgo",
             "04-contingencias.html": "Gestión de contingencias",
-            "05-firma-cartas.html": "Firma de cartas oficiales",
             "06-reportes-ejecutivos.html": "Reportes ejecutivos",
             "07-notificaciones.html": "Gestión de notificaciones",
             "08-mi-perfil.html": "Mi perfil"

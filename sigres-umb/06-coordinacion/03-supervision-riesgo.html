@@ -149,21 +149,6 @@
                 </div>
               </div>
             </a>
-            <a href="05-firma-cartas.html" class="notif-item block p-3 bg-umb-guinda-light/40 transition-colors border-b border-umb-border/60 last:border-0 group">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-lg text-umb-guinda bg-umb-guinda-light border-umb-guinda/20 flex items-center justify-center flex-shrink-0 border mt-0.5">
-                  <span class="material-symbols-outlined text-[18px]">draw</span>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-1">
-                    <p class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda truncate leading-tight">Cartas para firma digital</p>
-                    <span class="unread-dot w-2 h-2 rounded-full bg-umb-guinda flex-shrink-0"></span>
-                  </div>
-                  <p class="text-[11px] text-umb-muted leading-snug mt-0.5">4 cartas de presentación de ISC listas para firma institucional.</p>
-                  <span class="text-[10px] text-umb-outline mt-1 block">Hace 1 hora</span>
-                </div>
-              </div>
-            </a>
             <a href="04-contingencias.html" class="notif-item block p-3 bg-white hover:bg-umb-surface transition-colors border-b border-umb-border/60 last:border-0 group">
               <div class="flex items-start gap-3">
                 <div class="w-8 h-8 rounded-lg text-amber-600 bg-amber-50 border-amber-200 flex items-center justify-center flex-shrink-0 border mt-0.5">
@@ -246,10 +231,6 @@
           <a href="04-contingencias.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
             <span class="material-symbols-outlined text-[20px]">support</span>
             <span class="text-sm">Contingencias</span>
-          </a>
-          <a href="05-firma-cartas.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
-            <span class="material-symbols-outlined text-[20px]">draw</span>
-            <span class="text-sm">Firmas</span>
           </a>
           <a href="06-reportes-ejecutivos.html" class="text-umb-muted hover:bg-umb-surface hover:text-umb-carbon font-medium rounded-lg h-11 px-3.5 flex items-center gap-3 transition-colors">
             <span class="material-symbols-outlined text-[20px]">summarize</span>
@@ -426,33 +407,39 @@
               </button>
 </div>
 </div>
-<!-- Tabla de Datos Espaciosa y Legible -->
+<!-- Indicador visual responsivo para pantallas compactas -->
+          <div class="md:hidden flex items-center justify-end gap-1.5 text-[11px] text-umb-outline px-1 mb-1.5">
+            <span class="material-symbols-outlined text-[15px] text-umb-dorado">swipe</span>
+            <span>Desliza para ver más información →</span>
+          </div>
+
+          <!-- Tabla de Datos Espaciosa y Legible -->
           <div class="overflow-x-auto rounded-xl border border-slate-200/80 shadow-xs bg-white">
             <table class="w-full min-w-[1020px] text-left border-collapse text-xs">
               <thead>
                 <tr class="bg-slate-50 border-b border-slate-200 text-slate-700 font-bold uppercase tracking-wider text-[11px]">
-                  <th class="py-3.5 px-5 w-[33%]">Estudiante & Tutor Asignado</th>
-                  <th class="py-3.5 px-3 w-[8%] text-center">Carrera</th>
-                  <th class="py-3.5 px-5 w-[25%]">Motivo del riesgo & Horas</th>
-                  <th class="py-3.5 px-3 w-[12%] text-center">Semáforo</th>
-                  <th class="py-3.5 px-4 w-[12%]">Última acción</th>
-                  <th class="py-3.5 px-5 w-[10%] text-right">Acciones</th>
+                  <th class="py-4 px-5 w-[30%]">Estudiante & Tutor Asignado</th>
+                  <th class="py-4 px-3 w-[8%] text-center">Carrera</th>
+                  <th class="py-4 px-5 w-[28%]">Motivo del riesgo & Horas</th>
+                  <th class="py-4 px-3 w-[11%] text-center">Semáforo</th>
+                  <th class="py-4 px-4 w-[12%]">Última acción</th>
+                  <th class="py-4 px-5 w-[11%] text-right">Acciones</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-200/70">
               <!-- FILA: Rodrigo Mendoza Bautista (Crítico) -->
               <tr class="hover:bg-red-50/40 transition-colors">
                 <!-- Estudiante & Asesor -->
-                <td class="py-4 px-5">
-                  <div class="flex items-start gap-3.5">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 mt-0.5 shadow-2xs">
+                <td class="py-5 px-5 align-middle">
+                  <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 shadow-2xs">
                       RM
                     </div>
-                    <div class="space-y-0.5 min-w-0">
-                      <div class="font-bold text-sm text-umb-carbon leading-snug truncate">Rodrigo Mendoza Bautista</div>
+                    <div class="space-y-1 min-w-0">
+                      <div class="font-bold text-sm text-umb-carbon leading-tight truncate">Rodrigo Mendoza Bautista</div>
                       <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-umb-outline">
-                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.2 rounded text-[11px]">13200091</span>
-                        <span class="text-slate-400">•</span>
+                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded text-[11px] border border-slate-200/80">13200091</span>
+                        <span class="text-slate-300">•</span>
                         <span class="text-umb-muted text-[11px] truncate">Asesor: I.S.C. Leonardo Becerril Sánchez</span>
                       </div>
                     </div>
@@ -460,56 +447,59 @@
                 </td>
 
                 <!-- Carrera -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center justify-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs shadow-2xs">
                     ISC
                   </span>
                 </td>
 
-                <!-- Motivo del riesgo & Horas -->
-                <td class="py-4 px-5">
-                  <div class="space-y-1.5 max-w-[230px]">
-                    <div class="flex items-center justify-between gap-2">
-                      <span class="text-xs text-red-700 font-bold">75% asistencia</span>
-                      <span class="text-[10px] font-semibold bg-red-50 text-red-700 border-red-200 px-2 py-0.5 rounded-full border">
+                <!-- Motivo del riesgo & Horas (Espacioso, sin saltos forzados de línea) -->
+                <td class="py-5 px-5 align-middle">
+                  <div class="space-y-2 min-w-[220px]">
+                    <!-- Indicador de Asistencia -->
+                    <div class="flex items-center gap-2.5 whitespace-nowrap">
+                      <span class="text-xs font-bold text-red-700 whitespace-nowrap">75% asistencia</span>
+                      <span class="text-[10px] font-semibold bg-red-50 text-red-700 border-red-200 px-2 py-0.5 rounded-full border whitespace-nowrap">
                         Mín. 80%
                       </span>
                     </div>
-                    <div class="space-y-1">
-                      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div class="bg-red-600 h-full rounded-full" style="width: 28%"></div>
-                      </div>
-                      <div class="flex items-center justify-between text-[11px] text-umb-muted">
-                        <span>Horas:</span>
-                        <span class="font-semibold text-slate-800">180 / 640 hrs (28%)</span>
-                      </div>
+
+                    <!-- Barra de progreso -->
+                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                      <div class="bg-red-600 h-full rounded-full" style="width: 28%"></div>
+                    </div>
+
+                    <!-- Conteo de Horas -->
+                    <div class="flex items-center justify-between gap-2 text-[11px] text-umb-muted whitespace-nowrap">
+                      <span>Horas: <strong class="text-slate-800 font-semibold">180 / 640 hrs</strong></span>
+                      <span class="text-slate-500 font-medium">(28% avance)</span>
                     </div>
                   </div>
                 </td>
 
                 <!-- Semáforo -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 border-red-200 border shadow-2xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 border-red-200 border shadow-2xs whitespace-nowrap">
                     <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
                     Crítico
                   </span>
                 </td>
 
                 <!-- Última acción -->
-                <td class="py-4 px-4">
+                <td class="py-5 px-4 align-middle">
                   <div class="flex items-center gap-1.5 text-xs text-slate-700 font-medium whitespace-nowrap">
-                    <span class="material-symbols-outlined text-[17px] text-red-600 shrink-0">assignment_late</span>
+                    <span class="material-symbols-outlined text-[18px] text-red-600 shrink-0">assignment_late</span>
                     <span>Citatorio emitido 8 oct</span>
                   </div>
                 </td>
 
                 <!-- Acciones -->
-                <td class="py-4 px-5 text-right">
-                  <div class="inline-flex items-center gap-1.5 justify-end">
-                    <button type="button" class="h-8 px-2.5 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium transition-colors" title="Ver expediente">
+                <td class="py-5 px-5 text-right align-middle">
+                  <div class="inline-flex items-center gap-2 justify-end whitespace-nowrap">
+                    <button type="button" class="h-8 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold transition-colors shadow-2xs" title="Ver expediente">
                       Expediente
                     </button>
-                    <button type="button" class="h-8 px-3 rounded-lg bg-red-700 hover:bg-red-800 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
+                    <button type="button" class="h-8 px-3.5 rounded-lg bg-red-700 hover:bg-red-800 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
                       Citatorio
                     </button>
                   </div>
@@ -518,16 +508,16 @@
               <!-- FILA: Brenda Karina Soto (Crítico) -->
               <tr class="hover:bg-red-50/40 transition-colors">
                 <!-- Estudiante & Asesor -->
-                <td class="py-4 px-5">
-                  <div class="flex items-start gap-3.5">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 mt-0.5 shadow-2xs">
+                <td class="py-5 px-5 align-middle">
+                  <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 shadow-2xs">
                       BS
                     </div>
-                    <div class="space-y-0.5 min-w-0">
-                      <div class="font-bold text-sm text-umb-carbon leading-snug truncate">Brenda Karina Soto</div>
+                    <div class="space-y-1 min-w-0">
+                      <div class="font-bold text-sm text-umb-carbon leading-tight truncate">Brenda Karina Soto</div>
                       <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-umb-outline">
-                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.2 rounded text-[11px]">13210014</span>
-                        <span class="text-slate-400">•</span>
+                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded text-[11px] border border-slate-200/80">13210014</span>
+                        <span class="text-slate-300">•</span>
                         <span class="text-umb-muted text-[11px] truncate">Asesor: L.C. Sergio Sánchez Sánchez</span>
                       </div>
                     </div>
@@ -535,56 +525,59 @@
                 </td>
 
                 <!-- Carrera -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center justify-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs shadow-2xs">
                     LCONT
                   </span>
                 </td>
 
-                <!-- Motivo del riesgo & Horas -->
-                <td class="py-4 px-5">
-                  <div class="space-y-1.5 max-w-[230px]">
-                    <div class="flex items-center justify-between gap-2">
-                      <span class="text-xs text-red-700 font-bold">78% asistencia</span>
-                      <span class="text-[10px] font-semibold bg-red-50 text-red-700 border-red-200 px-2 py-0.5 rounded-full border">
+                <!-- Motivo del riesgo & Horas (Espacioso, sin saltos forzados de línea) -->
+                <td class="py-5 px-5 align-middle">
+                  <div class="space-y-2 min-w-[220px]">
+                    <!-- Indicador de Asistencia -->
+                    <div class="flex items-center gap-2.5 whitespace-nowrap">
+                      <span class="text-xs font-bold text-red-700 whitespace-nowrap">78% asistencia</span>
+                      <span class="text-[10px] font-semibold bg-red-50 text-red-700 border-red-200 px-2 py-0.5 rounded-full border whitespace-nowrap">
                         Mín. 80%
                       </span>
                     </div>
-                    <div class="space-y-1">
-                      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div class="bg-red-600 h-full rounded-full" style="width: 30%"></div>
-                      </div>
-                      <div class="flex items-center justify-between text-[11px] text-umb-muted">
-                        <span>Horas:</span>
-                        <span class="font-semibold text-slate-800">190 / 640 hrs (30%)</span>
-                      </div>
+
+                    <!-- Barra de progreso -->
+                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                      <div class="bg-red-600 h-full rounded-full" style="width: 30%"></div>
+                    </div>
+
+                    <!-- Conteo de Horas -->
+                    <div class="flex items-center justify-between gap-2 text-[11px] text-umb-muted whitespace-nowrap">
+                      <span>Horas: <strong class="text-slate-800 font-semibold">190 / 640 hrs</strong></span>
+                      <span class="text-slate-500 font-medium">(30% avance)</span>
                     </div>
                   </div>
                 </td>
 
                 <!-- Semáforo -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 border-red-200 border shadow-2xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 border-red-200 border shadow-2xs whitespace-nowrap">
                     <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
                     Crítico
                   </span>
                 </td>
 
                 <!-- Última acción -->
-                <td class="py-4 px-4">
+                <td class="py-5 px-4 align-middle">
                   <div class="flex items-center gap-1.5 text-xs text-slate-700 font-medium whitespace-nowrap">
-                    <span class="material-symbols-outlined text-[17px] text-amber-600 shrink-0">notification_important</span>
+                    <span class="material-symbols-outlined text-[18px] text-amber-600 shrink-0">notification_important</span>
                     <span>Recordatorio 5 oct</span>
                   </div>
                 </td>
 
                 <!-- Acciones -->
-                <td class="py-4 px-5 text-right">
-                  <div class="inline-flex items-center gap-1.5 justify-end">
-                    <button type="button" class="h-8 px-2.5 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium transition-colors" title="Ver expediente">
+                <td class="py-5 px-5 text-right align-middle">
+                  <div class="inline-flex items-center gap-2 justify-end whitespace-nowrap">
+                    <button type="button" class="h-8 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold transition-colors shadow-2xs" title="Ver expediente">
                       Expediente
                     </button>
-                    <button type="button" class="h-8 px-3 rounded-lg bg-red-700 hover:bg-red-800 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
+                    <button type="button" class="h-8 px-3.5 rounded-lg bg-red-700 hover:bg-red-800 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
                       Citatorio
                     </button>
                   </div>
@@ -593,16 +586,16 @@
               <!-- FILA: Cristofer Piña Rodríguez (Crítico) -->
               <tr class="hover:bg-red-50/40 transition-colors">
                 <!-- Estudiante & Asesor -->
-                <td class="py-4 px-5">
-                  <div class="flex items-start gap-3.5">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 mt-0.5 shadow-2xs">
+                <td class="py-5 px-5 align-middle">
+                  <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 shadow-2xs">
                       CM
                     </div>
-                    <div class="space-y-0.5 min-w-0">
-                      <div class="font-bold text-sm text-umb-carbon leading-snug truncate">Cristofer Piña Rodríguez</div>
+                    <div class="space-y-1 min-w-0">
+                      <div class="font-bold text-sm text-umb-carbon leading-tight truncate">Cristofer Piña Rodríguez</div>
                       <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-umb-outline">
-                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.2 rounded text-[11px]">13200018</span>
-                        <span class="text-slate-400">•</span>
+                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded text-[11px] border border-slate-200/80">13200018</span>
+                        <span class="text-slate-300">•</span>
                         <span class="text-umb-muted text-[11px] truncate">Asesor: Ing. Jesús Omar Espinoza Díaz</span>
                       </div>
                     </div>
@@ -610,56 +603,59 @@
                 </td>
 
                 <!-- Carrera -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center justify-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs shadow-2xs">
                     IIAS
                   </span>
                 </td>
 
-                <!-- Motivo del riesgo & Horas -->
-                <td class="py-4 px-5">
-                  <div class="space-y-1.5 max-w-[230px]">
-                    <div class="flex items-center justify-between gap-2">
-                      <span class="text-xs text-red-700 font-bold">78% asistencia</span>
-                      <span class="text-[10px] font-semibold bg-red-50 text-red-700 border-red-200 px-2 py-0.5 rounded-full border">
+                <!-- Motivo del riesgo & Horas (Espacioso, sin saltos forzados de línea) -->
+                <td class="py-5 px-5 align-middle">
+                  <div class="space-y-2 min-w-[220px]">
+                    <!-- Indicador de Asistencia -->
+                    <div class="flex items-center gap-2.5 whitespace-nowrap">
+                      <span class="text-xs font-bold text-red-700 whitespace-nowrap">78% asistencia</span>
+                      <span class="text-[10px] font-semibold bg-red-50 text-red-700 border-red-200 px-2 py-0.5 rounded-full border whitespace-nowrap">
                         Mín. 80%
                       </span>
                     </div>
-                    <div class="space-y-1">
-                      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div class="bg-red-600 h-full rounded-full" style="width: 30%"></div>
-                      </div>
-                      <div class="flex items-center justify-between text-[11px] text-umb-muted">
-                        <span>Horas:</span>
-                        <span class="font-semibold text-slate-800">190 / 640 hrs (30%)</span>
-                      </div>
+
+                    <!-- Barra de progreso -->
+                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                      <div class="bg-red-600 h-full rounded-full" style="width: 30%"></div>
+                    </div>
+
+                    <!-- Conteo de Horas -->
+                    <div class="flex items-center justify-between gap-2 text-[11px] text-umb-muted whitespace-nowrap">
+                      <span>Horas: <strong class="text-slate-800 font-semibold">190 / 640 hrs</strong></span>
+                      <span class="text-slate-500 font-medium">(30% avance)</span>
                     </div>
                   </div>
                 </td>
 
                 <!-- Semáforo -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 border-red-200 border shadow-2xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 border-red-200 border shadow-2xs whitespace-nowrap">
                     <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
                     Crítico
                   </span>
                 </td>
 
                 <!-- Última acción -->
-                <td class="py-4 px-4">
+                <td class="py-5 px-4 align-middle">
                   <div class="flex items-center gap-1.5 text-xs text-slate-700 font-medium whitespace-nowrap">
-                    <span class="material-symbols-outlined text-[17px] text-slate-400 shrink-0">remove</span>
+                    <span class="material-symbols-outlined text-[18px] text-slate-400 shrink-0">remove</span>
                     <span>Sin acciones previas</span>
                   </div>
                 </td>
 
                 <!-- Acciones -->
-                <td class="py-4 px-5 text-right">
-                  <div class="inline-flex items-center gap-1.5 justify-end">
-                    <button type="button" class="h-8 px-2.5 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium transition-colors" title="Ver expediente">
+                <td class="py-5 px-5 text-right align-middle">
+                  <div class="inline-flex items-center gap-2 justify-end whitespace-nowrap">
+                    <button type="button" class="h-8 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold transition-colors shadow-2xs" title="Ver expediente">
                       Expediente
                     </button>
-                    <button type="button" class="h-8 px-3 rounded-lg bg-red-700 hover:bg-red-800 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
+                    <button type="button" class="h-8 px-3.5 rounded-lg bg-red-700 hover:bg-red-800 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
                       Citatorio
                     </button>
                   </div>
@@ -668,16 +664,16 @@
               <!-- FILA: Daniel Benítez (Moderado) -->
               <tr class="hover:bg-amber-50/40 transition-colors">
                 <!-- Estudiante & Asesor -->
-                <td class="py-4 px-5">
-                  <div class="flex items-start gap-3.5">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 mt-0.5 shadow-2xs">
+                <td class="py-5 px-5 align-middle">
+                  <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 shadow-2xs">
                       DB
                     </div>
-                    <div class="space-y-0.5 min-w-0">
-                      <div class="font-bold text-sm text-umb-carbon leading-snug truncate">Daniel Benítez</div>
+                    <div class="space-y-1 min-w-0">
+                      <div class="font-bold text-sm text-umb-carbon leading-tight truncate">Daniel Benítez</div>
                       <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-umb-outline">
-                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.2 rounded text-[11px]">13190042</span>
-                        <span class="text-slate-400">•</span>
+                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded text-[11px] border border-slate-200/80">13190042</span>
+                        <span class="text-slate-300">•</span>
                         <span class="text-umb-muted text-[11px] truncate">Asesor: L.C. Sergio Sánchez Sánchez</span>
                       </div>
                     </div>
@@ -685,56 +681,59 @@
                 </td>
 
                 <!-- Carrera -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center justify-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs shadow-2xs">
                     LCONT
                   </span>
                 </td>
 
-                <!-- Motivo del riesgo & Horas -->
-                <td class="py-4 px-5">
-                  <div class="space-y-1.5 max-w-[230px]">
-                    <div class="flex items-center justify-between gap-2">
-                      <span class="text-xs text-amber-800 font-bold">82% asistencia</span>
-                      <span class="text-[10px] font-semibold bg-amber-50 text-amber-800 border-amber-200 px-2 py-0.5 rounded-full border">
+                <!-- Motivo del riesgo & Horas (Espacioso, sin saltos forzados de línea) -->
+                <td class="py-5 px-5 align-middle">
+                  <div class="space-y-2 min-w-[220px]">
+                    <!-- Indicador de Asistencia -->
+                    <div class="flex items-center gap-2.5 whitespace-nowrap">
+                      <span class="text-xs font-bold text-amber-800 whitespace-nowrap">82% asistencia</span>
+                      <span class="text-[10px] font-semibold bg-amber-50 text-amber-800 border-amber-200 px-2 py-0.5 rounded-full border whitespace-nowrap">
                         Rezago de 80 h
                       </span>
                     </div>
-                    <div class="space-y-1">
-                      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div class="bg-amber-500 h-full rounded-full" style="width: 37.5%"></div>
-                      </div>
-                      <div class="flex items-center justify-between text-[11px] text-umb-muted">
-                        <span>Horas:</span>
-                        <span class="font-semibold text-slate-800">240 / 640 hrs (37.5%)</span>
-                      </div>
+
+                    <!-- Barra de progreso -->
+                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                      <div class="bg-amber-500 h-full rounded-full" style="width: 37.5%"></div>
+                    </div>
+
+                    <!-- Conteo de Horas -->
+                    <div class="flex items-center justify-between gap-2 text-[11px] text-umb-muted whitespace-nowrap">
+                      <span>Horas: <strong class="text-slate-800 font-semibold">240 / 640 hrs</strong></span>
+                      <span class="text-slate-500 font-medium">(37.5% avance)</span>
                     </div>
                   </div>
                 </td>
 
                 <!-- Semáforo -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border-amber-200 border shadow-2xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border-amber-200 border shadow-2xs whitespace-nowrap">
                     <span class="w-2 h-2 rounded-full bg-amber-500 "></span>
                     Moderado
                   </span>
                 </td>
 
                 <!-- Última acción -->
-                <td class="py-4 px-4">
+                <td class="py-5 px-4 align-middle">
                   <div class="flex items-center gap-1.5 text-xs text-slate-700 font-medium whitespace-nowrap">
-                    <span class="material-symbols-outlined text-[17px] text-slate-400 shrink-0">remove</span>
+                    <span class="material-symbols-outlined text-[18px] text-slate-400 shrink-0">remove</span>
                     <span>Sin acciones previas</span>
                   </div>
                 </td>
 
                 <!-- Acciones -->
-                <td class="py-4 px-5 text-right">
-                  <div class="inline-flex items-center gap-1.5 justify-end">
-                    <button type="button" class="h-8 px-2.5 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium transition-colors" title="Ver expediente">
+                <td class="py-5 px-5 text-right align-middle">
+                  <div class="inline-flex items-center gap-2 justify-end whitespace-nowrap">
+                    <button type="button" class="h-8 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold transition-colors shadow-2xs" title="Ver expediente">
                       Expediente
                     </button>
-                    <button type="button" class="h-8 px-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
+                    <button type="button" class="h-8 px-3.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
                       Recordatorio
                     </button>
                   </div>
@@ -743,16 +742,16 @@
               <!-- FILA: Emmanuel Sánchez Vilchis (Moderado) -->
               <tr class="hover:bg-amber-50/40 transition-colors">
                 <!-- Estudiante & Asesor -->
-                <td class="py-4 px-5">
-                  <div class="flex items-start gap-3.5">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 mt-0.5 shadow-2xs">
+                <td class="py-5 px-5 align-middle">
+                  <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 shadow-2xs">
                       ES
                     </div>
-                    <div class="space-y-0.5 min-w-0">
-                      <div class="font-bold text-sm text-umb-carbon leading-snug truncate">Emmanuel Sánchez Vilchis</div>
+                    <div class="space-y-1 min-w-0">
+                      <div class="font-bold text-sm text-umb-carbon leading-tight truncate">Emmanuel Sánchez Vilchis</div>
                       <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-umb-outline">
-                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.2 rounded text-[11px]">13210039</span>
-                        <span class="text-slate-400">•</span>
+                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded text-[11px] border border-slate-200/80">13210039</span>
+                        <span class="text-slate-300">•</span>
                         <span class="text-umb-muted text-[11px] truncate">Asesor: Ing. Jesús Omar Espinoza Díaz</span>
                       </div>
                     </div>
@@ -760,56 +759,59 @@
                 </td>
 
                 <!-- Carrera -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center justify-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs shadow-2xs">
                     IIAS
                   </span>
                 </td>
 
-                <!-- Motivo del riesgo & Horas -->
-                <td class="py-4 px-5">
-                  <div class="space-y-1.5 max-w-[230px]">
-                    <div class="flex items-center justify-between gap-2">
-                      <span class="text-xs text-amber-800 font-bold">85% asistencia</span>
-                      <span class="text-[10px] font-semibold bg-amber-50 text-amber-800 border-amber-200 px-2 py-0.5 rounded-full border">
+                <!-- Motivo del riesgo & Horas (Espacioso, sin saltos forzados de línea) -->
+                <td class="py-5 px-5 align-middle">
+                  <div class="space-y-2 min-w-[220px]">
+                    <!-- Indicador de Asistencia -->
+                    <div class="flex items-center gap-2.5 whitespace-nowrap">
+                      <span class="text-xs font-bold text-amber-800 whitespace-nowrap">85% asistencia</span>
+                      <span class="text-[10px] font-semibold bg-amber-50 text-amber-800 border-amber-200 px-2 py-0.5 rounded-full border whitespace-nowrap">
                         Rezago de 110 h
                       </span>
                     </div>
-                    <div class="space-y-1">
-                      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div class="bg-amber-500 h-full rounded-full" style="width: 33%"></div>
-                      </div>
-                      <div class="flex items-center justify-between text-[11px] text-umb-muted">
-                        <span>Horas:</span>
-                        <span class="font-semibold text-slate-800">210 / 640 hrs (33%)</span>
-                      </div>
+
+                    <!-- Barra de progreso -->
+                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                      <div class="bg-amber-500 h-full rounded-full" style="width: 33%"></div>
+                    </div>
+
+                    <!-- Conteo de Horas -->
+                    <div class="flex items-center justify-between gap-2 text-[11px] text-umb-muted whitespace-nowrap">
+                      <span>Horas: <strong class="text-slate-800 font-semibold">210 / 640 hrs</strong></span>
+                      <span class="text-slate-500 font-medium">(33% avance)</span>
                     </div>
                   </div>
                 </td>
 
                 <!-- Semáforo -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border-amber-200 border shadow-2xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border-amber-200 border shadow-2xs whitespace-nowrap">
                     <span class="w-2 h-2 rounded-full bg-amber-500 "></span>
                     Moderado
                   </span>
                 </td>
 
                 <!-- Última acción -->
-                <td class="py-4 px-4">
+                <td class="py-5 px-4 align-middle">
                   <div class="flex items-center gap-1.5 text-xs text-slate-700 font-medium whitespace-nowrap">
-                    <span class="material-symbols-outlined text-[17px] text-amber-600 shrink-0">mark_email_read</span>
+                    <span class="material-symbols-outlined text-[18px] text-amber-600 shrink-0">mark_email_read</span>
                     <span>Recordatorio 3 oct</span>
                   </div>
                 </td>
 
                 <!-- Acciones -->
-                <td class="py-4 px-5 text-right">
-                  <div class="inline-flex items-center gap-1.5 justify-end">
-                    <button type="button" class="h-8 px-2.5 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium transition-colors" title="Ver expediente">
+                <td class="py-5 px-5 text-right align-middle">
+                  <div class="inline-flex items-center gap-2 justify-end whitespace-nowrap">
+                    <button type="button" class="h-8 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold transition-colors shadow-2xs" title="Ver expediente">
                       Expediente
                     </button>
-                    <button type="button" class="h-8 px-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
+                    <button type="button" class="h-8 px-3.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
                       Recordatorio
                     </button>
                   </div>
@@ -818,16 +820,16 @@
               <!-- FILA: Diana Laura Pérez Estrada (Moderado) -->
               <tr class="hover:bg-amber-50/40 transition-colors">
                 <!-- Estudiante & Asesor -->
-                <td class="py-4 px-5">
-                  <div class="flex items-start gap-3.5">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 mt-0.5 shadow-2xs">
+                <td class="py-5 px-5 align-middle">
+                  <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 shadow-2xs">
                       DP
                     </div>
-                    <div class="space-y-0.5 min-w-0">
-                      <div class="font-bold text-sm text-umb-carbon leading-snug truncate">Diana Laura Pérez Estrada</div>
+                    <div class="space-y-1 min-w-0">
+                      <div class="font-bold text-sm text-umb-carbon leading-tight truncate">Diana Laura Pérez Estrada</div>
                       <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-umb-outline">
-                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.2 rounded text-[11px]">13220076</span>
-                        <span class="text-slate-400">•</span>
+                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded text-[11px] border border-slate-200/80">13220076</span>
+                        <span class="text-slate-300">•</span>
                         <span class="text-umb-muted text-[11px] truncate">Asesor: I.S.C. Leonardo Becerril Sánchez</span>
                       </div>
                     </div>
@@ -835,56 +837,59 @@
                 </td>
 
                 <!-- Carrera -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center justify-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs shadow-2xs">
                     ISC
                   </span>
                 </td>
 
-                <!-- Motivo del riesgo & Horas -->
-                <td class="py-4 px-5">
-                  <div class="space-y-1.5 max-w-[230px]">
-                    <div class="flex items-center justify-between gap-2">
-                      <span class="text-xs text-amber-800 font-bold">87% asistencia</span>
-                      <span class="text-[10px] font-semibold bg-amber-50 text-amber-800 border-amber-200 px-2 py-0.5 rounded-full border">
+                <!-- Motivo del riesgo & Horas (Espacioso, sin saltos forzados de línea) -->
+                <td class="py-5 px-5 align-middle">
+                  <div class="space-y-2 min-w-[220px]">
+                    <!-- Indicador de Asistencia -->
+                    <div class="flex items-center gap-2.5 whitespace-nowrap">
+                      <span class="text-xs font-bold text-amber-800 whitespace-nowrap">87% asistencia</span>
+                      <span class="text-[10px] font-semibold bg-amber-50 text-amber-800 border-amber-200 px-2 py-0.5 rounded-full border whitespace-nowrap">
                         Rezago de 70 h
                       </span>
                     </div>
-                    <div class="space-y-1">
-                      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div class="bg-amber-500 h-full rounded-full" style="width: 39%"></div>
-                      </div>
-                      <div class="flex items-center justify-between text-[11px] text-umb-muted">
-                        <span>Horas:</span>
-                        <span class="font-semibold text-slate-800">250 / 640 hrs (39%)</span>
-                      </div>
+
+                    <!-- Barra de progreso -->
+                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                      <div class="bg-amber-500 h-full rounded-full" style="width: 39%"></div>
+                    </div>
+
+                    <!-- Conteo de Horas -->
+                    <div class="flex items-center justify-between gap-2 text-[11px] text-umb-muted whitespace-nowrap">
+                      <span>Horas: <strong class="text-slate-800 font-semibold">250 / 640 hrs</strong></span>
+                      <span class="text-slate-500 font-medium">(39% avance)</span>
                     </div>
                   </div>
                 </td>
 
                 <!-- Semáforo -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border-amber-200 border shadow-2xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border-amber-200 border shadow-2xs whitespace-nowrap">
                     <span class="w-2 h-2 rounded-full bg-amber-500 "></span>
                     Moderado
                   </span>
                 </td>
 
                 <!-- Última acción -->
-                <td class="py-4 px-4">
+                <td class="py-5 px-4 align-middle">
                   <div class="flex items-center gap-1.5 text-xs text-slate-700 font-medium whitespace-nowrap">
-                    <span class="material-symbols-outlined text-[17px] text-indigo-600 shrink-0">forum</span>
+                    <span class="material-symbols-outlined text-[18px] text-indigo-600 shrink-0">forum</span>
                     <span>Revisión con asesor 6 oct</span>
                   </div>
                 </td>
 
                 <!-- Acciones -->
-                <td class="py-4 px-5 text-right">
-                  <div class="inline-flex items-center gap-1.5 justify-end">
-                    <button type="button" class="h-8 px-2.5 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium transition-colors" title="Ver expediente">
+                <td class="py-5 px-5 text-right align-middle">
+                  <div class="inline-flex items-center gap-2 justify-end whitespace-nowrap">
+                    <button type="button" class="h-8 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold transition-colors shadow-2xs" title="Ver expediente">
                       Expediente
                     </button>
-                    <button type="button" class="h-8 px-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
+                    <button type="button" class="h-8 px-3.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
                       Recordatorio
                     </button>
                   </div>
@@ -893,16 +898,16 @@
               <!-- FILA: Jimena Cruz Garduño (Moderado) -->
               <tr class="hover:bg-amber-50/40 transition-colors">
                 <!-- Estudiante & Asesor -->
-                <td class="py-4 px-5">
-                  <div class="flex items-start gap-3.5">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 mt-0.5 shadow-2xs">
+                <td class="py-5 px-5 align-middle">
+                  <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 shadow-2xs">
                       JC
                     </div>
-                    <div class="space-y-0.5 min-w-0">
-                      <div class="font-bold text-sm text-umb-carbon leading-snug truncate">Jimena Cruz Garduño</div>
+                    <div class="space-y-1 min-w-0">
+                      <div class="font-bold text-sm text-umb-carbon leading-tight truncate">Jimena Cruz Garduño</div>
                       <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-umb-outline">
-                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.2 rounded text-[11px]">13210088</span>
-                        <span class="text-slate-400">•</span>
+                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded text-[11px] border border-slate-200/80">13210088</span>
+                        <span class="text-slate-300">•</span>
                         <span class="text-umb-muted text-[11px] truncate">Asesor: Ing. Jesús Omar Espinoza Díaz</span>
                       </div>
                     </div>
@@ -910,56 +915,59 @@
                 </td>
 
                 <!-- Carrera -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center justify-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs shadow-2xs">
                     IIAS
                   </span>
                 </td>
 
-                <!-- Motivo del riesgo & Horas -->
-                <td class="py-4 px-5">
-                  <div class="space-y-1.5 max-w-[230px]">
-                    <div class="flex items-center justify-between gap-2">
-                      <span class="text-xs text-amber-800 font-bold">84% asistencia</span>
-                      <span class="text-[10px] font-semibold bg-amber-50 text-amber-800 border-amber-200 px-2 py-0.5 rounded-full border">
+                <!-- Motivo del riesgo & Horas (Espacioso, sin saltos forzados de línea) -->
+                <td class="py-5 px-5 align-middle">
+                  <div class="space-y-2 min-w-[220px]">
+                    <!-- Indicador de Asistencia -->
+                    <div class="flex items-center gap-2.5 whitespace-nowrap">
+                      <span class="text-xs font-bold text-amber-800 whitespace-nowrap">84% asistencia</span>
+                      <span class="text-[10px] font-semibold bg-amber-50 text-amber-800 border-amber-200 px-2 py-0.5 rounded-full border whitespace-nowrap">
                         Rezago de 100 h
                       </span>
                     </div>
-                    <div class="space-y-1">
-                      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div class="bg-amber-500 h-full rounded-full" style="width: 34%"></div>
-                      </div>
-                      <div class="flex items-center justify-between text-[11px] text-umb-muted">
-                        <span>Horas:</span>
-                        <span class="font-semibold text-slate-800">220 / 640 hrs (34%)</span>
-                      </div>
+
+                    <!-- Barra de progreso -->
+                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                      <div class="bg-amber-500 h-full rounded-full" style="width: 34%"></div>
+                    </div>
+
+                    <!-- Conteo de Horas -->
+                    <div class="flex items-center justify-between gap-2 text-[11px] text-umb-muted whitespace-nowrap">
+                      <span>Horas: <strong class="text-slate-800 font-semibold">220 / 640 hrs</strong></span>
+                      <span class="text-slate-500 font-medium">(34% avance)</span>
                     </div>
                   </div>
                 </td>
 
                 <!-- Semáforo -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border-amber-200 border shadow-2xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border-amber-200 border shadow-2xs whitespace-nowrap">
                     <span class="w-2 h-2 rounded-full bg-amber-500 "></span>
                     Moderado
                   </span>
                 </td>
 
                 <!-- Última acción -->
-                <td class="py-4 px-4">
+                <td class="py-5 px-4 align-middle">
                   <div class="flex items-center gap-1.5 text-xs text-slate-700 font-medium whitespace-nowrap">
-                    <span class="material-symbols-outlined text-[17px] text-slate-400 shrink-0">remove</span>
+                    <span class="material-symbols-outlined text-[18px] text-slate-400 shrink-0">remove</span>
                     <span>Sin acciones previas</span>
                   </div>
                 </td>
 
                 <!-- Acciones -->
-                <td class="py-4 px-5 text-right">
-                  <div class="inline-flex items-center gap-1.5 justify-end">
-                    <button type="button" class="h-8 px-2.5 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium transition-colors" title="Ver expediente">
+                <td class="py-5 px-5 text-right align-middle">
+                  <div class="inline-flex items-center gap-2 justify-end whitespace-nowrap">
+                    <button type="button" class="h-8 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold transition-colors shadow-2xs" title="Ver expediente">
                       Expediente
                     </button>
-                    <button type="button" class="h-8 px-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
+                    <button type="button" class="h-8 px-3.5 rounded-lg bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
                       Recordatorio
                     </button>
                   </div>
@@ -968,16 +976,16 @@
               <!-- FILA: Mateo Salgado Navarrete (Crítico) -->
               <tr class="hover:bg-red-50/40 transition-colors">
                 <!-- Estudiante & Asesor -->
-                <td class="py-4 px-5">
-                  <div class="flex items-start gap-3.5">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 mt-0.5 shadow-2xs">
+                <td class="py-5 px-5 align-middle">
+                  <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-full bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center shrink-0 border border-slate-200 shadow-2xs">
                       MS
                     </div>
-                    <div class="space-y-0.5 min-w-0">
-                      <div class="font-bold text-sm text-umb-carbon leading-snug truncate">Mateo Salgado Navarrete</div>
+                    <div class="space-y-1 min-w-0">
+                      <div class="font-bold text-sm text-umb-carbon leading-tight truncate">Mateo Salgado Navarrete</div>
                       <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-umb-outline">
-                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.2 rounded text-[11px]">13200054</span>
-                        <span class="text-slate-400">•</span>
+                        <span class="font-mono font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded text-[11px] border border-slate-200/80">13200054</span>
+                        <span class="text-slate-300">•</span>
                         <span class="text-umb-muted text-[11px] truncate">Asesor: I.S.C. Leonardo Becerril Sánchez</span>
                       </div>
                     </div>
@@ -985,56 +993,59 @@
                 </td>
 
                 <!-- Carrera -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center justify-center px-2.5 py-1 font-bold rounded-md bg-slate-100 text-slate-700 border border-slate-200 text-xs shadow-2xs">
                     ISC
                   </span>
                 </td>
 
-                <!-- Motivo del riesgo & Horas -->
-                <td class="py-4 px-5">
-                  <div class="space-y-1.5 max-w-[230px]">
-                    <div class="flex items-center justify-between gap-2">
-                      <span class="text-xs text-red-700 font-bold">79% asistencia</span>
-                      <span class="text-[10px] font-semibold bg-red-50 text-red-700 border-red-200 px-2 py-0.5 rounded-full border">
+                <!-- Motivo del riesgo & Horas (Espacioso, sin saltos forzados de línea) -->
+                <td class="py-5 px-5 align-middle">
+                  <div class="space-y-2 min-w-[220px]">
+                    <!-- Indicador de Asistencia -->
+                    <div class="flex items-center gap-2.5 whitespace-nowrap">
+                      <span class="text-xs font-bold text-red-700 whitespace-nowrap">79% asistencia</span>
+                      <span class="text-[10px] font-semibold bg-red-50 text-red-700 border-red-200 px-2 py-0.5 rounded-full border whitespace-nowrap">
                         Mín. 80%
                       </span>
                     </div>
-                    <div class="space-y-1">
-                      <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-                        <div class="bg-red-600 h-full rounded-full" style="width: 29%"></div>
-                      </div>
-                      <div class="flex items-center justify-between text-[11px] text-umb-muted">
-                        <span>Horas:</span>
-                        <span class="font-semibold text-slate-800">185 / 640 hrs (29%)</span>
-                      </div>
+
+                    <!-- Barra de progreso -->
+                    <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                      <div class="bg-red-600 h-full rounded-full" style="width: 29%"></div>
+                    </div>
+
+                    <!-- Conteo de Horas -->
+                    <div class="flex items-center justify-between gap-2 text-[11px] text-umb-muted whitespace-nowrap">
+                      <span>Horas: <strong class="text-slate-800 font-semibold">185 / 640 hrs</strong></span>
+                      <span class="text-slate-500 font-medium">(29% avance)</span>
                     </div>
                   </div>
                 </td>
 
                 <!-- Semáforo -->
-                <td class="py-4 px-3 text-center">
-                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 border-red-200 border shadow-2xs">
+                <td class="py-5 px-3 text-center align-middle">
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-800 border-red-200 border shadow-2xs whitespace-nowrap">
                     <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
                     Crítico
                   </span>
                 </td>
 
                 <!-- Última acción -->
-                <td class="py-4 px-4">
+                <td class="py-5 px-4 align-middle">
                   <div class="flex items-center gap-1.5 text-xs text-slate-700 font-medium whitespace-nowrap">
-                    <span class="material-symbols-outlined text-[17px] text-red-600 shrink-0">assignment_late</span>
+                    <span class="material-symbols-outlined text-[18px] text-red-600 shrink-0">assignment_late</span>
                     <span>Citatorio emitido 7 oct</span>
                   </div>
                 </td>
 
                 <!-- Acciones -->
-                <td class="py-4 px-5 text-right">
-                  <div class="inline-flex items-center gap-1.5 justify-end">
-                    <button type="button" class="h-8 px-2.5 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-medium transition-colors" title="Ver expediente">
+                <td class="py-5 px-5 text-right align-middle">
+                  <div class="inline-flex items-center gap-2 justify-end whitespace-nowrap">
+                    <button type="button" class="h-8 px-3 rounded-lg border border-umb-border hover:bg-umb-surface text-umb-carbon text-xs font-semibold transition-colors shadow-2xs" title="Ver expediente">
                       Expediente
                     </button>
-                    <button type="button" class="h-8 px-3 rounded-lg bg-red-700 hover:bg-red-800 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
+                    <button type="button" class="h-8 px-3.5 rounded-lg bg-red-700 hover:bg-red-800 text-white text-xs font-semibold shadow-xs transition-colors" title="Acción recomendada">
                       Citatorio
                     </button>
                   </div>
@@ -1111,9 +1122,6 @@
 </div>
 <!-- END: MainContainer -->
 
-
-
-
   <!-- BOTTOM NAVIGATION MOBILE (< 1024px) -->
   <nav class="lg:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-umb-border shadow-lg z-40 flex items-center justify-around px-2" aria-label="Navegación inferior móvil">
     <a href="01-dashboard-monitoreo.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
@@ -1128,9 +1136,9 @@
       <span class="material-symbols-outlined text-[22px]">support</span>
       <span class="text-[11px] font-medium mt-0.5">Contingencias</span>
     </a>
-    <a href="05-firma-cartas.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
-      <span class="material-symbols-outlined text-[22px]">draw</span>
-      <span class="text-[11px] font-medium mt-0.5">Firmas</span>
+    <a href="06-reportes-ejecutivos.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
+      <span class="material-symbols-outlined text-[22px]">summarize</span>
+      <span class="text-[11px] font-medium mt-0.5">Reportes</span>
     </a>
     <a href="08-mi-perfil.html" class="flex flex-col items-center justify-center flex-1 py-1 text-umb-outline hover:text-umb-carbon">
       <span class="material-symbols-outlined text-[22px]">person</span>

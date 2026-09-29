@@ -212,9 +212,8 @@ El proyecto de residencia profesional se desarrolla dentro de la **propia Univer
    - 2. `school` — **Cohortes** (`02-cohortes-carreras.html`)
    - 3. `warning` — **Riesgos** (`03-supervision-riesgo.html`)
    - 4. `support` — **Contingencias** (`04-contingencias.html`)
-   - 5. `draw` — **Firmas** (`05-firma-cartas.html`)
-   - 6. `summarize` — **Reportes** (`06-reportes-ejecutivos.html`)
-   - 7. `person` — **Perfil** (`08-mi-perfil.html`)
+   - 5. `summarize` — **Reportes** (`06-reportes-ejecutivos.html`)
+   - 6. `person` — **Perfil** (`08-mi-perfil.html`)
    *(Nota: Cuenta adicionalmente con la pantalla de `07-notificaciones.html` accesible desde el flujo de gestión).*
 
 6. **Dirección Académica** (`07-direccion/`) — Usuario: *Mtro. Armando Alcalde Martínez (AA)*
@@ -237,7 +236,7 @@ El proyecto de residencia profesional se desarrolla dentro de la **propia Univer
     - **Asesor Interno** (5 ítems): Inicio, Mis alumnos, Asesorías, Evaluaciones, Perfil.
     - **Asesor Externo** (5 ítems): Inicio, Bitácoras, Residentes, Historial, Perfil.
     - **Control Escolar** (5 ítems): Inicio, Expedientes, Documentos, Empresas, Perfil. *(Reportes accesible desde el menú secundario o dashboard)*.
-    - **Coordinación** (5 ítems): Monitoreo, Riesgos, Contingencias, Firmas, Perfil. *(Cohortes y Reportes accesibles desde el menú secundario o dashboard)*.
+    - **Coordinación** (5 ítems): Monitoreo, Riesgos, Contingencias, Reportes, Perfil. *(Cohortes accesible desde el menú secundario o dashboard)*.
     - **Dirección** (5 ítems): Dashboard, Vinculación, Sectores, Acreditación, Perfil. *(Configuración accesible desde el menú secundario o dashboard)*.
 - **Estilo de Ítem Mobile**:
   - **Activo**: `flex flex-col items-center justify-center flex-1 py-1 text-umb-guinda` (ícono `text-[22px]` con clase `.fill` + texto `text-[11px] font-semibold`).
@@ -446,7 +445,6 @@ Para asegurar que todas las pantallas estén interconectadas de manera consisten
 - **Cohortes**: `02-cohortes-carreras.html` (Breadcrumb: `Coordinación / Cohortes por carrera`)
 - **Riesgos**: `03-supervision-riesgo.html` (Breadcrumb: `Coordinación / Supervisión de riesgo`)
 - **Contingencias**: `04-contingencias.html` (Breadcrumb: `Coordinación / Contingencias`)
-- **Firmas**: `05-firma-cartas.html` (Breadcrumb: `Coordinación / Firma de cartas`)
 - **Reportes**: `06-reportes-ejecutivos.html` (Breadcrumb: `Coordinación / Reportes ejecutivos`)
 - **Notificaciones**: `07-notificaciones.html` (Breadcrumb: `Coordinación / Notificaciones`)
 - **Perfil**: `08-mi-perfil.html` (Breadcrumb: `Coordinación / Mi perfil`)

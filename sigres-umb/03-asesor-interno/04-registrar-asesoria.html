@@ -78,32 +78,34 @@
     #mainSidebar, #mainWorkspace {
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    body.sidebar-collapsed #mainSidebar {
-      width: 72px !important;
-      padding-left: 0.5rem !important;
-      padding-right: 0.5rem !important;
-    }
-    body.sidebar-collapsed #mainWorkspace {
-      margin-left: 72px !important;
-    }
-    body.sidebar-collapsed .sidebar-text {
-      display: none !important;
-    }
-    body.sidebar-collapsed .sidebar-link {
-      justify-content: center !important;
-      padding-left: 0 !important;
-      padding-right: 0 !important;
-      gap: 0 !important;
-    }
-    body.sidebar-collapsed .sidebar-user-card {
-      justify-content: center !important;
-      padding: 0.5rem 0 !important;
-    }
-    body.sidebar-collapsed .sidebar-footer {
-      justify-content: center !important;
-    }
-    body.sidebar-collapsed .sidebar-footer-text {
-      display: none !important;
+    @media (min-width: 1024px) {
+  body.sidebar-collapsed #mainSidebar {
+        width: 72px !important;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+      }
+      body.sidebar-collapsed #mainWorkspace {
+        margin-left: 72px !important;
+      }
+      body.sidebar-collapsed .sidebar-text {
+        display: none !important;
+      }
+      body.sidebar-collapsed .sidebar-link {
+        justify-content: center !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        gap: 0 !important;
+      }
+      body.sidebar-collapsed .sidebar-user-card {
+        justify-content: center !important;
+        padding: 0.5rem 0 !important;
+      }
+      body.sidebar-collapsed .sidebar-footer {
+        justify-content: center !important;
+      }
+      body.sidebar-collapsed .sidebar-footer-text {
+        display: none !important;
+      }
     }
   </style>
 </head>

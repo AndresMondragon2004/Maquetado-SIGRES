@@ -1,8 +1,15 @@
 import os
 
-def build_index_html(is_root=True):
-    prefix = "sigres-umb/" if is_root else ""
-    logo_path = "sigres-umb/assets/logo_umb.png" if is_root else "assets/logo_umb.png"
+def build_index_html(prefix_type="root"):
+    if prefix_type == "root":
+        prefix = "sigres-umb/"
+        logo_path = "sigres-umb/assets/logo_umb.png"
+    elif prefix_type == "sigres":
+        prefix = ""
+        logo_path = "assets/logo_umb.png"
+    elif prefix_type == "subfolder":
+        prefix = "../"
+        logo_path = "../assets/logo_umb.png"
 
     modules_data = [
         {
@@ -527,15 +534,16 @@ def build_index_html(is_root=True):
 </html>"""
 
 if __name__ == "__main__":
-    root_index = build_index_html(is_root=True)
+    root_index = build_index_html(prefix_type="root")
     with open(r"c:\Users\Pc\Downloads\Maquetado - Residencia\respaldo-pre-estandarizacion-2026-09-17\index.html", "w", encoding="utf-8") as f:
         f.write(root_index)
 
-    sigres_index = build_index_html(is_root=False)
+    sigres_index = build_index_html(prefix_type="sigres")
     with open(r"c:\Users\Pc\Downloads\Maquetado - Residencia\respaldo-pre-estandarizacion-2026-09-17\sigres-umb\index.html", "w", encoding="utf-8") as f:
         f.write(sigres_index)
 
+    subfolder_index = build_index_html(prefix_type="subfolder")
     with open(r"c:\Users\Pc\Downloads\Maquetado - Residencia\respaldo-pre-estandarizacion-2026-09-17\sigres-umb\00-portal\index.html", "w", encoding="utf-8") as f:
-        f.write(sigres_index)
+        f.write(subfolder_index)
 
     print("Index files created successfully!")

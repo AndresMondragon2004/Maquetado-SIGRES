@@ -74,6 +74,46 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #94A3B8;
     }
+    /* SKELETON SCREENS STYLING */
+    .skeleton-box {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      background-color: #E2E8F0;
+      border-radius: 4px;
+    }
+    .skeleton-box.rounded-circle {
+      border-radius: 9999px !important;
+    }
+    .animate-mode-pulse {
+      animation: skeletonPulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes skeletonPulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.35;
+      }
+    }
+    .animate-mode-shimmer {
+      background: linear-gradient(90deg, #E2E8F0 25%, #F8FAFC 50%, #E2E8F0 75%);
+      background-size: 200% 100%;
+      animation: skeletonShimmer 1.5s infinite;
+    }
+    @keyframes skeletonShimmer {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+    .animations-paused .skeleton-box,
+    .animations-paused .animate-mode-pulse,
+    .animations-paused .animate-mode-shimmer {
+      animation-play-state: paused !important;
+    }
   </style>
 </head>
 <body class="min-h-full flex flex-col font-sans text-slate-800 bg-[#F8FAFC] antialiased">

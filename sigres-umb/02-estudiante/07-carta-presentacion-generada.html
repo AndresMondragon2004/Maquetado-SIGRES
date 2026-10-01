@@ -389,16 +389,18 @@
               <div class="relative z-10 flex flex-col justify-between h-full min-h-[770px]">
                 <div>
                   <!-- 1. ENCABEZADO SUPERIOR: MEMBRETE INSTITUCIONAL OFICIAL (MÁS GRANDE Y JUNTO) -->
-                  <div class="flex items-center justify-between gap-2 sm:gap-3 pb-3 border-b border-gray-300">
+                  <div class="flex items-center justify-between gap-2 sm:gap-3 pb-1.5">
                     <img src="../assets/encabezado_edomex.jpg" alt="Gobierno del Estado de México · Secretaría de Educación" class="h-10 sm:h-12 w-auto object-contain flex-1 max-w-[70%]">
                     <img src="../assets/logo_umb.png" alt="Universidad Mexiquense del Bicentenario" class="h-10 sm:h-12 w-auto object-contain shrink-0">
                   </div>
 
-                  <!-- Glifo / Flor Mexiquense y Lema Oficial del Año -->
-                  <div class="text-center my-3.5">
-                    <div class="flex justify-center mb-1 text-gray-700">
-                      <span class="text-[12px] leading-none">❖</span>
-                    </div>
+                  <!-- Cenefa gráfica institucional superior -->
+                  <div class="my-1 text-center">
+                    <img src="../assets/linea_superior.png" alt="Línea institucional Estado de México" class="w-[75%] sm:w-[70%] h-auto max-h-6 sm:max-h-7 object-contain mx-auto opacity-95">
+                  </div>
+
+                  <!-- Lema Oficial del Año -->
+                  <div class="text-center my-2">
                     <p class="text-[9.5px] font-serif italic text-gray-800 tracking-wide">"2026. Año del Humanismo Mexicano en el Estado de México".</p>
                   </div>
 
@@ -433,47 +435,30 @@
                 </div>
 
                 <div>
-                  <!-- 6. FIRMA OFICIAL, SELLO UMB Y CCP -->
-                  <div class="mt-8 pt-2 flex items-start justify-between">
-                    <!-- Izquierda: Firma del Coordinador de la UES -->
-                    <div class="text-left space-y-0.5 relative">
+                  <!-- 6. FIRMA OFICIAL (Espacio limpio para firma autógrafa y sello físico institucional) -->
+                  <div class="mt-8 pt-2">
+                    <div class="text-left space-y-0.5">
                       <p class="font-bold text-gray-900 text-[10px] mb-1">Atentamente</p>
                       
-                      <!-- Firma y Sello rectangular simulado -->
-                      <div class="relative h-14 w-52 flex items-center">
-                        <span class="font-serif italic text-base text-slate-800 absolute z-10 left-3 -top-1">Luis Ramón Vega R.</span>
-                        
-                        <!-- Sello rectangular UMB San José -->
-                        <div class="absolute left-1 -top-2 w-32 h-13 border-2 border-slate-700/80 rounded flex flex-col items-center justify-center p-1 text-center bg-white/40 transform -rotate-3 select-none pointer-events-none">
-                          <span class="text-[9px] font-black uppercase text-slate-800 tracking-tighter leading-none">UMB</span>
-                          <span class="text-[5px] font-bold text-slate-700 uppercase leading-none mt-0.5">Universidad Mexiquense del Bicentenario</span>
-                          <span class="text-[7px] font-extrabold text-slate-900 uppercase tracking-wide border-t border-slate-700 w-full mt-0.5 pt-0.5">SAN JOSÉ</span>
-                        </div>
+                      <!-- Espacio para firma física -->
+                      <div class="h-16 w-56 flex items-end">
+                        <div class="w-48 border-b border-gray-400 mb-1"></div>
                       </div>
 
                       <p class="font-bold text-gray-900 text-[10px]">Mtro. en I. D. Luis Ramón Vega Ramírez</p>
                       <p class="text-gray-700 text-[9px]">Coordinador de la Unidad de Estudios Superiores</p>
                       <p class="text-gray-700 text-[9px]">San José del Rincón</p>
                       
-                      <div class="pt-3 text-[7.5px] text-gray-500 space-y-0.5">
+                      <div class="pt-4 text-[7.5px] text-gray-500 space-y-0.5">
                         <p>C.c.p. Estudiante.</p>
                         <p>C.c.p. Archivo.</p>
-                      </div>
-                    </div>
-
-                    <!-- Derecha: Espacio para acuse o sello de la empresa -->
-                    <div class="flex flex-col items-center justify-center relative pr-2 pt-2">
-                      <div class="w-20 h-20 rounded-full border border-dashed border-gray-400 flex flex-col items-center justify-center text-center p-1 opacity-70">
-                        <span class="text-[6px] text-gray-500 font-semibold uppercase leading-none">Espacio para</span>
-                        <span class="text-[7px] text-gray-700 font-bold uppercase leading-tight my-0.5">SELLO Y FIRMA</span>
-                        <span class="text-[5px] text-gray-500 uppercase leading-none">DE LA EMPRESA</span>
                       </div>
                     </div>
                   </div>
 
                   <!-- 7. PIE DE PÁGINA: CENEFA GRÁFICA REAL Y DATOS INSTITUCIONALES (70% ANCHO) -->
                   <div class="mt-8 pt-2.5 border-t border-gray-200 text-center">
-                    <img src="../assets/footer1.png" alt="Cenefa institucional Gobierno del Estado de México" class="w-[75%] sm:w-[70%] h-auto max-h-11 sm:max-h-12 object-contain mx-auto mb-1.5 opacity-95">
+                    <img src="../assets/footer1.png" alt="Cenefa institucional Gobierno del Estado de México" class="w-[75%] sm:w-[70%] h-auto max-h-7 sm:max-h-8 object-contain mx-auto mb-1.5 opacity-95">
                     <p class="text-[7.5px] text-gray-600 leading-tight">
                       Av. Universidad, Calle Justo Sierra S/N, Col. Las Tinajas, C. P. 50660, San José del Rincón, Estado de México.
                     </p>

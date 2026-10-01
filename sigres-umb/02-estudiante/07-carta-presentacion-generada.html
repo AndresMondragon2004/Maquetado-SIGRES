@@ -379,75 +379,127 @@
             </div>
 
             <!-- TARJETA BLANCA SIMULANDO HOJA TAMAÑO CARTA (8.5 x 11) -->
-            <div class="bg-white border border-[#D1D5DB] rounded-md letter-shadow mx-auto p-8 sm:p-10 relative bg-white overflow-hidden text-umb-carbon select-none" style="min-height: 760px;">
+            <div class="bg-white border border-[#D1D5DB] rounded-md letter-shadow mx-auto p-6 sm:p-9 relative bg-white overflow-hidden text-umb-carbon select-none" style="min-height: 820px;">
               
-              <!-- ENCABEZADO SUPERIOR INSTITUCIONAL -->
-              <div class="flex items-center justify-between pb-3 border-b border-[#1A1A1A]">
-                <!-- LADO IZQUIERDO -->
-                <div class="flex items-center space-x-2.5">
-                  <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-10 w-auto object-contain">
-                  <div class="leading-tight">
-                    <span class="text-[11px] font-semibold text-umb-carbon block">Universidad Mexiquense del Bicentenario</span>
-                    <span class="text-[9px] text-umb-muted font-normal block">Unidad de Estudios Superiores San José del Rincón</span>
+              <!-- 1. ENCABEZADO SUPERIOR: 4 LOGOS OFICIALES EN FILA -->
+              <div class="flex items-center justify-between gap-2 pb-2 border-b border-gray-300">
+                <!-- Logo 1: GOBIERNO DEL ESTADO DE MÉXICO -->
+                <div class="flex items-center gap-1">
+                  <div class="w-7 h-7 rounded-full bg-slate-800 text-white flex items-center justify-center text-[9px] font-bold shrink-0">
+                    <span class="material-symbols-outlined text-[15px]">account_balance</span>
+                  </div>
+                  <div class="leading-none text-left">
+                    <span class="text-[7.5px] font-bold text-gray-800 block">GOBIERNO DEL</span>
+                    <span class="text-[7.5px] font-bold text-gray-800 block">ESTADO DE</span>
+                    <span class="text-[7.5px] font-bold text-gray-800 block">MÉXICO</span>
                   </div>
                 </div>
-                <!-- LADO DERECHO -->
-                <div class="text-right leading-tight">
-                  <span class="text-[9px] font-semibold text-umb-carbon block">Gobierno del Estado de México</span>
-                  <span class="text-[8px] text-umb-muted font-normal block">Secretaría de Educación, Ciencia y Tecnología</span>
+
+                <!-- Logo 2: ESTADO DE MÉXICO ¡El poder de servir! -->
+                <div class="flex flex-col items-center leading-none text-center">
+                  <span class="text-[9px] font-black tracking-tight text-gray-900 uppercase">ESTADO DE MÉXICO</span>
+                  <span class="text-[6.5px] text-umb-guinda font-serif italic mt-0.5">¡El poder de servir!</span>
+                </div>
+
+                <!-- Logo 3: EDUCACIÓN - SECRETARÍA DE EDUCACIÓN -->
+                <div class="flex flex-col text-left leading-none">
+                  <span class="text-[9px] font-black text-gray-900 tracking-tight">EDUCACIÓN</span>
+                  <span class="text-[5.5px] text-gray-600 mt-0.5 uppercase">SECRETARÍA DE EDUCACIÓN, CIENCIA, TECNOLOGÍA E INNOVACIÓN</span>
+                </div>
+
+                <!-- Logo 4: UMB UNIVERSIDAD MEXIQUENSE DEL BICENTENARIO -->
+                <div class="flex items-center gap-1">
+                  <img src="../assets/logo_umb.png" alt="Logo UMB" class="h-8 w-auto object-contain">
                 </div>
               </div>
 
-              <!-- LUGAR, FECHA Y FOLIO -->
-              <div class="mt-4 text-right">
-                <p class="text-[9px] text-umb-muted">San José del Rincón, México, a 18 de agosto de 2026</p>
-                <p class="text-[9px] font-mono font-semibold text-umb-carbon">Oficio No. UMB/UES-SJR/CE/2026-0148</p>
+              <!-- Glifo / Flor Mexiquense y Lema Oficial del Año -->
+              <div class="text-center my-3">
+                <div class="flex justify-center mb-1 text-gray-700">
+                  <span class="text-[11px] leading-none">❖</span>
+                </div>
+                <p class="text-[9px] font-serif italic text-gray-800 tracking-wide">"2026. Año del Humanismo Mexicano en el Estado de México".</p>
               </div>
 
-              <!-- DESTINATARIO Y ASUNTO -->
-              <div class="mt-6 flex justify-between items-start">
-                <div class="text-left space-y-0.5">
-                  <p class="text-[11px] font-bold text-umb-carbon uppercase tracking-wide">MTRO. ARMANDO ALCALDE MARTÍNEZ</p>
-                  <p class="text-[10px] font-semibold text-umb-carbon uppercase">DIRECTOR ACADÉMICO</p>
-                  <p class="text-[10px] font-semibold text-umb-carbon uppercase">UNIVERSIDAD MEXIQUENSE DEL BICENTENARIO</p>
-                  <p class="text-[10px] font-semibold text-umb-carbon uppercase tracking-institutional pt-1">P R E S E N T E</p>
-                </div>
-                <div class="text-right">
-                  <p class="text-[11px] font-bold text-umb-carbon">Asunto: Carta de presentación</p>
-                </div>
+              <!-- 2. OFICIO Y FECHA (Alineado a la derecha) -->
+              <div class="text-right space-y-0.5 text-[9px] font-sans my-4">
+                <p class="font-semibold text-gray-800">Oficio núm.: <span class="font-mono">UMB/228C3001020013L-333/2026</span></p>
+                <p class="text-gray-700">San José del Rincón, Estado de México a 20 de agosto de 2026.</p>
               </div>
 
-              <!-- CUERPO DEL TEXTO (10px Regular, justificado, interlineado 1.5) -->
-              <div class="mt-6 space-y-4 text-[10px] leading-[1.6] text-justify text-umb-carbon">
+              <!-- 3. DESTINATARIO -->
+              <div class="text-left space-y-0.5 text-[10px] leading-tight my-4">
+                <p class="font-bold text-gray-900 uppercase tracking-wide">AHARON CHOUKROUN ILUZ</p>
+                <p class="font-bold text-gray-900 uppercase">DIRECCIÓN GENERAL</p>
+                <p class="font-bold text-gray-900 uppercase">GASTRONÓMICA MOSAICA S.A. DE C.V.</p>
+                <p class="font-bold text-gray-900 uppercase pt-1">PRESENTE</p>
+              </div>
+
+              <!-- 4. ASUNTO (Alineado a la derecha) -->
+              <div class="text-right my-3">
+                <p class="font-bold text-gray-900 text-[10.5px]">Asunto: CARTA DE PRESENTACIÓN</p>
+              </div>
+
+              <!-- 5. CUERPO DEL OFICIO (Fundamentación jurídica exacta UMB) -->
+              <div class="space-y-3.5 text-justify text-[9.5px] leading-[1.65] text-gray-800 font-sans">
                 <p>
-                  Reciba un cordial saludo, así mismo con fundamento en la fracción V del Artículo 3, Artículo 6 y Artículo 13 del Reglamento de Residencia Profesional, hago propicio este medio a efecto de presentar a Usted al C. <span class="font-bold">Jesús Andrés Mondragón Tenorio</span> con número de matrícula <span class="font-bold">13220024</span> inscrito en esta Casa de Estudios quien cursa la <span class="font-bold">Licenciatura en Ingeniería en Sistemas Computacionales</span> en la Unidad de Estudios Superiores que represento, mismo que considera realizar su Residencia Profesional en el organismo a su cargo con la propuesta de intervención (proyecto) denominada <span class="font-bold">Plataforma web para el control de información relativa al proceso de residencia profesional del estudiantado en la Unidad de Estudios Superiores San José del Rincón</span> dentro del área de especialidad afín a su formación profesional debiendo cubrir un total de <span class="font-bold">640 hrs.</span> durante un periodo mínimo de cuatro y máximo de seis meses.
+                  Reciba un cordial saludo, asimismo con fundamento en la fracción V del Artículo 3, Artículo 6 y Artículo 13 del Reglamento de Residencia Profesional hago propicio este medio a efecto de presentar a Usted a el C. <strong class="font-bold text-gray-900">Cristofer Piña Rodriguez</strong> con número de matrícula <strong class="font-bold text-gray-900">13220030</strong> inscrito en esta Casa de Estudios quien cursa la <strong class="font-bold text-gray-900">Licenciatura de Ingeniería en Sistemas Computacionales</strong> en la Unidad de Estudios Superiores que represento, mismo que considera realizar su Residencia Profesional en el organismo a su cargo con la propuesta de intervención (proyecto) denominada <strong class="font-bold text-gray-900">Módulo de control de rastro producción almacén y ventas para gastronómica mosaica</strong> dentro del área de especialidad afín a su formación profesional debiendo cubrir un total de <strong class="font-bold text-gray-900">640 hrs.</strong> durante un periodo <strong class="font-bold text-gray-900">mínimo de cuatro y máximo de seis meses</strong>.
                 </p>
                 <p>
                   En espera de su amable respuesta agradezco su amable atención al presente.
                 </p>
               </div>
 
-              <!-- ESPACIO PARA FIRMA AUTÓGRAFA (~60px) Y PIE DE CARTA -->
-              <div class="mt-12 text-center">
-                <p class="text-[10px] font-bold tracking-institutional text-umb-carbon uppercase">A T E N T A M E N T E</p>
-                
-                <!-- Espacio de ~60px para firma física -->
-                <div class="h-16 flex items-center justify-center">
-                  <span class="text-[8px] text-[#A08E90] italic border-b border-dashed border-[#D1D5DB] w-48 text-center pb-1">Firma autógrafa</span>
-                </div>
+              <!-- 6. FIRMA OFICIAL, SELLO UMB Y CCP -->
+              <div class="mt-8 pt-2 flex items-start justify-between">
+                <!-- Izquierda: Firma del Coordinador de la UES -->
+                <div class="text-left space-y-0.5 relative">
+                  <p class="font-bold text-gray-900 text-[10px] mb-1">Atentamente</p>
+                  
+                  <!-- Firma y Sello rectangular simulado -->
+                  <div class="relative h-14 w-52 flex items-center">
+                    <span class="font-serif italic text-base text-slate-800 absolute z-10 left-3 -top-1">Luis Ramón Vega R.</span>
+                    
+                    <!-- Sello rectangular UMB San José -->
+                    <div class="absolute left-1 -top-2 w-32 h-13 border-2 border-slate-700/80 rounded flex flex-col items-center justify-center p-1 text-center bg-white/40 transform -rotate-3 select-none pointer-events-none">
+                      <span class="text-[9px] font-black uppercase text-slate-800 tracking-tighter leading-none">UMB</span>
+                      <span class="text-[5px] font-bold text-slate-700 uppercase leading-none mt-0.5">Universidad Mexiquense del Bicentenario</span>
+                      <span class="text-[7px] font-extrabold text-slate-900 uppercase tracking-wide border-t border-slate-700 w-full mt-0.5 pt-0.5">SAN JOSÉ</span>
+                    </div>
+                  </div>
 
-                <p class="text-[11px] font-bold text-umb-carbon">Mtro. en I. D. Luis Ramón Vega Ramírez</p>
-                <p class="text-[10px] text-umb-muted">Coordinador de la Unidad de Estudios Superiores</p>
-                <p class="text-[10px] text-umb-muted">San José del Rincón</p>
-
-                <!-- SELLO INSTITUCIONAL CIRCULAR SIMULADO (borde punteado gris, no relleno) -->
-                <div class="mt-5 flex justify-center">
-                  <div class="w-20 h-20 rounded-full border border-dashed border-[#9CA3AF] flex flex-col items-center justify-center text-center p-1 opacity-70">
-                    <span class="text-[6px] text-[#6B7280] font-semibold uppercase leading-none">Secretaría de Educación</span>
-                    <span class="text-[7px] text-[#4B5563] font-bold uppercase leading-tight my-0.5">UMB · UES SJR</span>
-                    <span class="text-[5px] text-[#6B7280] uppercase leading-none">Coordinación</span>
+                  <p class="font-bold text-gray-900 text-[10px]">Mtro. en I. D. Luis Ramón Vega Ramírez</p>
+                  <p class="text-gray-700 text-[9px]">Coordinador de la Unidad de Estudios Superiores</p>
+                  <p class="text-gray-700 text-[9px]">San José del Rincón</p>
+                  
+                  <div class="pt-3 text-[7.5px] text-gray-500 space-y-0.5">
+                    <p>C.c.p. Estudiante.</p>
+                    <p>C.c.p. Archivo.</p>
                   </div>
                 </div>
+
+                <!-- Derecha: Espacio para acuse o sello de la empresa -->
+                <div class="flex flex-col items-center justify-center relative pr-2 pt-2">
+                  <div class="w-20 h-20 rounded-full border border-dashed border-gray-400 flex flex-col items-center justify-center text-center p-1 opacity-70">
+                    <span class="text-[6px] text-gray-500 font-semibold uppercase leading-none">Espacio para</span>
+                    <span class="text-[7px] text-gray-700 font-bold uppercase leading-tight my-0.5">SELLO Y FIRMA</span>
+                    <span class="text-[5px] text-gray-500 uppercase leading-none">DE LA EMPRESA</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 7. PIE DE PÁGINA: CENEFA OTOMÍ Y DATOS INSTITUCIONALES -->
+              <div class="mt-8 pt-3 border-t border-gray-200 text-center">
+                <!-- Cenefa Ornamental Mexiquense -->
+                <div class="text-[9px] text-gray-600 tracking-widest leading-none mb-1.5 select-none">
+                  ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖
+                </div>
+                <p class="text-[7px] text-gray-600 leading-tight">
+                  Av. Universidad, Calle Justo Sierra S/N, Col. Las Tinajas, C. P. 50660, San José del Rincón, Estado de México.
+                </p>
+                <p class="text-[7px] text-gray-600 leading-tight mt-0.5">
+                  Tel.: 712 124 22 34. Correo electrónico: <span class="font-medium text-gray-800">uessanjosedelrincon@umb.mx</span> Página web: <span class="font-medium text-gray-800">umb.edomex.gob.mx</span>
+                </p>
               </div>
 
             </div>

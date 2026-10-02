@@ -128,7 +128,7 @@
         <!-- DROPDOWN: CENTRO DE NOTIFICACIONES (ANCHO 400PX, FLOTANTE) -->
         <!-- ========================================================== -->
         <div id="notificationDropdown" 
-             class="dropdown-enter absolute right-0 mt-2 w-[390px] sm:w-[400px] bg-white rounded-lg shadow-dropdown border border-umb-border z-50 overflow-hidden flex flex-col text-umb-carbon transform origin-top-right">
+             class="absolute right-0 mt-2 w-[390px] sm:w-[400px] bg-white rounded-lg shadow-modal border border-umb-border z-50 overflow-hidden flex flex-col text-umb-carbon transform origin-top-right transition-all duration-150">
           
           <!-- 1. ENCABEZADO FIJO (Fondo #F9FAFB, padding 16px) -->
           <div class="bg-[#F9FAFB] px-4 py-3.5 border-b border-umb-border flex items-center justify-between flex-shrink-0">
@@ -138,7 +138,7 @@
                 3 nuevas
               </span>
             </div>
-            <button onclick="markAllAsRead()" 
+            <button onclick="markAllAsRead(event)" 
                     class="text-xs font-medium text-umb-guinda hover:text-[#521422] hover:underline focus:outline-none focus:ring-1 focus:ring-umb-guinda rounded px-1 py-0.5 transition-colors">
               Marcar todas como leídas
             </button>
@@ -405,20 +405,22 @@
             Interactúa con los controles para validar las variantes requeridas por el sistema institucional.
           </p>
 
-          <div class="space-y-3">
+          <div id="simulatorPanel" class="space-y-3">
             <!-- Botón 1: Estado Normal (3 no leídas) -->
-            <button onclick="setScenario('default')" 
-                    class="w-full text-left p-3 rounded-lg border border-umb-border hover:border-umb-guinda hover:bg-[#F9FAFB] transition-all flex items-center justify-between group">
+            <button id="btnScenarioDefault" 
+                    onclick="setScenario('default', event)" 
+                    class="scenario-btn w-full text-left p-3 rounded-lg border border-umb-guinda bg-umb-guinda-light/40 ring-2 ring-umb-guinda transition-all flex items-center justify-between group">
               <div>
                 <span class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda">Estado 1: Normal (3 no leídas)</span>
                 <p class="text-[11px] text-umb-outline">Muestra la campana con badge '3' y 5 notificaciones.</p>
               </div>
-              <span class="text-xs text-umb-guinda font-medium">Activar &rarr;</span>
+              <span class="text-xs text-umb-guinda font-medium">Activo &bull;</span>
             </button>
 
             <!-- Botón 2: Estado Vacío -->
-            <button onclick="setScenario('empty')" 
-                    class="w-full text-left p-3 rounded-lg border border-umb-border hover:border-umb-guinda hover:bg-[#F9FAFB] transition-all flex items-center justify-between group">
+            <button id="btnScenarioEmpty" 
+                    onclick="setScenario('empty', event)" 
+                    class="scenario-btn w-full text-left p-3 rounded-lg border border-umb-border hover:border-umb-guinda hover:bg-[#F9FAFB] transition-all flex items-center justify-between group">
               <div>
                 <span class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda">Estado 2: Dropdown vacío</span>
                 <p class="text-[11px] text-umb-outline">Sin notificaciones, campana tachada y badge oculto.</p>
@@ -427,8 +429,9 @@
             </button>
 
             <!-- Botón 3: Estado 9+ -->
-            <button onclick="setScenario('ninePlus')" 
-                    class="w-full text-left p-3 rounded-lg border border-umb-border hover:border-umb-guinda hover:bg-[#F9FAFB] transition-all flex items-center justify-between group">
+            <button id="btnScenarioNinePlus" 
+                    onclick="setScenario('ninePlus', event)" 
+                    class="scenario-btn w-full text-left p-3 rounded-lg border border-umb-border hover:border-umb-guinda hover:bg-[#F9FAFB] transition-all flex items-center justify-between group">
               <div>
                 <span class="text-xs font-semibold text-umb-carbon group-hover:text-umb-guinda">Estado 3: Badge con "9+"</span>
                 <p class="text-[11px] text-umb-outline">Alta concurrencia con más de 9 avisos pendientes.</p>
@@ -438,11 +441,11 @@
 
             <!-- Botón 4: Alternar visibilidad de dropdown -->
             <div class="pt-4 border-t border-umb-border flex gap-2">
-              <button onclick="toggleNotifications()" 
+              <button onclick="toggleNotifications(event)" 
                       class="flex-1 py-2 px-3 bg-umb-guinda text-white text-xs font-medium rounded-lg hover:bg-[#521422] transition-colors shadow-sm text-center">
                 Alternar dropdown (abrir/cerrar)
               </button>
-              <button onclick="markAllAsRead()" 
+              <button onclick="markAllAsRead(event)" 
                       class="py-2 px-3 border border-umb-border text-umb-muted text-xs font-medium rounded-lg hover:bg-gray-50 transition-colors">
                 Limpiar no leídas
               </button>
@@ -493,7 +496,10 @@
     const emptyState = document.getElementById('emptyNotificationsState');
 
     // Función para alternar el dropdown
-    function toggleNotifications() {
+    function toggleNotifications(event) {
+      if (event) {
+        event.stopPropagation();
+      }
       if (isOpen) {
         closeDropdown();
       } else {
@@ -503,18 +509,20 @@
 
     function openDropdown() {
       dropdown.classList.remove('hidden');
-      dropdown.classList.remove('dropdown-exit');
-      dropdown.classList.add('dropdown-enter');
+      dropdown.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+      dropdown.classList.add('opacity-100', 'scale-100');
       isOpen = true;
     }
 
     function closeDropdown() {
-      dropdown.classList.remove('dropdown-enter');
-      dropdown.classList.add('dropdown-exit');
+      dropdown.classList.remove('opacity-100', 'scale-100');
+      dropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
       setTimeout(() => {
-        dropdown.classList.add('hidden');
-        isOpen = false;
-      }, 140);
+        if (!isOpen) {
+          dropdown.classList.add('hidden');
+        }
+      }, 150);
+      isOpen = false;
     }
 
     // Cierre al presionar la tecla Escape
@@ -524,15 +532,21 @@
       }
     });
 
-    // Cierre al hacer clic fuera del dropdown y del trigger
+    // Cierre al hacer clic fuera del dropdown, del trigger y del panel de simulación
     document.addEventListener('click', function(event) {
-      if (isOpen && !dropdown.contains(event.target) && !trigger.contains(event.target)) {
+      if (isOpen && 
+          !dropdown.contains(event.target) && 
+          !trigger.contains(event.target) &&
+          !event.target.closest('#simulatorPanel')) {
         closeDropdown();
       }
     });
 
     // Marcar todas las notificaciones como leídas
-    function markAllAsRead() {
+    function markAllAsRead(event) {
+      if (event) {
+        event.stopPropagation();
+      }
       const items = document.querySelectorAll('.notification-item');
       items.forEach(item => {
         item.classList.remove('border-l-[3px]', 'border-umb-guinda', 'bg-white');
@@ -583,8 +597,36 @@
     }
 
     // Simulador de escenarios de prueba
-    function setScenario(type) {
+    function setScenario(type, event) {
+      if (event) {
+        event.stopPropagation();
+      }
       currentScenario = type;
+
+      // Actualizar botones del simulador
+      document.querySelectorAll('.scenario-btn').forEach(btn => {
+        btn.classList.remove('ring-2', 'ring-umb-guinda', 'bg-umb-guinda-light/40', 'border-umb-guinda');
+        btn.classList.add('border-umb-border');
+        const statusSpan = btn.querySelector('span:last-child');
+        if (statusSpan) {
+          statusSpan.innerHTML = 'Activar &rarr;';
+        }
+      });
+
+      const activeBtn = document.getElementById(
+        type === 'empty' ? 'btnScenarioEmpty' : 
+        type === 'ninePlus' ? 'btnScenarioNinePlus' : 
+        'btnScenarioDefault'
+      );
+      if (activeBtn) {
+        activeBtn.classList.add('ring-2', 'ring-umb-guinda', 'bg-umb-guinda-light/40', 'border-umb-guinda');
+        activeBtn.classList.remove('border-umb-border');
+        const statusSpan = activeBtn.querySelector('span:last-child');
+        if (statusSpan) {
+          statusSpan.innerHTML = 'Activo &bull;';
+        }
+      }
+
       openDropdown();
 
       if (type === 'empty') {
@@ -601,10 +643,46 @@
         unreadBadge.textContent = '9+';
         newBadgeCount.classList.remove('hidden');
         newBadgeCount.textContent = '12 nuevas';
+        restoreDefaultItems(true);
       } else {
         // Default (3 no leídas)
-        location.reload();
+        notificationsList.classList.remove('hidden');
+        emptyState.classList.add('hidden');
+        emptyState.classList.remove('flex');
+        unreadBadge.classList.remove('hidden');
+        unreadBadge.textContent = '3';
+        newBadgeCount.classList.remove('hidden');
+        newBadgeCount.textContent = '3 nuevas';
+        restoreDefaultItems(false);
       }
+    }
+
+    function restoreDefaultItems(isNinePlus) {
+      const itemsConfig = [
+        { id: 'notif-1', unread: true },
+        { id: 'notif-2', unread: true },
+        { id: 'notif-3', unread: true },
+        { id: 'notif-4', unread: isNinePlus },
+        { id: 'notif-5', unread: isNinePlus }
+      ];
+
+      itemsConfig.forEach(cfg => {
+        const el = document.getElementById(cfg.id);
+        if (!el) return;
+        const existingDot = el.querySelector('.unread-dot');
+        if (existingDot) existingDot.remove();
+
+        if (cfg.unread) {
+          el.classList.add('border-l-[3px]', 'border-umb-guinda', 'bg-white');
+          el.classList.remove('bg-[#F9FAFB]');
+          const dot = document.createElement('span');
+          dot.className = 'unread-dot w-2 h-2 rounded-full bg-umb-guinda flex-shrink-0 mt-1.5 ring-2 ring-white';
+          el.appendChild(dot);
+        } else {
+          el.classList.remove('border-l-[3px]', 'border-umb-guinda', 'bg-white');
+          el.classList.add('bg-[#F9FAFB]');
+        }
+      });
     }
   </script>
 

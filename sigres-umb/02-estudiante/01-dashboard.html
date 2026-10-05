@@ -243,6 +243,22 @@
       </a>
     </div>
   </header>
+  <!-- ================= BARRA DE SINCRONIZACIÓN PWA (Transversal 08) ================= -->
+  <div id="pwaSyncBanner" class="hidden w-full bg-umb-dorado-light border-b border-[#FDE68A] transition-all duration-300 relative z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between text-xs sm:text-[13px] font-medium text-[#92400E]">
+      <div class="flex items-center gap-2.5 overflow-hidden">
+        <span class="material-symbols-outlined text-[18px] text-[#92400E] shrink-0 animate-pulse">wifi_off</span>
+        <span class="truncate">Modo sin conexión activo · 3 bitácoras pendientes de sincronizar</span>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <button type="button" onclick="syncPwaData()" class="px-2.5 py-1 rounded bg-[#D69E2E] hover:bg-[#B45309] text-white text-xs font-semibold shadow-xs transition-colors flex items-center gap-1 cursor-pointer">
+          <span class="material-symbols-outlined text-[14px]">sync</span>
+          <span class="hidden sm:inline">Sincronizar ahora</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
 
   <!-- CONTENEDOR PRINCIPAL CON SIDEBAR + ÁREA DE CONTENIDO -->
   <div class="pt-16 min-h-screen flex flex-1 w-full pb-20 lg:pb-10">
@@ -753,5 +769,183 @@
       if (e.key === 'Escape') closePushModal();
     });
   </script>
+
+  <!-- Botón de demostración para el video — eliminar en producción -->
+  <aside aria-label="Demostración de expiración de sesión" class="fixed bottom-6 left-6 z-50">
+    <button type="button" onclick="openSessionExpiredModal()" class="h-10 px-4 rounded-full bg-umb-warning hover:bg-[#B45309] text-white text-xs font-bold shadow-xl border border-white/20 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-amber-400 cursor-pointer" title="Simular expiración de sesión por inactividad">
+      <span class="material-symbols-outlined text-sm text-white">schedule</span>
+      <span>Simular expiración</span>
+    </button>
+  </aside>
+
+  <!-- Botón de demostración para el video — eliminar en producción -->
+  <aside aria-label="Demostración de modo offline" class="fixed bottom-24 right-6 z-50">
+    <button type="button" onclick="toggleOfflineMode()" title="Simular modo offline" class="w-12 h-12 rounded-full bg-umb-carbon hover:bg-neutral-800 text-white shadow-xl border border-white/20 flex items-center justify-center transition-all hover:scale-105 focus:outline-none focus:ring-2 focus:ring-umb-dorado cursor-pointer">
+      <span id="offlineIcon" class="material-symbols-outlined text-[22px]">wifi_off</span>
+    </button>
+  </aside>
+
+  <!-- MODAL DE SESIÓN EXPIRADA (Transversal 11) -->
+  <div id="sessionExpiredModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 backdrop-blur-md bg-black/60 animate-in fade-in duration-200" role="dialog" aria-modal="true">
+    <div class="bg-white rounded-2xl shadow-modal border border-slate-200/80 max-w-md w-full overflow-hidden animate-in zoom-in-95 duration-200 text-slate-800" onclick="event.stopPropagation()">
+      <div class="bg-gradient-to-r from-umb-guinda to-umb-guinda-dark p-6 text-white text-center relative">
+        <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mx-auto shadow-inner mb-3">
+          <span class="material-symbols-outlined text-[32px] text-amber-300">lock_clock</span>
+        </div>
+        <h2 class="text-lg font-bold tracking-tight">Tu sesión está a punto de expirar</h2>
+        <p class="text-xs text-white/80 mt-1">Por seguridad institucional debido a inactividad en el sistema.</p>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/30 border border-white/15 text-xs font-mono font-semibold text-amber-300 mt-3 shadow-inner">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+          <span>Tiempo restante: <strong id="timerDisplay">02:30</strong> min</span>
+        </div>
+      </div>
+      <div class="p-6 space-y-4">
+        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-start gap-2.5">
+          <span class="material-symbols-outlined text-emerald-600 text-[20px] shrink-0 mt-0.5">verified_user</span>
+          <div class="text-xs">
+            <p class="font-bold text-emerald-950">Tus datos en captura están seguros</p>
+            <p class="text-emerald-800 text-[11px] mt-0.5 leading-relaxed">El borrador de tu sesión se encuentra respaldado localmente.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200">
+          <div class="w-9 h-9 rounded-full bg-umb-guinda text-white flex items-center justify-center font-bold text-xs">JM</div>
+          <div class="flex-1 min-w-0">
+            <p class="text-xs font-bold text-slate-900 truncate">Jesús Andrés Mondragón Tenorio</p>
+            <p class="text-[11px] text-slate-500 font-mono">13220024 · Estudiante ISC</p>
+          </div>
+          <span class="text-[10px] font-semibold bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full">Activo</span>
+        </div>
+        <form onsubmit="handleReauth(event)" class="space-y-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Contraseña de acceso institucional</label>
+            <input type="password" id="sessionPassInput" placeholder="••••••••" required class="w-full px-3 py-2 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-umb-guinda focus:outline-none">
+          </div>
+          <div class="flex items-center justify-between gap-2 pt-2">
+            <a href="../01-autenticacion/01-login.html" class="px-3 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800">Cerrar sesión</a>
+            <button type="submit" class="px-4 py-2 bg-umb-guinda hover:bg-umb-guinda-dark text-white font-semibold text-xs rounded-lg shadow-sm transition-colors">Reactivar sesión</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENEDOR DE NOTIFICACIONES TOAST (Transversal 03) -->
+  <section id="toastContainer" aria-live="polite" aria-label="Notificaciones del sistema" class="fixed bottom-6 right-6 z-50 flex flex-col-reverse gap-3 max-w-[420px] w-[calc(100vw-48px)] sm:w-[400px] pointer-events-none"></section>
+<script>
+    // HELPER GLOBAL TOAST NOTIFICACIONES (Transversal 03)
+    function showToast(title, message, type = 'success', actionText = null, actionCallback = null) {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+
+      const toastId = 'toast-' + Date.now();
+      const toast = document.createElement('div');
+      toast.id = toastId;
+      toast.className = 'pointer-events-auto bg-white rounded-lg p-4 custom-shadow border-l-4 flex items-start justify-between gap-3 animate-in fade-in slide-in-from-bottom-5 duration-200 relative overflow-hidden transition-all';
+      
+      let borderClass = 'border-[#2D8C4E]';
+      let iconBg = 'bg-[#DCFCE7] text-[#2D8C4E]';
+      let iconName = 'check_circle';
+      let timerBg = 'bg-[#2D8C4E]';
+
+      if (type === 'error' || type === 'danger') {
+        borderClass = 'border-[#C53030]';
+        iconBg = 'bg-[#FEE2E2] text-[#C53030]';
+        iconName = 'error';
+        timerBg = 'bg-[#C53030]';
+      } else if (type === 'warning') {
+        borderClass = 'border-[#D69E2E]';
+        iconBg = 'bg-[#FEF3C7] text-[#D69E2E]';
+        iconName = 'warning';
+        timerBg = 'bg-[#D69E2E]';
+      } else if (type === 'info') {
+        borderClass = 'border-[#2B6CB0]';
+        iconBg = 'bg-[#EFF6FF] text-[#2B6CB0]';
+        iconName = 'info';
+        timerBg = 'bg-[#2B6CB0]';
+      }
+
+      toast.classList.add(borderClass);
+
+      toast.innerHTML = `
+        <div class="flex-shrink-0 w-6 h-6 rounded-full ${iconBg} flex items-center justify-center mt-0.5">
+          <span class="material-symbols-outlined text-[16px]">${iconName}</span>
+        </div>
+        <div class="flex-1 min-w-0 pr-1">
+          <h3 class="text-sm font-semibold text-umb-carbon leading-tight">${title}</h3>
+          <p class="text-xs text-umb-muted mt-0.5 leading-normal">${message}</p>
+        </div>
+        <div class="flex items-center space-x-1.5 flex-shrink-0">
+          ${actionText ? `<button type="button" class="text-xs font-semibold text-umb-guinda hover:underline px-1.5 py-1">${actionText}</button>` : ''}
+          <button type="button" onclick="closeToast('${toastId}')" class="text-umb-outline hover:text-umb-carbon p-1 rounded hover:bg-gray-100 transition" title="Cerrar">
+            <span class="material-symbols-outlined text-[16px]">close</span>
+          </button>
+        </div>
+        <div class="absolute bottom-0 left-0 h-[2px] bg-black/5 w-full">
+          <div class="h-full ${timerBg} transition-all duration-4000 ease-linear" style="width: 100%;" id="timer-${toastId}"></div>
+        </div>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        const timer = document.getElementById(`timer-${toastId}`);
+        if (timer) timer.style.width = '0%';
+      }, 50);
+
+      setTimeout(() => {
+        closeToast(toastId);
+      }, 4000);
+    }
+
+    function closeToast(id) {
+      const toast = document.getElementById(id);
+      if (toast) {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 200);
+      }
+    }
+
+    // CONTROL DE DEMOSTRACIÓN: EXPIRACIÓN Y MODO OFFLINE
+    let isOfflineActive = false;
+
+    function openSessionExpiredModal() {
+      const modal = document.getElementById('sessionExpiredModal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeSessionExpiredModal() {
+      const modal = document.getElementById('sessionExpiredModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function handleReauth(event) {
+      event.preventDefault();
+      closeSessionExpiredModal();
+      showToast('Sesión renovada', 'Tu sesión institucional ha sido reactivada exitosamente.', 'success');
+    }
+
+    function toggleOfflineMode() {
+      isOfflineActive = !isOfflineActive;
+      const banner = document.getElementById('pwaSyncBanner');
+      const icon = document.getElementById('offlineIcon');
+
+      if (isOfflineActive) {
+        if (banner) banner.classList.remove('hidden');
+        if (icon) icon.textContent = 'wifi';
+        showToast('Modo sin conexión', 'Trabajando en modo local (PWA Offline).', 'warning');
+      } else {
+        if (banner) banner.classList.add('hidden');
+        if (icon) icon.textContent = 'wifi_off';
+        showToast('Conexión restaurada', 'Sincronización automática completada.', 'success');
+      }
+    }
+
+    function syncPwaData() {
+      showToast('Sincronizando', 'Sincronizando 3 bitácoras locales con el servidor UMB...', 'info');
+      setTimeout(() => {
+        toggleOfflineMode();
+      }, 1500);
+    }
+</script>
 </body>
 </html>

@@ -941,4 +941,115 @@
       if (e.key === 'Escape') closePushModal();
     });
   </script>
+
+  <!-- MODAL DE CONFIRMACIÓN ASESOR EXTERNO (Transversal 01) -->
+  <div id="approveExternoModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs" role="dialog" aria-modal="true">
+    <div class="bg-white rounded-xl shadow-modal w-full max-w-[420px] p-6 flex flex-col items-center text-center border border-slate-100 animate-in zoom-in-95 duration-150" onclick="event.stopPropagation()">
+      <div class="w-14 h-14 rounded-full bg-[#DCFCE7] text-[#2D8C4E] flex items-center justify-center mb-3">
+        <span class="material-symbols-outlined text-[30px]">verified</span>
+      </div>
+      <h3 class="text-base font-bold text-umb-carbon tracking-tight">¿Validar horas y actividades en empresa?</h3>
+      <p class="mt-1 text-xs text-umb-muted leading-relaxed">
+        Confirmas que el alumno Jesús Andrés Mondragón Tenorio cubrió satisfactoriamente las 35 horas de la Semana 10.
+      </p>
+
+      <div class="mt-5 flex items-center justify-end gap-2.5 w-full">
+        <button type="button" onclick="closeApproveExternoModal()" class="px-3.5 py-2 border border-slate-300 rounded-lg text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 transition-colors">Cancelar</button>
+        <button type="button" onclick="confirmApproveExterno()" class="px-4 py-2 rounded-lg text-xs font-semibold text-white bg-[#2D8C4E] hover:bg-emerald-700 transition-colors shadow-xs">Firmar y validar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENEDOR DE NOTIFICACIONES TOAST (Transversal 03) -->
+  <section id="toastContainer" aria-live="polite" aria-label="Notificaciones del sistema" class="fixed bottom-6 right-6 z-50 flex flex-col-reverse gap-3 max-w-[420px] w-[calc(100vw-48px)] sm:w-[400px] pointer-events-none"></section>
+<script>
+    // HELPER GLOBAL TOAST NOTIFICACIONES (Transversal 03)
+    function showToast(title, message, type = 'success', actionText = null, actionCallback = null) {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+
+      const toastId = 'toast-' + Date.now();
+      const toast = document.createElement('div');
+      toast.id = toastId;
+      toast.className = 'pointer-events-auto bg-white rounded-lg p-4 custom-shadow border-l-4 flex items-start justify-between gap-3 animate-in fade-in slide-in-from-bottom-5 duration-200 relative overflow-hidden transition-all';
+      
+      let borderClass = 'border-[#2D8C4E]';
+      let iconBg = 'bg-[#DCFCE7] text-[#2D8C4E]';
+      let iconName = 'check_circle';
+      let timerBg = 'bg-[#2D8C4E]';
+
+      if (type === 'error' || type === 'danger') {
+        borderClass = 'border-[#C53030]';
+        iconBg = 'bg-[#FEE2E2] text-[#C53030]';
+        iconName = 'error';
+        timerBg = 'bg-[#C53030]';
+      } else if (type === 'warning') {
+        borderClass = 'border-[#D69E2E]';
+        iconBg = 'bg-[#FEF3C7] text-[#D69E2E]';
+        iconName = 'warning';
+        timerBg = 'bg-[#D69E2E]';
+      } else if (type === 'info') {
+        borderClass = 'border-[#2B6CB0]';
+        iconBg = 'bg-[#EFF6FF] text-[#2B6CB0]';
+        iconName = 'info';
+        timerBg = 'bg-[#2B6CB0]';
+      }
+
+      toast.classList.add(borderClass);
+
+      toast.innerHTML = `
+        <div class="flex-shrink-0 w-6 h-6 rounded-full ${iconBg} flex items-center justify-center mt-0.5">
+          <span class="material-symbols-outlined text-[16px]">${iconName}</span>
+        </div>
+        <div class="flex-1 min-w-0 pr-1">
+          <h3 class="text-sm font-semibold text-umb-carbon leading-tight">${title}</h3>
+          <p class="text-xs text-umb-muted mt-0.5 leading-normal">${message}</p>
+        </div>
+        <div class="flex items-center space-x-1.5 flex-shrink-0">
+          ${actionText ? `<button type="button" class="text-xs font-semibold text-umb-guinda hover:underline px-1.5 py-1">${actionText}</button>` : ''}
+          <button type="button" onclick="closeToast('${toastId}')" class="text-umb-outline hover:text-umb-carbon p-1 rounded hover:bg-gray-100 transition" title="Cerrar">
+            <span class="material-symbols-outlined text-[16px]">close</span>
+          </button>
+        </div>
+        <div class="absolute bottom-0 left-0 h-[2px] bg-black/5 w-full">
+          <div class="h-full ${timerBg} transition-all duration-4000 ease-linear" style="width: 100%;" id="timer-${toastId}"></div>
+        </div>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        const timer = document.getElementById(`timer-${toastId}`);
+        if (timer) timer.style.width = '0%';
+      }, 50);
+
+      setTimeout(() => {
+        closeToast(toastId);
+      }, 4000);
+    }
+
+    function closeToast(id) {
+      const toast = document.getElementById(id);
+      if (toast) {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 200);
+      }
+    }
+
+    function openApproveExternoModal() {
+      document.getElementById('approveExternoModal').classList.remove('hidden');
+    }
+
+    function closeApproveExternoModal() {
+      document.getElementById('approveExternoModal').classList.add('hidden');
+    }
+
+    function confirmApproveExterno() {
+      closeApproveExternoModal();
+      showToast('Bitácora validada', 'La bitácora semanal ha sido firmada por la sede receptora.', 'success');
+      setTimeout(() => {
+        window.location.href = '02-bitacoras-por-validar.html';
+      }, 1600);
+    }
+</script>
 </body></html>
